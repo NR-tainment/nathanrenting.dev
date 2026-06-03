@@ -165,8 +165,7 @@ periodiek.
 
 ## Drie-tier AI-fallback
 
-ECHO neemt nooit aan dat de API up is. Het patroon staat op
-WBSO-niveau in de technical-uncertainties-notes van het project:
+ECHO neemt nooit aan dat de API up is. Drie tiers:
 
 1. **Tier 1 — API** (primair, hoogste kwaliteit)
 2. **Tier 2 — Rule-based reasoning** (fallback als de API down of
@@ -198,75 +197,29 @@ draait op de main box; cloud-kosten blijven bescheiden.
 ## Privacy-filter
 
 De vault wordt elke turn in ECHO&apos;s persona geladen — wat betekent
-dat alles wat erin staat door de LLM gelezen wordt en naar Anthropic
+dat alles wat erin staat door de LLM gelezen wordt en naar de API
 gestuurd. Een privacy-filter draait op elk write-entry-point (drafter,
 curator, extractor, commit-chronicles, daily-summarizer) en redact een
 kleine set lokaal-gevoelige programma-namen naar een generieke token.
-Het patroon werkt omdat de filter aan de *write*-kant zit, niet aan de
-read-kant.
+Filter aan de *write*-kant; de read-kant blijft simpel.
 
-Dit is het soort GDPR-by-design-beslissing dat niet bestaat als je een
-LLM achteraf op een bestaand systeem schroeft. Het moet erin
-ontworpen worden.
+## Autonome lagen
 
-## Hoe ECHO groeit
+ECHO is in lagen opgebouwd, elk progressief autonomer:
 
-ECHO begon als een chatbot. Geleidelijk werd het meer.
+1. **Geheugen-laag** — Obsidian-vault met WikiLink-edges, gevoed door
+   elk gesprek, beslissing en commit. Markdown, geen lock-in, leesbaar
+   los van ECHO.
+2. **Watchers** — Python-jobs op APScheduler die filesystem-events,
+   git-commits, calendar-pings en sentry-issues monitoren en
+   gestructureerde triggers emitten.
+3. **Drafters** — cron-jobs voor weekly recap, daily summary,
+   time-tracking aggregaat en vault-consolidation. Output landt als
+   proposed nudges in een inbox voor review.
+4. **Sleep-time-compute** (in ontwikkeling) — goedkoop model dat
+   &apos;s nachts nieuwe vault-entries leest en verbanden voorstelt.
 
-Eerst kwam de geheugen-laag: een Obsidian-vault waar elk gesprek, elke
-beslissing en elke commit naartoe gaat. Die vault groeit elke dag. Na
-maanden gebruik herkent ECHO context die ik zelf alweer vergeten was —
-een experiment van zes weken terug, een uitspraak van een klant, een
-besluit dat ik op de fiets nam.
-
-Daarna de watchers. Filesystem-events, git-commits, calendar-pings,
-sentry-issues — allemaal triggers waar ECHO autonoom op reageert. Een
-commit op een project? Drafted al een chronicle-regel terwijl ik koffie
-haal.
-
-Daarna de drafters. Cron-jobs die &apos;s nachts draaien: weekly recap,
-daily summary, time-tracking aggregaat, vault-consolidation. Als ik &apos;s
-ochtends de HUD open ligt het al klaar — niet als "rapport", maar als
-proposed nudges in een inbox waar ik akkoord of weg-klik.
-
-En nu zit ik in de fase waar <MarkerHighlight>ECHO meer voorstelt dan ik vraag</MarkerHighlight>.
-Niet alles is goed (een drafter mag soms gewoon stoppen met me wakker
-maken), maar de trend is duidelijk: ik typ minder, ECHO doet meer, en
-de output blijft op kwaliteit.
-
-Wat de vault interessanter maakt dan een database: alles is Markdown.
-Geen lock-in, geen vendor, ik kan het zelf lezen zonder ECHO aan te
-zetten. Maar ECHO leest het ook elke turn. Een gesprek van vorige maand
-kan vandaag meegenomen worden in een beslissing — niet omdat ze het
-&quot;herinnert&quot; in de mensentaal-zin, maar omdat het in de vault
-staat en ECHO precies weet hoe ze daar moet zoeken.
-
-De volgende laag in ontwikkeling: meer sleep-time-compute. Een goedkoop
-model dat &apos;s nachts mee-leest in nieuwe vault-entries en zelf
-verbanden voorstelt. Niet om ECHO &quot;slimmer&quot; te maken — om de
-context die er al ligt beter benutbaar te maken.
-
-## Wat ik geleerd heb
-
-Drie dingen die meer bleken te tellen dan de architectuur-diagrammen
-suggereerden:
-
-1. **Document-ketens werken beter dan losse docs.** Core →
-   afgeleide-voor-doelgroep-A → afgeleide-voor-doelgroep-B. Elk in zijn
-   eigen toon. Grote plannen rotten snel; kleine gerichte versies
-   overleven iteratie.
-
-2. **Watchers zijn ruis tot ze dat niet zijn.** De eerste weken zaten
-   vol false-positives en vroegen om een vier-niveau severity-taxonomy
-   (info / action / critical / defcon) en DEFCON-only Explorer
-   auto-reveal getrottled tot één per 10s. Signaal-ruis is meer
-   design-werk dan ik dacht.
-
-3. **Skills &gt; tools op een hoger abstractie-niveau.** Tools zijn
-   atomair. Skills zijn de recepten die het model nodig heeft om
-   consistent dezelfde output te produceren voor hetzelfde type
-   request. De skills-laag is het verschil tussen "het model doet dit
-   waarschijnlijk goed" en "het model doet dit betrouwbaar goed".
+<MarkerHighlight>De trend per laag: minder typen, meer voorstellen.</MarkerHighlight>
 
 ## Stack in één oogopslag
 

@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight, MarginNote } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 
 export const metadata = {
   title: "FamilyKart — kart-racing voor mijn kids",
@@ -14,15 +14,10 @@ export const metadata = {
 
 # FamilyKart — kart-racing voor mijn kids
 
-<MarkerHighlight>Mijn kids vroegen om een eigen Mario Kart.</MarkerHighlight>{" "}
-Aan kopen begin je liever niet — aan een avondje bouwen wel. Wat begon
-als "even een prototypje" is uitgegroeid tot een serieuze mini-engine
-met AI-tegenstanders, powerups, chase-camera en eigen tracks. Draait
-als Electron-app op Windows.
-
-<MarginNote position="right" rotate={-2}>
-  (de oudste vindt &apos;m beter dan de echte. ik vermoed bias.)
-</MarginNote>
+<MarkerHighlight>Een familievriendelijke kart-racing game als Electron desktop-app.</MarkerHighlight>{" "}
+Een mini-engine met AI-tegenstanders, powerups, chase-camera en
+handgebouwde tracks. Bovenop Three.js, geen game-framework, vanilla JS
+voor de game-loop.
 
 ## Wat erin zit
 
@@ -47,30 +42,13 @@ als Electron-app op Windows.
 | Audio | Web Audio API |
 | Build | electron-builder, portable target |
 
-Geen frameworks bovenop Three. Geen React voor de game zelf. Native
-JS, minimum dependencies, alles vendor'd waar het kan. Het idee: een
-spel dat over tien jaar nog draait op een willekeurige laptop in
-huis, zonder dat een npm-link verlopen is.
-
-## Waarom een eigen engine en niet Godot / Unity
-
-Beide overwogen. Twee redenen om het in JS te doen:
-
-1. **Lage drempel om bij te dragen.** De kids zijn (nog) niet
-   programmeerbaar. Maar ze kunnen track-bestanden tweaken,
-   kleuren-config aanpassen, kart-namen veranderen. Plain JSON in
-   plain folders is voor hen toegankelijk.
-
-2. **Plezier in het schrijven.** Three.js + game-loop is een leerveld
-   dat ik anders niet zou aanraken. Real-time audio engines schrijven
-   tijdens werk, &apos;s avonds een chase-camera tunen voor mijn
-   dochter — dat is een gezonde mix.
+Geen frameworks bovenop Three. Geen React voor de game zelf. Vanilla
+JS, minimum dependencies, alles vendor&apos;d waar het kan. Tracks en
+karts zijn plain JSON — makkelijk te tweaken zonder code te raken.
 
 ## Status
 
 In ontwikkeling. Speelbaar, niet shippable. Geen public release
-geplan&shy;d; als andere ouders het willen probeer ik er wel een
-universele build van te maken. Voor nu vooral een avond-project dat
-mee-groeit met wat de kids vragen.
+gepland.
 
 </div>
