@@ -53,10 +53,10 @@ export function BlackboardContactForm() {
           <p className="text-zinc-500 text-sm">
             Bij urgentie:{" "}
             <a
-              href="mailto:contact@nathanrenting.dev"
+              href="mailto:jdrenting@gmail.com"
               className="text-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              contact@nathanrenting.dev
+              jdrenting@gmail.com
             </a>
           </p>
         </div>
@@ -140,10 +140,10 @@ export function BlackboardContactForm() {
             <br />
             Of mail direct:{" "}
             <a
-              href="mailto:contact@nathanrenting.dev"
+              href="mailto:jdrenting@gmail.com"
               className="underline hover:text-red-300"
             >
-              contact@nathanrenting.dev
+              jdrenting@gmail.com
             </a>
           </div>
         )}
@@ -159,7 +159,7 @@ export function BlackboardContactForm() {
           <p className="text-xs text-zinc-500 font-mono">
             of mail{" "}
             <a
-              href="mailto:contact@nathanrenting.dev"
+              href="mailto:jdrenting@gmail.com"
               className="text-cyan-400 hover:text-cyan-300 transition-colors"
             >
               direct

@@ -97,8 +97,11 @@ export async function POST(req: NextRequest) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO || "contact@nathanrenting.dev";
-  const from = process.env.RESEND_FROM || "noreply@nathanrenting.dev";
+  const to = process.env.CONTACT_TO || "jdrenting@gmail.com";
+  // Resend allows sending from onboarding@resend.dev without domain
+  // verification — handy until a proper from-address on a verified
+  // domain is set up.
+  const from = process.env.RESEND_FROM || "onboarding@resend.dev";
 
   if (!apiKey) {
     // Configured to gracefully fail when API key not set (e.g. preview deploys)
@@ -106,7 +109,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         error:
-          "Inbox-systeem nog niet ingericht. Mail direct: contact@nathanrenting.dev",
+          "Inbox-systeem nog niet ingericht. Mail direct: jdrenting@gmail.com",
       },
       { status: 503 },
     );
@@ -123,13 +126,16 @@ export async function POST(req: NextRequest) {
         from,
         to: [to],
         reply_to: email,
-        subject: `Inquiry van ${name} via nathanrenting.dev`,
+        subject: `[nathanrenting.dev] ${name} — inquiry`,
         text: [
-          `Naam: ${name}`,
-          `Email: ${email}`,
-          `IP: ${ip}`,
+          `Inquiry via nathanrenting.dev form.`,
+          ``,
+          `Naam:  ${name}`,
+          `Email: ${email}  (hit reply om te beantwoorden)`,
+          `IP:    ${ip}`,
           ``,
           `Bericht:`,
+          `─────────────`,
           message,
         ].join("\n"),
       }),
@@ -141,7 +147,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error:
-            "Inbox-systeem reageert niet. Mail direct: contact@nathanrenting.dev",
+            "Inbox-systeem reageert niet. Mail direct: jdrenting@gmail.com",
         },
         { status: 502 },
       );
@@ -153,7 +159,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         error:
-          "Iets ging mis tijdens versturen. Mail direct: contact@nathanrenting.dev",
+          "Iets ging mis tijdens versturen. Mail direct: jdrenting@gmail.com",
       },
       { status: 500 },
     );
