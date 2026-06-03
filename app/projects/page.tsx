@@ -60,6 +60,16 @@ export default function ProjectsPage() {
 
       <SectionReveal className="mt-4">
         <ProjectCard
+          href="/projects/photoflow"
+          title="PhotoFlow"
+          oneLiner="Van bewerkte foto naar online aanwezigheid binnen 30 seconden, voor professionele fotografen. Lightroom-plugin + Tauri-desktop + cloud-publishing-stack. Multi-agent architectuur (Vision / Copy / Publishing / Analytics)."
+          tags={["Tauri", "Lightroom plugin", "Multi-agent", "Photography"]}
+          status="Pre-dev · vision locked"
+        />
+      </SectionReveal>
+
+      <SectionReveal className="mt-4">
+        <ProjectCard
           href="/projects/familykart"
           title="FamilyKart"
           oneLiner="Mario Kart voor m'n kids. Eigen 3D-engine bovenop Three.js, AI-tegenstanders, powerups, chase-camera. Electron desktop-app. Side-project dat naast het serieuze werk loopt."
