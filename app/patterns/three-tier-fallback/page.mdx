@@ -1,0 +1,121 @@
+export const metadata = {
+  title: "Three-tier AI fallback",
+  description:
+    "Claude → rules → hardcoded. A degradation pattern that keeps the product working when the API doesn't.",
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  Pattern · Reliability
+</div>
+
+# Three-tier AI fallback
+
+If your product calls an LLM API and the call fails, what does the user see?
+"Service temporarily unavailable" is the bad answer. The good answer is a
+quietly degraded response that still does the job — and which the user may
+not even notice.
+
+The pattern is three tiers stacked: Claude API → rule-based → hardcoded.
+Each tier can serve the same request type with falling quality but rising
+reliability.
+
+## The dispatch
+
+```python
+async def generate_response(context: dict) -> str:
+    # Tier 1: Claude API (primary)
+    try:
+        return await _call_claude(context, timeout=5.0)
+    except (httpx.HTTPError, anthropic.APIError) as e:
+        log.info("tier-1 failed (%s), falling through", type(e).__name__)
+
+    # Tier 2: rule-based reasoning
+    try:
+        result = _rules_engine(context)
+        if result:
+            return result
+    except Exception as e:
+        log.warning("tier-2 failed (%s), falling through", e)
+
+    # Tier 3: hardcoded fallback
+    return _hardcoded_for_context(context)
+```
+
+The dispatch is dumb on purpose. Each tier either returns a usable result
+or returns nothing; if nothing, the next tier runs. No coordination, no
+retry logic at this layer, no clever circuit breakers.
+
+## What each tier is for
+
+**Tier 1 — Claude API** is the default. It produces the best-quality
+output. It&apos;s also the tier that fails when the network is down, when
+you hit rate limits, when Anthropic has an incident, when your key rotates
+without warning, when a model you depend on is deprecated. Plan for all of
+those.
+
+**Tier 2 — rule-based reasoning** runs the same logic, locally, in plain
+Python. For an AI coach that suggests improvements to user input: a
+hand-written rules engine with maybe 60 if/else branches covers the most
+common feedback patterns. The output is less elegant, but it&apos;s right
+80% of the time and instant.
+
+**Tier 3 — hardcoded** is the absolute minimum. A small dictionary of
+context-keyed canned responses. Boring, repetitive, but reliable. When tier
+1 and 2 both fail, the user still gets *something* — and "something" beats
+an error toast.
+
+## When to invest in tier 2 vs not
+
+Tier 2 is the expensive tier to *build* (paradoxically — it&apos;s code,
+which takes more time than calling an API). You build it when:
+
+- The feature is in a critical user path (every session touches it)
+- The failure mode of "no response" is visible / breaks the product
+- The rules space is bounded enough to enumerate
+
+You skip it when:
+
+- The feature is rare or non-critical
+- Failure is graceful by default (e.g., a "ask AI" button that can just
+  show "try again")
+- The rules space is genuinely open-ended (creative generation, etc.)
+
+For most features, tier 1 + tier 3 is enough. The middle tier is for
+products where reliability is part of the brand.
+
+## Caching is its own tier (almost)
+
+Just below tier 1, before each call, a cache layer can avoid the API
+entirely. Cache keys are usually `(context-hash, mood, last-action)` or
+similar. Hit rate of 40-60% is realistic for a chat agent with repeated
+patterns.
+
+But cache TTLs are a tuning problem. Too long, and the agent "repeats
+itself" — users notice the same response twice in a session and it breaks
+the illusion. Too short, and you&apos;re paying API costs you don&apos;t
+need to. Start at 30 minutes and adjust based on observed repetition
+complaints.
+
+## Observability per tier
+
+Log which tier served each request. After a week you&apos;ll see the
+real-world distribution. If tier 1 serves 99% and tier 2 serves 0.5% and
+tier 3 serves 0.5%, you can probably skip tier 2. If tier 2 serves 15%,
+it&apos;s pulling its weight; the API is less reliable than you thought.
+
+The numbers usually surprise you in at least one direction.
+
+## Brand impact
+
+The biggest hidden benefit of this pattern: when other products have
+visible AI-failures (toast errors, broken loading states, "AI is currently
+unavailable" banners), your product just keeps working. Slightly less
+clever, slightly more boring, still functional.
+
+A user who has been burned by AI-down-products trusts an AI-product that
+has never visibly been down to them, even if yours has been down ten
+times and they just got tier-3 responses without noticing.
+
+</div>

@@ -1,0 +1,121 @@
+export const metadata = {
+  title: "Multi-brain LLM routing",
+  description:
+    "Cheap heuristics first, LLM classifier as fallback. How to pick the right model tier per request without burning cost or quality.",
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  Pattern · LLM routing
+</div>
+
+# Multi-brain LLM routing
+
+Sending every request through Sonnet costs more than it should. Sending every
+request through Haiku breaks anything that needs reasoning. The simplest
+escape from that tradeoff is a router that picks a tier per request — and
+the simplest router is a stack of cheap heuristics with an LLM classifier
+as the fallback, not the default.
+
+## The shape
+
+```python
+async def decide(text: str, *, force: Brain | None = None) -> RouterDecision:
+    if force is not None:
+        return RouterDecision(force, "manual", "user-override")
+
+    # Layer 1: cheap regex heuristics (microseconds, free)
+    h = _heuristic(text)
+    if h is not None:
+        return h
+
+    # Layer 2: LLM classifier (Haiku, ~30 input tokens, sub-second)
+    return await _llm_classify(text)
+```
+
+Layer 1 catches the bulk of requests for free. Trivial greetings go to a
+`fast` tier; anything matching keyword patterns for tool use, deep
+reasoning, or specific business contexts routes to the right tier
+immediately. Layer 2 only fires when the heuristics genuinely don&apos;t
+know.
+
+The win isn&apos;t a clever heuristic. The win is having the *layer
+structure*: cheap things first, expensive things only when necessary, and
+both observable through the same `RouterDecision` return type so you can
+inspect every decision after the fact.
+
+## What heuristics cover
+
+Four categories tend to absorb 70-80% of routing decisions:
+
+1. **Trivial greetings / time questions** — sub-20-character inputs that
+   match a small regex set. Route to the cheapest, fastest tier. The user
+   asking "hoi" doesn&apos;t need Sonnet.
+
+2. **Business-context keywords** — terms that signal a specific product or
+   domain. Route to the tier that loads the right system-prompt context.
+   In a multi-product orchestrator this is essential: you don&apos;t want
+   the agent reasoning about product A using product B&apos;s context.
+
+3. **Deep-reasoning keywords** — "design", "architect", "refactor",
+   "review", "diepgaand". Route up to Opus / Sonnet 4.6 / whatever your
+   top tier is. Cheap to detect, expensive to misroute.
+
+4. **Tool-use signals** — file paths, shell verbs ("scan", "check", "lees"),
+   code-fence markers. Route to the tier where shell-tools are available.
+
+That last one is sneaky. Without it, a small-tier model will write out the
+shell command as Markdown instead of invoking the tool. The fix is at the
+routing layer, not the prompt.
+
+## What the classifier covers
+
+When the heuristics return `None`, you hit a tiny LLM (Haiku-class) with a
+fixed instruction:
+
+```
+You are a routing classifier. Given a user message, output exactly ONE word:
+- 'fast' for trivial greetings, time questions, simple confirmations
+- 'main' for normal conversation, document Q&A, summaries, smart-home
+- 'deep' for multi-step reasoning, code review, complex analysis
+Output ONLY the single word, nothing else.
+```
+
+Cost per classification: a few tenths of a cent. Latency: sub-second.
+Robustness: high — Haiku is consistent enough on this kind of three-way
+choice that you don&apos;t need anything bigger.
+
+A small but real win: instruct the classifier to bias toward `main` over
+`fast` when uncertain. The cost of using `main` on a trivial request is
+small; the cost of routing a tool-needing request to `fast` (which then
+fails to invoke tools) is large.
+
+## When to skip the router
+
+If every request you handle is roughly the same shape — say, a chatbot
+that only does one thing — you don&apos;t need this. The router pays off
+when:
+
+- Your requests span trivial → deep
+- You have multiple tiers available
+- Cost is a real input (solo founder budget, freemium product, or
+  high-volume system)
+- Tools are involved (where misrouting causes actual failures, not just
+  cost inefficiency)
+
+If two of those four are true, the router pays for itself within a week.
+
+## Observability matters more than the router
+
+Returning a structured `RouterDecision` with the chosen tier, the
+classifier used (heuristic / haiku / fallback), the reason, and the elapsed
+time makes the system inspectable. After 200 requests you can read the
+log and see where your heuristics are wrong, where the classifier is
+hesitating, and where you&apos;re paying for `main` when `fast` would have
+been enough.
+
+Without that, the router becomes a black box you eventually delete because
+"it&apos;s probably the router". With it, the router is a knob you tune.
+
+</div>

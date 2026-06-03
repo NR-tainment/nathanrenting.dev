@@ -1,0 +1,161 @@
+export const metadata = {
+  title: "agentskills.io implementation",
+  description:
+    "Why a skills layer above tools. SKILL.md format, progressive disclosure, when to graduate from raw tools.",
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  Pattern · Agent systems
+</div>
+
+# agentskills.io implementation
+
+Tools are atomic. A tool reads a file, executes a query, fetches a URL.
+Skills are recipes — named multi-step procedures that combine several
+tools with reasoning steps in a canonical order. The
+[agentskills.io](https://agentskills.io) standard codifies what a skill
+looks like, and integrating it into a tool-using agent is a small change
+that pays off quickly.
+
+## Why a skills layer above tools
+
+After 50 turns with a tool-using LLM, you notice a pattern: the same
+multi-tool workflows get re-derived from scratch each time, with slight
+variations. "Morning status" calls the same five tools in roughly the
+same order, but the formatting drifts. "Weekly recap" is a similar
+shape but worse — because there are more tools and more places to
+diverge.
+
+The fix is a skills layer. Each recurring workflow becomes a named
+recipe; the LLM looks up the recipe instead of redoing the planning.
+
+Three concrete wins:
+
+1. **Consistency.** The same kind of request produces the same shape of
+   output. Important for anything you read repeatedly (daily briefings,
+   reports).
+2. **Less reasoning per turn.** The LLM doesn&apos;t replan a known
+   workflow; it follows the steps. Cheaper, faster.
+3. **Maintainability.** When you change "how morning briefings work",
+   you edit one file, not the model&apos;s prompt.
+
+## SKILL.md format
+
+The agentskills.io spec is minimal. A skill is a directory containing a
+`SKILL.md` file (optionally with subfolders for scripts, references,
+assets). The SKILL.md has YAML frontmatter and a Markdown body:
+
+```markdown
+---
+name: daily-status-report
+description: "Compile yesterday's commits, today's calendar, open
+nudges into a single morning briefing. Use when Nathan asks for a
+status report or starts a new conversation after >6h silence."
+---
+
+# Daily status report
+
+Run the tools below in order, then synthesise the markdown summary at
+the bottom.
+
+## Steps
+
+1. Call `commit_log` for yesterday's commits across all projects
+2. Call `calendar_today` for events
+3. Call `nudges_open` for pending review items
+4. Format the output as:
+   - "Yesterday: <commits>"
+   - "Today: <events>"
+   - "Awaiting review: <nudges>"
+```
+
+Two required frontmatter fields: `name` (matches the directory name) and
+`description` (1024-character max — this is what the LLM sees when
+picking a skill).
+
+## Progressive disclosure
+
+The key design choice: only the *metadata* (frontmatter) is loaded into
+the LLM&apos;s context at startup. The full body is only loaded when the
+LLM decides to invoke a specific skill. Two tools support this:
+
+```python
+def list_skills() -> list[dict]:
+    """Cheap: returns name + description for all skills."""
+    return [parse_frontmatter(p) for p in glob("memory/_skills/*/SKILL.md")]
+
+def run_skill(name: str) -> dict:
+    """Loads full SKILL.md body. ~5000 token budget per spec."""
+    return read_skill(name)
+```
+
+`list_skills` is ~100 tokens per skill — cheap enough to call on every
+turn or include in the system prompt. `run_skill` is the expensive
+operation, only called when the LLM has decided which skill to use.
+
+This pattern keeps context size manageable even with 50+ skills available.
+
+## How the LLM uses it
+
+In practice, the prompt loop becomes:
+
+1. User: "give me a morning status"
+2. LLM (with `list_skills` already in context): recognises this matches
+   the `daily-status-report` skill&apos;s description
+3. LLM calls `run_skill("daily-status-report")`
+4. LLM gets the full body, follows the steps, calls the referenced tools
+   in order
+5. LLM formats per the template in the skill
+
+The LLM is still doing reasoning (about which skill matches, about how
+to format edge cases), but the *plan* is canonical. Same request, same
+shape of output.
+
+## When to add a skill
+
+Heuristic: when you find yourself describing the same multi-step workflow
+to the LLM three times, write a skill for it. The cost of authoring is
+~15 minutes; the savings are forever.
+
+Bad candidates for skills:
+- One-off requests (just let the LLM plan it)
+- Single-tool calls (a skill is overkill)
+- Highly variable workflows (each invocation needs different steps)
+
+Good candidates:
+- Status / briefing / recap reports
+- Multi-tool diagnostics (e.g. "check why X is failing")
+- Onboarding sequences (e.g. "set up a new project")
+- Anything you run on a schedule
+
+## Auto-tracking usage
+
+The frontmatter can record invocation counts and success rates over
+time. Each `run_skill` call appends to a counter at the bottom of the
+frontmatter:
+
+```yaml
+total_invocations: 47
+total_successes: 45
+success_rate: 0.957
+last_used: "2026-06-02T08:30:22Z"
+```
+
+This is slow telemetry — file-based, no database. But it&apos;s enough to
+see which skills are pulling weight and which were never used. Prune the
+unused ones; double down on the popular ones.
+
+## Why agentskills.io specifically
+
+It&apos;s the spec Anthropic adopted for Claude Skills. Using it means
+your skills are portable: they work in your local orchestrator, they
+work in Claude.ai, they work in any tool-using agent that supports the
+standard. You can also borrow community skills without rewriting them.
+
+The standard is small enough to read in 10 minutes. The investment to
+adopt is small enough to be a one-afternoon refactor. The payoff is
+permanent.
+
+</div>

@@ -1,0 +1,130 @@
+export const metadata = {
+  title: "EU-first infrastructure",
+  description:
+    "Why EU jurisdiction matters and how to stack Supabase EU + Sentry EU + GDPR-by-design without bolt-on overhead.",
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  Pattern · Architecture
+</div>
+
+# EU-first infrastructure
+
+If your users are in the EU, your data should be too. That sounds
+ideological until you see what happens when it isn&apos;t: GDPR audits,
+DPA requests you can&apos;t answer, CLOUD Act risk you can&apos;t mitigate,
+EU buyers who ask "where is this hosted" and walk away when the answer is
+us-east-1.
+
+EU-first isn&apos;t marketing — it&apos;s an architectural decision made
+at setup time. Bolting it on afterwards costs 10x more than starting that
+way.
+
+## The minimum stack
+
+For a SaaS product or mobile-app backend, the practical EU-first stack
+that doesn&apos;t require self-hosting:
+
+| Layer | Choice | Region |
+|---|---|---|
+| Database + auth | Supabase | EU-Frankfurt |
+| Monitoring / error tracking | Sentry | EU-Frankfurt |
+| Object storage | Cloudflare R2 | (S3-compat, dataresidency by config) |
+| Email | Resend | EU instance |
+| Payment | Stripe / Mollie | Stripe stores some PII US-side; Mollie is NL-native |
+| Hosting (web) | Vercel | EU regions available, but check function regions |
+
+Each has explicit EU-region options. Pick the EU option at setup; never
+"upgrade later". Region migrations are expensive and risky.
+
+## What the choice actually buys you
+
+**Data residency.** Customer PII (emails, names, payment info, app
+content) stays in the EU. Transfers to US-controlled entities only happen
+under explicit DPAs or SCC fallbacks. This is what regulators look for.
+
+**DPA clarity.** Every processor (the services above) provides a DPA you
+can sign. Keep them in a `Verwerkers-Dienst-DPA` register —
+spreadsheet is fine, just have it. When a customer asks "do you have a
+DPA with Supabase", you say yes and produce it within a day.
+
+**GDPR Art. 30 register.** A processing activities register
+(`Verwerkingsregister`) listing every kind of personal data you process,
+the purpose, the lawful basis, who you share it with, retention.
+Boilerplate template, fill in your specifics, update when you change. It&apos;s
+not optional; it just doesn&apos;t get audited until something goes
+wrong.
+
+**User-deletion path.** GDPR right-to-erasure isn&apos;t hard if your data
+is in one place. Build the `/account/delete` endpoint on day one. Test
+it. The first time a user asks, you don&apos;t want to be designing it
+under pressure.
+
+## CLOUD Act considerations
+
+Even if your storage is in the EU, if the *operator* is a US company,
+the CLOUD Act technically allows US law enforcement to compel data
+production. This is a real risk for some industries (legal, health,
+defense). For most consumer products, it&apos;s academic — but the
+*positioning* matters to EU buyers.
+
+The mitigations:
+
+1. Pick EU-headquartered services where possible (Mollie over Stripe,
+   Hetzner over AWS, OVHcloud over Azure)
+2. Sign DPAs with SCC clauses that cover government-access scenarios
+3. Document your sub-processor list publicly — transparency is a buyer
+   trust signal
+
+You don&apos;t need to be 100% pure-EU (Anthropic Claude API is US-only,
+for example). You do need to be transparent about which services are
+which.
+
+## What this doesn&apos;t mean
+
+EU-first doesn&apos;t mean *EU-only*. It means *EU-default with explicit
+exceptions*. AI inference might run against a US Anthropic endpoint. CDN
+might serve from anywhere. Some analytics tools may not have EU instances.
+Document the exceptions, keep them minimal, ensure they don&apos;t handle
+unencrypted PII.
+
+## When to make this decision
+
+At setup. Day one. Picking Supabase EU vs Supabase US at the first
+`create project` click is a 5-second decision that saves a 5-month
+migration later.
+
+If you&apos;re already in a US region and want to switch: budget a
+quarter, plan the cutover carefully, expect to lose some data
+relationships or test environments during the switch. It&apos;s doable;
+it&apos;s not fun.
+
+## What EU-first signals to buyers
+
+Two things, depending on the buyer:
+
+1. **EU enterprise / public sector buyers:** they&apos;re *required* to
+   buy EU-hosted by their compliance framework. Without EU-first, you&apos;re
+   not in the conversation.
+
+2. **Privacy-conscious consumers / creators:** they actively choose EU
+   services after BandLab / Endlesss / cloud-collapse stories. Privacy
+   becomes a feature, not just compliance.
+
+Neither group is the majority of any market. Both will pay a premium for
+the discipline. That&apos;s why EU-first works as a niche rather than just
+as a constraint.
+
+## What it costs you
+
+Slightly more vendor friction (some tools EU-region is the secondary
+choice). Slightly more careful processor selection. A `Verwerkings­register`
+to maintain. About 4-8 hours of one-time setup work.
+
+In return: a defensible position, an actual answer when EU buyers ask,
+zero migration debt, and the ability to use "EU-first" as a positioning
+claim without lying. Worth the setup.
+
+</div>

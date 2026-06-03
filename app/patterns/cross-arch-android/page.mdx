@@ -1,0 +1,140 @@
+export const metadata = {
+  title: "Cross-architecture Android builds",
+  description:
+    "Single APK across arm64/armv7/x86_64. Alignment bugs, NDK version pinning, libc++_shared dupe traps.",
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  Pattern · Android builds
+</div>
+
+# Cross-architecture Android builds
+
+An Android app with native code (Rust, C++) has to ship for multiple
+architectures: arm64-v8a (the majority of phones), armv7-a (older devices,
+some still in use), and x86_64 (emulators, Chromebooks). A single APK
+needs to contain code for all three, and each architecture is its own
+small minefield.
+
+The traps below are all things I&apos;ve actually hit. They&apos;re
+visible in CI failure logs and Play Store rejections; less visible
+beforehand.
+
+## Trap 1 — Struct alignment on x86_64 vs arm
+
+The most painful trap. Rust&apos;s `#[repr(C)]` does not guarantee the
+same byte layout across architectures unless you also pin alignment
+explicitly. A struct like:
+
+```rust
+#[repr(C)]
+pub struct StepEvent {
+    pub note: u8,        // 1 byte
+    pub velocity: u8,    // 1 byte
+    pub time_ms: u64,    // 8 bytes — alignment differs
+}
+```
+
+On arm64, this is naturally padded to 16 bytes. On 32-bit x86, the
+compiler may pack it to 12 bytes if you don&apos;t specify `repr(C,
+align(8))`. The result: same struct, different sizes across
+architectures, FFI calls reading garbage.
+
+Fix: always specify alignment explicitly for any struct that crosses the
+FFI boundary, or design the structs to be naturally aligned (group same-
+sized fields together).
+
+## Trap 2 — NDK version drift
+
+The Android NDK ships AAudio API support starting at a specific version,
+and the API has evolved. Build with NDK 25 and you get one set of
+behaviour; build with NDK 27 and you get another (often better, but
+different).
+
+Pin your NDK version explicitly in `build.gradle` or `eas.json`:
+
+```
+ndkVersion = "27.1.12297006"
+```
+
+If you don&apos;t, EAS Build (or whatever cloud-build system) might pick a
+"newer is better" default that breaks your audio path in a subtly
+different way every few weeks.
+
+## Trap 3 — libc++_shared.so duplicate symbols
+
+If you have more than one native library in the APK, each with its own
+linkage to `libc++_shared.so`, you can hit "duplicate symbol" linker
+errors at runtime. Symptoms: app crashes on launch on one architecture
+only, with a stack trace deep in libc++ initialisation.
+
+Fix: ensure all native libraries in the APK use the *same* C++ shared
+runtime. If you control the build, force `-DANDROID_STL=c++_shared`
+across all components. If a dependency ships its own static C++ runtime,
+either rebuild it or replace the dependency.
+
+## Trap 4 — EAS Build cache surprises
+
+Cloud-build systems like EAS aggressively cache native compilation
+artifacts. Switch a flag, push, and you can get a build that succeeds but
+contains stale `.so` files for one architecture. The symptom is "works on
+my device, doesn&apos;t on this one".
+
+The fix is annoying but reliable: when you change anything in the native
+build pipeline, bump a cache-bust value (a version number, a timestamp in
+a build env) so the cache invalidates. Don&apos;t trust the cache to be
+smart.
+
+## Trap 5 — Single APK vs split APKs
+
+For a long time, Play Store recommended split APKs (one per
+architecture) to keep download size small. With App Bundles (AAB), that&apos;s
+handled automatically. But if you&apos;re still shipping APKs directly
+(for testing, internal distribution, sideloading), make sure you build a
+universal APK that contains all three architectures.
+
+EAS Build config:
+
+```json
+"android": {
+  "buildType": "apk",
+  "image": "latest"
+}
+```
+
+The universal APK is bigger (3x roughly) but it&apos;s the only thing
+that&apos;ll install on every device you want to test. AAB for Play
+Store, universal APK for everything else.
+
+## Verification — what to actually check
+
+After a successful build, before shipping:
+
+1. **Install on real arm64 device** — primary path, must work
+2. **Install on x86 emulator** — catches alignment bugs that arm64 hides
+3. **Install on armv7 device or emulator** — catches issues that only
+   show on 32-bit
+4. **Run the audio path on each** — alignment bugs often present as
+   audio dropouts, not crashes
+5. **Check `adb logcat | grep -i "alignment\|symbol\|libc++"`** —
+   surfaces the failures that don&apos;t crash visibly
+
+If all three architectures pass the audio-path smoke test, ship. If
+arm64 works but x86 fails, you have an alignment issue somewhere. If
+armv7 works but arm64 doesn&apos;t, you have a 64-bit-pointer issue
+somewhere. Diagnose by elimination.
+
+## When this matters
+
+For most React Native apps, this is invisible — the framework handles
+native compilation, you don&apos;t see the underlying NDK. For apps with
+*your own* native code (Rust audio engine, C++ DSP, whatever), all of the
+above is yours to own.
+
+The investment pays off because once it works, it&apos;s reliable. The
+discipline is in the verification loop: every native-code change goes
+through a multi-arch test pass before you trust it.
+
+</div>

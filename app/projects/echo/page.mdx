@@ -1,0 +1,224 @@
+export const metadata = {
+  title: "ECHO — agent-orchestration system",
+  description:
+    "A personal agent-orchestration system built solo. Multi-brain routing, tool dispatch, vault-backed memory, local + cloud LLM fallback.",
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  Project · in production
+</div>
+
+# ECHO — agent-orchestration system
+
+A personal Jarvis-style assistant, built solo, running locally on my own
+hardware. Multi-brain LLM routing, tool dispatch, vault-backed memory,
+filesystem watchers, three-tier AI fallback. About 24+ Python modules in the
+orchestrator, plus a React/Vite HUD that surfaces everything in a single
+dashboard.
+
+## What ECHO does in practice
+
+I talk to it; it talks back. But the interesting part isn&apos;t the chat —
+it&apos;s what happens in between turns. ECHO observes my filesystem, the
+recent commits across my projects, the open nudges in my vault, and synthesises
+that into morning briefings, code-changes chronicles, time-tracking aggregates,
+and proactive interventions when something is off.
+
+Concretely, in a single turn, ECHO can:
+
+- Decide which model tier to use (`fast` / `main` / `think` / `local`) based
+  on the request shape
+- Dispatch a tool — vault search, a database query, a shell command, a
+  KPI pulse from a connected product
+- Update structured JSON for a personal dashboard
+- Append a note to a running time-entry without stopping the timer
+- Trigger a memory-worker that consolidates yesterday&apos;s daily-note
+
+The HUD shows it all: a "Brain Waves" trace, a token-burn meter, a vault
+graph, a CC-status indicator, and project-specific panels (some redacted on
+this public version).
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  HUD (React + Vite)                                         │
+│  Presence · Vitals · TokenBurn · VaultGraph · Project       │
+│  panels · RailTabs · Identity                               │
+└──────────────────────────────┬──────────────────────────────┘
+                               │  HTTP polling + SSE
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│  Orchestrator (FastAPI · Python 3.13)                       │
+│  ─────────────────────────────────────────────────────────  │
+│  router.py       — Multi-brain selection (heuristics + LLM) │
+│  tools.py        — 14+ tool dispatch                        │
+│  skills.py       — agentskills.io-compatible workflow layer │
+│  vault_graph.py  — Markdown vault + Wikilink edges          │
+│  time_track.py   — Time entries, urencriterium, exports     │
+│  runway.py       — Personal-finance runway dashboard        │
+│  social.py       — Social-media accounts registry           │
+│  cc_status.py    — Claude Code activity from JSONL          │
+│  ... + nudges, agenda, hue, intents, voice, tts, and a      │
+│      handful of product-specific integration modules        │
+└──────┬──────────────────────────────┬───────────────────────┘
+       │                              │
+       ▼                              ▼
+┌──────────────────┐         ┌────────────────────────────────┐
+│  Memory Worker   │         │  External LLMs                 │
+│  (APScheduler)   │         │  ─────────────────────────────  │
+│  ──────────────  │         │  Anthropic (Claude API)         │
+│  Drafter         │         │  Ollama local (Qwen, Llama)     │
+│  Curator         │         │  ComfyUI local (Stable Diff)    │
+│  Consolidator    │         │                                 │
+│  Watchers        │         │  3-tier fallback:               │
+│  Reflector       │         │   Claude → rules → hardcoded    │
+│  Daily-summary   │         │                                 │
+└──────────────────┘         └────────────────────────────────┘
+```
+
+## The multi-brain router
+
+The router decides which model tier to use before the request leaves the
+orchestrator. It runs cheap heuristics first, falls back to an LLM
+classifier only when needed.
+
+```python
+async def decide(text: str, *, force: Brain | None = None) -> RouterDecision:
+    if force is not None:
+        return RouterDecision(force, "manual", "user-override")
+
+    # Cheap regex heuristics first
+    h = _heuristic(text)
+    if h is not None:
+        return h
+
+    # Fallback to Haiku as the classifier
+    return await _llm_classify(text)
+```
+
+Four heuristic layers run in order: trivial-greeting (sub-second answers go
+to `fast`), business-keyword (anything matching project-context routes to
+`main` so the corresponding system prompt loads), deep-keyword
+(architecture / code-review work goes to `think`), and shell-keyword
+(filesystem queries route to `main` where shell-tools are available).
+
+That last layer matters more than it looks: small models routinely write out
+PowerShell commands as Markdown blocks instead of actually invoking the
+shell-tool. Routing those queries to `main` (Sonnet) fixes the failure mode
+at the source.
+
+## Tool dispatch + skills layer
+
+ECHO exposes ~14 tools through the Anthropic API&apos;s tool-use protocol —
+`vault_read`, `vault_search`, `shell_check`, `list_skills` / `run_skill`,
+`time_start` / `time_stop`, `time_summary`, `note_learning`, and a handful
+of product-specific tools.
+
+The skills layer is agentskills.io-compatible: each skill lives at
+`memory/_skills/<skill-name>/SKILL.md` with YAML frontmatter for
+metadata and Markdown body for the recipe. `list_skills` is cheap (returns
+frontmatter only); `run_skill(name)` loads the full body and ECHO follows
+the numbered steps, calling the referenced tools in order.
+
+Invocation count, success rate, and last-used timestamp auto-update in the
+skill&apos;s frontmatter — slow telemetry, no separate database.
+
+## Vault-backed memory
+
+Memory in ECHO is a Markdown vault with WikiLink edges. The vault has folders
+for People, Projects, Daily-notes, Knowledge, Tasks, and System. The graph is
+parsed live by `vault_graph.py` and rendered in the HUD as a 3D
+force-directed visualisation with folder-clustering.
+
+What lives in the vault: my own notes, an inbox where ECHO drops proposed
+nudges for review, daily-notes the consolidator writes, a chronicle of every
+Claude Code commit across my projects, and a `CC-inbox.md` channel for
+dev-Claude to brief ECHO between turns.
+
+The watchers — Python jobs scheduled by APScheduler — monitor commits,
+sentry, issues, project state, agenda, idle. Each emits a structured
+trigger when it sees something worth ECHO&apos;s attention; the drafter
+turns triggers into proposed nudges; the curator periodically aggregates.
+
+## Three-tier AI fallback
+
+ECHO never assumes Claude is up. The pattern is documented in WBSO-grade
+detail in the project&apos;s technical-uncertainties notes:
+
+1. **Tier 1 — Claude API** (primary, highest quality output)
+2. **Tier 2 — Rule-based reasoning** (fallback when API is down or
+   rate-limited; degrades response feel but stays sensible)
+3. **Tier 3 — Hardcoded** (offline-only minimum-viable response)
+
+This pattern shows up at multiple layers. The result: ECHO keeps working
+even when external services don&apos;t.
+
+## Local AI infrastructure
+
+ECHO runs locally on my main workstation — a Ryzen 7 3700X with AMD
+RX 6650 XT (8GB), Windows. The orchestrator, the HUD, the vault, the
+watchers and drafters, and ComfyUI for image generation all live on the
+same box. A second older AMD machine sits next to it as a Linux testbed
+for side-projects, not as part of the production ECHO path.
+
+For heavier inference (larger context windows, model fine-tuning, batch
+image work) I fall back on remote-access to a more capable GPU setup via
+TeamViewer or a direct port-forward.
+
+Local LLMs run via Ollama (Qwen 2.5 7B, Llama 3.2 3B) for routing,
+classification, and any cheap task that doesn&apos;t need the API. The
+Anthropic Claude API is reserved for complex reasoning where local models
+won&apos;t produce the quality. Most routine work runs on the main box;
+cloud costs stay modest.
+
+## Privacy filter
+
+The vault is loaded into ECHO&apos;s persona on every turn — which means
+everything that lands there is read by the LLM and shipped to Anthropic.
+A privacy filter runs at every write entry-point (drafter, curator,
+extractor, commit chronicles, daily-summarizer) and redacts a small set
+of locally-sensitive program names to a generic token. The pattern works
+because the filter is applied at the *write* side, not the read side.
+
+This is the kind of GDPR-by-design decision that doesn&apos;t exist when
+you bolt an LLM onto an existing system after the fact. It has to be
+designed in.
+
+## What I learned
+
+Three things that ended up mattering more than the architecture diagrams
+suggested:
+
+1. **Document chains beat single docs.** Core → derivative-for-audience-A
+   → derivative-for-audience-B. Each lives in its own tone. Single big
+   plans rot fast; small targeted ones survive iteration.
+
+2. **Watchers are noisy until they aren&apos;t.** First weeks of false
+   positives required a four-level severity taxonomy (info / action /
+   critical / defcon) and DEFCON-only Explorer auto-reveal throttled to
+   once per 10s. The signal-to-noise problem is more design work than I
+   thought.
+
+3. **Skills > tools at higher abstraction.** Tools are atomic. Skills are
+   the recipes the model needs to consistently produce the same output for
+   the same kind of request. The skills layer is the difference between
+   "the model will probably do this right" and "the model will reliably do
+   this right".
+
+## Stack at a glance
+
+| Layer | Choice |
+|---|---|
+| Orchestrator | Python 3.13, FastAPI, Uvicorn (SelectorEventLoop on Windows) |
+| Scheduling | APScheduler |
+| LLMs | Anthropic (Sonnet 4.6 / Haiku 4.5 / Opus 4.7), Ollama local |
+| Memory | Markdown vault, NDJSON event streams, SQLite for state |
+| HUD | React + Vite + Tailwind + Framer Motion + ForceGraph3D |
+| Voice | Whisper STT (local), TTS via Edge / Kokoro |
+| Tools | Anthropic tool-use protocol, 14+ registered tools |
+| Skills | agentskills.io-compatible SKILL.md format |
+
+</div>

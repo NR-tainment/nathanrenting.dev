@@ -1,0 +1,35 @@
+import Link from "next/link";
+
+const NAV_ITEMS = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Werk" },
+  { href: "/patterns", label: "Patterns" },
+  { href: "/about", label: "Over" },
+  { href: "/hire", label: "Inhuur" },
+];
+
+export function Header() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+      <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+        <Link
+          href="/"
+          className="font-mono text-sm text-zinc-100 hover:text-cyan-400 transition-colors"
+        >
+          nathanrenting<span className="text-cyan-400">.dev</span>
+        </Link>
+        <nav className="flex items-center gap-1 md:gap-4">
+          {NAV_ITEMS.slice(1).map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-xs md:text-sm uppercase tracking-widest text-zinc-400 hover:text-cyan-400 transition-colors px-2 py-1"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
