@@ -3,7 +3,7 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "Cross-architecture Android builds",
   description:
-    "Single APK across arm64/armv7/x86_64. Alignment bugs, NDK version pinning, libc++_shared dupe traps.",
+    "Eén APK voor arm64 / armv7 / x86_64. Alignment-bugs, NDK-version-pinning, libc++_shared dupe-traps.",
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
@@ -14,88 +14,87 @@ export const metadata = {
 
 # Cross-architecture Android builds
 
-An Android app with native code (Rust, C++) has to ship for multiple
-architectures: arm64-v8a (the majority of phones), armv7-a (older devices,
-some still in use), and x86_64 (emulators, Chromebooks). A single APK
-needs to contain code for all three, and{" "}
-<MarkerHighlight>each architecture is its own small minefield</MarkerHighlight>.
+Een Android-app met native code (Rust, C++) moet shippen voor meerdere
+architecturen: arm64-v8a (de meeste telefoons), armv7-a (oudere devices,
+nog steeds in gebruik), en x86_64 (emulators, Chromebooks). Eén APK moet
+code voor alle drie bevatten, en{" "}
+<MarkerHighlight>elke architectuur is z&apos;n eigen kleine mijnenveld</MarkerHighlight>.
 
-The traps below are all things I&apos;ve actually hit. They&apos;re
-visible in CI failure logs and Play Store rejections; less visible
-beforehand.
+De traps hieronder zijn allemaal dingen waar ik echt tegenaan ben gelopen.
+Zichtbaar in CI-failure-logs en Play Store rejections; minder zichtbaar
+vóór die tijd.
 
-## Trap 1 — Struct alignment on x86_64 vs arm
+## Trap 1 — Struct-alignment op x86_64 vs arm
 
-The most painful trap. Rust&apos;s `#[repr(C)]` does not guarantee the
-same byte layout across architectures unless you also pin alignment
-explicitly. A struct like:
+De pijnlijkste. Rust&apos;s `#[repr(C)]` garandeert niet dezelfde
+byte-layout over architecturen heen, tenzij je ook expliciet de alignment
+pint. Een struct als:
 
 ```rust
 #[repr(C)]
 pub struct StepEvent {
     pub note: u8,        // 1 byte
     pub velocity: u8,    // 1 byte
-    pub time_ms: u64,    // 8 bytes — alignment differs
+    pub time_ms: u64,    // 8 bytes — alignment verschilt
 }
 ```
 
-On arm64, this is naturally padded to 16 bytes. On 32-bit x86, the
-compiler may pack it to 12 bytes if you don&apos;t specify `repr(C,
-align(8))`. The result: same struct, different sizes across
-architectures, FFI calls reading garbage.
+Op arm64 wordt deze natuurlijk gepad tot 16 bytes. Op 32-bit x86 kan de
+compiler 'm packen tot 12 bytes als je geen `repr(C, align(8))` opgeeft.
+Resultaat: zelfde struct, andere sizes over architecturen heen, FFI-calls
+lezen garbage.
 
-Fix: always specify alignment explicitly for any struct that crosses the
-FFI boundary, or design the structs to be naturally aligned (group same-
-sized fields together).
+Fix: alignment altijd expliciet pinnen voor structs die over de FFI-grens
+gaan, of de structs zo opzetten dat ze van nature aligned zijn (groepeer
+fields van dezelfde grootte bij elkaar).
 
-## Trap 2 — NDK version drift
+## Trap 2 — NDK-version-drift
 
-The Android NDK ships AAudio API support starting at a specific version,
-and the API has evolved. Build with NDK 25 and you get one set of
-behaviour; build with NDK 27 and you get another (often better, but
-different).
+De Android NDK ondersteunt AAudio vanaf een specifieke versie, en die API
+is door de jaren heen geëvolueerd. Bouw met NDK 25 en je krijgt één
+gedrag; bouw met NDK 27 en je krijgt een ander (vaak beter, maar anders).
 
-Pin your NDK version explicitly in `build.gradle` or `eas.json`:
+Pin je NDK-versie expliciet in `build.gradle` of `eas.json`:
 
 ```
 ndkVersion = "27.1.12297006"
 ```
 
-If you don&apos;t, EAS Build (or whatever cloud-build system) might pick a
-"newer is better" default that breaks your audio path in a subtly
-different way every few weeks.
+Doe je dat niet, dan kan EAS Build (of welk cloud-build-systeem dan ook)
+een "newer is better" default oppikken die je audio-pad subtiel anders
+breekt om de paar weken.
 
 ## Trap 3 — libc++_shared.so duplicate symbols
 
-If you have more than one native library in the APK, each with its own
-linkage to `libc++_shared.so`, you can hit "duplicate symbol" linker
-errors at runtime. Symptoms: app crashes on launch on one architecture
-only, with a stack trace deep in libc++ initialisation.
+Als je meer dan één native library in de APK hebt, elk met eigen linkage
+naar `libc++_shared.so`, kun je "duplicate symbol" linker-errors krijgen
+op runtime. Symptoom: app crasht bij launch op één architectuur, met een
+stack-trace diep in libc++-initialisatie.
 
-Fix: ensure all native libraries in the APK use the *same* C++ shared
-runtime. If you control the build, force `-DANDROID_STL=c++_shared`
-across all components. If a dependency ships its own static C++ runtime,
-either rebuild it or replace the dependency.
+Fix: zorg dat alle native libraries in de APK *dezelfde* C++ shared
+runtime gebruiken. Heb je grip op de build: forceer `-DANDROID_STL=c++_shared`
+overal. Als een dependency een eigen static C++ runtime mee shipped:
+rebuild of vervang die dependency.
 
-## Trap 4 — EAS Build cache surprises
+## Trap 4 — EAS Build cache-verrassingen
 
-Cloud-build systems like EAS aggressively cache native compilation
-artifacts. Switch a flag, push, and you can get a build that succeeds but
-contains stale `.so` files for one architecture. The symptom is "works on
-my device, doesn&apos;t on this one".
+Cloud-build-systemen zoals EAS cachen native compilatie-artifacts
+agressief. Wijzig een flag, push, en je kunt een build krijgen die
+succeed maar stale `.so`-files bevat voor één architectuur. Het symptoom
+is "werkt op mijn device, niet op deze".
 
-The fix is annoying but reliable: when you change anything in the native
-build pipeline, bump a cache-bust value (a version number, a timestamp in
-a build env) so the cache invalidates. Don&apos;t trust the cache to be
-smart.
+De fix is irritant maar betrouwbaar: zodra je iets in de native-build-
+pipeline wijzigt, bump je een cache-bust value (versienummer, timestamp
+in een build-env) zodat de cache invalidate. Vertrouw de cache niet om
+slim te zijn.
 
 ## Trap 5 — Single APK vs split APKs
 
-For a long time, Play Store recommended split APKs (one per
-architecture) to keep download size small. With App Bundles (AAB), that&apos;s
-handled automatically. But if you&apos;re still shipping APKs directly
-(for testing, internal distribution, sideloading), make sure you build a
-universal APK that contains all three architectures.
+Play Store raadde lange tijd split APKs aan (één per architectuur) om
+download-size klein te houden. Met App Bundles (AAB) wordt dat
+automatisch geregeld. Maar als je nog steeds APKs direct ship't (voor
+testing, internal distribution, sideloading), zorg dat je een universele
+APK bouwt die alle drie architecturen bevat.
 
 EAS Build config:
 
@@ -106,37 +105,37 @@ EAS Build config:
 }
 ```
 
-The universal APK is bigger (3x roughly) but it&apos;s the only thing
-that&apos;ll install on every device you want to test. AAB for Play
-Store, universal APK for everything else.
+De universele APK is ~3x groter, maar het is het enige dat installeert
+op elk device dat je wil testen. AAB voor Play Store, universele APK
+voor alles daarbuiten.
 
-## Verification — what to actually check
+## Verificatie — wat je echt moet checken
 
-After a successful build, before shipping:
+Na een succesvolle build, voor je ship't:
 
-1. **Install on real arm64 device** — primary path, must work
-2. **Install on x86 emulator** — catches alignment bugs that arm64 hides
-3. **Install on armv7 device or emulator** — catches issues that only
-   show on 32-bit
-4. **Run the audio path on each** — alignment bugs often present as
-   audio dropouts, not crashes
+1. **Installeer op een echt arm64-device** — primaire pad, moet werken
+2. **Installeer op een x86-emulator** — vangt alignment-bugs die arm64
+   verbergt
+3. **Installeer op een armv7-device of emulator** — vangt issues die
+   alleen op 32-bit verschijnen
+4. **Draai het audio-pad op alle drie** — alignment-bugs uiten zich vaak
+   als audio-dropouts, niet als crashes
 5. **Check `adb logcat | grep -i "alignment\|symbol\|libc++"`** —
-   surfaces the failures that don&apos;t crash visibly
+   surfacet failures die niet zichtbaar crashen
 
-If all three architectures pass the audio-path smoke test, ship. If
-arm64 works but x86 fails, you have an alignment issue somewhere. If
-armv7 works but arm64 doesn&apos;t, you have a 64-bit-pointer issue
-somewhere. Diagnose by elimination.
+Als alle drie architecturen door de audio-path smoke-test komen: ship.
+Werkt arm64 maar faalt x86? Alignment-issue ergens. Werkt armv7 maar
+arm64 niet? 64-bit-pointer-issue ergens. Diagnose by elimination.
 
-## When this matters
+## Wanneer dit ertoe doet
 
-For most React Native apps, this is invisible — the framework handles
-native compilation, you don&apos;t see the underlying NDK. For apps with
-*your own* native code (Rust audio engine, C++ DSP, whatever), all of the
-above is yours to own.
+Voor de meeste React Native apps is dit onzichtbaar — het framework
+handelt de native compilatie af, de NDK eronder zie je niet. Voor apps
+met *eigen* native code (Rust audio-engine, C++ DSP, whatever) is al het
+bovenstaande van jou.
 
-The investment pays off because once it works, it&apos;s reliable. The
-discipline is in the verification loop: every native-code change goes
-through a multi-arch test pass before you trust it.
+De investering loont, want zodra het werkt, blijft het werken. De
+discipline zit in de verificatie-loop: elke native-code-wijziging gaat
+door een multi-arch test-pass voordat je 'm vertrouwt.
 
 </div>

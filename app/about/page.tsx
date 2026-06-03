@@ -28,8 +28,9 @@ export default function AboutPage() {
         <p className="text-zinc-400 leading-relaxed mb-6">
           Wat ik dagelijks doe: ik bouw agent-systemen, real-time audio en de
           plumbing eronder. Python is mijn comfort zone, Rust pak ik erbij
-          voor realtime-werk, TypeScript voor de UI. Claude Max en Claude
-          Code zijn permanent open.
+          voor realtime-werk, TypeScript voor de UI. AI-tooling permanent
+          open — Claude voor code en chat, Perplexity voor onderzoek,
+          ChatGPT voor prompt-werk waar het past. Best tool for the job.
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-10">
@@ -131,8 +132,10 @@ export default function AboutPage() {
                 AI / agents
               </h3>
               <p className="text-zinc-400">
-                Anthropic Claude (API + Code), Ollama (Qwen 2.5, Llama 3.2),
-                agentskills.io-standaard, drie-tier fallback-patroon, ComfyUI.
+                Anthropic Claude (API + Code) primair, Perplexity voor
+                onderzoek, ChatGPT voor prompt-werk. Lokaal Ollama (Qwen 2.5,
+                Llama 3.2). agentskills.io-standaard, drie-tier
+                fallback-patroon, ComfyUI.
               </p>
             </div>
             <div>

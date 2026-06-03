@@ -50,8 +50,8 @@ export default function Home() {
         <p className="text-lg text-zinc-300 leading-relaxed mb-8 max-w-2xl">
           Twaalf jaar entertainment en audio-productie eerst, daarna steeds
           zwaarder op solo-engineering. Nu bouw ik agent-orchestratie,
-          audio-engines en de infra eronder. Solo, Claude-augmented,
-          vanuit Eindhoven.
+          audio-engines en de infra eronder. Solo, AI-augmented, vanuit
+          Eindhoven.
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <Link

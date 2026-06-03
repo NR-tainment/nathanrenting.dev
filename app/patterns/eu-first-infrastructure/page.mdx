@@ -3,7 +3,7 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "EU-first infrastructure",
   description:
-    "Why EU jurisdiction matters and how to stack Supabase EU + Sentry EU + GDPR-by-design without bolt-on overhead.",
+    "Waarom EU-jurisdictie ertoe doet en hoe je Supabase EU + Sentry EU + GDPR-by-design stapelt zonder bolt-on-overhead.",
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
@@ -14,118 +14,117 @@ export const metadata = {
 
 # EU-first infrastructure
 
-If your users are in the EU, your data should be too. That sounds
-ideological until you see what happens when it isn&apos;t: GDPR audits,
-DPA requests you can&apos;t answer, CLOUD Act risk you can&apos;t mitigate,
-EU buyers who ask "where is this hosted" and walk away when the answer is
-us-east-1.
+Als je gebruikers in de EU zitten, hoort je data daar ook te zitten. Dat
+klinkt ideologisch totdat je ziet wat er gebeurt als het niet zo is:
+GDPR-audits, DPA-vragen die je niet kunt beantwoorden, CLOUD Act-risk
+die je niet kunt mitigaten, EU-kopers die vragen "waar staat dit gehost"
+en weglopen als het antwoord us-east-1 is.
 
-<MarkerHighlight>EU-first isn&apos;t marketing — it&apos;s an architectural decision made at setup time.</MarkerHighlight>{" "}
-Bolting it on afterwards costs 10x more than starting that way.
+<MarkerHighlight>EU-first is geen marketing — het is een architectuur-keuze die je op setup-moment maakt.</MarkerHighlight>{" "}
+Achteraf erop bouwen kost 10x meer dan het meteen zo te doen.
 
-## The minimum stack
+## De minimum-stack
 
-For a SaaS product or mobile-app backend, the practical EU-first stack
-that doesn&apos;t require self-hosting:
+Voor een SaaS-product of mobile-app-backend, de praktische EU-first stack
+zonder zelf te hosten:
 
-| Layer | Choice | Region |
+| Layer | Keuze | Regio |
 |---|---|---|
 | Database + auth | Supabase | EU-Frankfurt |
 | Monitoring / error tracking | Sentry | EU-Frankfurt |
-| Object storage | Cloudflare R2 | (S3-compat, dataresidency by config) |
+| Object storage | Cloudflare R2 | (S3-compat, dataresidency in config) |
 | Email | Resend | EU instance |
-| Payment | Stripe / Mollie | Stripe stores some PII US-side; Mollie is NL-native |
-| Hosting (web) | Vercel | EU regions available, but check function regions |
+| Payment | Stripe / Mollie | Stripe houdt wat PII US-side; Mollie is NL-native |
+| Hosting (web) | Vercel | EU-regio&apos;s beschikbaar, check ook function-regions |
 
-Each has explicit EU-region options. Pick the EU option at setup; never
-"upgrade later". Region migrations are expensive and risky.
+Elk heeft expliciete EU-regio-opties. Kies bij setup de EU-optie; nooit
+"later upgraden". Regio-migraties zijn duur en risicovol.
 
-## What the choice actually buys you
+## Wat het je oplevert
 
-**Data residency.** Customer PII (emails, names, payment info, app
-content) stays in the EU. Transfers to US-controlled entities only happen
-under explicit DPAs or SCC fallbacks. This is what regulators look for.
+**Data-residency.** Klanten-PII (emails, namen, betaalgegevens,
+app-content) blijft in de EU. Transfers naar US-controlled partijen
+gebeuren alleen onder expliciete DPAs of SCC-fallbacks. Dat is wat
+toezichthouders willen zien.
 
-**DPA clarity.** Every processor (the services above) provides a DPA you
-can sign. Keep them in a `Verwerkers-Dienst-DPA` register —
-spreadsheet is fine, just have it. When a customer asks "do you have a
-DPA with Supabase", you say yes and produce it within a day.
+**DPA-duidelijkheid.** Elke processor (de diensten hierboven) levert een
+DPA die je kunt tekenen. Bewaar ze in een Verwerkers-Dienst-DPA-register
+— spreadsheet is prima, hoofdzaak is dát je hem hebt. Als een klant
+vraagt "heb je een DPA met Supabase", zeg je ja en lever je 'm binnen
+een dag.
 
-**GDPR Art. 30 register.** A processing activities register
-(`Verwerkingsregister`) listing every kind of personal data you process,
-the purpose, the lawful basis, who you share it with, retention.
-Boilerplate template, fill in your specifics, update when you change. It&apos;s
-not optional; it just doesn&apos;t get audited until something goes
-wrong.
+**GDPR Art. 30 register.** Een Verwerkingsregister waarin je elk type
+persoonsgegeven dat je verwerkt opsomt: doel, rechtsgrond, met wie je
+deelt, bewaartermijn. Boilerplate template, vul je specifieke gegevens
+in, update als je iets verandert. Niet optioneel; het wordt alleen
+geaudit als er iets misgaat.
 
-**User-deletion path.** GDPR right-to-erasure isn&apos;t hard if your data
-is in one place. Build the `/account/delete` endpoint on day one. Test
-it. The first time a user asks, you don&apos;t want to be designing it
-under pressure.
+**User-deletion-pad.** GDPR right-to-erasure is niet moeilijk als je
+data op één plek staat. Bouw de `/account/delete` endpoint op dag één.
+Test 'm. De eerste keer dat een gebruiker erom vraagt wil je niet onder
+druk staan te ontwerpen.
 
-## CLOUD Act considerations
+## CLOUD Act-overwegingen
 
-Even if your storage is in the EU, if the *operator* is a US company,
-the CLOUD Act technically allows US law enforcement to compel data
-production. This is a real risk for some industries (legal, health,
-defense). For most consumer products, it&apos;s academic — but the
-*positioning* matters to EU buyers.
+Ook als je storage in de EU staat: als de *operator* een US-bedrijf is,
+mag de CLOUD Act formeel US-handhaving je data laten opvragen. Voor
+sommige sectoren (legal, health, defense) is dat reëel. Voor de meeste
+consumer-producten is het academisch — maar de *positionering* doet
+ertoe richting EU-kopers.
 
-The mitigations:
+De mitigaties:
 
-1. Pick EU-headquartered services where possible (Mollie over Stripe,
-   Hetzner over AWS, OVHcloud over Azure)
-2. Sign DPAs with SCC clauses that cover government-access scenarios
-3. Document your sub-processor list publicly — transparency is a buyer
-   trust signal
+1. Pak waar mogelijk EU-headquartered diensten (Mollie boven Stripe,
+   Hetzner boven AWS, OVHcloud boven Azure)
+2. Teken DPAs met SCC-clausules die government-access scenarios dekken
+3. Documenteer je sub-processor-lijst publiek — transparantie is een
+   trust-signaal richting kopers
 
-You don&apos;t need to be 100% pure-EU (Anthropic Claude API is US-only,
-for example). You do need to be transparent about which services are
-which.
+Je hoeft niet 100% puur-EU te zijn (Anthropic Claude API is bijvoorbeeld
+US-only). Je moet wel transparant zijn over welke diensten welk zijn.
 
-## What this doesn&apos;t mean
+## Wat het niet betekent
 
-EU-first doesn&apos;t mean *EU-only*. It means *EU-default with explicit
-exceptions*. AI inference might run against a US Anthropic endpoint. CDN
-might serve from anywhere. Some analytics tools may not have EU instances.
-Document the exceptions, keep them minimal, ensure they don&apos;t handle
-unencrypted PII.
+EU-first betekent niet *EU-only*. Het betekent *EU-default met
+expliciete uitzonderingen*. AI-inference kan tegen een US-endpoint
+draaien. CDN kan vanaf overal serveren. Sommige analytics-tools hebben
+geen EU-instance. Documenteer de uitzonderingen, houd ze klein, en zorg
+dat ze geen unencrypted PII aanraken.
 
-## When to make this decision
+## Wanneer je deze keuze maakt
 
-At setup. Day one. Picking Supabase EU vs Supabase US at the first
-`create project` click is a 5-second decision that saves a 5-month
-migration later.
+Bij setup. Dag één. Supabase EU vs Supabase US kiezen bij de eerste
+`create project`-klik is een 5-seconden-beslissing die je een
+5-maanden-migratie verderop bespaart.
 
-If you&apos;re already in a US region and want to switch: budget a
-quarter, plan the cutover carefully, expect to lose some data
-relationships or test environments during the switch. It&apos;s doable;
-it&apos;s not fun.
+Zit je al in een US-regio en wil je switchen? Plan een kwartaal in,
+denk de cutover door, accepteer dat je wat data-relaties of test-
+environments kwijt raakt tijdens de switch. Doenbaar, niet leuk.
 
-## What EU-first signals to buyers
+## Wat EU-first signaleert naar kopers
 
-Two things, depending on the buyer:
+Twee dingen, afhankelijk van het type koper:
 
-1. **EU enterprise / public sector buyers:** they&apos;re *required* to
-   buy EU-hosted by their compliance framework. Without EU-first, you&apos;re
-   not in the conversation.
+1. **EU enterprise / publieke sector:** verplicht door eigen compliance-
+   framework om EU-gehost in te kopen. Zonder EU-first sta je niet
+   eens op de shortlist.
 
-2. **Privacy-conscious consumers / creators:** they actively choose EU
-   services after BandLab / Endlesss / cloud-collapse stories. Privacy
-   becomes a feature, not just compliance.
+2. **Privacy-bewuste consumers / creators:** kiezen actief voor
+   EU-diensten na BandLab / Endlesss / cloud-collapse verhalen. Privacy
+   wordt een feature, niet alleen compliance.
 
-Neither group is the majority of any market. Both will pay a premium for
-the discipline. That&apos;s why EU-first works as a niche rather than just
-as a constraint.
+Geen van beide groepen is de meerderheid van de markt. Beide betalen
+een premium voor de discipline. Daarom werkt EU-first als niche in
+plaats van als constraint.
 
-## What it costs you
+## Wat het je kost
 
-Slightly more vendor friction (some tools EU-region is the secondary
-choice). Slightly more careful processor selection. A `Verwerkings­register`
-to maintain. About 4-8 hours of one-time setup work.
+Iets meer vendor-frictie (sommige tools is EU-regio de tweede keuze).
+Iets zorgvuldiger processor-selectie. Een Verwerkingsregister dat je
+bijhoudt. Ongeveer 4-8 uur eenmalige setup.
 
-In return: a defensible position, an actual answer when EU buyers ask,
-zero migration debt, and the ability to use "EU-first" as a positioning
-claim without lying. Worth the setup.
+In return: een verdedigbare positie, een echt antwoord als EU-kopers
+ernaar vragen, nul migratie-schuld, en het kunnen claimen van "EU-first"
+zonder te liegen. Loont de moeite.
 
 </div>

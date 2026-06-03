@@ -3,7 +3,7 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "Three-tier AI fallback",
   description:
-    "Claude → rules → hardcoded. A degradation pattern that keeps the product working when the API doesn't.",
+    "AI-API → rules → hardcoded. Een degradation-patroon dat je product overeind houdt als de API onderuit gaat.",
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
@@ -14,22 +14,23 @@ export const metadata = {
 
 # Three-tier AI fallback
 
-If your product calls an LLM API and the call fails, what does the user see?
-"Service temporarily unavailable" is the bad answer. The good answer is{" "}
-<MarkerHighlight>a quietly degraded response that still does the job, which the user may not even notice</MarkerHighlight>.
+Stel je product calls een LLM-API en die call faalt. Wat ziet de gebruiker?
+"Service temporarily unavailable" is het slechte antwoord. Het goede
+antwoord:{" "}
+<MarkerHighlight>een stilletjes gedegradeerde response die nog steeds doet wat het moet doen, en die de gebruiker niet eens opmerkt</MarkerHighlight>.
 
-The pattern is three tiers stacked: Claude API → rule-based → hardcoded.
-Each tier can serve the same request type with falling quality but rising
-reliability.
+Het patroon is drie tiers gestapeld: API → rule-based → hardcoded. Elke
+tier kan dezelfde request afhandelen, met dalende kwaliteit maar stijgende
+betrouwbaarheid.
 
-## The dispatch
+## De dispatch
 
 ```python
 async def generate_response(context: dict) -> str:
-    # Tier 1: Claude API (primary)
+    # Tier 1: LLM API (primair)
     try:
-        return await _call_claude(context, timeout=5.0)
-    except (httpx.HTTPError, anthropic.APIError) as e:
+        return await _call_api(context, timeout=5.0)
+    except (httpx.HTTPError, APIError) as e:
         log.info("tier-1 failed (%s), falling through", type(e).__name__)
 
     # Tier 2: rule-based reasoning
@@ -44,79 +45,78 @@ async def generate_response(context: dict) -> str:
     return _hardcoded_for_context(context)
 ```
 
-The dispatch is dumb on purpose. Each tier either returns a usable result
-or returns nothing; if nothing, the next tier runs. No coordination, no
-retry logic at this layer, no clever circuit breakers.
+De dispatch is bewust dom. Elke tier geeft óf een bruikbare response, óf
+niks; en als het niks is, draait de volgende. Geen coördinatie, geen
+retry-logica op dit niveau, geen slimme circuit breakers.
 
-## What each tier is for
+## Wat elke tier doet
 
-**Tier 1 — Claude API** is the default. It produces the best-quality
-output. It&apos;s also the tier that fails when the network is down, when
-you hit rate limits, when Anthropic has an incident, when your key rotates
-without warning, when a model you depend on is deprecated. Plan for all of
-those.
+**Tier 1 — LLM API** is de default. Beste output-kwaliteit. Maar ook de
+tier die faalt als het netwerk eruit ligt, als je rate-limits raakt, als
+de provider een incident heeft, als je key zonder waarschuwing roteert,
+of als een model waar je op leunt deprecated wordt. Plan voor al die
+gevallen.
 
-**Tier 2 — rule-based reasoning** runs the same logic, locally, in plain
-Python. For an AI coach that suggests improvements to user input: a
-hand-written rules engine with maybe 60 if/else branches covers the most
-common feedback patterns. The output is less elegant, but it&apos;s right
-80% of the time and instant.
+**Tier 2 — rule-based reasoning** draait dezelfde logica, lokaal, in
+gewone Python. Voor een AI-coach die input-verbeteringen voorstelt:
+een handgeschreven rules-engine met grofweg 60 if/else-takken dekt de
+meest voorkomende feedback-patronen. Minder elegant, maar 80% van de
+tijd goed en direct.
 
-**Tier 3 — hardcoded** is the absolute minimum. A small dictionary of
-context-keyed canned responses. Boring, repetitive, but reliable. When tier
-1 and 2 both fail, the user still gets *something* — and "something" beats
-an error toast.
+**Tier 3 — hardcoded** is het absolute minimum. Een klein dictionary met
+context-gekoppelde standaard-antwoorden. Saai, repetitief, maar
+betrouwbaar. Als tier 1 én 2 falen krijgt de gebruiker tenminste *iets*,
+en iets is altijd beter dan een error-toast.
 
-## When to invest in tier 2 vs not
+## Wanneer wel of geen tier 2
 
-Tier 2 is the expensive tier to *build* (paradoxically — it&apos;s code,
-which takes more time than calling an API). You build it when:
+Tier 2 is paradoxaal genoeg de duurste tier om te *bouwen* — het is
+code, en code schrijven kost meer tijd dan een API-call. Je bouwt 'm als:
 
-- The feature is in a critical user path (every session touches it)
-- The failure mode of "no response" is visible / breaks the product
-- The rules space is bounded enough to enumerate
+- De feature in een kritieke user-flow zit (elke sessie raakt 'm)
+- "Geen response" een zichtbare breuk in het product is
+- De rules-ruimte klein genoeg is om uit te schrijven
 
-You skip it when:
+Je slaat 'm over als:
 
-- The feature is rare or non-critical
-- Failure is graceful by default (e.g., a "ask AI" button that can just
-  show "try again")
-- The rules space is genuinely open-ended (creative generation, etc.)
+- De feature zelden gebruikt wordt of niet-kritiek is
+- Een failure gracieus opgelost kan worden ("probeer opnieuw" knop)
+- De rules-ruimte echt open-eindig is (creatief schrijven bijvoorbeeld)
 
-For most features, tier 1 + tier 3 is enough. The middle tier is for
-products where reliability is part of the brand.
+Voor de meeste features is tier 1 + tier 3 genoeg. De middelste tier is
+voor producten waar reliability onderdeel is van het merk.
 
-## Caching is its own tier (almost)
+## Cache is bijna een eigen tier
 
-Just below tier 1, before each call, a cache layer can avoid the API
-entirely. Cache keys are usually `(context-hash, mood, last-action)` or
-similar. Hit rate of 40-60% is realistic for a chat agent with repeated
-patterns.
+Net onder tier 1, vóór elke call, kan een cache-laag de API helemaal
+overslaan. Cache-keys zijn meestal `(context-hash, mood, last-action)` of
+iets vergelijkbaars. Hit-rate van 40-60% is realistisch voor een chat-agent
+met herhalende patronen.
 
-But cache TTLs are a tuning problem. Too long, and the agent "repeats
-itself" — users notice the same response twice in a session and it breaks
-the illusion. Too short, and you&apos;re paying API costs you don&apos;t
-need to. Start at 30 minutes and adjust based on observed repetition
-complaints.
+Cache-TTLs zijn wel een tuning-probleem. Te lang en de agent "herhaalt
+zichzelf" — gebruikers zien hetzelfde antwoord twee keer in een sessie
+en de illusie breekt. Te kort en je betaalt API-kosten die je niet hoeft
+te maken. Begin op 30 minuten en pas aan op basis van klachten over
+herhaling.
 
 ## Observability per tier
 
-Log which tier served each request. After a week you&apos;ll see the
-real-world distribution. If tier 1 serves 99% and tier 2 serves 0.5% and
-tier 3 serves 0.5%, you can probably skip tier 2. If tier 2 serves 15%,
-it&apos;s pulling its weight; the API is less reliable than you thought.
+Log welke tier elke request heeft afgehandeld. Na een week zie je de
+echte distributie. Als tier 1 99% serveert en tier 2 + 3 samen 1%, dan
+kun je waarschijnlijk tier 2 droppen. Als tier 2 op 15% komt: die trekt
+z'n gewicht, en je API is minder betrouwbaar dan je dacht.
 
-The numbers usually surprise you in at least one direction.
+De cijfers verrassen je meestal in minstens één richting.
 
-## Brand impact
+## Wat het je merk oplevert
 
-The biggest hidden benefit of this pattern: when other products have
-visible AI-failures (toast errors, broken loading states, "AI is currently
-unavailable" banners), your product just keeps working. Slightly less
-clever, slightly more boring, still functional.
+De grootste onzichtbare winst van dit patroon: als andere AI-producten
+zichtbaar faillen (toast-errors, kapotte loading-states, "AI is currently
+unavailable" banners), draait jouw product gewoon door. Iets minder
+slim, iets saaier, maar nog steeds functioneel.
 
-A user who has been burned by AI-down-products trusts an AI-product that
-has never visibly been down to them, even if yours has been down ten
-times and they just got tier-3 responses without noticing.
+Een gebruiker die al een paar keer is afgeknapt op een AI-product-down
+gaat jouw AI-product vertrouwen — ook als die ook tien keer down is
+geweest en ze gewoon tier-3 responses kregen zonder het te merken.
 
 </div>

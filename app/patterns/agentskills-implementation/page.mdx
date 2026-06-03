@@ -3,7 +3,7 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "agentskills.io implementation",
   description:
-    "Why a skills layer above tools. SKILL.md format, progressive disclosure, when to graduate from raw tools.",
+    "Waarom een skills-laag boven tools. SKILL.md-format, progressive disclosure, en wanneer je van rauwe tools opgroeit naar skills.",
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
@@ -14,40 +14,41 @@ export const metadata = {
 
 # agentskills.io implementation
 
-<MarkerHighlight>Tools are atomic. Skills are recipes.</MarkerHighlight> A
-tool reads a file, executes a query, fetches a URL. Skills are named
-multi-step procedures that combine several tools with reasoning steps in a
-canonical order. The [agentskills.io](https://agentskills.io) standard
-codifies what a skill looks like, and integrating it into a tool-using agent
-is a small change that pays off quickly.
+<MarkerHighlight>Tools zijn atomair. Skills zijn recepten.</MarkerHighlight>{" "}
+Een tool leest een file, runt een query, fetcht een URL. Skills zijn
+benoemde multi-step procedures die meerdere tools combineren met
+reasoning-stappen in een vaste volgorde. De
+[agentskills.io](https://agentskills.io) standaard legt vast hoe een
+skill eruitziet, en het inbouwen in een tool-using agent is een kleine
+wijziging die zich snel terugbetaalt.
 
-## Why a skills layer above tools
+## Waarom een skills-laag boven tools
 
-After 50 turns with a tool-using LLM, you notice a pattern: the same
-multi-tool workflows get re-derived from scratch each time, with slight
-variations. "Morning status" calls the same five tools in roughly the
-same order, but the formatting drifts. "Weekly recap" is a similar
-shape but worse — because there are more tools and more places to
-diverge.
+Na 50 turns met een tool-using LLM merk je een patroon: dezelfde
+multi-tool workflows worden elke keer opnieuw verzonnen, met kleine
+variaties. "Morning status" roept dezelfde vijf tools aan in ongeveer
+dezelfde volgorde, maar de formattering drift. "Weekly recap" is een
+vergelijkbare vorm maar erger — meer tools, meer plekken om af te wijken.
 
-The fix is a skills layer. Each recurring workflow becomes a named
-recipe; the LLM looks up the recipe instead of redoing the planning.
+De oplossing: een skills-laag. Elke terugkerende workflow wordt een
+benoemd recept; de LLM zoekt het recept op in plaats van elke keer
+opnieuw te plannen.
 
-Three concrete wins:
+Drie concrete wins:
 
-1. **Consistency.** The same kind of request produces the same shape of
-   output. Important for anything you read repeatedly (daily briefings,
-   reports).
-2. **Less reasoning per turn.** The LLM doesn&apos;t replan a known
-   workflow; it follows the steps. Cheaper, faster.
-3. **Maintainability.** When you change "how morning briefings work",
-   you edit one file, not the model&apos;s prompt.
+1. **Consistentie.** Dezelfde soort request geeft dezelfde vorm output.
+   Belangrijk voor dingen die je herhaaldelijk leest (daily briefings,
+   rapporten).
+2. **Minder reasoning per turn.** De LLM hoeft een bekende workflow niet
+   te herplannen; ze volgt de stappen. Goedkoper, sneller.
+3. **Onderhoudbaarheid.** Wil je "hoe morning briefings werken"
+   wijzigen? Edit één file, niet de prompt van het model.
 
 ## SKILL.md format
 
-The agentskills.io spec is minimal. A skill is a directory containing a
-`SKILL.md` file (optionally with subfolders for scripts, references,
-assets). The SKILL.md has YAML frontmatter and a Markdown body:
+De agentskills.io-spec is minimaal. Een skill is een directory met een
+`SKILL.md`-file (optioneel met subfolders voor scripts, references,
+assets). De SKILL.md heeft YAML-frontmatter en een Markdown-body:
 
 ```markdown
 ---
@@ -73,15 +74,16 @@ the bottom.
    - "Awaiting review: <nudges>"
 ```
 
-Two required frontmatter fields: `name` (matches the directory name) and
-`description` (1024-character max — this is what the LLM sees when
-picking a skill).
+Twee verplichte frontmatter-velden: `name` (komt overeen met de
+directory-naam) en `description` (max 1024 tekens — dit is wat de LLM
+ziet bij het kiezen van een skill).
 
 ## Progressive disclosure
 
-The key design choice: only the *metadata* (frontmatter) is loaded into
-the LLM&apos;s context at startup. The full body is only loaded when the
-LLM decides to invoke a specific skill. Two tools support this:
+De key design-keuze: alleen de *metadata* (frontmatter) wordt bij
+startup in de LLM-context geladen. De volledige body wordt pas geladen
+als de LLM besluit een specifieke skill aan te roepen. Twee tools
+ondersteunen dat:
 
 ```python
 def list_skills() -> list[dict]:
@@ -93,49 +95,50 @@ def run_skill(name: str) -> dict:
     return read_skill(name)
 ```
 
-`list_skills` is ~100 tokens per skill — cheap enough to call on every
-turn or include in the system prompt. `run_skill` is the expensive
-operation, only called when the LLM has decided which skill to use.
+`list_skills` kost ~100 tokens per skill — goedkoop genoeg om elke turn
+aan te roepen of in de system-prompt te zetten. `run_skill` is de dure
+operatie, alleen gecalled als de LLM een specifieke skill heeft gekozen.
 
-This pattern keeps context size manageable even with 50+ skills available.
+Dit patroon houdt de context-grootte beheersbaar, ook als je 50+ skills
+beschikbaar hebt.
 
-## How the LLM uses it
+## Hoe de LLM het gebruikt
 
-In practice, the prompt loop becomes:
+In de praktijk wordt de prompt-loop:
 
-1. User: "give me a morning status"
-2. LLM (with `list_skills` already in context): recognises this matches
-   the `daily-status-report` skill&apos;s description
-3. LLM calls `run_skill("daily-status-report")`
-4. LLM gets the full body, follows the steps, calls the referenced tools
-   in order
-5. LLM formats per the template in the skill
+1. User: "geef me een morning status"
+2. LLM (met `list_skills` al in context): herkent dat dit matcht met de
+   description van `daily-status-report`
+3. LLM roept `run_skill("daily-status-report")` aan
+4. LLM krijgt de volledige body, volgt de stappen, callt de tools in
+   de juiste volgorde
+5. LLM formatteert volgens de template in de skill
 
-The LLM is still doing reasoning (about which skill matches, about how
-to format edge cases), but the *plan* is canonical. Same request, same
-shape of output.
+De LLM doet nog wel reasoning (welke skill matcht, hoe omgaan met
+edge-cases), maar het *plan* is canoniek. Zelfde request, zelfde vorm
+output.
 
-## When to add a skill
+## Wanneer je een skill toevoegt
 
-Heuristic: when you find yourself describing the same multi-step workflow
-to the LLM three times, write a skill for it. The cost of authoring is
-~15 minutes; the savings are forever.
+Heuristiek: zodra je drie keer dezelfde multi-step workflow naar de LLM
+uitschrijft, maak er een skill van. Authoring kost ~15 minuten; de
+opbrengst is permanent.
 
-Bad candidates for skills:
-- One-off requests (just let the LLM plan it)
-- Single-tool calls (a skill is overkill)
-- Highly variable workflows (each invocation needs different steps)
+Slechte kandidaten voor een skill:
+- One-off requests (laat de LLM gewoon plannen)
+- Single-tool calls (skill is overkill)
+- Heel variabele workflows (elke invocatie heeft andere stappen)
 
-Good candidates:
-- Status / briefing / recap reports
-- Multi-tool diagnostics (e.g. "check why X is failing")
-- Onboarding sequences (e.g. "set up a new project")
-- Anything you run on a schedule
+Goede kandidaten:
+- Status / briefing / recap rapporten
+- Multi-tool diagnostics ("check waarom X faalt")
+- Onboarding-sequences ("zet een nieuw project op")
+- Alles wat op een schedule draait
 
-## Auto-tracking usage
+## Auto-tracking van gebruik
 
-The frontmatter can record invocation counts and success rates over
-time. Each `run_skill` call appends to a counter at the bottom of the
+De frontmatter kan invocation-counts en success-rates over tijd
+opslaan. Elke `run_skill`-call appendt een teller onderaan de
 frontmatter:
 
 ```yaml
@@ -145,19 +148,20 @@ success_rate: 0.957
 last_used: "2026-06-02T08:30:22Z"
 ```
 
-This is slow telemetry — file-based, no database. But it&apos;s enough to
-see which skills are pulling weight and which were never used. Prune the
-unused ones; double down on the popular ones.
+Slow telemetry — file-based, geen aparte database. Maar genoeg om te
+zien welke skills gewicht trekken en welke nooit gebruikt worden.
+Onbenutte: weggooien. Populaire: verdiepen.
 
-## Why agentskills.io specifically
+## Waarom specifiek agentskills.io
 
-It&apos;s the spec Anthropic adopted for Claude Skills. Using it means
-your skills are portable: they work in your local orchestrator, they
-work in Claude.ai, they work in any tool-using agent that supports the
-standard. You can also borrow community skills without rewriting them.
+Het is de spec die Anthropic heeft aangenomen voor Claude Skills.
+Gebruik ervan betekent dat je skills portable zijn: ze werken in je
+lokale orchestrator, ze werken in Claude.ai, ze werken in elke
+tool-using agent die de standaard ondersteunt. Je kunt ook
+community-skills lenen zonder ze te herschrijven.
 
-The standard is small enough to read in 10 minutes. The investment to
-adopt is small enough to be a one-afternoon refactor. The payoff is
-permanent.
+De standaard is klein genoeg om in 10 minuten door te lezen. De
+investering om 'm te adopteren is klein genoeg om een
+één-middag-refactor te zijn. De payoff is permanent.
 
 </div>

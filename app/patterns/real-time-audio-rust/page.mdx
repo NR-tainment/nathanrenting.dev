@@ -3,7 +3,7 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "Real-time audio in Rust",
   description:
-    "Lock-free SPSC ring buffers, allocation-free audio paths, FFI patterns. Why Rust survives the real-time deadline.",
+    "Lock-free SPSC ring buffers, allocation-vrije audio paths, FFI-patronen. Waarom Rust de real-time deadline overleeft.",
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
@@ -14,45 +14,45 @@ export const metadata = {
 
 # Real-time audio in Rust
 
-<MarkerHighlight>Audio callbacks have a hard deadline.</MarkerHighlight> At
-48kHz with a 256-sample buffer, the audio thread gets ~5 milliseconds to
-produce the next chunk. Miss that, and the user hears a click, a gap, or a
-dropout. The constraint shapes everything.
+<MarkerHighlight>Audio callbacks hebben een harde deadline.</MarkerHighlight>{" "}
+Op 48kHz met een 256-sample buffer krijgt de audio-thread ~5 milliseconden
+om de volgende chunk te produceren. Mis je dat, dan hoort de gebruiker
+een klik, een gap, of een dropout. Die constraint vormt alles wat eronder
+gebeurt.
 
-Rust is a strong fit for this work — once you stop using most of the
-standard library. The borrow checker prevents data races at compile time,
-but a `Box::new` on the audio path will still kill your latency. The
-patterns below are what make it work in practice.
+Rust past goed bij dit werk — zodra je het grootste deel van de standard
+library laat liggen. De borrow checker voorkomt data-races op compile-time,
+maar één `Box::new` op het audio-pad sloopt je latency alsnog. De patronen
+hieronder zijn wat het in de praktijk laat werken.
 
-## The setup
+## De setup
 
-A typical mobile audio app has three threads that matter:
+Een typische mobile audio-app heeft drie threads die ertoe doen:
 
-1. **JS / UI thread** — receives user input, sends control messages
-2. **Native dispatch thread** — translates control messages, runs business
-   logic, maintains state
-3. **Audio callback thread** — runs in the OS audio subsystem (AAudio on
-   Android, CoreAudio on iOS), called with strict timing
+1. **JS / UI thread** — vangt user-input op, stuurt control-messages
+2. **Native dispatch thread** — vertaalt die messages, runt business-logic,
+   houdt state bij
+3. **Audio callback thread** — draait in het OS-audio-subsystem (AAudio
+   op Android, CoreAudio op iOS), wordt aangeroepen met strikte timing
 
-The audio callback thread must never block, never allocate, never wait on
-a mutex. If the JS thread changes a parameter (volume, FX bypass,
-whatever), it has to send that change to the audio thread *without* the
-audio thread ever waiting.
+De audio-callback-thread mag nooit blokkeren, nooit alloceren, nooit
+wachten op een mutex. Als de JS-thread een parameter aanpast (volume,
+FX bypass, wat dan ook), moet die wijziging naar de audio-thread *zonder*
+dat de audio-thread ooit hoeft te wachten.
 
-That&apos;s the core problem. The lock-free SPSC ring buffer is the
-solution.
+Dat is het kernprobleem. De lock-free SPSC ring-buffer is de oplossing.
 
 ## Lock-free SPSC via rtrb
 
-A single-producer, single-consumer ring buffer is the simplest lock-free
-data structure that works for this. One thread writes; another reads;
-neither blocks. The Rust crate `rtrb` (real-time ring buffer) implements
-this with the right atomic semantics:
+Een single-producer, single-consumer ring-buffer is de simpelste lock-free
+data-structuur die hier werkt. Eén thread schrijft, een ander leest, geen
+van beide blokkeert. De Rust-crate `rtrb` (real-time ring buffer)
+implementeert dit met de juiste atomic-semantics:
 
 ```rust
 use rtrb::{Consumer, Producer, RingBuffer};
 
-// Setup (called once, off the audio thread)
+// Setup (één keer, buiten de audio-thread)
 let (mut producer, mut consumer): (Producer<ControlMsg>, Consumer<ControlMsg>) =
     RingBuffer::new(256).split();
 
@@ -60,83 +60,85 @@ let (mut producer, mut consumer): (Producer<ControlMsg>, Consumer<ControlMsg>) =
 producer.push(ControlMsg::SetVolume { track: 0, value: 0.8 })
     .expect("ring buffer full");
 
-// Audio callback — non-blocking pop, drain everything queued
+// Audio callback — non-blocking pop, leeg alles wat in de queue staat
 while let Ok(msg) = consumer.pop() {
     apply_message(&mut state, msg);
 }
 ```
 
-The audio callback drains the buffer at the top of each block, applies
-control changes, then processes audio. No locks, no waits, no allocation.
+De audio-callback leegt de buffer aan het begin van elk block, past
+de control-changes toe, en verwerkt dan audio. Geen locks, geen waits,
+geen allocaties.
 
-If the producer side is faster than the consumer drains, the buffer fills
-up and `push` returns an error. That&apos;s your signal: either the buffer
-is too small or the consumer is dropping frames. Both are caught at
-runtime, neither corrupts the audio.
+Als de producer-kant sneller is dan de consumer drained, raakt de buffer
+vol en geeft `push` een error. Dat is precies je signal: óf de buffer
+is te klein, óf de consumer dropt frames. Beide vang je op runtime; geen
+van beide corrupted de audio.
 
-## Allocation-free audio path
+## Allocation-vrije audio-path
 
-The other discipline is harder to enforce: zero heap allocations during
-audio callbacks. That means:
+De andere discipline is lastiger om af te dwingen: nul heap-allocaties
+tijdens audio-callbacks. Dat betekent:
 
-- No `Box::new`, no `Vec::new`, no `String::from`
-- No `format!()`, no logging (most logger macros allocate)
-- No deserialisation of JSON / etc. on the audio thread
-- No iterator chains that allocate intermediate `Vec`s
-- No async / await (the executor allocates and yields, both bad)
+- Geen `Box::new`, geen `Vec::new`, geen `String::from`
+- Geen `format!()`, geen logging (de meeste logger-macros alloceren)
+- Geen JSON-deserialisatie (of iets vergelijkbaars) op de audio-thread
+- Geen iterator-chains die tussentijdse `Vec`s alloceren
+- Geen async / await (de executor allocate en yield, beide slecht)
 
-The pattern is: pre-allocate everything during setup, reuse buffers on the
-audio thread. A `Vec<f32>` of `samples_per_block` capacity, allocated once
-before the audio engine starts, that gets overwritten in place each
-callback.
+Het patroon: alles pre-alloceren tijdens setup, buffers hergebruiken op
+de audio-thread. Een `Vec<f32>` van `samples_per_block` capaciteit, één
+keer geallocate vóór de audio-engine start, die elke callback in-place
+overschreven wordt.
 
-Rust&apos;s ownership model helps here — once you understand how to
-write code without `Box`/`Vec`/`String` allocations, the compiler keeps you
-honest. The pattern transfers from project to project.
+Rust&apos;s ownership-model helpt hier — zodra je het patroon van
+"code-zonder-`Box`/`Vec`/`String`-allocaties" eenmaal te pakken hebt,
+houdt de compiler je eerlijk. Het patroon draagt over van project naar
+project.
 
-## FFI surface
+## FFI-oppervlak
 
-The audio engine compiles to a static library. The app (React Native, in
-the case I&apos;ve been working in) calls into it through an FFI layer.
-Two design choices matter:
+De audio-engine compileert naar een static library. De app (in mijn
+geval React Native) calls naar de engine via een FFI-laag. Twee design-
+keuzes die ertoe doen:
 
-**1. Keep the FFI surface small.** Every FFI function is a maintenance
-cost — both languages have to agree on memory layout, lifetime,
-error-handling. I aim for ~10-15 FFI functions that wrap the engine&apos;s
-public API; everything else stays internal to the Rust side.
+**1. Hou het FFI-oppervlak klein.** Elke FFI-functie is een onderhoudslast
+— beide talen moeten het eens zijn over memory-layout, lifetime,
+error-handling. Ik mik op ~10-15 FFI-functies die de publieke API van
+de engine wrappen; alles wat verder gaat blijft intern aan de Rust-kant.
 
-**2. Hand opaque pointers across.** Don&apos;t try to share Rust structs
-with C ABIs. Allocate a struct in Rust, return a `*mut OpaqueState`
-pointer, and have all subsequent FFI calls pass that pointer back. The
-caller never inspects it; the Rust side owns the layout. Cleanup is a
-single `drop_state(*mut OpaqueState)` FFI call.
+**2. Geef opaque pointers door.** Probeer geen Rust-structs te delen via
+C-ABI. Alloceer de struct in Rust, geef een `*mut OpaqueState`-pointer
+terug, en laat alle volgende FFI-calls die pointer doorgeven. De caller
+kijkt er nooit in; de Rust-kant bezit de layout. Cleanup is één
+`drop_state(*mut OpaqueState)` FFI-call.
 
-## Cross-platform reality
+## Cross-platform realiteit
 
-Android AAudio has different behaviour than iOS CoreAudio. Buffer sizes
-that work on one device don&apos;t on another. OEM Android implementations
-(Samsung, OnePlus, Xiaomi) all have edge cases. The practical answer:
+Android AAudio gedraagt zich anders dan iOS CoreAudio. Buffer-sizes die
+werken op het ene device werken niet op het andere. OEM-Android-builds
+(Samsung, OnePlus, Xiaomi) hebben elk hun edge-cases. Het praktische
+antwoord:
 
-- Pin a known-good NDK version
-- Test on at least three OEM devices, ideally including a budget chip
-- Build for arm64 first; armv7 and x86_64 are afterthoughts but need to
-  work in case the OEM ships them
-- Set up a fallback path: if AAudio rejects your preferred buffer size,
-  fall back to the device&apos;s preferred size and warn
+- Pin een known-good NDK-versie
+- Test op minimaal drie OEM-devices, liefst inclusief een budget-chip
+- Bouw eerst voor arm64; armv7 en x86_64 zijn afgeleiden maar moeten
+  werken voor het geval een OEM ze gebruikt
+- Bouw een fallback-pad: als AAudio jouw gewenste buffer-size weigert,
+  val terug op de device-voorkeur en log een warning
 
-The audio engine being correct in isolation doesn&apos;t mean it works on
-every device. Real testbed matters more than synthetic benchmarks.
+De audio-engine die op zichzelf correct is, werkt nog niet op elk device.
+Een echte testbench is belangrijker dan synthetische benchmarks.
 
-## What this enables
+## Wat dit mogelijk maakt
 
-Once the audio path is allocation-free and the control path is lock-free,
-you can layer up: multi-track playback, per-track FX chains,
-sample-accurate scheduling, MIDI control. The base discipline doesn&apos;t
-get harder; you just get more nodes in the graph.
+Zodra het audio-pad allocation-vrij is en het control-pad lock-free,
+kun je layer opbouwen: multi-track playback, per-track FX-chains,
+sample-accurate scheduling, MIDI-control. De basis-discipline wordt
+niet zwaarder, je krijgt alleen meer nodes in de graph.
 
-Latency stays sub-20ms on consumer Android hardware. That&apos;s the
-threshold below which most users perceive responses as "instant". Above
-20ms, they start to feel the lag. Below 20ms, you&apos;re competing with
-desktop DAWs on the basic feel.
+Latency blijft sub-20ms op consumer-Android-hardware. Dat is de grens
+waaronder de meeste mensen "instant" voelen. Boven 20ms voel je de lag.
+Onder 20ms ga je de strijd aan met desktop-DAWs op het basis-gevoel.
 
 </div>
