@@ -78,12 +78,15 @@ export default function AboutPage() {
           </p>
 
           <p className="text-zinc-400 leading-relaxed mb-4">
-            Sinds 2018 werk ik aan mijn eigen audio-product — door drie
-            concept-pivots en meerdere platform-iteraties heen, met een
-            productie-tier sinds 2024. Acht jaar tijd in één probleemruimte
-            levert iets op wat je niet uit een tutorial leert: een gevoel
-            voor welke abstracties houden en welke je zes maanden later
-            weer afbreekt. Het product blijft onder NDA tot launch.
+            Sinds 2018 werk ik aan mijn eigen audio-product. De eerste jaren
+            gingen in concept-opbouw en eerste website-schetsen — niet de
+            productie-code, wel het mentale model dat alles eronder
+            schraagt. Daarna drie concept-pivots en meerdere herbouwde
+            iteraties, met een productie-tier sinds 2024. Acht jaar tijd in
+            één probleemruimte levert iets op wat je niet uit een tutorial
+            leert: een gevoel voor welke abstracties houden en welke je
+            zes maanden later weer afbreekt. Het product blijft onder NDA
+            tot launch.
           </p>
 
           <p className="text-zinc-400 leading-relaxed mb-10">

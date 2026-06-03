@@ -90,11 +90,12 @@ export default function ProjectsPage() {
               <>
                 Een <Redacted variant="wipe">product voor creators</Redacted>,
                 gebouwd vanuit ruim tien jaar audio-productie-ervaring. Sinds
-                2018 in ontwikkeling, door drie concept-pivots en meerdere
-                platform-iteraties heen — van eerste prototype tot huidige
-                productie-tier sinds 2024. Cross-platform mobile met een{" "}
-                <Redacted>eigen audio-engine</Redacted>, drie-tier AI-fallback,
-                en een <Redacted variant="wipe">eigen sample-pipeline</Redacted>.
+                2018: eerste jaren in concept-opbouw en platform-schetsen,
+                daarna drie concept-pivots en meerdere herbouwde iteraties,
+                met een productie-tier sinds 2024. Cross-platform mobile met
+                een <Redacted>eigen audio-engine</Redacted>, drie-tier
+                AI-fallback, en een{" "}
+                <Redacted variant="wipe">eigen sample-pipeline</Redacted>.
                 Live met een kleine groep early adopters, public launch in
                 voorbereiding. EU-first stack, GDPR-by-design.
               </>
