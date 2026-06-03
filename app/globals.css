@@ -18,6 +18,7 @@
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-handwriting: var(--font-handwriting);
 }
 
 html {
@@ -50,4 +51,72 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted);
+}
+
+/* --- Notebook aesthetic --- */
+
+/* Subtle blackboard texture: cyan haze + paper-like grain */
+.notebook-bg {
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(34, 211, 238, 0.04), transparent 45%),
+    radial-gradient(circle at 82% 65%, rgba(34, 211, 238, 0.03), transparent 50%),
+    radial-gradient(circle at 50% 95%, rgba(34, 211, 238, 0.02), transparent 60%);
+  background-color: var(--background);
+}
+
+/* Handwriting font helper */
+.font-handwriting {
+  font-family: var(--font-handwriting), "Architects Daughter", "Patrick Hand", cursive;
+}
+
+/* Cyan marker highlight under inline text — looks like a real highlighter swipe */
+.marker-highlight {
+  background-image: linear-gradient(
+    102deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.0) 0.5%,
+    rgba(34, 211, 238, 0.45) 3%,
+    rgba(34, 211, 238, 0.55) 50%,
+    rgba(34, 211, 238, 0.45) 97%,
+    rgba(34, 211, 238, 0.0) 99.5%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 0.6em;
+  background-position: 0 78%;
+  padding: 0 0.15em;
+  border-radius: 2px;
+  color: #f4f4f5;
+  font-weight: 500;
+}
+
+/* For h1-scale text, push the highlight a tad lower */
+.marker-highlight-lg {
+  background-size: 100% 0.4em;
+  background-position: 0 88%;
+}
+
+/* Yellow variant for occasional accent */
+.marker-yellow {
+  background-image: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(250, 204, 21, 0.25) 4%,
+    rgba(250, 204, 21, 0.28) 96%,
+    transparent 100%
+  );
+}
+
+/* Animation: SVG path draw-in */
+@keyframes draw-in {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .notebook-bg {
+    background-image: none;
+  }
 }

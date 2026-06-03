@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { ProjectCard } from "@/components/ProjectCard";
+import {
+  SketchUnderline,
+  SketchBox,
+  MarkerHighlight,
+  MarginNote,
+  DrawnArrow,
+  SectionReveal,
+} from "@/components/sketch";
 
 function PatternLink({
   href,
@@ -59,12 +67,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Drawn arrow — appears as user scrolls past hero */}
+      <DrawnArrow className="mb-16" />
+
       {/* What I do — projects */}
-      <section className="mb-20">
+      <SectionReveal className="mb-20 relative">
         <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6">
-          Werk dat publiek mag
+          <SketchUnderline>Werk dat publiek mag</SketchUnderline>
         </h2>
-        <div className="grid gap-4">
+
+        <MarginNote position="right" rotate={-2}>
+          (rest is onder NDA — vraag ernaar)
+        </MarginNote>
+
+        <SketchBox className="rounded-md" seed={11}>
           <ProjectCard
             href="/projects/echo"
             title="ECHO"
@@ -72,21 +88,27 @@ export default function Home() {
             tags={["Python · FastAPI", "Multi-brain routing", "agentskills.io", "Lokale LLMs"]}
             status="In productie"
           />
-        </div>
+        </SketchBox>
+
         <p className="mt-6 text-xs font-mono text-zinc-500">
           Er ligt nog werk onder NDA (een stealth product en een
           launch-methodiek). Daar praat ik graag over op een call.
         </p>
-      </section>
+      </SectionReveal>
 
-      {/* Patterns — short technical writeups */}
-      <section className="mb-20">
+      {/* Patterns */}
+      <SectionReveal className="mb-20 relative">
         <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6">
-          Patterns
+          <SketchUnderline seed={7}>Patterns</SketchUnderline>
         </h2>
+
+        <MarginNote position="left" rotate={2}>
+          (lees wat je interesseert, geen huiswerk)
+        </MarginNote>
+
         <p className="text-zinc-400 leading-relaxed mb-6">
           Engineering-beslissingen die ik onderweg ben tegengekomen. Korte
-          writeups, ~3-5 min per stuk. Lees wat je interesseert.
+          writeups, ~3-5 min per stuk.
         </p>
         <div className="grid md:grid-cols-2 gap-3">
           <PatternLink href="/patterns/multi-brain-routing">
@@ -114,35 +136,38 @@ export default function Home() {
         >
           → Alle patterns
         </Link>
-      </section>
+      </SectionReveal>
 
       {/* What I bring */}
-      <section className="mb-16">
+      <SectionReveal className="mb-16">
         <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6">
-          Wat ik meeneem
+          <SketchUnderline seed={13}>Wat ik meeneem</SketchUnderline>
         </h2>
         <p className="text-zinc-300 leading-relaxed">
-          Vreemde combo: ruim tien jaar audio-DNA én iemand die
-          agent-systemen dagelijks bouwt en gebruikt. Voor producten waar
-          audio een rol speelt zit ik tegelijk in beide werelden. Voor pure
-          AI-engineering ben ik ingespeeld op de tooling. Geen opstart-tijd,
-          geen team, weinig drama.
+          <MarkerHighlight>Vreemde combo</MarkerHighlight>: ruim tien jaar
+          audio-DNA én iemand die agent-systemen dagelijks bouwt en
+          gebruikt. Voor producten waar audio een rol speelt zit ik tegelijk
+          in beide werelden. Voor pure AI-engineering ben ik ingespeeld op
+          de tooling. Geen opstart-tijd, geen team,{" "}
+          <MarkerHighlight>weinig drama</MarkerHighlight>.
         </p>
-      </section>
+      </SectionReveal>
 
       {/* Quiet CTA */}
-      <section className="border-t border-zinc-800 pt-10">
-        <p className="text-zinc-400 mb-4">
-          Open voor ZZP-inhuur, 2-3 dagen per week. Remote-preferred vanuit
-          Eindhoven, heel NL bereikbaar voor kickoff of een kritische review.
-        </p>
-        <Link
-          href="/hire"
-          className="font-mono text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-        >
-          → Hoe je me inhuurt
-        </Link>
-      </section>
+      <SectionReveal>
+        <section className="border-t border-zinc-800 pt-10">
+          <p className="text-zinc-400 mb-4">
+            Open voor ZZP-inhuur, 2-3 dagen per week. Remote-preferred vanuit
+            Eindhoven, heel NL bereikbaar voor kickoff of een kritische review.
+          </p>
+          <Link
+            href="/hire"
+            className="font-mono text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+          >
+            → Hoe je me inhuurt
+          </Link>
+        </section>
+      </SectionReveal>
     </div>
   );
 }
