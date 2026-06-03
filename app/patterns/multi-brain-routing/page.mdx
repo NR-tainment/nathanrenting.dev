@@ -19,6 +19,18 @@ het iets meer wordt dan een groet. Ergens daartussen wil je een router die
 per request kiest welk model gepast is. Mijn voorkeur:{" "}
 <MarkerHighlight>goedkope heuristieken eerst, een LLM-classifier als fallback — niet als default</MarkerHighlight>.
 
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-router-flow.jpg"
+    alt="Hand-getekende schets van de router: REQUEST gaat naar HEURISTICS (greet / keyword / deep / shell), bij no match valt het door naar CLASSIFIER (small LLM), en eindigt in een tier-keuze FAST / MAIN / THINK."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-schets · de routing-flow
+  </figcaption>
+</figure>
+
 ## De vorm
 
 ```python

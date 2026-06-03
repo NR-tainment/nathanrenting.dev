@@ -23,6 +23,18 @@ Het patroon is drie tiers gestapeld: API → rule-based → hardcoded. Elke
 tier kan dezelfde request afhandelen, met dalende kwaliteit maar stijgende
 betrouwbaarheid.
 
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-three-tier.jpg"
+    alt="Hand-getekende schets: drie tiers gestapeld (API, RULES local, HARDCODED), elk met check-mark en pijl naar USER. Aan de linkerkant cascadeert &quot;fall through&quot; van boven naar beneden. Onderschrift: always responds."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-schets · de cascade
+  </figcaption>
+</figure>
+
 ## De dispatch
 
 ```python

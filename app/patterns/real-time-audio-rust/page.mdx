@@ -20,6 +20,18 @@ om de volgende chunk te produceren. Mis je dat, dan hoort de gebruiker
 een klik, een gap, of een dropout. Die constraint vormt alles wat eronder
 gebeurt.
 
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-audio-engine.jpg"
+    alt="Hand-getekende schets van de audio engine: JS/UI thread stuurt control-msg via een lock-free ring buffer (rtrb) naar de audio callback, die allocation-free draait binnen de 5ms deadline en samples op 48kHz uit naar AAudio/CoreAudio."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-schets · de vorm van de engine
+  </figcaption>
+</figure>
+
 Rust past goed bij dit werk — zodra je het grootste deel van de standard
 library laat liggen. De borrow checker voorkomt data-races op compile-time,
 maar één `Box::new` op het audio-pad sloopt je latency alsnog. De patronen

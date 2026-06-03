@@ -24,6 +24,18 @@ De traps hieronder zijn allemaal dingen waar ik echt tegenaan ben gelopen.
 Zichtbaar in CI-failure-logs en Play Store rejections; minder zichtbaar
 vóór die tijd.
 
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-cross-arch.jpg"
+    alt="Hand-getekende schets: APK/AAB met &quot;NDK 27.1.x pinned&quot; bovenaan, splitst naar drie telefoons met cyan chip-icons (arm64-v8a, armv7-a, x86_64). Annotaties: alignment!, libc++_shared, cache bust."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-schets · drie architecturen, één APK
+  </figcaption>
+</figure>
+
 ## Trap 1 — Struct-alignment op x86_64 vs arm
 
 De pijnlijkste. Rust&apos;s `#[repr(C)]` garandeert niet dezelfde
