@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+import {
+  SketchUnderline,
+  SketchBox,
+  MarkerHighlight,
+  MarginNote,
+  SectionReveal,
+} from "@/components/sketch";
 
 export const metadata: Metadata = {
   title: "Huur me in",
@@ -16,9 +23,9 @@ export default function HirePage() {
         Beschikbaar — 2-3 dagen per week
       </p>
 
-      <section className="mb-12">
+      <SectionReveal className="mb-12">
         <h2 className="text-xl font-semibold text-zinc-100 mb-4">
-          Wat ik voor klanten doe
+          <SketchUnderline seed={71}>Wat ik voor klanten doe</SketchUnderline>
         </h2>
         <p className="text-zinc-300 leading-relaxed mb-4">
           Technische klussen waar het team klein is, of waar het team eigenlijk
@@ -48,38 +55,48 @@ export default function HirePage() {
             DPA-praktijk.
           </li>
         </ul>
-      </section>
+      </SectionReveal>
 
-      <section className="mb-12">
-        <h2 className="text-xl font-semibold text-zinc-100 mb-4">Praktisch</h2>
-        <div className="border border-zinc-800 rounded-md divide-y divide-zinc-800">
-          <Row label="Beschikbaarheid">
-            2-3 dagen per week. Plek is op dit moment open.
-          </Row>
-          <Row label="Tarief">
-            €110-130/u ZZP. Langere engagements bespreekbaar met korting.
-          </Row>
-          <Row label="Inhuurvorm">
-            ZZP-inhuur via mijn eenmanszaak. NL-facturen met BTW.
-          </Row>
-          <Row label="Locatie">
-            Remote-preferred vanuit Eindhoven. Heel NL bereikbaar voor
-            kickoff of een kritische review.
-          </Row>
-          <Row label="Stack">
-            Python, Rust, TypeScript, React Native, Claude /
-            agentskills.io-stack, Supabase, Stripe.
-          </Row>
-          <Row label="Wat ik niet doe">
-            Pure consulting zonder bouwen. Generieke CMS-bouw. Fulltime
-            detachering.
-          </Row>
-        </div>
-      </section>
-
-      <section className="mb-12">
+      <SectionReveal className="mb-12 relative">
         <h2 className="text-xl font-semibold text-zinc-100 mb-4">
-          Hoe te starten
+          <SketchUnderline seed={83}>Praktisch</SketchUnderline>
+        </h2>
+
+        <MarginNote position="right" rotate={-2}>
+          (deze tabel is de afspraak — geen kleine lettertjes)
+        </MarginNote>
+
+        <SketchBox className="rounded-md" seed={89}>
+          <div className="divide-y divide-zinc-800/60">
+            <Row label="Beschikbaarheid">
+              2-3 dagen per week. Plek is op dit moment open.
+            </Row>
+            <Row label="Tarief">
+              <MarkerHighlight>€110-130/u ZZP</MarkerHighlight>. Langere
+              engagements bespreekbaar met korting.
+            </Row>
+            <Row label="Inhuurvorm">
+              ZZP-inhuur via mijn eenmanszaak. NL-facturen met BTW.
+            </Row>
+            <Row label="Locatie">
+              Remote-preferred vanuit Eindhoven. Heel NL bereikbaar voor
+              kickoff of een kritische review.
+            </Row>
+            <Row label="Stack">
+              Python, Rust, TypeScript, React Native, Claude /
+              agentskills.io-stack, Supabase, Stripe.
+            </Row>
+            <Row label="Wat ik niet doe">
+              Pure consulting zonder bouwen. Generieke CMS-bouw. Fulltime
+              detachering.
+            </Row>
+          </div>
+        </SketchBox>
+      </SectionReveal>
+
+      <SectionReveal className="mb-12">
+        <h2 className="text-xl font-semibold text-zinc-100 mb-4">
+          <SketchUnderline seed={97}>Hoe te starten</SketchUnderline>
         </h2>
         <ol className="list-decimal list-outside ml-6 text-zinc-300 space-y-3">
           <li>
@@ -97,24 +114,28 @@ export default function HirePage() {
             checken voordat we doortrekken.
           </li>
         </ol>
-      </section>
+      </SectionReveal>
 
-      <section className="border-t border-zinc-800 pt-10">
-        <h2 className="text-xl font-semibold text-zinc-100 mb-4">Contact</h2>
-        <p className="text-zinc-300 mb-4">
-          Mail is het snelste pad:{" "}
-          <a
-            href="mailto:contact@nathanrenting.dev"
-            className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-700 hover:decoration-cyan-400 transition-colors"
-          >
-            contact@nathanrenting.dev
-          </a>
-          .
-        </p>
-        <p className="text-zinc-500 text-sm">
-          Reactie meestal binnen één werkdag.
-        </p>
-      </section>
+      <SectionReveal>
+        <section className="border-t border-zinc-800 pt-10">
+          <h2 className="text-xl font-semibold text-zinc-100 mb-4">
+            <SketchUnderline seed={103}>Contact</SketchUnderline>
+          </h2>
+          <p className="text-zinc-300 mb-4">
+            Mail is het snelste pad:{" "}
+            <a
+              href="mailto:contact@nathanrenting.dev"
+              className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-700 hover:decoration-cyan-400 transition-colors"
+            >
+              contact@nathanrenting.dev
+            </a>
+            .
+          </p>
+          <p className="text-zinc-500 text-sm">
+            Reactie meestal binnen één werkdag.
+          </p>
+        </section>
+      </SectionReveal>
     </div>
   );
 }

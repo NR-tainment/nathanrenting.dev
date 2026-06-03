@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/ProjectCard";
+import { SketchBox, MarginNote, SectionReveal } from "@/components/sketch";
 
 export const metadata: Metadata = {
   title: "Werk",
@@ -27,20 +28,26 @@ export default function ProjectsPage() {
         .
       </p>
 
-      <div className="grid gap-4">
-        <ProjectCard
-          href="/projects/echo"
-          title="ECHO"
-          oneLiner="Mijn persoonlijke agent-orchestrator. Multi-brain routing, tool-dispatch, vault-backed memory, lokale + cloud LLM-fallback. Solo gebouwd voor één gebruiker (mezelf), draait dagelijks."
-          tags={[
-            "Python · FastAPI",
-            "Multi-brain routing",
-            "agentskills.io",
-            "Lokale LLMs",
-          ]}
-          status="In productie"
-        />
-      </div>
+      <SectionReveal className="relative">
+        <MarginNote position="right" rotate={-2}>
+          (stealth NDA — vraag ernaar)
+        </MarginNote>
+
+        <SketchBox className="rounded-md" seed={11}>
+          <ProjectCard
+            href="/projects/echo"
+            title="ECHO"
+            oneLiner="Mijn persoonlijke agent-orchestrator. Multi-brain routing, tool-dispatch, vault-backed memory, lokale + cloud LLM-fallback. Solo gebouwd voor één gebruiker (mezelf), draait dagelijks."
+            tags={[
+              "Python · FastAPI",
+              "Multi-brain routing",
+              "agentskills.io",
+              "Lokale LLMs",
+            ]}
+            status="In productie"
+          />
+        </SketchBox>
+      </SectionReveal>
 
       <p className="mt-8 text-xs font-mono text-zinc-500">
         Aanvullende case studies (stealth product + een herbruikbare

@@ -1,3 +1,5 @@
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+
 export const metadata = {
   title: "EU-first infrastructure",
   description:
@@ -7,7 +9,7 @@ export const metadata = {
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
 
 <div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
-  Pattern · Architecture
+  <SketchUnderline seed={149}>Pattern · Architecture</SketchUnderline>
 </div>
 
 # EU-first infrastructure
@@ -18,9 +20,8 @@ DPA requests you can&apos;t answer, CLOUD Act risk you can&apos;t mitigate,
 EU buyers who ask "where is this hosted" and walk away when the answer is
 us-east-1.
 
-EU-first isn&apos;t marketing — it&apos;s an architectural decision made
-at setup time. Bolting it on afterwards costs 10x more than starting that
-way.
+<MarkerHighlight>EU-first isn&apos;t marketing — it&apos;s an architectural decision made at setup time.</MarkerHighlight>{" "}
+Bolting it on afterwards costs 10x more than starting that way.
 
 ## The minimum stack
 
