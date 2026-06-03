@@ -201,6 +201,43 @@ This is the kind of GDPR-by-design decision that doesn&apos;t exist when
 you bolt an LLM onto an existing system after the fact. It has to be
 designed in.
 
+## Hoe ECHO groeit
+
+ECHO begon als een chatbot. Geleidelijk werd het meer.
+
+Eerst kwam de geheugen-laag: een Obsidian-vault waar elk gesprek, elke
+beslissing en elke commit naartoe gaat. Die vault groeit elke dag. Na
+maanden gebruik herkent ECHO context die ik zelf alweer vergeten was —
+een experiment van zes weken terug, een uitspraak van een klant, een
+besluit dat ik op de fiets nam.
+
+Daarna de watchers. Filesystem-events, git-commits, calendar-pings,
+sentry-issues — allemaal triggers waar ECHO autonoom op reageert. Een
+commit op een project? Drafted al een chronicle-regel terwijl ik koffie
+haal.
+
+Daarna de drafters. Cron-jobs die &apos;s nachts draaien: weekly recap,
+daily summary, time-tracking aggregaat, vault-consolidation. Als ik &apos;s
+ochtends de HUD open ligt het al klaar — niet als "rapport", maar als
+proposed nudges in een inbox waar ik akkoord of weg-klik.
+
+En nu zit ik in de fase waar <MarkerHighlight>ECHO meer voorstelt dan ik vraag</MarkerHighlight>.
+Niet alles is goed (een drafter mag soms gewoon stoppen met me wakker
+maken), maar de trend is duidelijk: ik typ minder, ECHO doet meer, en
+de output blijft op kwaliteit.
+
+Wat de vault interessanter maakt dan een database: alles is Markdown.
+Geen lock-in, geen vendor, ik kan het zelf lezen zonder ECHO aan te
+zetten. Maar ECHO leest het ook elke turn. Een gesprek van vorige maand
+kan vandaag meegenomen worden in een beslissing — niet omdat ze het
+&quot;herinnert&quot; in de mensentaal-zin, maar omdat het in de vault
+staat en ECHO precies weet hoe ze daar moet zoeken.
+
+De volgende laag in ontwikkeling: meer sleep-time-compute. Een goedkoop
+model dat &apos;s nachts mee-leest in nieuwe vault-entries en zelf
+verbanden voorstelt. Niet om ECHO &quot;slimmer&quot; te maken — om de
+context die er al ligt beter benutbaar te maken.
+
 ## What I learned
 
 Three things that ended up mattering more than the architecture diagrams

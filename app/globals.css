@@ -114,6 +114,54 @@ body {
   }
 }
 
+/* --- Redacted (NDA / stealth) visual treatments --- */
+
+.redacted-blur,
+.redacted-block,
+.redacted-wipe {
+  cursor: help;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.redacted-blur {
+  filter: blur(6px);
+  color: rgba(244, 244, 245, 0.7);
+  text-shadow: 0 0 8px rgba(244, 244, 245, 0.25);
+}
+
+.redacted-block {
+  display: inline-block;
+  background-color: rgba(244, 244, 245, 0.82);
+  color: transparent;
+  border-radius: 2px;
+  padding: 0 0.3em;
+  margin: 0 0.05em;
+  /* slight chalk-rough edge via box-shadow */
+  box-shadow: 0 0 0 0.5px rgba(244, 244, 245, 0.4);
+}
+
+.redacted-wipe {
+  position: relative;
+  filter: blur(3px);
+  color: rgba(244, 244, 245, 0.5);
+}
+.redacted-wipe::after {
+  content: "";
+  position: absolute;
+  inset: -3px -6px;
+  background: linear-gradient(
+    104deg,
+    transparent 3%,
+    rgba(244, 244, 245, 0.12) 25%,
+    rgba(244, 244, 245, 0.22) 50%,
+    rgba(244, 244, 245, 0.12) 75%,
+    transparent 97%
+  );
+  pointer-events: none;
+  border-radius: 3px;
+}
+
 /* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .notebook-bg {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProjectCard } from "@/components/ProjectCard";
+import { StealthCard } from "@/components/StealthCard";
 import {
   SketchUnderline,
   SketchBox,
@@ -7,6 +8,7 @@ import {
   MarginNote,
   DrawnArrow,
   SectionReveal,
+  Redacted,
 } from "@/components/sketch";
 
 function PatternLink({
@@ -90,9 +92,36 @@ export default function Home() {
           />
         </SketchBox>
 
+        <div className="mt-6 grid md:grid-cols-2 gap-3">
+          <StealthCard
+            category="Stealth · audio"
+            description={
+              <>
+                Een <Redacted variant="wipe">product voor creators</Redacted>,
+                gebouwd vanuit tien jaar audio-productie-ervaring. Cross-platform
+                mobile met een{" "}
+                <Redacted>eigen audio-engine</Redacted>. Live met een kleine
+                groep gebruikers. Public launch in voorbereiding.
+              </>
+            }
+            status="Live · NDA"
+          />
+          <StealthCard
+            category="Stealth · methodiek"
+            description={
+              <>
+                Een herbruikbare <Redacted variant="wipe">launch-aanpak</Redacted>,
+                uitgekristalliseerd tijdens het bouwen van project één.
+                <Redacted> Tools, sequencing, en eigen content-pipeline.</Redacted>{" "}
+                In toepassing op het volgende project.
+              </>
+            }
+            status="In toepassing · NDA"
+          />
+        </div>
+
         <p className="mt-6 text-xs font-mono text-zinc-500">
-          Er ligt nog werk onder NDA (een stealth product en een
-          launch-methodiek). Daar praat ik graag over op een call.
+          Wat onder NDA staat kan ik op een call wel doornemen.
         </p>
       </SectionReveal>
 

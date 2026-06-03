@@ -3,7 +3,7 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "Multi-brain LLM routing",
   description:
-    "Cheap heuristics first, LLM classifier as fallback. How to pick the right model tier per request without burning cost or quality.",
+    "Goedkope heuristieken eerst, LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te slopen.",
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
@@ -14,67 +14,66 @@ export const metadata = {
 
 # Multi-brain LLM routing
 
-Sending every request through Sonnet costs more than it should. Sending every
-request through Haiku breaks anything that needs reasoning. The simplest
-escape from that tradeoff is a router that picks a tier per request — and the
-simplest router is{" "}
-<MarkerHighlight>a stack of cheap heuristics with an LLM classifier as the fallback, not the default</MarkerHighlight>.
+Alles via Sonnet sturen is duurder dan nodig. Alles via Haiku breekt zodra
+het iets meer wordt dan een groet. Ergens daartussen wil je een router die
+per request kiest welk model gepast is. Mijn voorkeur:{" "}
+<MarkerHighlight>goedkope heuristieken eerst, een LLM-classifier als fallback — niet als default</MarkerHighlight>.
 
-## The shape
+## De vorm
 
 ```python
 async def decide(text: str, *, force: Brain | None = None) -> RouterDecision:
     if force is not None:
         return RouterDecision(force, "manual", "user-override")
 
-    # Layer 1: cheap regex heuristics (microseconds, free)
+    # Laag 1: goedkope regex-heuristieken (microseconden, gratis)
     h = _heuristic(text)
     if h is not None:
         return h
 
-    # Layer 2: LLM classifier (Haiku, ~30 input tokens, sub-second)
+    # Laag 2: LLM-classifier (Haiku, ~30 input-tokens, sub-second)
     return await _llm_classify(text)
 ```
 
-Layer 1 catches the bulk of requests for free. Trivial greetings go to a
-`fast` tier; anything matching keyword patterns for tool use, deep
-reasoning, or specific business contexts routes to the right tier
-immediately. Layer 2 only fires when the heuristics genuinely don&apos;t
-know.
+Laag 1 vangt de bulk gratis af. "Hoi" gaat naar de `fast` tier. Alles wat
+een keyword raakt voor tool-gebruik, diepe reasoning of een specifiek
+domein gaat meteen naar de juiste tier. Laag 2 vuurt alleen als de
+heuristieken oprecht geen idee hebben.
 
-The win isn&apos;t a clever heuristic. The win is having the *layer
-structure*: cheap things first, expensive things only when necessary, and
-both observable through the same `RouterDecision` return type so you can
-inspect every decision after the fact.
+De winst zit niet in een slimme heuristiek. Die zit in de *laag-structuur*:
+goedkoop eerst, duur alleen als het moet, allebei zichtbaar via hetzelfde
+`RouterDecision`-object zodat je achteraf precies kunt zien wat er gekozen
+is en waarom.
 
-## What heuristics cover
+## Wat heuristieken afvangen
 
-Four categories tend to absorb 70-80% of routing decisions:
+Vier categorieën pakken meestal 70-80% van de beslissingen:
 
-1. **Trivial greetings / time questions** — sub-20-character inputs that
-   match a small regex set. Route to the cheapest, fastest tier. The user
-   asking "hoi" doesn&apos;t need Sonnet.
+1. **Korte groetjes en tijd-vragen** — inputs onder de 20 tekens die een
+   kleine regex-set matchen. Naar de goedkoopste, snelste tier. Iemand
+   die "hoi" zegt heeft geen Sonnet nodig.
 
-2. **Business-context keywords** — terms that signal a specific product or
-   domain. Route to the tier that loads the right system-prompt context.
-   In a multi-product orchestrator this is essential: you don&apos;t want
-   the agent reasoning about product A using product B&apos;s context.
+2. **Domein-keywords** — termen die naar een specifiek product of context
+   wijzen. Naar de tier die de juiste system-prompt-context laadt. In een
+   multi-product orchestrator essentieel — anders gaat de agent reasoning
+   doen vanuit de verkeerde context.
 
-3. **Deep-reasoning keywords** — "design", "architect", "refactor",
-   "review", "diepgaand". Route up to Opus / Sonnet 4.6 / whatever your
-   top tier is. Cheap to detect, expensive to misroute.
+3. **Diepe-reasoning keywords** — "design", "architect", "refactor",
+   "review", "diepgaand". Omhoog naar Opus / Sonnet 4.6 / wat je top
+   tier ook is. Goedkoop om te detecteren, duur om te missen.
 
-4. **Tool-use signals** — file paths, shell verbs ("scan", "check", "lees"),
-   code-fence markers. Route to the tier where shell-tools are available.
+4. **Tool-gebruik signalen** — file-paths, shell-werkwoorden ("scan",
+   "check", "lees"), code-fence-markers. Naar de tier waar shell-tools
+   beschikbaar zijn.
 
-That last one is sneaky. Without it, a small-tier model will write out the
-shell command as Markdown instead of invoking the tool. The fix is at the
-routing layer, not the prompt.
+Die laatste is een stille killer. Zonder die check schrijft een klein
+model de shell-command uit als Markdown in plaats van de tool aan te
+roepen. Fix zit op de routing-laag, niet in de prompt.
 
-## What the classifier covers
+## Wat de classifier afdekt
 
-When the heuristics return `None`, you hit a tiny LLM (Haiku-class) with a
-fixed instruction:
+Als de heuristieken `None` teruggeven hit je een kleine LLM (Haiku-klasse)
+met een vaste instructie:
 
 ```
 You are a routing classifier. Given a user message, output exactly ONE word:
@@ -84,40 +83,41 @@ You are a routing classifier. Given a user message, output exactly ONE word:
 Output ONLY the single word, nothing else.
 ```
 
-Cost per classification: a few tenths of a cent. Latency: sub-second.
-Robustness: high — Haiku is consistent enough on this kind of three-way
-choice that you don&apos;t need anything bigger.
+Kosten per classificatie: paar tienden van een cent. Latency: onder de
+seconde. Robuustheid: hoog — Haiku is consistent genoeg op zo'n
+drieweg-keuze dat je geen groter model nodig hebt.
 
-A small but real win: instruct the classifier to bias toward `main` over
-`fast` when uncertain. The cost of using `main` on a trivial request is
-small; the cost of routing a tool-needing request to `fast` (which then
-fails to invoke tools) is large.
+Eén kleine maar echte win: vertel de classifier om bij twijfel naar `main`
+te leunen in plaats van naar `fast`. Een triviale request via `main` kost
+weinig extra. Een tool-vragende request die per ongeluk naar `fast` gaat
+(en dan de tool niet aanroept) kost véél meer.
 
-## When to skip the router
+## Wanneer je geen router nodig hebt
 
-If every request you handle is roughly the same shape — say, a chatbot
-that only does one thing — you don&apos;t need this. The router pays off
-when:
+Als elke request die binnenkomt ongeveer dezelfde vorm heeft — een
+chatbot die één ding doet, bijvoorbeeld — is dit overkill. De router
+betaalt zichzelf terug zodra:
 
-- Your requests span trivial → deep
-- You have multiple tiers available
-- Cost is a real input (solo founder budget, freemium product, or
-  high-volume system)
-- Tools are involved (where misrouting causes actual failures, not just
-  cost inefficiency)
+- Je requests een range hebben van triviaal tot diep
+- Je meerdere tiers beschikbaar hebt
+- Kosten een echte factor zijn (solo-founder-budget, freemium, hoog volume)
+- Tools in het spel zijn (waar misrouting echte failures geeft, niet
+  alleen kostbare ineffi&shy;ciëntie)
 
-If two of those four are true, the router pays for itself within a week.
+Twee van die vier kloppen? Dan verdient de router zichzelf binnen een
+week terug.
 
-## Observability matters more than the router
+## Observability is belangrijker dan de router
 
-Returning a structured `RouterDecision` with the chosen tier, the
-classifier used (heuristic / haiku / fallback), the reason, and the elapsed
-time makes the system inspectable. After 200 requests you can read the
-log and see where your heuristics are wrong, where the classifier is
-hesitating, and where you&apos;re paying for `main` when `fast` would have
-been enough.
+Geef een gestructureerd `RouterDecision`-object terug met de gekozen tier,
+welke laag heeft besloten (heuristic / haiku / fallback), de reden, en de
+elapsed time. Dat maakt het hele ding inspecteerbaar. Na 200 requests
+scrol je door de log en zie je precies waar de heuristieken er naast
+zitten, waar de classifier twijfelt, en waar je `main` aan het betalen
+bent terwijl `fast` ook had gekund.
 
-Without that, the router becomes a black box you eventually delete because
-"it&apos;s probably the router". With it, the router is a knob you tune.
+Zonder die log wordt de router een black-box die je uiteindelijk weggooit
+omdat "het ligt vast aan de router". Mét die log is de router een knop
+die je tweakt.
 
 </div>

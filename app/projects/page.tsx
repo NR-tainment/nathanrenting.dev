@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/ProjectCard";
-import { SketchBox, MarginNote, SectionReveal } from "@/components/sketch";
+import { StealthCard } from "@/components/StealthCard";
+import { SketchBox, MarginNote, SectionReveal, Redacted } from "@/components/sketch";
 
 export const metadata: Metadata = {
   title: "Werk",
@@ -29,10 +30,6 @@ export default function ProjectsPage() {
       </p>
 
       <SectionReveal className="relative">
-        <MarginNote position="right" rotate={-2}>
-          (stealth NDA — vraag ernaar)
-        </MarginNote>
-
         <SketchBox className="rounded-md" seed={11}>
           <ProjectCard
             href="/projects/echo"
@@ -49,10 +46,51 @@ export default function ProjectsPage() {
         </SketchBox>
       </SectionReveal>
 
-      <p className="mt-8 text-xs font-mono text-zinc-500">
-        Aanvullende case studies (stealth product + een herbruikbare
-        launch-methodiek) onder NDA beschikbaar.
-      </p>
+      <SectionReveal className="relative mt-10">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">
+          Stealth
+        </h2>
+
+        <MarginNote position="right" rotate={-2}>
+          (onder NDA — op een call kan ik meer kwijt)
+        </MarginNote>
+
+        <div className="grid md:grid-cols-2 gap-3">
+          <StealthCard
+            category="Stealth · audio"
+            description={
+              <>
+                Een <Redacted variant="wipe">product voor creators</Redacted>,
+                gebouwd vanuit tien jaar audio-productie-ervaring. Cross-platform
+                mobile met een{" "}
+                <Redacted>eigen audio-engine</Redacted>, drie-tier AI-fallback,
+                en een <Redacted variant="wipe">eigen sample-pipeline</Redacted>.
+                Live met een kleine groep early adopters, public launch in
+                voorbereiding.
+              </>
+            }
+            status="Live · NDA"
+          />
+          <StealthCard
+            category="Stealth · methodiek"
+            description={
+              <>
+                Een herbruikbare <Redacted variant="wipe">launch-aanpak</Redacted>
+                , uitgekristalliseerd tijdens het eerste stealth-project.{" "}
+                <Redacted>Tools, sequencing, eigen content-pipeline.</Redacted>
+                {" "}In toepassing op het volgende project — méér dan een lijstje
+                tactieken, minder dan een framework dat ik publiek kan verkopen.
+              </>
+            }
+            status="In toepassing · NDA"
+          />
+        </div>
+
+        <p className="mt-6 text-xs font-mono text-zinc-500">
+          Beide projecten kan ik op een call wel inhoudelijk doornemen.
+          Klikt het, dan praten we verder onder MNDA.
+        </p>
+      </SectionReveal>
     </div>
   );
 }
