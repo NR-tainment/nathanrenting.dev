@@ -75,11 +75,24 @@ export default function AboutPage() {
             De laatste acht jaar intensief: eerst voor eigen audio-tooling,
             later voor producten en klantwerk.{" "}
             <MarkerHighlight>Zelfgeleerd, geen mooi LinkedIn-pad</MarkerHighlight>.
-            Wat dat oplevert: ik snap audio van binnen en buiten. Niet alleen
-            de DSP, ook hoe een producer ergens tegenaan loopt en wat een UI
-            moet doen om niet in de weg te zitten. Diezelfde brede blik
-            probeer ik in agent-werk te houden: engine, infra en de
-            gebruikerservaring tegelijk in beeld, niet als losse afdelingen.
+          </p>
+
+          <p className="text-zinc-400 leading-relaxed mb-4">
+            Sinds 2018 werk ik aan mijn eigen audio-product — door drie
+            concept-pivots en meerdere platform-iteraties heen, met een
+            productie-tier sinds 2024. Acht jaar tijd in één probleemruimte
+            levert iets op wat je niet uit een tutorial leert: een gevoel
+            voor welke abstracties houden en welke je zes maanden later
+            weer afbreekt. Het product blijft onder NDA tot launch.
+          </p>
+
+          <p className="text-zinc-400 leading-relaxed mb-10">
+            Wat dat alles oplevert: ik snap audio van binnen en buiten.
+            Niet alleen de DSP, ook hoe een producer ergens tegenaan loopt
+            en wat een UI moet doen om niet in de weg te zitten. Diezelfde
+            brede blik probeer ik in agent-werk te houden: engine, infra
+            en de gebruikerservaring tegelijk in beeld, niet als losse
+            afdelingen.
           </p>
         </SectionReveal>
 

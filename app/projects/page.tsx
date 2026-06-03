@@ -16,10 +16,12 @@ export default function ProjectsPage() {
         Werk
       </h1>
       <p className="text-zinc-400 mb-10">
-        ECHO is op dit moment het enige project dat ik in z&apos;n geheel
-        publiek kan laten zien. Er ligt nog werk in stealth en onder NDA —
-        daar praat ik graag over op een call. Voor de patterns en
-        engineering-beslissingen, zie{" "}
+        ECHO, TherapyVault en FamilyKart kan ik publiek laten zien. Mijn
+        grootste project staat onder Stealth — een audio-product waar ik
+        sinds 2018 aan bouw, door meerdere concept-pivots en
+        platform-iteraties heen, met een productie-tier sinds 2024. Daar
+        praat ik graag over op een call. Voor de engineering-patronen die
+        overal terugkomen, zie{" "}
         <a
           href="/patterns"
           className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-700 hover:decoration-cyan-400 transition-colors"
@@ -83,32 +85,38 @@ export default function ProjectsPage() {
 
         <div className="grid md:grid-cols-2 gap-3">
           <StealthCard
-            category="Stealth · audio"
+            category="Stealth · audio · 8 jaar"
             description={
               <>
                 Een <Redacted variant="wipe">product voor creators</Redacted>,
-                gebouwd vanuit tien jaar audio-productie-ervaring. Cross-platform
-                mobile met een{" "}
+                gebouwd vanuit ruim tien jaar audio-productie-ervaring. Sinds
+                2018 in ontwikkeling, door drie concept-pivots en meerdere
+                platform-iteraties heen — van eerste prototype tot huidige
+                productie-tier sinds 2024. Cross-platform mobile met een{" "}
                 <Redacted>eigen audio-engine</Redacted>, drie-tier AI-fallback,
                 en een <Redacted variant="wipe">eigen sample-pipeline</Redacted>.
                 Live met een kleine groep early adopters, public launch in
-                voorbereiding.
+                voorbereiding. EU-first stack, GDPR-by-design.
               </>
             }
-            status="Live · NDA"
+            status="Live · sinds 2018 · NDA"
           />
           <StealthCard
             category="Stealth · methodiek"
             description={
               <>
                 Een herbruikbare <Redacted variant="wipe">launch-aanpak</Redacted>
-                , uitgekristalliseerd tijdens het eerste stealth-project.{" "}
-                <Redacted>Tools, sequencing, eigen content-pipeline.</Redacted>
-                {" "}In toepassing op het volgende project — méér dan een lijstje
-                tactieken, minder dan een framework dat ik publiek kan verkopen.
+                {" "}voor indie- en stealth-products richting publieke release.
+                Uitgekristalliseerd tijdens het eerste stealth-project.{" "}
+                <Redacted>
+                  Tools, sequencing, eigen content-pipeline, social-syndication.
+                </Redacted>
+                {" "}In toepassing op het volgende project — meer dan een
+                lijstje tactieken, minder dan een framework dat ik publiek kan
+                verkopen.
               </>
             }
-            status="In toepassing · NDA"
+            status="In toepassing · 2025-nu · NDA"
           />
         </div>
 
