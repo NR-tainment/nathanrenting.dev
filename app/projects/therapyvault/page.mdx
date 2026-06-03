@@ -1,0 +1,129 @@
+import { SketchUnderline, MarkerHighlight, MarginNote } from "@/components/sketch";
+
+export const metadata = {
+  title: "TherapyVault — secure video-platform voor therapie",
+  description:
+    "Beveiligd video-platform voor therapeuten en hun cliënten. Granulaire access-grants, MFA, GDPR-export, payment-provider abstractie. Next.js 15 + Prisma + Cloudflare R2.",
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={223}>Project · v0.1 release candidate</SketchUnderline>
+</div>
+
+# TherapyVault — secure video-platform voor therapie
+
+<MarkerHighlight>Een privé video-platform waar therapeuten opgenomen sessies veilig met hun eigen cliënten delen.</MarkerHighlight>{" "}
+Geen public URLs, geen YouTube-link met &quot;alleen wie de link heeft&quot;
+— alles achter signed URLs met granulaire access-grants per cliënt,
+optioneel time-limited, view-limited of download-limited.
+
+## Het probleem
+
+Therapeuten die hun sessies opnemen lopen tegen een muur: WeTransfer
+is te open en niet GDPR-compliant voor zorggegevens. YouTube unlisted
+is geen access-control. SharePoint kan, maar is enterprise-overkill
+en bouwt geen relatie met de cliënt. Eigen oplossing met Vimeo-Pro
++ Memberstack is fragiel en duur.
+
+TherapyVault is de specifieke oplossing voor dat smalle probleem:
+één plek waar de therapeut uploadt en de cliënt veilig kijkt, met
+de juridische en technische plumbing eronder die zorgcontext vereist.
+
+## Wat er v0.1 in zit
+
+| Area | Status |
+|---|---|
+| **Auth** | Email+password, password reset, **MFA (TOTP)**, session management, RBAC |
+| **Video upload** | Resumable multipart (tus protocol) tot 10 GB, naar R2 / S3 / MinIO |
+| **Video streaming** | Signed-URL playback met range-support, geen public URLs |
+| **Access control** | Per grant: forever / time-limited / view-limited / download-limited |
+| **Coupons** | 5 types: free access, % off, fixed off, download credit, view credit |
+| **Payments** | Stripe (one-time + subscriptions) + Mollie-stub achter `PaymentProvider`-interface |
+| **Dashboards** | Therapist, Client, Admin |
+| **GDPR** | Data-export ZIP + scheduled-deletion met grace-period |
+| **i18n** | EN + NL vanaf dag één (`next-intl`) |
+| **Audit log** | Elke gevoelige mutatie wordt vastgelegd |
+
+<MarginNote position="right" rotate={-2}>
+  (zorgcontext zonder dat je naar Salesforce-tier infrastructuur moet)
+</MarginNote>
+
+## Stack
+
+| Laag | Keuze |
+|---|---|
+| Frontend + API | Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui |
+| Auth | Auth.js v5 — credentials + **Argon2id** hashing + TOTP MFA |
+| Database | PostgreSQL 16 + Prisma 6 |
+| Storage | Cloudflare R2 (S3-compatibel) — provider-abstractie ondersteunt S3, B2, MinIO, local |
+| Uploads | tus protocol via `@tus/server` |
+| Payments | `PaymentProvider`-interface met Stripe-live + Mollie-stub erachter |
+| Email | console-stub (v0.1) — react-email templates die naar logs renderen |
+| Rate-limit | Redis token-bucket met in-memory fallback |
+| Logging | pino structured JSON + aparte AuditLog-tabel |
+| Tests | Vitest unit/integration + Playwright e2e |
+
+## Waar de zorgvuldigheid in zit
+
+**Geen public URLs.** Elke video-stream gaat door een signed-URL die
+de server pas uitgeeft na een access-grant-check. Range-headers worden
+ondersteund (scrubben werkt) zonder dat de URL ooit lekt buiten de
+sessie.
+
+**MFA verplicht voor admins.** Vanaf de eerste login moet een
+admin-account een TOTP-app koppelen voor toegang krijgt tot de
+admin-dashboards. Geen "ik doe het later".
+
+**Argon2id** als password-hash. Geen bcrypt, geen sha256-met-salt,
+maar het moderne default met memory-hard parameters die brute-force
+op consumer-hardware oneconomisch maakt.
+
+**GDPR-by-design.** Een cliënt kan z&apos;n eigen data exporteren als
+ZIP. Account-deletie loopt via een scheduled-job met een grace-period
+waarin de cliënt kan annuleren. De `AuditLog`-tabel registreert elke
+admin-actie zodat er een paper-trail is bij audits.
+
+**Payment-provider-abstractie.** Stripe is live; Mollie zit achter
+dezelfde interface zodat je voor NL-cliënten op iDEAL kunt switchen
+zonder de business-logica te raken. EU-first principe geldt ook hier.
+
+## Roadmap
+
+| Versie | Wat |
+|---|---|
+| v0.1 (nu) | Alle critical security-primitives. Productie-deploybaar mits SMTP-config |
+| v0.2 | UI-polish, multi-bitrate transcoding (HLS), push-notifications, real email-provider |
+| v0.3+ | Custom domain per therapeut, white-label opties, live-session ondersteuning |
+
+## Wat ik hieraan heb gehad
+
+Drie dingen die opvallen na het bouwen van dit:
+
+1. **Access-grants zijn geen rij in een tabel.** Het is een evaluator
+   die `forever | time-limited | view-limited | download-limited`
+   combineert met &quot;heeft cliënt deze toegang gekocht?&quot; en
+   &quot;is de coupon geldig?&quot;. Het in één pure functie kunnen
+   testen heeft me uren e2e-tests bespaard.
+
+2. **MFA &apos;verplicht voor admin&apos; is non-obvious.** Het lijkt
+   een security-default maar de UX-uitdaging is enrollment-flow:
+   eerste login moet QR-scan kunnen tonen zonder dat een
+   not-yet-MFA-admin het systeem kan blokkeren. Een aparte
+   `mfaEnrolled`-state in de session opgelost.
+
+3. **`PaymentProvider`-interface is de moeite waard zelfs als je
+   nooit switcht.** Het dwingt je tot een schoon mental model:
+   wat is &quot;een payment&quot; in jouw domein, los van wat
+   Stripe of Mollie ervan vinden. De tests werden er eenvoudiger
+   van.
+
+## Status
+
+v0.1 release candidate. Productie-ready foundation. SMTP-provider
+en real-email-templates zijn de volgende stap voor een echte launch.
+
+Onder NDA praat ik graag over de specifieke klant en hun use-case.
+
+</div>

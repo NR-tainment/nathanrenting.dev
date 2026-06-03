@@ -48,6 +48,16 @@ export default function ProjectsPage() {
 
       <SectionReveal className="mt-4">
         <ProjectCard
+          href="/projects/therapyvault"
+          title="TherapyVault"
+          oneLiner="Beveiligd video-platform voor therapeuten en hun cliënten. Therapist uploadt sessies, granulaire access-controls per cliënt, GDPR-export en scheduled-deletion, MFA voor admins. Next.js 15 + Prisma + Cloudflare R2."
+          tags={["Next.js 15", "TypeScript", "Auth + MFA", "GDPR", "Stripe / Mollie"]}
+          status="v0.1 RC"
+        />
+      </SectionReveal>
+
+      <SectionReveal className="mt-4">
+        <ProjectCard
           href="/projects/familykart"
           title="FamilyKart"
           oneLiner="Mario Kart voor m'n kids. Eigen 3D-engine bovenop Three.js, AI-tegenstanders, powerups, chase-camera. Electron desktop-app. Side-project dat naast het serieuze werk loopt."
