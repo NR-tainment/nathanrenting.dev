@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/ProjectCard";
 import { StealthCard } from "@/components/StealthCard";
-import { SketchBox, MarginNote, SectionReveal, Redacted } from "@/components/sketch";
+import { SketchBox, MarginNote, SectionReveal, Redacted, ChalkDoodle } from "@/components/sketch";
 
 export const metadata: Metadata = {
   title: "Werk",
@@ -66,8 +66,14 @@ export default function ProjectsPage() {
         />
       </SectionReveal>
 
-      <SectionReveal className="relative mt-10">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">
+      {/* Divider before stealth section */}
+      <div className="flex justify-center my-12 opacity-40">
+        <ChalkDoodle type="divider" color="#52525b" />
+      </div>
+
+      <SectionReveal className="relative">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4 flex items-center gap-3">
+          <ChalkDoodle type="x-mark" className="opacity-60" />
           Stealth
         </h2>
 

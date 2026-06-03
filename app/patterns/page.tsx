@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MarginNote, SectionReveal } from "@/components/sketch";
+import { MarginNote, SectionReveal, ChalkDoodle } from "@/components/sketch";
 
 export const metadata: Metadata = {
   title: "Patterns",
@@ -56,7 +56,8 @@ const PATTERNS = [
 export default function PatternsPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
-      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-50 mb-4">
+      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-50 mb-4 flex items-center gap-4">
+        <ChalkDoodle type="asterisk" className="opacity-60" />
         Patterns
       </h1>
       <p className="text-zinc-400 leading-relaxed mb-10">

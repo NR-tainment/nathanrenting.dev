@@ -4,6 +4,7 @@ import {
   MarkerHighlight,
   MarginNote,
   SectionReveal,
+  ChalkDoodle,
 } from "@/components/sketch";
 
 export const metadata: Metadata = {
@@ -49,7 +50,8 @@ export default function AboutPage() {
         </p>
 
         <SectionReveal className="relative">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12">
+          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12 flex items-center gap-3">
+            <ChalkDoodle type="musical-note" className="opacity-60" />
             <SketchUnderline seed={21}>Waar ik vandaan kom</SketchUnderline>
           </h2>
 
@@ -82,7 +84,8 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal>
-          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12">
+          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12 flex items-center gap-3">
+            <ChalkDoodle type="arrow-curve" className="opacity-60" />
             <SketchUnderline seed={31}>Wat er nu draait</SketchUnderline>
           </h2>
 
@@ -104,7 +107,8 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal>
-          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12">
+          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12 flex items-center gap-3">
+            <ChalkDoodle type="asterisk" className="opacity-60" />
             <SketchUnderline seed={41}>Stack</SketchUnderline>
           </h2>
 
@@ -170,7 +174,8 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal className="relative">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12">
+          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12 flex items-center gap-3">
+            <ChalkDoodle type="checkmark" className="opacity-60" />
             <SketchUnderline seed={53}>Hoe ik in projecten zit</SketchUnderline>
           </h2>
 
@@ -202,7 +207,8 @@ export default function AboutPage() {
         </SectionReveal>
 
         <SectionReveal className="relative">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12">
+          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12 flex items-center gap-3">
+            <ChalkDoodle type="star" className="opacity-60" />
             <SketchUnderline seed={67}>Buiten het scherm</SketchUnderline>
           </h2>
 

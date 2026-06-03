@@ -5,6 +5,7 @@ import {
   MarkerHighlight,
   MarginNote,
   SectionReveal,
+  ChalkDoodle,
 } from "@/components/sketch";
 import { BlackboardContactForm } from "@/components/BlackboardContactForm";
 
@@ -25,7 +26,8 @@ export default function HirePage() {
       </p>
 
       <SectionReveal className="mb-12">
-        <h2 className="text-xl font-semibold text-zinc-100 mb-4">
+        <h2 className="text-xl font-semibold text-zinc-100 mb-4 flex items-center gap-3">
+          <ChalkDoodle type="asterisk" className="opacity-60" />
           <SketchUnderline seed={71}>Wat ik voor klanten doe</SketchUnderline>
         </h2>
         <p className="text-zinc-300 leading-relaxed mb-4">
@@ -59,7 +61,8 @@ export default function HirePage() {
       </SectionReveal>
 
       <SectionReveal className="mb-12 relative">
-        <h2 className="text-xl font-semibold text-zinc-100 mb-4">
+        <h2 className="text-xl font-semibold text-zinc-100 mb-4 flex items-center gap-3">
+          <ChalkDoodle type="checkmark" className="opacity-60" />
           <SketchUnderline seed={83}>Praktisch</SketchUnderline>
         </h2>
 
@@ -97,7 +100,8 @@ export default function HirePage() {
       </SectionReveal>
 
       <SectionReveal className="mb-12">
-        <h2 className="text-xl font-semibold text-zinc-100 mb-4">
+        <h2 className="text-xl font-semibold text-zinc-100 mb-4 flex items-center gap-3">
+          <ChalkDoodle type="arrow-curve" className="opacity-60" />
           <SketchUnderline seed={97}>Hoe te starten</SketchUnderline>
         </h2>
         <ol className="list-decimal list-outside ml-6 text-zinc-300 space-y-3">
@@ -120,7 +124,8 @@ export default function HirePage() {
 
       <SectionReveal className="relative">
         <section className="border-t border-zinc-800 pt-10">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-4">
+          <h2 className="text-xl font-semibold text-zinc-100 mb-4 flex items-center gap-3">
+            <ChalkDoodle type="scribble" className="opacity-60" />
             <SketchUnderline seed={103}>Schrijf me wat</SketchUnderline>
           </h2>
           <p className="text-zinc-400 mb-6 leading-relaxed">

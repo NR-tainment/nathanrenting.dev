@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight, ChalkDoodle } from "@/components/sketch";
 
 export const metadata = {
   title: "ECHO — agent-orchestrator",
@@ -31,6 +31,8 @@ surfacet.
     Whiteboard-schets · de vorm van het systeem
   </figcaption>
 </figure>
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
 
 ## Wat ECHO in de praktijk doet
 
@@ -96,6 +98,8 @@ een vault-graph, een CC-status-indicator, en project-specifieke panels
 └──────────────────┘         └────────────────────────────────┘
 ```
 
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
 ## De multi-brain router
 
 De router bepaalt welke model-tier wordt aangesproken voordat de request
@@ -145,6 +149,8 @@ volgorde.
 Invocation-count, success-rate, en last-used-timestamp updaten zichzelf
 in de frontmatter — slow telemetry, geen aparte database.
 
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
 ## Vault-backed memory
 
 Het geheugen van ECHO is een Markdown-vault met WikiLink-edges. De vault
@@ -162,6 +168,8 @@ commits, sentry, issues, project-state, agenda, idle. Elk emit een
 gestructureerde trigger als het iets ziet dat ECHO&apos;s aandacht waard
 is; de drafter maakt van triggers proposed nudges; de curator aggregeert
 periodiek.
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
 ## Drie-tier AI-fallback
 
@@ -194,6 +202,8 @@ Anthropic Claude API is gereserveerd voor complex redeneerwerk waar
 lokale modellen de kwaliteit niet halen. Het meeste routine-werk
 draait op de main box; cloud-kosten blijven bescheiden.
 
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
 ## Privacy-filter
 
 De vault wordt elke turn in ECHO&apos;s persona geladen — wat betekent
@@ -202,6 +212,8 @@ gestuurd. Een privacy-filter draait op elk write-entry-point (drafter,
 curator, extractor, commit-chronicles, daily-summarizer) en redact een
 kleine set lokaal-gevoelige programma-namen naar een generieke token.
 Filter aan de *write*-kant; de read-kant blijft simpel.
+
+<ChalkDoodle type="musical-note" className="mt-12 mb-2 opacity-50" />
 
 ## Autonome lagen
 
@@ -220,6 +232,8 @@ ECHO is in lagen opgebouwd, elk progressief autonomer:
    &apos;s nachts nieuwe vault-entries leest en verbanden voorstelt.
 
 <MarkerHighlight>De trend per laag: minder typen, meer voorstellen.</MarkerHighlight>
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
 ## Stack in één oogopslag
 

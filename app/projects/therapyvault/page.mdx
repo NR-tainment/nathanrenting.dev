@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight, ChalkDoodle } from "@/components/sketch";
 
 export const metadata = {
   title: "TherapyVault — secure video-platform voor therapie",
@@ -19,6 +19,8 @@ Geen public URLs, geen YouTube-link met &quot;alleen wie de link heeft&quot;
 — alles achter signed URLs met granulaire access-grants per cliënt,
 optioneel time-limited, view-limited of download-limited.
 
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
 ## Probleem
 
 WeTransfer is niet GDPR-compliant voor zorggegevens. YouTube unlisted
@@ -28,6 +30,8 @@ is geen access-control. SharePoint is enterprise-overkill. Vimeo-Pro
 TherapyVault is de specifieke oplossing: één plek waar de therapeut
 uploadt en de cliënt veilig kijkt, met de juridische en
 technische fundering die zorgcontext vereist.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
 
 ## Wat er v0.1 in zit
 
@@ -44,6 +48,8 @@ technische fundering die zorgcontext vereist.
 | **i18n** | EN + NL vanaf dag één (`next-intl`) |
 | **Audit log** | Elke gevoelige mutatie wordt vastgelegd |
 
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
 ## Stack
 
 | Laag | Keuze |
@@ -58,6 +64,8 @@ technische fundering die zorgcontext vereist.
 | Rate-limit | Redis token-bucket met in-memory fallback |
 | Logging | pino structured JSON + aparte AuditLog-tabel |
 | Tests | Vitest unit/integration + Playwright e2e |
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
 
 ## Security-primitives
 
@@ -77,6 +85,8 @@ mutaties.
 **Payment-provider-abstractie.** Stripe live, Mollie achter dezelfde
 interface — switchen voor iDEAL zonder de business-logica te raken.
 
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
 ## Roadmap
 
 | Versie | Wat |
@@ -84,6 +94,8 @@ interface — switchen voor iDEAL zonder de business-logica te raken.
 | v0.1 (nu) | Alle critical security-primitives, productie-deploybaar |
 | v0.2 | UI-polish, multi-bitrate HLS transcoding, push-notifications, real email-provider |
 | v0.3+ | Custom domain per therapeut, white-label, live-session |
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
 
 ## Status
 
