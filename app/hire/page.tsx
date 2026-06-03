@@ -6,6 +6,7 @@ import {
   MarginNote,
   SectionReveal,
 } from "@/components/sketch";
+import { BlackboardContactForm } from "@/components/BlackboardContactForm";
 
 export const metadata: Metadata = {
   title: "Huur me in",
@@ -117,24 +118,22 @@ export default function HirePage() {
         </ol>
       </SectionReveal>
 
-      <SectionReveal>
+      <SectionReveal className="relative">
         <section className="border-t border-zinc-800 pt-10">
           <h2 className="text-xl font-semibold text-zinc-100 mb-4">
-            <SketchUnderline seed={103}>Contact</SketchUnderline>
+            <SketchUnderline seed={103}>Stuur een brief</SketchUnderline>
           </h2>
-          <p className="text-zinc-300 mb-4">
-            Mail is het snelste pad:{" "}
-            <a
-              href="mailto:contact@nathanrenting.dev"
-              className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-700 hover:decoration-cyan-400 transition-colors"
-            >
-              contact@nathanrenting.dev
-            </a>
-            .
+          <p className="text-zinc-400 mb-6 leading-relaxed">
+            Eén alinea is genoeg. Wat het probleem is, ruwe vorm van wat je
+            zoekt, tijdshorizon. Ik reageer meestal binnen één werkdag.
           </p>
-          <p className="text-zinc-500 text-sm">
-            Reactie meestal binnen één werkdag.
-          </p>
+
+          <MarginNote position="right" rotate={-3}>
+            (alles op deze pagina is hoe ik werk, niet hoe ik klink in
+            een verkooppraat)
+          </MarginNote>
+
+          <BlackboardContactForm />
         </section>
       </SectionReveal>
     </div>
