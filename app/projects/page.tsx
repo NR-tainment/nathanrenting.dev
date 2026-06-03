@@ -79,6 +79,18 @@ export default function ProjectsPage() {
           Stealth
         </h2>
 
+        <figure className="my-8 -mx-2 md:-mx-8">
+          <img
+            src="/stealth-timeline.png"
+            alt="Hand-getekende tijdlijn op blackboard: 8 JAAR — ONE PROBLEM. Vijf fases tussen 2018 en nu: concept + visie (2018), eerste schetsen (2020), mobile pivot (2022), productie-tier (2024), live · stealth (nu)."
+            className="w-full rounded border border-zinc-800"
+            loading="lazy"
+          />
+          <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+            Whiteboard-schets · acht jaar in één probleemruimte
+          </figcaption>
+        </figure>
+
         <MarginNote position="right" rotate={-2}>
           (onder NDA — op een call kan ik meer kwijt)
         </MarginNote>
