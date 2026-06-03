@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: "%s · nathanrenting.dev",
   },
   description:
-    "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de infra eronder. ZZP-inhuur beschikbaar.",
+    "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de techniek eronder. ZZP-inhuur beschikbaar.",
   // Stealth: site is publiek toegankelijk via directe URL, maar niet
   // geïndexeerd door zoekmachines. OG-cards blijven werken bij delen
   // via DM / sociaal.
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nathan Renting — Solo dev. Agent-systemen & real-time audio.",
     description:
-      "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de infra eronder. ZZP-inhuur beschikbaar.",
+      "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de techniek eronder. ZZP-inhuur beschikbaar.",
     url: "https://nathanrenting.dev",
     siteName: "nathanrenting.dev",
     locale: "nl_NL",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nathan Renting — Solo dev. Agent-systemen & real-time audio.",
     description:
-      "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de infra eronder. ZZP-inhuur beschikbaar.",
+      "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de techniek eronder. ZZP-inhuur beschikbaar.",
   },
   authors: [{ name: "Jonathan David Renting" }],
   creator: "Jonathan David Renting",

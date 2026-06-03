@@ -27,7 +27,7 @@ export default function AboutPage() {
 
         <p className="text-zinc-400 leading-relaxed mb-6">
           Wat ik dagelijks doe: ik bouw agent-systemen, real-time audio en de
-          plumbing eronder. Python is mijn comfort zone, Rust pak ik erbij
+          techniek eronder. Python is mijn comfort zone, Rust pak ik erbij
           voor realtime-werk, TypeScript voor de UI. AI-tooling permanent
           open — Claude voor code en chat, Perplexity voor onderzoek,
           ChatGPT voor prompt-werk waar het past. Best tool for the job.

@@ -45,12 +45,12 @@ export default function Home() {
           Solo dev met audio-achtergrond.{" "}
           <span className="text-cyan-400">Agent-systemen</span>,{" "}
           <span className="text-cyan-400">real-time audio</span>, en de
-          plumbing eronder.
+          techniek eronder.
         </h1>
         <p className="text-lg text-zinc-300 leading-relaxed mb-8 max-w-2xl">
           Twaalf jaar entertainment en audio-productie eerst, daarna steeds
           zwaarder op solo-engineering. Nu bouw ik agent-orchestratie,
-          audio-engines en de infra eronder. Solo, AI-augmented, vanuit
+          audio-engines en de techniek eronder. Solo, AI-augmented, vanuit
           Eindhoven.
         </p>
         <div className="flex flex-wrap items-center gap-3">
