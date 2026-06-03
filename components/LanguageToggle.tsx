@@ -10,7 +10,7 @@ export function LanguageToggle() {
   return (
     <Link
       href={onEnglishPage ? "/" : "/en"}
-      className="text-xs md:text-sm uppercase tracking-widest text-zinc-500 hover:text-cyan-400 transition-colors px-2 py-1 font-mono"
+      className="text-[10px] sm:text-xs md:text-sm uppercase tracking-widest text-zinc-500 hover:text-cyan-400 transition-colors px-1 sm:px-2 py-1 font-mono"
       title={onEnglishPage ? "Lees in het Nederlands" : "Read in English"}
       aria-label={onEnglishPage ? "Switch to Dutch" : "Switch to English"}
     >

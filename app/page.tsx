@@ -44,7 +44,7 @@ export default function Home() {
             Beschikbaar — 2-3 dagen per week ZZP
           </SketchUnderline>
         </div>
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-zinc-50 leading-tight mb-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-zinc-50 leading-tight mb-6 [hyphens:auto] sm:[hyphens:none]">
           Solo dev met{" "}
           <SketchUnderline seed={5}>audio-achtergrond</SketchUnderline>
           <ChalkDoodle type="waveform" inline className="ml-2 align-middle opacity-80" />
@@ -53,7 +53,7 @@ export default function Home() {
           <span className="text-cyan-400">real-time audio</span>, en de
           techniek eronder.
         </h1>
-        <p className="text-lg text-zinc-300 leading-relaxed mb-8 max-w-2xl">
+        <p className="text-base sm:text-lg text-zinc-300 leading-relaxed mb-8 max-w-2xl">
           Twaalf jaar entertainment en audio-productie eerst, daarna steeds
           zwaarder op solo-engineering. Nu bouw ik agent-orchestratie,
           audio-engines en de techniek eronder. Solo, AI-augmented, vanuit

@@ -53,6 +53,28 @@ body {
   background: var(--muted);
 }
 
+/* --- Code blocks: prevent double-border when <code> sits inside <pre> --- */
+pre code {
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-size: inherit !important;
+}
+
+pre {
+  /* line-wrap long lines on small screens instead of horizontal scroll */
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  pre {
+    white-space: pre;
+    word-break: normal;
+  }
+}
+
 /* --- Notebook aesthetic --- */
 
 /* Subtle blackboard texture: cyan haze + paper-like grain */
