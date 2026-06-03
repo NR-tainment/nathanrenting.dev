@@ -9,6 +9,7 @@ import {
   DrawnArrow,
   SectionReveal,
   Redacted,
+  ChalkDoodle,
 } from "@/components/sketch";
 
 function PatternLink({
@@ -45,7 +46,9 @@ export default function Home() {
         </div>
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-zinc-50 leading-tight mb-6">
           Solo dev met{" "}
-          <SketchUnderline seed={5}>audio-achtergrond</SketchUnderline>.{" "}
+          <SketchUnderline seed={5}>audio-achtergrond</SketchUnderline>
+          <ChalkDoodle type="waveform" inline className="ml-2 align-middle opacity-80" />
+          .{" "}
           <span className="text-cyan-400">Agent-systemen</span>,{" "}
           <span className="text-cyan-400">real-time audio</span>, en de
           techniek eronder.
@@ -81,7 +84,8 @@ export default function Home() {
 
       {/* What I do — projects */}
       <SectionReveal className="mb-20 relative">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-3">
+          <ChalkDoodle type="asterisk" className="opacity-60" />
           <SketchUnderline>Werk dat publiek mag</SketchUnderline>
         </h2>
 
@@ -132,9 +136,15 @@ export default function Home() {
         </p>
       </SectionReveal>
 
+      {/* Divider between sections */}
+      <div className="flex justify-center my-12 opacity-40">
+        <ChalkDoodle type="divider" color="#52525b" />
+      </div>
+
       {/* Patterns */}
       <SectionReveal className="mb-20 relative">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-3">
+          <ChalkDoodle type="asterisk" className="opacity-60" />
           <SketchUnderline seed={7}>Patterns</SketchUnderline>
         </h2>
 
@@ -174,9 +184,15 @@ export default function Home() {
         </Link>
       </SectionReveal>
 
+      {/* Divider between sections */}
+      <div className="flex justify-center my-12 opacity-40">
+        <ChalkDoodle type="divider" color="#52525b" />
+      </div>
+
       {/* What I bring */}
       <SectionReveal className="mb-16">
-        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-3">
+          <ChalkDoodle type="star" className="opacity-60" />
           <SketchUnderline seed={13}>Wat ik meeneem</SketchUnderline>
         </h2>
         <p className="text-zinc-300 leading-relaxed">
