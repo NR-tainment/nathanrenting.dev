@@ -37,12 +37,15 @@ export default function Home() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
       {/* Hero */}
-      <section className="mb-20">
+      <section className="mb-20 relative">
         <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-4">
-          Beschikbaar — 2-3 dagen per week ZZP
+          <SketchUnderline seed={3}>
+            Beschikbaar — 2-3 dagen per week ZZP
+          </SketchUnderline>
         </div>
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-zinc-50 leading-tight mb-6">
-          Solo dev met audio-achtergrond.{" "}
+          Solo dev met{" "}
+          <SketchUnderline seed={5}>audio-achtergrond</SketchUnderline>.{" "}
           <span className="text-cyan-400">Agent-systemen</span>,{" "}
           <span className="text-cyan-400">real-time audio</span>, en de
           techniek eronder.
@@ -67,6 +70,10 @@ export default function Home() {
             Huur me in
           </Link>
         </div>
+
+        <MarginNote position="right" rotate={-3}>
+          (whiteboard-portfolio — patterns en projecten verderop)
+        </MarginNote>
       </section>
 
       {/* Drawn arrow — appears as user scrolls past hero */}
