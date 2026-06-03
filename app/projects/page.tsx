@@ -46,6 +46,16 @@ export default function ProjectsPage() {
         </SketchBox>
       </SectionReveal>
 
+      <SectionReveal className="mt-4">
+        <ProjectCard
+          href="/projects/familykart"
+          title="FamilyKart"
+          oneLiner="Mario Kart voor m'n kids. Eigen 3D-engine bovenop Three.js, AI-tegenstanders, powerups, chase-camera. Electron desktop-app. Side-project dat naast het serieuze werk loopt."
+          tags={["Electron", "Three.js", "3D", "Side-project"]}
+          status="In ontwikkeling"
+        />
+      </SectionReveal>
+
       <SectionReveal className="relative mt-10">
         <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-4">
           Stealth
