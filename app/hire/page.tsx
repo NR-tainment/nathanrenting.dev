@@ -102,8 +102,8 @@ export default function HirePage() {
         </h2>
         <ol className="list-decimal list-outside ml-6 text-zinc-300 space-y-3">
           <li>
-            <strong className="text-zinc-100">Stuur een brief.</strong> Wat
-            het probleem is, ruwe vorm van wat je nodig hebt, tijdshorizon.
+            <strong className="text-zinc-100">Schrijf me wat.</strong> Wat
+            het probleem is, ruwe vorm van wat je zoekt, tijdshorizon.
             Eén alinea is genoeg.
           </li>
           <li>
@@ -121,7 +121,7 @@ export default function HirePage() {
       <SectionReveal className="relative">
         <section className="border-t border-zinc-800 pt-10">
           <h2 className="text-xl font-semibold text-zinc-100 mb-4">
-            <SketchUnderline seed={103}>Stuur een brief</SketchUnderline>
+            <SketchUnderline seed={103}>Schrijf me wat</SketchUnderline>
           </h2>
           <p className="text-zinc-400 mb-6 leading-relaxed">
             Eén alinea is genoeg. Wat het probleem is, ruwe vorm van wat je

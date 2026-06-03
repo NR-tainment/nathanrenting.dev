@@ -29,6 +29,19 @@ export const metadata: Metadata = {
   },
   description:
     "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de infra eronder. ZZP-inhuur beschikbaar.",
+  // Stealth: site is publiek toegankelijk via directe URL, maar niet
+  // geïndexeerd door zoekmachines. OG-cards blijven werken bij delen
+  // via DM / sociaal.
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
   openGraph: {
     title: "Nathan Renting — Solo dev. Agent-systemen & real-time audio.",
     description:
