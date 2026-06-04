@@ -58,8 +58,8 @@ export default function EnglishSummary() {
           <li>
             <strong className="text-zinc-100">Agent systems & multi-agent orchestration.</strong>{" "}
             Tool-dispatch, vault-backed memory, agentskills.io-compatible
-            workflow layer, three-tier AI fallback. Native to the
-            Anthropic Claude stack.
+            workflow layer (OpenClaw-compatible), three-tier AI fallback.
+            Native to the Anthropic Claude stack.
           </li>
           <li>
             <strong className="text-zinc-100">Real-time audio engines.</strong>{" "}
@@ -214,8 +214,8 @@ export default function EnglishSummary() {
           </Row>
           <Row label="Stack">
             Python, Rust, TypeScript, React Native, agentskills.io-stack
-            (multi-model: Claude / Perplexity / ChatGPT / local), Supabase,
-            Stripe.
+            (OpenClaw-compatible · multi-model: Claude / Perplexity /
+            ChatGPT / local), Supabase, Stripe.
           </Row>
           <Row label="Not for">
             Pure consulting without building. Generic CMS work. Fulltime

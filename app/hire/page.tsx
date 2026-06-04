@@ -88,8 +88,8 @@ export default function HirePage() {
             </Row>
             <Row label="Stack">
               Python, Rust, TypeScript, React Native, agentskills.io-stack
-              (multi-model: Claude / Perplexity / ChatGPT / lokaal),
-              Supabase, Stripe.
+              (OpenClaw-compatibel · multi-model: Claude / Perplexity /
+              ChatGPT / lokaal), Supabase, Stripe.
             </Row>
             <Row label="Wat ik niet doe">
               Pure consulting zonder bouwen. Generieke CMS-bouw. Fulltime

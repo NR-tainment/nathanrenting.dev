@@ -154,8 +154,8 @@ export default function AboutPage() {
               <p className="text-zinc-400">
                 Anthropic Claude (API + Code) primair, Perplexity voor
                 onderzoek, ChatGPT voor prompt-werk. Lokaal Ollama (Qwen 2.5,
-                Llama 3.2). agentskills.io-standaard, drie-tier
-                fallback-patroon, ComfyUI.
+                Llama 3.2). agentskills.io-standaard (OpenClaw-compatibel),
+                drie-tier fallback-patroon, ComfyUI.
               </p>
             </div>
             <div>
