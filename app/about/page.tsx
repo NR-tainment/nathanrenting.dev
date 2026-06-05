@@ -16,9 +16,23 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
-      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-50 mb-8">
-        Over mij
-      </h1>
+      <div className="flex items-start gap-6 mb-8 flex-col sm:flex-row">
+        <img
+          src="/nathan-portret.png"
+          alt="Hand-getekend chalk-portret van Nathan: kale buste met cyan headphones, vriendelijke smile, kleine waveform-doodle boven het hoofd."
+          width={144}
+          height={144}
+          className="rounded-full border border-zinc-800 w-28 h-28 sm:w-36 sm:h-36 shrink-0"
+        />
+        <div className="flex-1">
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-50 mb-2">
+            Over mij
+          </h1>
+          <p className="text-sm font-mono text-zinc-500 italic">
+            (geen foto nog — krijt op blackboard)
+          </p>
+        </div>
+      </div>
 
       <div className="prose-invert max-w-none">
         <p className="text-lg text-zinc-300 leading-relaxed mb-6">
