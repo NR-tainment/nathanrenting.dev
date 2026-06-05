@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight, ChalkDoodle } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
   title: "CaptionCompass — captions + direction-hint voor doven en slechthorende",
@@ -70,17 +70,17 @@ als hij niet hard genoeg te onderbouwen is.
 
 ## Stack
 
-| Laag | Keuze |
-|---|---|
-| Taal | Kotlin 2.0.20 |
-| UI | Jetpack Compose (BOM 2024.10), single-screen single-activity |
-| Audio-capture | `AudioRecord` met UNPROCESSED source en stereo channel-mask |
-| VAD | Energy-based (Phase 1), Silero-VAD ONNX (Phase 2) |
-| DoA | GCC-PHAT (generalized cross-correlation phase transform), eigen Kotlin-implementatie |
-| ASR | Android `SpeechRecognizer` (online), Vosk (Phase 2, offline fallback) |
-| Service | Foreground service met Android 14 `microphone` foreground-type |
-| Min SDK | 26 (Android 8.0+) |
-| Target SDK | 35 (Android 15) |
+<StackTable rows={[
+  { label: "Taal", value: "Kotlin 2.0.20" },
+  { label: "UI", value: "Jetpack Compose (BOM 2024.10), single-screen single-activity" },
+  { label: "Audio-capture", value: <><code className="font-mono text-cyan-300">AudioRecord</code> met UNPROCESSED source en stereo channel-mask</> },
+  { label: "VAD", value: "Energy-based (Phase 1), Silero-VAD ONNX (Phase 2)" },
+  { label: "DoA", value: "GCC-PHAT (generalized cross-correlation phase transform), eigen Kotlin-implementatie" },
+  { label: "ASR", value: <>Android <code className="font-mono text-cyan-300">SpeechRecognizer</code> (online), Vosk (Phase 2, offline fallback)</> },
+  { label: "Service", value: <>Foreground service met Android 14 <code className="font-mono text-cyan-300">microphone</code> foreground-type</> },
+  { label: "Min SDK", value: "26 (Android 8.0+)" },
+  { label: "Target SDK", value: "35 (Android 15)" },
+]} />
 
 <ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
 

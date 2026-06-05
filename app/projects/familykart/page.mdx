@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight, ChalkDoodle } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
   title: "FamilyKart — kart-racing voor mijn kids",
@@ -49,14 +49,14 @@ voor de game-loop.
 
 ## Stack
 
-| Laag | Keuze |
-|---|---|
-| Runtime | Electron (Windows portable .exe) |
-| 3D | Three.js (r169) |
-| Game-logic | Vanilla JS, eigen state-machine |
-| UI / HUD | 2D-canvas overlay |
-| Audio | Web Audio API |
-| Build | electron-builder, portable target |
+<StackTable rows={[
+  { label: "Runtime", value: "Electron (Windows portable .exe)" },
+  { label: "3D", value: "Three.js (r169)" },
+  { label: "Game-logic", value: "Vanilla JS, eigen state-machine" },
+  { label: "UI / HUD", value: "2D-canvas overlay" },
+  { label: "Audio", value: "Web Audio API" },
+  { label: "Build", value: "electron-builder, portable target" },
+]} />
 
 Geen frameworks bovenop Three. Geen React voor de game zelf. Vanilla
 JS, minimum dependencies, alles vendor&apos;d waar het kan. Tracks en

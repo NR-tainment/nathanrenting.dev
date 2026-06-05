@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight, ChalkDoodle } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
   title: "ECHO — agent-orchestrator",
@@ -237,15 +237,15 @@ ECHO is in lagen opgebouwd, elk progressief autonomer:
 
 ## Stack in één oogopslag
 
-| Laag | Keuze |
-|---|---|
-| Orchestrator | Python 3.13, FastAPI, Uvicorn (SelectorEventLoop op Windows) |
-| Scheduling | APScheduler |
-| LLMs | Anthropic (Claude API), Perplexity voor onderzoek, ChatGPT voor prompt-werk, Ollama lokaal |
-| Memory | Markdown-vault, NDJSON event-streams, SQLite voor state |
-| HUD | React + Vite + Tailwind + Framer Motion + ForceGraph3D |
-| Voice | Whisper STT (lokaal), TTS via Edge / Kokoro |
-| Tools | Tool-use-protocol, 14+ geregistreerde tools |
-| Skills | agentskills.io-compatibel SKILL.md-format |
+<StackTable rows={[
+  { label: "Orchestrator", value: "Python 3.13, FastAPI, Uvicorn (SelectorEventLoop op Windows)" },
+  { label: "Scheduling", value: "APScheduler" },
+  { label: "LLMs", value: "Anthropic (Claude API), Perplexity voor onderzoek, ChatGPT voor prompt-werk, Ollama lokaal" },
+  { label: "Memory", value: "Markdown-vault, NDJSON event-streams, SQLite voor state" },
+  { label: "HUD", value: "React + Vite + Tailwind + Framer Motion + ForceGraph3D" },
+  { label: "Voice", value: "Whisper STT (lokaal), TTS via Edge / Kokoro" },
+  { label: "Tools", value: "Tool-use-protocol, 14+ geregistreerde tools" },
+  { label: "Skills", value: "agentskills.io-compatibel SKILL.md-format" },
+]} />
 
 </div>

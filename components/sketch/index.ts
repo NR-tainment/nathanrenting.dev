@@ -6,3 +6,4 @@ export { DrawnArrow } from "./DrawnArrow";
 export { SectionReveal } from "./SectionReveal";
 export { Redacted } from "./Redacted";
 export { ChalkDoodle } from "./ChalkDoodle";
+export { StackTable } from "./StackTable";

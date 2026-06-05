@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight, ChalkDoodle } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
   title: "TherapyVault — secure video-platform voor therapie",
@@ -64,18 +64,18 @@ technische fundering die zorgcontext vereist.
 
 ## Stack
 
-| Laag | Keuze |
-|---|---|
-| Frontend + API | Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui |
-| Auth | Auth.js v5 — credentials + **Argon2id** hashing + TOTP MFA |
-| Database | PostgreSQL 16 + Prisma 6 |
-| Storage | Cloudflare R2 (S3-compatibel) — provider-abstractie ondersteunt S3, B2, MinIO, local |
-| Uploads | tus protocol via `@tus/server` |
-| Payments | `PaymentProvider`-interface met Stripe-live + Mollie-stub erachter |
-| Email | console-stub (v0.1) — react-email templates die naar logs renderen |
-| Rate-limit | Redis token-bucket met in-memory fallback |
-| Logging | pino structured JSON + aparte AuditLog-tabel |
-| Tests | Vitest unit/integration + Playwright e2e |
+<StackTable rows={[
+  { label: "Frontend + API", value: "Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui" },
+  { label: "Auth", value: <>Auth.js v5 — credentials + <strong>Argon2id</strong> hashing + TOTP MFA</> },
+  { label: "Database", value: "PostgreSQL 16 + Prisma 6" },
+  { label: "Storage", value: "Cloudflare R2 (S3-compatibel) — provider-abstractie ondersteunt S3, B2, MinIO, local" },
+  { label: "Uploads", value: <>tus protocol via <code className="font-mono text-cyan-300">@tus/server</code></> },
+  { label: "Payments", value: <><code className="font-mono text-cyan-300">PaymentProvider</code>-interface met Stripe-live + Mollie-stub erachter</> },
+  { label: "Email", value: "console-stub (v0.1) — react-email templates die naar logs renderen" },
+  { label: "Rate-limit", value: "Redis token-bucket met in-memory fallback" },
+  { label: "Logging", value: "pino structured JSON + aparte AuditLog-tabel" },
+  { label: "Tests", value: "Vitest unit/integration + Playwright e2e" },
+]} />
 
 <ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
 

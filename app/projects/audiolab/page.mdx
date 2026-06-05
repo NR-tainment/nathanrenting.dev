@@ -1,4 +1,4 @@
-import { SketchUnderline, MarkerHighlight, ChalkDoodle } from "@/components/sketch";
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
   title: "AudioLab.tools — authority platform voor audio + AI + DSP",
@@ -66,16 +66,16 @@ content — geen JS-only routes.
 
 ## Stack
 
-| Laag | Keuze |
-|---|---|
-| Framework | Astro 6 (content-eerst, statisch met React-eilanden waar nodig) |
-| UI | React 19, Tailwind v4 (CSS-first config) |
-| Inhoud | MDX (`@astrojs/mdx`), per-cluster content-collections |
-| OG-cards | Satori + Resvg.js — dynamisch gegenereerd op build-tijd |
-| Fonts | Geist + JetBrains Mono (variable) |
-| Performance | Sharp voor image-pipeline, build-time pre-rendering |
-| RSS | Feed.js per cluster, per-tag |
-| Sitemap | `@astrojs/sitemap` |
+<StackTable rows={[
+  { label: "Framework", value: <>Astro 6 (content-eerst, statisch met React-eilanden waar nodig)</> },
+  { label: "UI", value: <>React 19, Tailwind v4 (CSS-first config)</> },
+  { label: "Inhoud", value: <>MDX (<code className="font-mono text-cyan-300">@astrojs/mdx</code>), per-cluster content-collections</> },
+  { label: "OG-cards", value: <>Satori + Resvg.js — dynamisch gegenereerd op build-tijd</> },
+  { label: "Fonts", value: <>Geist + JetBrains Mono (variable)</> },
+  { label: "Performance", value: <>Sharp voor image-pipeline, build-time pre-rendering</> },
+  { label: "RSS", value: <>Feed.js per cluster, per-tag</> },
+  { label: "Sitemap", value: <><code className="font-mono text-cyan-300">@astrojs/sitemap</code></> },
+]} />
 
 Astro is gekozen boven Next.js voor deze use-case: content-eerst,
 veel statische pagina&apos;s, React-eilanden voor interactieve
