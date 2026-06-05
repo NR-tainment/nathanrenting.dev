@@ -103,19 +103,63 @@ export default function Home() {
           />
         </SketchBox>
 
-        <div className="mt-6 grid md:grid-cols-2 gap-3">
+        <div className="mt-4 grid md:grid-cols-2 gap-3">
+          <ProjectCard
+            href="/projects/therapyvault"
+            title="TherapyVault"
+            oneLiner="Beveiligd video-platform voor therapeuten ↔ cliënten. Granulaire access-controls, GDPR-export, MFA. Next.js 15 + Prisma + Cloudflare R2."
+            tags={["Next.js 15", "Auth + MFA", "GDPR"]}
+            status="v0.1 RC"
+          />
+          <ProjectCard
+            href="/projects/audiolab"
+            title="AudioLab.tools"
+            oneLiner="Authority-platform op het snijvlak audio + AI + DSP + Android + toegankelijkheid. Real tools, deep docs. Astro + React + Tailwind v4."
+            tags={["Astro", "Content platform", "Audio + AI"]}
+            status="In opbouw"
+          />
+          <ProjectCard
+            href="/projects/captioncompass"
+            title="CaptionCompass"
+            oneLiner="Accessibility-app voor doven en slechthorende Android-gebruikers. Live captions + direction-of-arrival (alleen als betrouwbaar). Kotlin + Compose + GCC-PHAT."
+            tags={["Android", "Kotlin", "Accessibility", "DSP"]}
+            status="MVP scaffold"
+          />
+          <ProjectCard
+            href="/projects/photoflow"
+            title="PhotoFlow"
+            oneLiner="Van bewerkte foto naar online in 30 seconden. Lightroom plugin + Tauri-desktop + multi-agent publishing-pipeline voor fotografen."
+            tags={["Tauri", "Lightroom plugin", "Multi-agent"]}
+            status="Pre-dev"
+          />
+          <ProjectCard
+            href="/projects/familykart"
+            title="FamilyKart"
+            oneLiner="Mario Kart voor m'n kids. Eigen 3D-engine bovenop Three.js, AI-tegenstanders, powerups, chase-camera. Electron desktop-app."
+            tags={["Electron", "Three.js", "Side-project"]}
+            status="In ontwikkeling"
+          />
+        </div>
+
+        <div className="mt-8 mb-4 font-mono text-xs uppercase tracking-widest text-zinc-500 flex items-center gap-3">
+          <ChalkDoodle type="x-mark" className="opacity-60" />
+          Stealth
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-3">
           <StealthCard
-            category="Stealth · audio"
+            category="Stealth · audio · 8 jaar"
             description={
               <>
                 Een <Redacted variant="wipe">product voor creators</Redacted>,
-                gebouwd vanuit tien jaar audio-productie-ervaring. Cross-platform
+                gebouwd vanuit tien jaar audio-productie-ervaring. Sinds 2018
+                in ontwikkeling, productie-tier sinds 2024. Cross-platform
                 mobile met een{" "}
-                <Redacted>eigen audio-engine</Redacted>. Live met een kleine
-                groep gebruikers. Public launch in voorbereiding.
+                <Redacted>eigen audio-engine</Redacted>. Live met early
+                adopters.
               </>
             }
-            status="Live · NDA"
+            status="Live · sinds 2018 · NDA"
           />
           <StealthCard
             category="Stealth · methodiek"
