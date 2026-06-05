@@ -60,6 +60,26 @@ export default function ProjectsPage() {
 
       <SectionReveal className="mt-4">
         <ProjectCard
+          href="/projects/audiolab"
+          title="AudioLab.tools"
+          oneLiner="Authority-platform op het snijvlak van audio + AI + DSP + Android + toegankelijkheid. Real tools, deep docs, no slop. Astro + React + Tailwind v4, cluster-structuur (MixLab, HearLab, Engineering)."
+          tags={["Astro", "Content platform", "Audio + AI", "DSP"]}
+          status="In opbouw · dev-fase"
+        />
+      </SectionReveal>
+
+      <SectionReveal className="mt-4">
+        <ProjectCard
+          href="/projects/captioncompass"
+          title="CaptionCompass"
+          oneLiner="Accessibility-app voor doven en slechthorende Android-gebruikers. Live captions altijd zichtbaar; richting-hint van de spreker verschijnt alleen als betrouwbaar. Kotlin + Jetpack Compose + stereo AAudio + GCC-PHAT DoA."
+          tags={["Android", "Kotlin", "Jetpack Compose", "Accessibility", "DSP"]}
+          status="MVP scaffold · Phase 1"
+        />
+      </SectionReveal>
+
+      <SectionReveal className="mt-4">
+        <ProjectCard
           href="/projects/photoflow"
           title="PhotoFlow"
           oneLiner="Van bewerkte foto naar online aanwezigheid binnen 30 seconden, voor professionele fotografen. Lightroom-plugin + Tauri-desktop + cloud-publishing-stack. Multi-agent architectuur (Vision / Copy / Publishing / Analytics)."
