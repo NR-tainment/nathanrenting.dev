@@ -45,10 +45,21 @@ export default function AboutPage() {
         <p className="text-zinc-400 leading-relaxed mb-6">
           En agent-systemen bouwen — oplossingen voor specifieke functies,
           niche-apps voor smalle use-cases, en de techniek eronder.
-          Python is mijn comfort zone, Rust pak ik erbij voor realtime-werk,
-          TypeScript voor de UI. AI-tooling permanent open: Claude voor
-          code en chat, Perplexity voor onderzoek, ChatGPT voor prompt-werk
-          waar het past.
+        </p>
+
+        <p className="text-zinc-400 leading-relaxed mb-6">
+          <MarkerHighlight>Stack volgt het probleem, niet andersom.</MarkerHighlight>{" "}
+          Python is comfort zone, Rust voor realtime-werk, TypeScript voor
+          de UI — dat is wat ik nu het meeste raak, geen grens. Als een
+          andere basis logischer is voor het project, val ik daar in. De
+          beperking is zelden welke syntax ik ken; het zien welke opties
+          er zijn voor een probleem en die durven pakken wel.
+        </p>
+
+        <p className="text-zinc-400 leading-relaxed mb-6">
+          AI-tooling permanent open: Claude voor code en chat, Perplexity
+          voor onderzoek, ChatGPT voor prompt-werk waar het past. Beste
+          tool voor de specifieke job, niet één-tool-voor-alles.
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-10">
