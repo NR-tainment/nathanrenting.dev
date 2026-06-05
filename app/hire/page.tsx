@@ -22,7 +22,7 @@ export default function HirePage() {
         Huur me in
       </h1>
       <p className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-10">
-        Beschikbaar — 2-3 dagen per week
+        Beschikbaar · 2-3 dagen per week
       </p>
 
       <SectionReveal className="mb-12">
@@ -67,7 +67,7 @@ export default function HirePage() {
         </h2>
 
         <MarginNote position="right" rotate={-2}>
-          (deze tabel is de afspraak — geen kleine lettertjes)
+          (deze tabel is de afspraak. geen kleine lettertjes)
         </MarginNote>
 
         <SketchBox className="rounded-md" seed={89}>
@@ -134,8 +134,7 @@ export default function HirePage() {
           </p>
 
           <MarginNote position="right" rotate={-3}>
-            (alles op deze pagina is hoe ik werk, niet hoe ik klink in
-            een verkooppraat)
+            (alles hierboven is hoe ik werk. geen verkooppraat)
           </MarginNote>
 
           <BlackboardContactForm />

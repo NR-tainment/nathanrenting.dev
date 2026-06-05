@@ -37,7 +37,7 @@ surfacet.
 ## Wat ECHO in de praktijk doet
 
 Ik praat met haar, zij praat terug. Maar het interessante zit niet in de
-chat — het zit in wat er *tussen* turns gebeurt. ECHO observeert mijn
+chat. Het zit in wat er *tussen* turns gebeurt. ECHO observeert mijn
 filesystem, de recente commits over al mijn projecten, de open nudges in
 mijn vault, en synthetiseert dat tot ochtend-briefings,
 code-change-chronicles, time-tracking-aggregaten, en proactieve
@@ -47,8 +47,8 @@ Concreet, in één turn kan ECHO:
 
 - Beslissen welke model-tier ze gebruikt (`fast` / `main` / `think` /
   `local`) op basis van de vorm van de request
-- Een tool dispatchen — vault-search, een database-query, een
-  shell-command, een KPI-pulse van een aangesloten product
+- Een tool dispatchen (vault-search, database-query, shell-command,
+  KPI-pulse van een aangesloten product)
 - Gestructureerde JSON updaten voor een persoonlijke dashboard
 - Een notitie aan een lopende time-entry hangen zonder de timer te
   stoppen
@@ -134,7 +134,7 @@ failure-mode aan de bron.
 
 ## Tool-dispatch + skills-laag
 
-ECHO biedt ~14 tools aan via het tool-use-protocol —
+ECHO biedt ~14 tools aan via het tool-use-protocol:
 `vault_read`, `vault_search`, `shell_check`, `list_skills` /
 `run_skill`, `time_start` / `time_stop`, `time_summary`,
 `note_learning`, en een handvol product-specifieke tools.
@@ -147,7 +147,7 @@ body en ECHO volgt de genummerde stappen, callt de tools in de juiste
 volgorde.
 
 Invocation-count, success-rate, en last-used-timestamp updaten zichzelf
-in de frontmatter — slow telemetry, geen aparte database.
+in de frontmatter. Slow telemetry, geen aparte database.
 
 <ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
 
@@ -185,7 +185,7 @@ werken ook als externe services dat niet doen.
 
 ## Lokale AI-infrastructuur
 
-ECHO draait lokaal op mijn main werkplek — een Ryzen 7 3700X met AMD
+ECHO draait lokaal op mijn main werkplek: Ryzen 7 3700X met AMD
 RX 6650 XT (8GB), Windows. De orchestrator, de HUD, de vault, de
 watchers en drafters, en ComfyUI voor image-generation draaien allemaal
 op dezelfde box. Een oudere AMD-machine staat ernaast als
@@ -206,9 +206,9 @@ draait op de main box; cloud-kosten blijven bescheiden.
 
 ## Privacy-filter
 
-De vault wordt elke turn in ECHO&apos;s persona geladen — wat betekent
-dat alles wat erin staat door de LLM gelezen wordt en naar de API
-gestuurd. Een privacy-filter draait op elk write-entry-point (drafter,
+De vault wordt elke turn in ECHO&apos;s persona geladen. Alles wat
+erin staat wordt dus door de LLM gelezen en naar de API gestuurd.
+Een privacy-filter draait op elk write-entry-point (drafter,
 curator, extractor, commit-chronicles, daily-summarizer) en redact een
 kleine set lokaal-gevoelige programma-namen naar een generieke token.
 Filter aan de *write*-kant; de read-kant blijft simpel.

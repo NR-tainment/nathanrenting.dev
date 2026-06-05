@@ -10,7 +10,7 @@ import {
 } from "@/components/sketch";
 
 export const metadata: Metadata = {
-  title: "Nathan Renting — solo dev. English summary.",
+  title: "Nathan Renting · solo dev. English summary.",
   description:
     "Solo dev from Eindhoven (NL) with 12 years of entertainment and audio-production background. Builds agent systems, real-time audio, and supporting infrastructure. Available for contract engineering (ZZP).",
 };
@@ -22,7 +22,7 @@ export default function EnglishSummary() {
       <section className="mb-20 relative">
         <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-4">
           <SketchUnderline seed={301}>
-            Available — 2-3 days/week contract (ZZP, NL)
+            Available · 2-3 days/week contract (ZZP, NL)
           </SketchUnderline>
         </div>
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-zinc-50 leading-tight mb-6">
@@ -41,7 +41,7 @@ export default function EnglishSummary() {
         </p>
 
         <MarginNote position="right" rotate={-3}>
-          (the rest of the site is in Dutch — this page is the executive
+          (the rest of the site is in Dutch. this page is the executive
           summary)
         </MarginNote>
       </section>
@@ -92,7 +92,7 @@ export default function EnglishSummary() {
         </h2>
 
         <MarginNote position="left" rotate={2}>
-          (deep-dives are in Dutch with English tech terms inline — readable)
+          (deep-dives are in Dutch with English tech terms inline. readable)
         </MarginNote>
 
         <div className="space-y-5 text-zinc-300 leading-relaxed">
@@ -169,11 +169,11 @@ export default function EnglishSummary() {
               live · 8 years · NDA
             </span>
             <p className="text-sm text-zinc-400 mt-1">
-              An audio product in development since 2018 — through three
+              An audio product in development since 2018, through three
               concept pivots and multiple platform iterations, with a
               production tier since 2024. Live with a small group of early
               adopters; public launch in preparation. EU-first stack,
-              GDPR-by-design. Details under NDA — happy to discuss on a call.
+              GDPR-by-design. Details under NDA. Happy to discuss on a call.
             </p>
           </div>
         </div>
@@ -236,8 +236,8 @@ export default function EnglishSummary() {
           </li>
           <li>
             <strong className="text-zinc-100">One paid week first</strong>{" "}
-            for longer engagements — to verify the working rhythm before
-            committing further.
+            for longer engagements. Verifies the working rhythm before we
+            commit further.
           </li>
         </ol>
 
@@ -256,7 +256,7 @@ export default function EnglishSummary() {
       {/* Bottom CTA */}
       <section className="border-t border-zinc-800 pt-10">
         <p className="text-zinc-400 text-sm">
-          The full site is in Dutch — project deep-dives keep English
+          The full site is in Dutch. Project deep-dives keep English
           technical terms inline, so they&apos;re readable without Dutch.{" "}
           <Link
             href="/"

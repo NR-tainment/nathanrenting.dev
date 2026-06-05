@@ -17,7 +17,7 @@ export default function ProjectsPage() {
       </h1>
       <p className="text-zinc-400 mb-10">
         ECHO, TherapyVault en FamilyKart kan ik publiek laten zien. Mijn
-        grootste project staat onder Stealth — een audio-product waar ik
+        grootste project staat onder Stealth: een audio-product waar ik
         sinds 2018 aan bouw, door meerdere concept-pivots en
         platform-iteraties heen, met een productie-tier sinds 2024. Daar
         praat ik graag over op een call. Voor de engineering-patronen die
@@ -122,7 +122,7 @@ export default function ProjectsPage() {
         </figure>
 
         <MarginNote position="right" rotate={-2}>
-          (onder NDA — op een call kan ik meer kwijt)
+          (onder NDA. op een call kan ik meer kwijt)
         </MarginNote>
 
         <div className="grid md:grid-cols-2 gap-3">
@@ -154,9 +154,8 @@ export default function ProjectsPage() {
                 <Redacted>
                   Tools, sequencing, eigen content-pipeline, social-syndication.
                 </Redacted>
-                {" "}In toepassing op het volgende project — meer dan een
-                lijstje tactieken, minder dan een framework dat ik publiek kan
-                verkopen.
+                {" "}In toepassing op het volgende project. Meer dan een
+                lijstje tactieken, minder dan een publiek framework.
               </>
             }
             status="In toepassing · 2025-nu · NDA"

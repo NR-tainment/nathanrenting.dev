@@ -41,7 +41,7 @@ export default function Home() {
       <section className="mb-20 relative">
         <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-4">
           <SketchUnderline seed={3}>
-            Beschikbaar — 2-3 dagen per week ZZP
+            Beschikbaar · 2-3 dagen per week ZZP
           </SketchUnderline>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-zinc-50 leading-tight mb-6 [hyphens:auto] sm:[hyphens:none]">
@@ -75,7 +75,7 @@ export default function Home() {
         </div>
 
         <MarginNote position="right" rotate={-3}>
-          (whiteboard-portfolio — patterns en projecten verderop)
+          (whiteboard-portfolio. patterns en projecten verderop)
         </MarginNote>
       </section>
 
@@ -90,7 +90,7 @@ export default function Home() {
         </h2>
 
         <MarginNote position="right" rotate={-2}>
-          (rest is onder NDA — vraag ernaar)
+          (rest is onder NDA. vraag gerust)
         </MarginNote>
 
         <SketchBox className="rounded-md" seed={11}>
@@ -242,10 +242,9 @@ export default function Home() {
         <p className="text-zinc-300 leading-relaxed">
           <MarkerHighlight>Vreemde combo</MarkerHighlight>: ruim tien jaar
           audio-DNA én iemand die agent-systemen dagelijks bouwt en
-          gebruikt. Voor producten waar audio een rol speelt zit ik tegelijk
-          in beide werelden. Voor pure AI-engineering ben ik ingespeeld op
-          de tooling. Geen opstart-tijd, geen team,{" "}
-          <MarkerHighlight>weinig drama</MarkerHighlight>.
+          gebruikt. Voor audio-producten zit ik in beide werelden tegelijk.
+          Voor pure AI-engineering ben ik ingespeeld op de tooling.
+          Geen opstart-tijd nodig. Geen team. Weinig drama.
         </p>
       </SectionReveal>
 

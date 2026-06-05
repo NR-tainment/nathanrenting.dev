@@ -38,36 +38,34 @@ export default function AboutPage() {
         <p className="text-zinc-400 leading-relaxed mb-6">
           Wat ik dagelijks doe: papa zijn. Daarbuiten muziek maken,
           luisteren, ademen, en kijken naar mijn aquarium met Afrikaanse
-          weef-garnalen. Postzegeltuin met zon op het zuiden — geniet meer
+          weef-garnalen. Postzegeltuin met zon op het zuiden. Geniet meer
           van muziek dan van slaap. ;)
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-6">
-          En agent-systemen bouwen — oplossingen voor specifieke functies,
+          En agent-systemen bouwen. Oplossingen voor specifieke functies,
           niche-apps voor smalle use-cases, en de techniek eronder.
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-6">
-          <MarkerHighlight>Stack volgt het probleem, niet andersom.</MarkerHighlight>{" "}
-          Python is comfort zone, Rust voor realtime-werk, TypeScript voor
-          de UI — dat is wat ik nu het meeste raak, geen grens. Als een
-          andere basis logischer is voor het project, val ik daar in. De
-          beperking is zelden welke syntax ik ken; het zien welke opties
-          er zijn voor een probleem en die durven pakken wel.
+          <MarkerHighlight>Stack volgt het probleem.</MarkerHighlight>{" "}
+          Python is comfort zone, Rust voor realtime, TypeScript voor de
+          UI. Dat is wat ik nu het meeste raak. Als een andere basis
+          logischer is voor een project, val ik daar in. De beperking is
+          zelden welke syntax ik ken; het zien welke opties er bestaan voor
+          een probleem, en die durven pakken, wel.
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-6">
-          AI-tooling permanent open: Claude voor code en chat, Perplexity
-          voor onderzoek, ChatGPT voor prompt-werk waar het past. Beste
-          tool voor de specifieke job, niet één-tool-voor-alles.
+          AI-tooling permanent open. Claude voor code en chat, Perplexity
+          voor onderzoek, ChatGPT voor prompt-werk waar het past.
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-10">
           Geen team om me heen, en voor de meeste dingen ook geen behoefte
           aan een team. Wat een paar jaar terug nog drie mensen nodig had
-          kan nu in een week solo. Dat is geen opscheppen, gewoon waar de
-          tooling is in 2026. Voor de engineering-beslissingen eronder,
-          zie{" "}
+          kan nu in een week solo. Dat is waar de tooling staat in 2026.
+          Voor de engineering-beslissingen eronder, zie{" "}
           <a
             href="/patterns"
             className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-700 hover:decoration-cyan-400 transition-colors"
@@ -84,7 +82,7 @@ export default function AboutPage() {
           </h2>
 
           <MarginNote position="right" rotate={-3}>
-            (geen ghost meer — voor de duidelijkheid)
+            (geen ghost meer, voor de duidelijkheid)
           </MarginNote>
 
           <p className="text-zinc-400 leading-relaxed mb-4">
@@ -107,7 +105,7 @@ export default function AboutPage() {
 
           <p className="text-zinc-400 leading-relaxed mb-4">
             Sinds 2018 werk ik aan mijn eigen audio-product. De eerste jaren
-            gingen in concept-opbouw en eerste website-schetsen — niet de
+            gingen in concept-opbouw en eerste website-schetsen. Geen
             productie-code, wel het mentale model dat alles eronder
             schraagt. Daarna drie concept-pivots en meerdere herbouwde
             iteraties, met een productie-tier sinds 2024. Acht jaar tijd in
@@ -118,12 +116,11 @@ export default function AboutPage() {
           </p>
 
           <p className="text-zinc-400 leading-relaxed mb-10">
-            Wat dat alles oplevert: ik snap audio van binnen en buiten.
-            Niet alleen de DSP, ook hoe een producer ergens tegenaan loopt
-            en wat een UI moet doen om niet in de weg te zitten. Diezelfde
-            brede blik probeer ik in agent-werk te houden: engine, infra
-            en de gebruikerservaring tegelijk in beeld, niet als losse
-            afdelingen.
+            Wat dat alles oplevert: ik snap audio van binnen en buiten. De
+            DSP, en ook hoe een producer ergens tegenaan loopt en wat een
+            UI moet doen om niet in de weg te zitten. Diezelfde brede blik
+            probeer ik in agent-werk te houden. Engine, infra en de
+            gebruikerservaring tegelijk in beeld.
           </p>
         </SectionReveal>
 
@@ -246,7 +243,7 @@ export default function AboutPage() {
           <p className="text-zinc-400 leading-relaxed mb-10">
             EU-eerst voor klantdata. Frankfurt-Supabase, EU-Sentry, een
             Verwerkingsregister dat ook echt bijgehouden wordt. Geen
-            marketingding, gewoon waar mijn gebruikers en ik zitten.
+            marketing-claim. Gewoon waar mijn gebruikers en ik wonen.
           </p>
         </SectionReveal>
 

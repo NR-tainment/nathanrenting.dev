@@ -63,8 +63,7 @@ export default function PatternsPage() {
       <p className="text-zinc-400 leading-relaxed mb-10">
         Engineering decisions extracted from real work. Each writeup is short
         (3-5 min read), focused on one pattern, and grounded in code I
-        actually shipped. Read what interests you — they don&apos;t need to be
-        read in order.
+        actually shipped. Read what interests you. No reading order.
       </p>
 
       <MarginNote position="right" rotate={-3}>
