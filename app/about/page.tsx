@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
-      <div className="flex items-start gap-6 mb-8 flex-col sm:flex-row">
+      <div className="flex items-center gap-6 mb-8 flex-col sm:flex-row">
         <img
           src="/nathan-portret.png"
           alt="Hand-getekend chalk-portret van Nathan: kale buste met cyan headphones, vriendelijke smile, kleine waveform-doodle boven het hoofd."
@@ -24,14 +24,9 @@ export default function AboutPage() {
           height={144}
           className="rounded-full border border-zinc-800 w-28 h-28 sm:w-36 sm:h-36 shrink-0"
         />
-        <div className="flex-1">
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-50 mb-2">
-            Over mij
-          </h1>
-          <p className="text-sm font-mono text-zinc-500 italic">
-            (geen foto nog — krijt op blackboard)
-          </p>
-        </div>
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-50">
+          Over mij
+        </h1>
       </div>
 
       <div className="prose-invert max-w-none">
@@ -41,11 +36,19 @@ export default function AboutPage() {
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-6">
-          Wat ik dagelijks doe: ik bouw agent-systemen, real-time audio en de
-          techniek eronder. Python is mijn comfort zone, Rust pak ik erbij
-          voor realtime-werk, TypeScript voor de UI. AI-tooling permanent
-          open — Claude voor code en chat, Perplexity voor onderzoek,
-          ChatGPT voor prompt-werk waar het past. Best tool for the job.
+          Wat ik dagelijks doe: papa zijn. Daarbuiten muziek maken,
+          luisteren, ademen, en kijken naar mijn aquarium met Afrikaanse
+          weef-garnalen. Postzegeltuin met zon op het zuiden — geniet meer
+          van muziek dan van slaap. ;)
+        </p>
+
+        <p className="text-zinc-400 leading-relaxed mb-6">
+          En agent-systemen bouwen — oplossingen voor specifieke functies,
+          niche-apps voor smalle use-cases, en de techniek eronder.
+          Python is mijn comfort zone, Rust pak ik erbij voor realtime-werk,
+          TypeScript voor de UI. AI-tooling permanent open: Claude voor
+          code en chat, Perplexity voor onderzoek, ChatGPT voor prompt-werk
+          waar het past.
         </p>
 
         <p className="text-zinc-400 leading-relaxed mb-10">
@@ -236,21 +239,6 @@ export default function AboutPage() {
           </p>
         </SectionReveal>
 
-        <SectionReveal className="relative">
-          <h2 className="text-xl font-semibold text-zinc-100 mb-4 mt-12 flex items-center gap-3">
-            <ChalkDoodle type="star" className="opacity-60" />
-            <SketchUnderline seed={67}>Buiten het scherm</SketchUnderline>
-          </h2>
-
-          <MarginNote position="right" rotate={-2}>
-            (geen pitch hier ;)
-          </MarginNote>
-
-          <p className="text-zinc-400 leading-relaxed mb-4">
-            Twee jonge kids. Trotse solo papa. Postzegeltuin, maar zon op het
-            zuiden. Geniet meer van muziek dan van slaap. ;)
-          </p>
-        </SectionReveal>
       </div>
     </div>
   );
