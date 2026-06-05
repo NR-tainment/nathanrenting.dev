@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Dark blackboard background, rounded corners -->
+  <rect width="180" height="180" fill="#09090b" rx="32"/>
+
+  <!-- Floating waveform above the head — audio brain at work -->
+  <path d="M 40 36 Q 50 20 60 36 T 80 36 T 100 36 T 120 36 T 140 36"
+        fill="none"
+        stroke="#22d3ee"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Bald head — chalk-white circle -->
+  <circle cx="90" cy="82" r="32"
+          fill="none"
+          stroke="#f4f4f5"
+          stroke-width="6"/>
+
+  <!-- Shoulders / bust — chalk-white curve -->
+  <path d="M 32 170 Q 32 120 90 120 Q 148 120 148 170"
+        fill="none"
+        stroke="#f4f4f5"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>
