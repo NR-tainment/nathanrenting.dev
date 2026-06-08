@@ -116,7 +116,8 @@ export default function Home() {
             title="AudioLab.tools"
             oneLiner="Authority-platform op het snijvlak audio + AI + DSP + Android + toegankelijkheid. Real tools, deep docs. Astro + React + Tailwind v4."
             tags={["Astro", "Content platform", "Audio + AI"]}
-            status="In opbouw"
+            status="Live · in opbouw"
+            externalUrl="https://audiolab.tools"
           />
           <ProjectCard
             href="/projects/captioncompass"

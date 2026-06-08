@@ -64,7 +64,8 @@ export default function ProjectsPage() {
           title="AudioLab.tools"
           oneLiner="Authority-platform op het snijvlak van audio + AI + DSP + Android + toegankelijkheid. Real tools, deep docs, no slop. Astro + React + Tailwind v4, cluster-structuur (MixLab, HearLab, Engineering)."
           tags={["Astro", "Content platform", "Audio + AI", "DSP"]}
-          status="In opbouw · dev-fase"
+          status="Live · in opbouw"
+          externalUrl="https://audiolab.tools"
         />
       </SectionReveal>
 
