@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono, Architects_Daughter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
@@ -132,6 +134,22 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+
+        {/* Vercel Analytics || page views + speed insights, anoniem, geen cookie-banner */}
+        <Analytics />
+
+        {/* Plausible || activeer door NEXT_PUBLIC_PLAUSIBLE_DOMAIN te zetten in Vercel env-vars (bv. "nathanrenting.dev") */}
+        {process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN && (
+          <Script
+            defer
+            data-domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
+        )}
+
+        {/* PostHog || activeer door NEXT_PUBLIC_POSTHOG_KEY te zetten + `npm install posthog-js` + de PostHogProvider wrapper te uncommenten in een client-component. Voor nu: gewoon ready-to-go scaffold. */}
+
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
