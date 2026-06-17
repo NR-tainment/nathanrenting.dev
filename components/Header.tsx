@@ -4,6 +4,7 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 const NAV_ITEMS = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Werk" },
+  { href: "/diensten", label: "Diensten" },
   { href: "/patterns", label: "Patterns" },
   { href: "/about", label: "Over" },
   { href: "/hire", label: "Inhuur" },
