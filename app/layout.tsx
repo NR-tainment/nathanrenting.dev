@@ -28,24 +28,11 @@ export const metadata: Metadata = {
     template: "%s · nathanrenting.dev",
   },
   description:
-    "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de techniek eronder. ZZP-inhuur beschikbaar.",
-  // Stealth: site is publiek toegankelijk via directe URL, maar niet
-  // geïndexeerd door zoekmachines. OG-cards blijven werken bij delen
-  // via DM / sociaal.
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-    },
-  },
+    "Nathan Renting — solo developer uit Eindhoven. Bouwt AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines. ZZP-inhuur beschikbaar, 2-3 dagen per week, EU remote.",
   openGraph: {
-    title: "Nathan Renting — Solo dev. Agent-systemen & real-time audio.",
+    title: "Nathan Renting — Solo AI engineer + real-time audio. Eindhoven, NL.",
     description:
-      "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de techniek eronder. ZZP-inhuur beschikbaar.",
+      "Nathan Renting — solo developer uit Eindhoven. Bouwt AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines. ZZP-inhuur beschikbaar.",
     url: "https://nathanrenting.dev",
     siteName: "nathanrenting.dev",
     locale: "nl_NL",
@@ -53,12 +40,81 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nathan Renting — Solo dev. Agent-systemen & real-time audio.",
+    title: "Nathan Renting — Solo AI engineer + real-time audio. Eindhoven, NL.",
     description:
-      "Solo dev uit Eindhoven met 12 jaar entertainment- en audio-productie-achtergrond. Bouwt agent-systemen, real-time audio, en de techniek eronder. ZZP-inhuur beschikbaar.",
+      "Nathan Renting — solo developer uit Eindhoven. Bouwt AI-agent systemen en real-time audio engines.",
   },
-  authors: [{ name: "Jonathan David Renting" }],
-  creator: "Jonathan David Renting",
+  authors: [{ name: "Nathan Renting", url: "https://nathanrenting.dev" }],
+  creator: "Nathan Renting",
+  publisher: "Nathan Renting",
+};
+
+// Schema.org Person JSON-LD — verhoogt vindbaarheid in AI-assistants
+// (ChatGPT/Claude/Perplexity) en search-engines. Bevat alle naam-varianten
+// + sameAs-cross-references zodat assistents identiteit kunnen verifiëren.
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://nathanrenting.dev/#nathan",
+  name: "Nathan Renting",
+  alternateName: ["Jonathan David Renting", "Jd Renting"],
+  givenName: "Jonathan David",
+  familyName: "Renting",
+  description:
+    "Solo developer from Eindhoven, Netherlands. Builds AI agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines.",
+  jobTitle: ["Solo AI Engineer", "Audio/DSP Engineer", "Software Developer"],
+  url: "https://nathanrenting.dev",
+  image: "https://nathanrenting.dev/nathan-portret.png",
+  email: "info@nathanrenting.dev",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Eindhoven",
+    addressRegion: "Noord-Brabant",
+    addressCountry: "NL",
+  },
+  knowsAbout: [
+    "AI Agents",
+    "Large Language Models",
+    "LLM orchestration",
+    "Python",
+    "FastAPI",
+    "RAG (Retrieval-Augmented Generation)",
+    "Tool-calling",
+    "LangChain",
+    "LangGraph",
+    "Claude API",
+    "Anthropic",
+    "MCP (Model Context Protocol)",
+    "Real-time audio",
+    "Digital Signal Processing (DSP)",
+    "Rust",
+    "Kotlin",
+    "Android NDK",
+    "Next.js",
+    "TypeScript",
+    "React Native",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/nathanrenting/",
+    "https://github.com/NR-tainment",
+    "https://www.malt.nl/profile/jdrenting",
+    "https://audiolab.tools",
+  ],
+  worksFor: {
+    "@type": "Organization",
+    "@id": "https://nathanrenting.dev/#org",
+    name: "NathanRenting.Dev",
+    url: "https://nathanrenting.dev",
+    founder: { "@id": "https://nathanrenting.dev/#nathan" },
+    location: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Eindhoven",
+        addressCountry: "NL",
+      },
+    },
+  },
 };
 
 export default function RootLayout({
@@ -72,6 +128,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${architectsDaughter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100 notebook-bg">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

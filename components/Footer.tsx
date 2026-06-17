@@ -6,20 +6,44 @@ export function Footer() {
       <div className="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs font-mono text-zinc-500">
         <div className="flex items-center gap-3">
           <span>
-            © {new Date().getFullYear()} Jonathan David Renting · Eindhoven, NL
+            © {new Date().getFullYear()} Nathan Renting (Jonathan David Renting) · Eindhoven, NL
           </span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <a
+            href="https://www.linkedin.com/in/nathanrenting/"
+            target="_blank"
+            rel="noopener noreferrer me"
+            className="hover:text-cyan-400 transition-colors uppercase tracking-widest"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://www.malt.nl/profile/jdrenting"
+            target="_blank"
+            rel="noopener noreferrer me"
+            className="hover:text-cyan-400 transition-colors uppercase tracking-widest"
+          >
+            Malt
+          </a>
           <a
             href="https://github.com/NR-tainment"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer me"
             className="hover:text-cyan-400 transition-colors uppercase tracking-widest"
           >
             GitHub
           </a>
           <a
-            href="mailto:jdrenting@gmail.com"
+            href="https://audiolab.tools"
+            target="_blank"
+            rel="noopener noreferrer me"
+            className="hover:text-cyan-400 transition-colors uppercase tracking-widest"
+          >
+            AudioLab
+          </a>
+          <a
+            href="mailto:info@nathanrenting.dev"
             className="hover:text-cyan-400 transition-colors uppercase tracking-widest"
           >
             Mail

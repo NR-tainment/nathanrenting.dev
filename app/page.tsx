@@ -253,7 +253,7 @@ export default function Home() {
       <SectionReveal>
         <section className="border-t border-zinc-800 pt-10">
           <p className="text-zinc-400 mb-4">
-            Open voor ZZP-inhuur, 2-3 dagen per week. Remote-preferred vanuit
+            Open voor freelance / ZZP-inhuur, 2-3 dagen per week. Remote-preferred vanuit
             Eindhoven, heel NL bereikbaar voor kickoff of een kritische review.
           </p>
           <Link
