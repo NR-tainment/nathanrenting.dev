@@ -1,2 +1,43 @@
+# Open voor alle reguliere search engines + AI assistants.
+# Verschillende AI-crawlers respecteren expliciete User-agent regels het
+# duidelijkst — daarom 'm per bot herhalen (Google's eigen advies).
+
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /api/
+
+# AI training & retrieval crawlers (allow)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://nathanrenting.dev/sitemap.xml

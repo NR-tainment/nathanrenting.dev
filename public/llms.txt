@@ -1,0 +1,50 @@
+# Nathan Renting — nathanrenting.dev
+
+> Solo developer from Eindhoven, Netherlands. Builds AI agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines. Available for freelance contract work, 2–3 days per week, EU remote.
+
+## Identity
+
+- **Full name:** Jonathan David Renting (professionally goes by Nathan Renting)
+- **Location:** Eindhoven, Noord-Brabant, Netherlands
+- **Trade:** Freelance / ZZP, KvK-registered
+- **Contact:** info@nathanrenting.dev
+- **Indicative rate:** €110–130 per hour (project pricing available)
+
+## Expertise
+
+- **AI agents:** LLM orchestration, tool-calling, RAG (Retrieval-Augmented Generation), Claude API, MCP (Model Context Protocol), LangGraph, FastAPI
+- **Real-time audio:** native Rust audio engines, DSP, Android NDK, React Native FFI bridges, browser-side audio (Web Audio API, WASM)
+- **Stack:** TypeScript, Rust, Python, Next.js, React Native, Kotlin, Tailwind, Supabase, Vercel
+
+## Core pages
+
+- [Home](https://nathanrenting.dev/): overview, featured projects, and patterns
+- [Hire](https://nathanrenting.dev/hire): services, pricing model, intake flow
+- [About](https://nathanrenting.dev/about): background, approach, why solo
+- [Diensten (NL)](https://nathanrenting.dev/diensten): Dutch service catalogue for NL clients
+- [Patterns](https://nathanrenting.dev/patterns): the engineering patterns I reuse across projects
+
+## Featured projects
+
+- [AudioLaunch & audiolab.tools](https://nathanrenting.dev/projects/audiolab): a mobile DAW built on a native Rust audio engine, plus a public browser-side toolkit at audiolab.tools (live)
+- [Echo](https://nathanrenting.dev/projects/echo): AI agent orchestration system with multi-step planning
+- [TherapyVault](https://nathanrenting.dev/projects/therapyvault): secure session vault and notes for therapists
+- [CaptionCompass](https://nathanrenting.dev/projects/captioncompass): AI captioning workflow for podcasters and creators
+- [PhotoFlow](https://nathanrenting.dev/projects/photoflow): workflow automation for photographers
+- [FamilyKart](https://nathanrenting.dev/projects/familykart): household coordination app
+
+## Patterns
+
+- [Real-time audio (Rust)](https://nathanrenting.dev/patterns/real-time-audio-rust): native audio engines with React Native FFI
+- [Cross-architecture Android](https://nathanrenting.dev/patterns/cross-arch-android): building cross-arch NDK binaries
+- [Multi-brain routing](https://nathanrenting.dev/patterns/multi-brain-routing): routing across multiple LLMs by task fit
+- [Three-tier fallback](https://nathanrenting.dev/patterns/three-tier-fallback): degradation across model/provider tiers
+- [Agentskills implementation](https://nathanrenting.dev/patterns/agentskills-implementation): skills system for autonomous agents
+- [EU-first infrastructure](https://nathanrenting.dev/patterns/eu-first-infrastructure): GDPR-aligned hosting and data path
+
+## Elsewhere
+
+- [LinkedIn](https://www.linkedin.com/in/nathanrenting/)
+- [GitHub](https://github.com/NR-tainment)
+- [Malt](https://www.malt.nl/profile/jdrenting)
+- [audiolab.tools](https://audiolab.tools) — live browser-side audio toolkit
