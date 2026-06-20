@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ProjectCard } from "@/components/ProjectCard";
 import { StealthCard } from "@/components/StealthCard";
@@ -33,6 +34,18 @@ function PatternLink({
     </Link>
   );
 }
+
+// Home: canonical + hreflang (nl ↔ en) — "unique page URL" + "language versions linked".
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    languages: {
+      "nl-NL": "/",
+      en: "/en",
+      "x-default": "/",
+    },
+  },
+};
 
 export default function Home() {
   return (
