@@ -8,9 +8,10 @@ import { localizedUrl } from "@/lib/seo";
  * language alternates are declared in the sitemap as well as in <head>.
  *
  * Structured pages exist in all four locales (routing is live; untranslated
- * locales fall back to NL content). MDX articles exist only where a file is
- * present — today NL only — so they're listed for NL until the fan-out adds
- * EN/DE/FR files, keeping hreflang honest (never pointing at a 404).
+ * locales fall back to NL content). The fan-out has now produced EN/DE/FR for
+ * every MDX article too, so all 12 articles are listed in all four locales with
+ * reciprocal hreflang — every alternate points at a file that exists, never a
+ * 404.
  */
 
 type Entry = {
@@ -21,7 +22,6 @@ type Entry = {
 };
 
 const ALL = LOCALES;
-const NL_ONLY: readonly Locale[] = ["nl"];
 
 const STRUCTURED: Entry[] = [
   { path: "", locales: ALL, priority: 1.0, freq: "weekly" },
@@ -59,13 +59,13 @@ const PROJECT_SLUGS = [
 const ARTICLES: Entry[] = [
   ...PATTERN_SLUGS.map((slug) => ({
     path: `/patterns/${slug}`,
-    locales: NL_ONLY,
+    locales: ALL,
     priority: 0.6,
     freq: "monthly" as const,
   })),
   ...PROJECT_SLUGS.map((slug) => ({
     path: `/projects/${slug}`,
-    locales: NL_ONLY,
+    locales: ALL,
     priority: 0.65,
     freq: "monthly" as const,
   })),

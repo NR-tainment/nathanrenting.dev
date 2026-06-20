@@ -1,0 +1,215 @@
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+
+export const metadata = {
+  title: "agentskills.io implementation",
+  description:
+    "Warum eine Skills-Schicht über den Tools. Das SKILL.md-Format, Progressive Disclosure und wann du von rohen Tools zu wiederverwendbaren Skills übergehst.",
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/de/patterns/agentskills-implementation#article",
+  headline: "agentskills.io implementation",
+  description:
+    "Warum eine Skills-Schicht über den Tools. Das SKILL.md-Format, Progressive Disclosure und wann du von rohen Tools zu wiederverwendbaren Skills übergehst.",
+  inLanguage: "de-DE",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage:
+    "https://nathanrenting.dev/de/patterns/agentskills-implementation",
+  image: "https://nathanrenting.dev/pattern-skills.png",
+  keywords: [
+    "agent skills",
+    "SKILL.md",
+    "progressive disclosure",
+    "tool-calling",
+    "AI agents",
+    "Anthropic",
+  ],
+  about: [
+    "AI Agents",
+    "Tool-calling",
+    "Agent skills",
+    "Anthropic",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={163}>Pattern · Agent systems</SketchUnderline>
+</div>
+
+# agentskills.io implementation
+
+<MarkerHighlight>Tools sind atomar. Skills sind Rezepte.</MarkerHighlight>{" "}
+Ein Tool liest eine Datei, führt eine Query aus, holt eine URL. Skills sind
+benannte mehrstufige Abläufe, die mehrere Tools mit
+Reasoning-Schritten in einer festen Reihenfolge kombinieren. Der
+[agentskills.io](https://agentskills.io)-Standard legt fest, wie ein
+Skill aussieht, und ihn in einen tool-nutzenden Agenten einzubauen ist eine kleine
+Änderung, die sich schnell auszahlt.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-skills.png"
+    alt="Handgezeichnete Skizze: Ein Agent ruft list_skills() auf, bekommt drei Metadaten-Karten (Skill A/B/C) zurück, wählt eine aus, ruft run_skill(B) auf und erhält den vollständigen SKILL.md-Body mit Schritten. Bildunterschrift: progressive disclosure."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-Skizze · progressive disclosure
+  </figcaption>
+</figure>
+
+## Warum eine Skills-Schicht über den Tools
+
+Nach 50 Turns mit einem tool-nutzenden LLM bemerkst du ein Muster: Dieselben
+Multi-Tool-Workflows werden jedes Mal aufs Neue erfunden, mit kleinen
+Variationen. „Morning status“ ruft dieselben fünf Tools in ungefähr
+derselben Reihenfolge auf, aber die Formatierung driftet. „Weekly recap“ hat eine
+ähnliche Form, nur schlimmer — mehr Tools, mehr Stellen zum Abweichen.
+
+Die Lösung: eine Skills-Schicht. Jeder wiederkehrende Workflow wird ein
+benanntes Rezept; das LLM schlägt das Rezept nach, statt jedes Mal
+von Grund auf neu zu planen.
+
+Drei konkrete Vorteile:
+
+1. **Konsistenz.** Dieselbe Art von Anfrage liefert dieselbe Form an Output.
+   Wichtig für Dinge, die du wiederholt liest (Daily Briefings,
+   Reports).
+2. **Weniger Reasoning pro Turn.** Das LLM muss einen bekannten Workflow nicht
+   neu planen; es folgt den Schritten. Günstiger, schneller.
+3. **Wartbarkeit.** Willst du ändern, „wie Morning Briefings funktionieren“?
+   Bearbeite eine Datei, nicht den Prompt des Modells.
+
+## SKILL.md-Format
+
+Die agentskills.io-Spec ist minimal. Ein Skill ist ein Verzeichnis mit einer
+`SKILL.md`-Datei (optional mit Unterordnern für Scripts, References,
+Assets). Die SKILL.md hat YAML-Frontmatter und einen Markdown-Body:
+
+```markdown
+---
+name: daily-status-report
+description: "Compile yesterday's commits, today's calendar, open
+nudges into a single morning briefing. Use when Nathan asks for a
+status report or starts a new conversation after >6h silence."
+---
+
+# Daily status report
+
+Run the tools below in order, then synthesise the markdown summary at
+the bottom.
+
+## Steps
+
+1. Call `commit_log` for yesterday's commits across all projects
+2. Call `calendar_today` for events
+3. Call `nudges_open` for pending review items
+4. Format the output as:
+   - "Yesterday: <commits>"
+   - "Today: <events>"
+   - "Awaiting review: <nudges>"
+```
+
+Zwei verpflichtende Frontmatter-Felder: `name` (entspricht dem
+Verzeichnisnamen) und `description` (max. 1024 Zeichen — das ist, was das LLM
+beim Auswählen eines Skills sieht).
+
+## Progressive disclosure
+
+Die zentrale Design-Entscheidung: Nur die *Metadaten* (Frontmatter) werden beim
+Start in den LLM-Kontext geladen. Der vollständige Body wird erst geladen,
+wenn das LLM beschließt, einen bestimmten Skill aufzurufen. Zwei Tools
+unterstützen das:
+
+```python
+def list_skills() -> list[dict]:
+    """Cheap: returns name + description for all skills."""
+    return [parse_frontmatter(p) for p in glob("memory/_skills/*/SKILL.md")]
+
+def run_skill(name: str) -> dict:
+    """Loads full SKILL.md body. ~5000 token budget per spec."""
+    return read_skill(name)
+```
+
+`list_skills` kostet ~100 Tokens pro Skill — günstig genug, um es in jedem Turn
+aufzurufen oder in den System-Prompt zu legen. `run_skill` ist die teure
+Operation, die nur aufgerufen wird, wenn das LLM einen bestimmten Skill gewählt hat.
+
+Dieses Muster hält die Kontextgröße beherrschbar, selbst wenn du 50+ Skills
+zur Verfügung hast.
+
+## Wie das LLM es nutzt
+
+In der Praxis wird die Prompt-Schleife zu:
+
+1. User: „gib mir einen Morning Status“
+2. LLM (mit `list_skills` bereits im Kontext): erkennt, dass dies mit der
+   Description von `daily-status-report` übereinstimmt
+3. LLM ruft `run_skill("daily-status-report")` auf
+4. LLM erhält den vollständigen Body, folgt den Schritten, ruft die Tools in
+   der richtigen Reihenfolge auf
+5. LLM formatiert gemäß dem Template im Skill
+
+Das LLM macht weiterhin Reasoning (welcher Skill passt, wie mit
+Edge Cases umgehen), aber der *Plan* ist kanonisch. Gleiche Anfrage, gleiche Form an
+Output.
+
+## Wann du einen Skill hinzufügst
+
+Heuristik: Sobald du denselben mehrstufigen Workflow dreimal an das LLM
+ausschreibst, mach einen Skill daraus. Das Authoring kostet ~15 Minuten; der
+Ertrag ist dauerhaft.
+
+Schlechte Kandidaten für einen Skill:
+- One-off-Anfragen (lass das LLM einfach planen)
+- Single-Tool-Calls (ein Skill ist Overkill)
+- Sehr variable Workflows (jeder Aufruf hat andere Schritte)
+
+Gute Kandidaten:
+- Status- / Briefing- / Recap-Reports
+- Multi-Tool-Diagnostik („prüfe, warum X fehlschlägt“)
+- Onboarding-Sequenzen („richte ein neues Projekt ein“)
+- Alles, was nach einem Zeitplan läuft
+
+## Auto-Tracking der Nutzung
+
+Das Frontmatter kann Invocation-Counts und Success-Rates über die Zeit
+speichern. Jeder `run_skill`-Call hängt einen Zähler unten an das
+Frontmatter an:
+
+```yaml
+total_invocations: 47
+total_successes: 45
+success_rate: 0.957
+last_used: "2026-06-02T08:30:22Z"
+```
+
+Langsame Telemetrie — dateibasiert, keine separate Datenbank. Aber genug, um zu
+sehen, welche Skills ihr Gewicht tragen und welche nie genutzt werden.
+Ungenutzte: wegwerfen. Beliebte: vertiefen.
+
+## Warum gerade agentskills.io
+
+Es ist die Spec, die Anthropic für Claude Skills übernommen hat.
+Sie zu nutzen bedeutet, dass deine Skills portabel sind: Sie funktionieren in deinem
+lokalen Orchestrator, sie funktionieren in Claude.ai, sie funktionieren in jedem
+tool-nutzenden Agenten, der den Standard unterstützt. Du kannst auch
+Community-Skills übernehmen, ohne sie neu zu schreiben.
+
+Der Standard ist klein genug, um ihn in 10 Minuten durchzulesen. Die
+Investition, ihn zu übernehmen, ist klein genug, um ein
+Refactor an einem Nachmittag zu sein. Die Auszahlung ist dauerhaft.
+
+</div>

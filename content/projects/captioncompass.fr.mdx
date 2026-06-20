@@ -1,0 +1,151 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "CaptionCompass — des sous-titres pour les sourds",
+  description:
+    "Application Android d'accessibilité : sous-titres en direct toujours visibles, indication de direction du locuteur uniquement lorsqu'elle est fiable. Kotlin + Jetpack Compose + GCC-PHAT DoA.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/fr/projects/captioncompass#app",
+  name: "CaptionCompass",
+  description:
+    "Une application d'accessibilité caption-first pour les utilisateurs Android sourds et malentendants. Les sous-titres en direct sont toujours visibles ; une indication grossière de la direction du locuteur n'apparaît que lorsqu'elle est fiable. Kotlin, Jetpack Compose, AAudio stéréo et direction-of-arrival GCC-PHAT.",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Android",
+  inLanguage: "fr-FR",
+  url: "https://nathanrenting.dev/fr/projects/captioncompass",
+  image: "https://nathanrenting.dev/captioncompass-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "accessibility",
+    "live captions",
+    "Android",
+    "Kotlin",
+    "direction of arrival",
+    "DSP",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={263}>Projet · scaffold MVP</SketchUnderline>
+</div>
+
+# CaptionCompass — see the words, sense where they come from
+
+<MarkerHighlight>Une application d'accessibilité caption-first pour les utilisateurs Android sourds et malentendants.</MarkerHighlight>{" "}
+Les sous-titres en direct sont toujours visibles. Une indication
+grossière de la direction du locuteur n'apparaît
+**que lorsqu'elle est fiable**.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/captioncompass-architecture.png"
+    alt="Pipeline audio dessinée à la main : micros stéréo sur le téléphone → AAudio UNPROCESSED → VAD → deux chemins parallèles (GCC-PHAT DoA → Zone Smoother à 5 zones, et ASR via SpeechRecognizer / Vosk) → écran du téléphone avec arc DIRECTION + CAPTIONS. Légende : 'show less, not more — direction only when reliable'."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Croquis sur tableau blanc · la pipeline audio
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## La philosophie produit en cinq phrases
+
+L'indication de direction est opt-in et conditionnée. Elle n'apparaît
+que si :
+
+1. L'utilisateur l'a activée dans les réglages, **et**
+2. L'appareil expose deux microphones exploitables via la source audio
+   UNPROCESSED, **et**
+3. Le téléphone est posé à plat et stable (vérification gyroscope), **et**
+4. La confiance est élevée ou moyenne.
+
+Si l'une de ces conditions disparaît, les sous-titres continuent de
+fonctionner sans changement et l'arc de direction s'estompe.
+**&quot;Show less, not more&quot;** — il ne s'agit pas de désactiver une
+fonction, mais de la retirer respectueusement lorsqu'elle ne peut pas
+être justifiée assez solidement.
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Ce que contient le MVP
+
+| Couche | Statut |
+|---|---|
+| Projet / Gradle / Manifest | ready |
+| Modèle de domaine + politique de fallback | ready, unit-tested |
+| Capability-probe (recherche UNPROCESSED + stéréo) | ready |
+| Capture stéréo `AudioRecord` | ready |
+| Energy VAD (détection d'activité vocale) | ready |
+| GCC-PHAT DoA + zone-smoother | ready, unit-tested sur le mapping τ→zone |
+| Adaptateur Android `SpeechRecognizer` | ready |
+| Audio mock + ASR mock (pour le travail sur émulateur) | ready |
+| Foreground service (type micro Android 14) | ready |
+| UI Compose (barre de statut, arc de direction, sous-titres, contrôles) | ready |
+| **Phase 2** | ASR de fallback Vosk, Silero-VAD ONNX |
+| **Phase 4** | Entrée stéréo BLE (micros stéréo externes) |
+
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
+## Stack
+
+<StackTable rows={[
+  { label: "Langage", value: "Kotlin 2.0.20" },
+  { label: "UI", value: "Jetpack Compose (BOM 2024.10), single-screen single-activity" },
+  { label: "Capture audio", value: <><code className="font-mono text-cyan-300">AudioRecord</code> avec source UNPROCESSED et channel-mask stéréo</> },
+  { label: "VAD", value: "Energy-based (Phase 1), Silero-VAD ONNX (Phase 2)" },
+  { label: "DoA", value: "GCC-PHAT (generalized cross-correlation phase transform), implémentation Kotlin maison" },
+  { label: "ASR", value: <>Android <code className="font-mono text-cyan-300">SpeechRecognizer</code> (en ligne), Vosk (Phase 2, fallback hors ligne)</> },
+  { label: "Service", value: <>Foreground service avec foreground-type <code className="font-mono text-cyan-300">microphone</code> d'Android 14</> },
+  { label: "Min SDK", value: "26 (Android 8.0+)" },
+  { label: "Target SDK", value: "35 (Android 15)" },
+]} />
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
+## Pourquoi GCC-PHAT et pas un modèle ML pour la direction
+
+La DoA avec deux microphones est un problème mathématique résolu si on
+le pose correctement. GCC-PHAT donne une time-difference-of-arrival d'où
+découle un seul azimut. Sur un téléphone avec ~14 cm entre les micros,
+cela ne fournit pas une précision au degré près, **mais bien une
+indication fiable gauche / centre / droite / arrière-gauche /
+arrière-droite** (cinq zones). C'est suffisant pour le cas d'usage, sans
+modèles ML qui coûtent en latence et en batterie.
+
+Pour l'évaluation de la confiance, on utilise la netteté du pic de
+cross-correlation — un pic élevé signifie une source claire ; un pic
+plat signifie plusieurs locuteurs ou du bruit, et l'arc est alors
+estompé au lieu d'afficher une direction trompeuse.
+
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
+## Statut + roadmap
+
+**Maintenant :** scaffold MVP prêt. Couche de domaine unit-tested, UI
+Compose fonctionnelle, capture stéréo opérationnelle, sous-titres
+fonctionnels via `SpeechRecognizer`. Mode mock pour le développement sur
+émulateur.
+
+**Phase 2 :** ASR Vosk hors ligne + Silero-VAD ONNX (meilleure VAD,
+indépendante de l'appareil).
+
+**Phase 4 :** entrée stéréo BLE — brancher des micros stéréo externes
+via Bluetooth pour une meilleure précision DoA que les micros intégrés
+du téléphone.
+
+</div>

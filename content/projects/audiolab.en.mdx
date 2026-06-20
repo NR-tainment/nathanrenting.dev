@@ -1,0 +1,146 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "AudioLab.tools — audio, AI & DSP",
+  description:
+    "A content and tools platform at the intersection of audio, AI, DSP, Android and accessibility. Real tools, deep docs, no slop. Astro + React + Tailwind v4.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://nathanrenting.dev/en/projects/audiolab#app",
+  name: "AudioLab.tools",
+  description:
+    "A content and tools platform at the intersection of audio, AI, development, Android, DSP, accessibility and live workflows. Real tools, deep docs, no slop. Built on Astro, React and Tailwind v4.",
+  inLanguage: "en-US",
+  url: "https://audiolab.tools",
+  image: "https://nathanrenting.dev/audiolab-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "audio",
+    "AI",
+    "DSP",
+    "Android",
+    "accessibility",
+    "content platform",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400 flex items-center gap-4 flex-wrap">
+  <SketchUnderline seed={257}>Project · live · in progress</SketchUnderline>
+  <a
+    href="https://audiolab.tools"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-cyan-400 hover:text-cyan-300 transition-colors"
+  >
+    ↗ audiolab.tools
+  </a>
+</div>
+
+# AudioLab.tools — authority platform for audio + AI
+
+<MarkerHighlight>A content and tools platform at the intersection of audio, AI, development, Android, DSP, accessibility and live workflows.</MarkerHighlight>{" "}
+No marketing funnel with &quot;join the waitlist&quot; buttons behind
+every page. Each cluster ships a working browser-side demo plus
+deep docs.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/audiolab-architecture.png"
+    alt="Hand-drawn sketch: AUDIOLAB.TOOLS at the top, three clusters MIXLAB / HEARLAB / ENGINEERING, each with TOOLS / DOCS / INSIGHTS pillars, caption 'real tools · deep docs · no slop'."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Early whiteboard sketch · since grown into six labs
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Three principles (from the site itself)
+
+1. **Tools you can actually use.** Each cluster ships
+   a working, browser-side demo. Nothing hidden behind a
+   waitlist.
+2. **People-first writing.** No keyword-stuffed AI slop. Every page
+   is written by someone who has shipped audio in production and
+   is willing to be wrong in public.
+3. **Built where it matters.** Android, realtime DSP, accessibility,
+   developer ergonomics. The places where audio AI actually has to work,
+   not just marketing demos.
+
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
+## Six labs — honest about what works
+
+The site revolves around six browser-side labs. Each lab is honestly labelled by
+what it actually does — working, in progress, or a simulated concept:
+
+| Lab | Status | What it does |
+|---|---|---|
+| **[MixLab](https://audiolab.tools/labs/mixlab)** | Beta | Loudness/dynamics/stereo || **verified to ±0.08 LU against the EBU R128 reference** |
+| **[VoiceLab](https://audiolab.tools/labs/voicelab)** | Beta | Voice QA: clarity, pacing, filler density, clipping |
+| **[SignalLab](https://audiolab.tools/labs/signallab)** | Beta | Audio indexer: silence/clipping detection, region tags |
+| **[Ψ Lab](https://audiolab.tools/labs/psilab)** | Building | Phase vocoder || time-stretch, freeze, reverse, smear (fully client-side AudioWorklet) |
+| **[SkillLab](https://audiolab.tools/labs/skilllab)** | Building | Practice challenges with feedback (works, being expanded) |
+| **[HearLab](https://audiolab.tools/labs/hearlab)** | Building | Non-medical hearing companion (dashboard separate as a concept) |
+| **[CueLab](https://audiolab.tools/labs/cuelab)** | Simulated | Live-routing concept with simulated data |
+
+Everything client-side: audio never leaves the browser. Alongside that, docs,
+methodology, glossary, roadmap — indexable content, no JS-only routes.
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
+## Stack
+
+<StackTable rows={[
+  { label: "Framework", value: <>Astro 6 (content-first, static with React islands where needed)</> },
+  { label: "UI", value: <>React 19, Tailwind v4 (CSS-first config)</> },
+  { label: "Content", value: <>MDX (<code className="font-mono text-cyan-300">@astrojs/mdx</code>), per-cluster content collections</> },
+  { label: "OG cards", value: <>Satori + Resvg.js — dynamically generated at build time</> },
+  { label: "Fonts", value: <>Geist + JetBrains Mono (variable)</> },
+  { label: "Performance", value: <>Sharp for the image pipeline, build-time pre-rendering</> },
+  { label: "RSS", value: <>Feed.js per cluster, per tag</> },
+  { label: "Sitemap", value: <><code className="font-mono text-cyan-300">@astrojs/sitemap</code></> },
+]} />
+
+Astro was chosen over Next.js for this use case: content-first,
+lots of static pages, React islands for interactive
+demo tools only where it's truly needed. No 100% client-side
+rendering for a glossary.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## What's in it
+
+- Hero with motion fallback (full-bleed video + static image fallback
+  for reduced-motion)
+- Per-cluster landing pages with their own tools, docs and insights stream
+- Glossary, methodology, roadmap, changelog as public artefacts
+- Showcases (case studies) and Labs (experimentation space)
+- API page (internal tools others can integrate)
+- Pricing + contact + privacy
+
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
+## Status
+
+**Live at [audiolab.tools](https://audiolab.tools).** Six labs are running;
+four do real analysis (Beta), one is being expanded, one is a
+simulated concept — and it says so right there. MixLab's loudness is
+verified against the EBU R128 reference (±0.08 LU vs ffmpeg). The
+AI interpretation layer is the next step, not a current claim.
+
+</div>

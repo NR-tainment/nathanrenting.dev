@@ -1,0 +1,154 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "PhotoFlow — du shooting à la mise en ligne",
+  description:
+    "Un plugin Lightroom, un client desktop Tauri et une stack de publication cloud pour les photographes professionnels. Architecture multi-agent : Vision, Copy, Publishing et Analytics.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/fr/projects/photoflow#app",
+  name: "PhotoFlow",
+  description:
+    "De la photo retouchée à la présence en ligne en moins de 30 secondes, pour les photographes professionnels. Un plugin Lightroom plus un client desktop Tauri plus une stack de publication cloud avec une architecture multi-agent (Vision, Copy, Publishing, Analytics).",
+  applicationCategory: "MultimediaApplication",
+  operatingSystem: "Windows, macOS",
+  inLanguage: "fr-FR",
+  url: "https://nathanrenting.dev/fr/projects/photoflow",
+  image: "https://nathanrenting.dev/photoflow-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "photography",
+    "Lightroom plugin",
+    "Tauri",
+    "multi-agent",
+    "publishing automation",
+    "desktop app",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={239}>Projet · pré-développement</SketchUnderline>
+</div>
+
+# PhotoFlow — de la photo retouchée à la mise en ligne en 30 secondes
+
+<MarkerHighlight>Supprimer le travail entre &quot;shooting retouché&quot; et &quot;shooting en ligne&quot;.</MarkerHighlight>{" "}
+Pour les photographes professionnels qui travaillent dans Lightroom : une seule
+validation produit teasers Instagram, carrousels de cérémonie, reportage blog,
+mise à jour du portfolio et étude de cas LinkedIn en même temps — planifiés, publiés
+et suivis.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/photoflow-architecture.png"
+    alt="Pipeline dessinée à la main : SHOOT → LIGHTROOM EDIT → 'send to PhotoFlow' → DESKTOP CLIENT (Tauri) → quatre agents (VISION/COPY/PUBLISHING/ANALYTICS) → IG, FB, LinkedIn, BLOG. Annotation '30 SECONDS' en haut, 'one approval → all deliverables' en bas."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Croquis sur whiteboard · du shooting aux livrables en 30 secondes
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Ce que le photographe fait encore
+
+Trois étapes :
+
+1. Prendre la photo
+2. Retoucher la photo dans Lightroom
+3. Valider
+
+Tout ce qu'il y a entre les deux — légendes, hashtags, planification, publication vers
+IG / FB / LinkedIn, blog, portfolio — c'est l'IA qui s'en charge.
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Concepts clés
+
+**Le Projet / Shooting est l'objet principal.** Pas les &quot;posts&quot;. Un
+projet (&quot;Mariage Lisa &amp; Mark&quot;) est traduit par l'IA en
+plusieurs déclinaisons. Une seule validation → tous les livrables prêts.
+
+**Curation vs Technical QA.** L'IA réalise uniquement l'évaluation technique
+objective : netteté, yeux ouverts, exposition, flou de bougé. La sélection
+artistique reste entièrement au photographe via les notes Lightroom.
+
+**UX toggle-first.** Toutes les fonctionnalités sont configurées une fois pendant l'onboarding
+(quatre écrans), puis uniquement via les Settings. Valeurs par défaut agressivement ON.
+Le workflow n'ajoute jamais d'étapes à ce dont le photographe a déjà l'habitude.
+
+**RAW-blind.** PhotoFlow ne lit pas le RAW. Lightroom effectue le rendu ; PhotoFlow
+opère sur les previews et les exports. Fonctionne pour Canon, Fuji et toutes les marques
+prises en charge par Lightroom, sans traitement particulier.
+
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
+## Architecture
+
+Configuration hybride :
+
+| Composant | Tech | Responsabilité |
+|---|---|---|
+| Client desktop | Tauri + React + SQLite | En local : photos, projets, brouillons, paramètres |
+| Plugin Lightroom | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot; — communique avec le client desktop via localhost |
+| Composant cloud | Supabase ou Cloudflare Workers + D1 + R2 | Proxy OAuth, rafraîchissement de tokens, file d'attente de publication planifiée, endpoints App Review |
+
+Le choix du local-first garde les données photo hors du stockage cloud tant que
+ce n'est pas nécessaire. Le cloud ne fait que ce qu'il doit faire : l'OAuth des
+réseaux sociaux et la planification de publication à un moment où l'appareil du
+photographe est peut-être éteint.
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
+## Multi-agent
+
+| Agent | Fonction |
+|---|---|
+| Vision | Analyse d'image, détection du sujet, ambiance |
+| Copy | Légendes, hashtags, SEO, blog |
+| Publishing | Planification, publication, contrôle de statut |
+| Analytics | Résultats, rapports, conseils d'amélioration |
+
+Quatre rôles, un coordinateur. Le schéma derrière une grande partie d'
+ECHO se retrouve ici : une fine couche de routage répartit le travail et la
+sortie atterrit dans un seul endroit structuré.
+
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
+## Public cible + réalité de l'API
+
+Les photographes professionnels avec :
+
+- Un workflow Adobe Lightroom Classic
+- Un compte Instagram Business ou Creator (obligatoire, une limitation
+  technique de l'API Meta)
+- Une Facebook Page
+- En option : LinkedIn (personnel ou Company Page)
+
+PhotoFlow ne prend **pas** en charge les comptes de réseaux sociaux personnels.
+Ce n'est pas un choix mais une limitation stricte de l'API de Meta et LinkedIn. Mieux vaut
+le dire clairement que de le découvrir pendant l'onboarding.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Statut
+
+**Pré-développement.** Vision, décisions d'architecture,
+validation du public cible et modèle de données consignés. Prochaine étape : scaffold
++ Pipeline Core.
+
+</div>

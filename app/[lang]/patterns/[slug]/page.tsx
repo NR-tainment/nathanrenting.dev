@@ -32,27 +32,46 @@ const SLUGS = [
 
 type Slug = (typeof SLUGS)[number];
 
-// Only NL exists today. EN/DE/FR articles are added in the fan-out; each new
-// file is wired here as content/patterns/<slug>.<locale>.mdx.
+// NL is the source; the fan-out has added EN/DE/FR for every slug. Each
+// localized file is wired here as content/patterns/<slug>.<locale>.mdx so
+// Turbopack can statically resolve every import.
 const articles: Record<Slug, Partial<Record<Locale, () => Promise<MdxModule>>>> =
   {
     "agentskills-implementation": {
       nl: () => import("@/content/patterns/agentskills-implementation.nl.mdx"),
+      en: () => import("@/content/patterns/agentskills-implementation.en.mdx"),
+      de: () => import("@/content/patterns/agentskills-implementation.de.mdx"),
+      fr: () => import("@/content/patterns/agentskills-implementation.fr.mdx"),
     },
     "cross-arch-android": {
       nl: () => import("@/content/patterns/cross-arch-android.nl.mdx"),
+      en: () => import("@/content/patterns/cross-arch-android.en.mdx"),
+      de: () => import("@/content/patterns/cross-arch-android.de.mdx"),
+      fr: () => import("@/content/patterns/cross-arch-android.fr.mdx"),
     },
     "eu-first-infrastructure": {
       nl: () => import("@/content/patterns/eu-first-infrastructure.nl.mdx"),
+      en: () => import("@/content/patterns/eu-first-infrastructure.en.mdx"),
+      de: () => import("@/content/patterns/eu-first-infrastructure.de.mdx"),
+      fr: () => import("@/content/patterns/eu-first-infrastructure.fr.mdx"),
     },
     "multi-brain-routing": {
       nl: () => import("@/content/patterns/multi-brain-routing.nl.mdx"),
+      en: () => import("@/content/patterns/multi-brain-routing.en.mdx"),
+      de: () => import("@/content/patterns/multi-brain-routing.de.mdx"),
+      fr: () => import("@/content/patterns/multi-brain-routing.fr.mdx"),
     },
     "real-time-audio-rust": {
       nl: () => import("@/content/patterns/real-time-audio-rust.nl.mdx"),
+      en: () => import("@/content/patterns/real-time-audio-rust.en.mdx"),
+      de: () => import("@/content/patterns/real-time-audio-rust.de.mdx"),
+      fr: () => import("@/content/patterns/real-time-audio-rust.fr.mdx"),
     },
     "three-tier-fallback": {
       nl: () => import("@/content/patterns/three-tier-fallback.nl.mdx"),
+      en: () => import("@/content/patterns/three-tier-fallback.en.mdx"),
+      de: () => import("@/content/patterns/three-tier-fallback.de.mdx"),
+      fr: () => import("@/content/patterns/three-tier-fallback.fr.mdx"),
     },
   };
 

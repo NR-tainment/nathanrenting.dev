@@ -29,15 +29,41 @@ type Slug = (typeof SLUGS)[number];
 
 const projects: Record<Slug, Partial<Record<Locale, () => Promise<MdxModule>>>> =
   {
-    audiolab: { nl: () => import("@/content/projects/audiolab.nl.mdx") },
+    audiolab: {
+      nl: () => import("@/content/projects/audiolab.nl.mdx"),
+      en: () => import("@/content/projects/audiolab.en.mdx"),
+      de: () => import("@/content/projects/audiolab.de.mdx"),
+      fr: () => import("@/content/projects/audiolab.fr.mdx"),
+    },
     captioncompass: {
       nl: () => import("@/content/projects/captioncompass.nl.mdx"),
+      en: () => import("@/content/projects/captioncompass.en.mdx"),
+      de: () => import("@/content/projects/captioncompass.de.mdx"),
+      fr: () => import("@/content/projects/captioncompass.fr.mdx"),
     },
-    echo: { nl: () => import("@/content/projects/echo.nl.mdx") },
-    familykart: { nl: () => import("@/content/projects/familykart.nl.mdx") },
-    photoflow: { nl: () => import("@/content/projects/photoflow.nl.mdx") },
+    echo: {
+      nl: () => import("@/content/projects/echo.nl.mdx"),
+      en: () => import("@/content/projects/echo.en.mdx"),
+      de: () => import("@/content/projects/echo.de.mdx"),
+      fr: () => import("@/content/projects/echo.fr.mdx"),
+    },
+    familykart: {
+      nl: () => import("@/content/projects/familykart.nl.mdx"),
+      en: () => import("@/content/projects/familykart.en.mdx"),
+      de: () => import("@/content/projects/familykart.de.mdx"),
+      fr: () => import("@/content/projects/familykart.fr.mdx"),
+    },
+    photoflow: {
+      nl: () => import("@/content/projects/photoflow.nl.mdx"),
+      en: () => import("@/content/projects/photoflow.en.mdx"),
+      de: () => import("@/content/projects/photoflow.de.mdx"),
+      fr: () => import("@/content/projects/photoflow.fr.mdx"),
+    },
     therapyvault: {
       nl: () => import("@/content/projects/therapyvault.nl.mdx"),
+      en: () => import("@/content/projects/therapyvault.en.mdx"),
+      de: () => import("@/content/projects/therapyvault.de.mdx"),
+      fr: () => import("@/content/projects/therapyvault.fr.mdx"),
     },
   };
 

@@ -1,0 +1,147 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "TherapyVault — sichere Therapie-Videos",
+  description:
+    "Sichere Video-Plattform für Therapeuten und Klienten. Granulare Zugriffsfreigaben, MFA, DSGVO-Export und Payment-Abstraktion. Next.js 15 + Prisma + Cloudflare R2.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/de/projects/therapyvault#app",
+  name: "TherapyVault",
+  description:
+    "Eine sichere Video-Plattform, auf der Therapeuten aufgezeichnete Sitzungen sicher mit ihren eigenen Klienten teilen. Signed URLs, granulare Zugriffsfreigaben pro Klient, MFA, DSGVO-Export und Scheduled Deletion. Gebaut auf Next.js 15, Prisma und Cloudflare R2.",
+  applicationCategory: "HealthApplication",
+  operatingSystem: "Web",
+  inLanguage: "de-DE",
+  url: "https://nathanrenting.dev/de/projects/therapyvault",
+  image: "https://nathanrenting.dev/therapyvault-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "secure video platform",
+    "therapy",
+    "GDPR",
+    "access control",
+    "MFA",
+    "Next.js",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={223}>Projekt · v0.1 Release Candidate</SketchUnderline>
+</div>
+
+# TherapyVault — sichere Video-Plattform für die Therapie
+
+<MarkerHighlight>Eine private Video-Plattform, auf der Therapeuten aufgezeichnete Sitzungen sicher mit ihren eigenen Klienten teilen.</MarkerHighlight>{" "}
+Keine öffentlichen URLs, kein YouTube-Link nach dem Motto &quot;nur wer den Link hat&quot;
+— alles liegt hinter Signed URLs mit granularen Zugriffsfreigaben pro Klient,
+optional zeitlich begrenzt, ansichtsbegrenzt oder downloadbegrenzt.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/therapyvault-architecture.png"
+    alt="Handgezeichnete Architekturskizze: Therapeut lädt in den VAULT hoch (Notizbuch mit Schloss), MFA-Schild für Admin, drei Klienten mit Zugriffsfreigaben (forever / time-limited / view-limited), Audit-Log-Notizbuch am unteren Rand, Annotationen 'no public URLs', 'access-grant evaluator', 'GDPR'."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-Skizze · die Form des Systems
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
+## Problem
+
+WeTransfer ist für Gesundheitsdaten nicht DSGVO-konform. YouTube unlisted
+ist keine Zugriffskontrolle. SharePoint ist Enterprise-Overkill. Vimeo Pro
++ Memberstack ist fragil und teuer.
+
+TherapyVault ist die spezifische Lösung: ein Ort, an dem der Therapeut
+hochlädt und der Klient sicher zusieht, mit der juristischen und
+technischen Grundlage, die ein Gesundheitskontext erfordert.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Was in v0.1 steckt
+
+| Bereich | Status |
+|---|---|
+| **Auth** | E-Mail+Passwort, Passwort-Reset, **MFA (TOTP)**, Session-Management, RBAC |
+| **Video-Upload** | Resumable Multipart (tus-Protokoll) bis 10 GB, nach R2 / S3 / MinIO |
+| **Video-Streaming** | Signed-URL-Wiedergabe mit Range-Support, keine öffentlichen URLs |
+| **Zugriffskontrolle** | Pro Freigabe: forever / time-limited / view-limited / download-limited |
+| **Coupons** | 5 Typen: kostenloser Zugang, % Rabatt, fixer Rabatt, Download-Guthaben, View-Guthaben |
+| **Payments** | Stripe (einmalig + Abos) + Mollie-Stub hinter einem `PaymentProvider`-Interface |
+| **Dashboards** | Therapist, Client, Admin |
+| **DSGVO** | Datenexport-ZIP + Scheduled Deletion mit Grace-Period |
+| **i18n** | EN + NL ab Tag eins (`next-intl`) |
+| **Audit-Log** | Jede sensible Mutation wird protokolliert |
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Stack
+
+<StackTable rows={[
+  { label: "Frontend + API", value: "Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui" },
+  { label: "Auth", value: <>Auth.js v5 — Credentials + <strong>Argon2id</strong>-Hashing + TOTP-MFA</> },
+  { label: "Datenbank", value: "PostgreSQL 16 + Prisma 6" },
+  { label: "Storage", value: "Cloudflare R2 (S3-kompatibel) — Provider-Abstraktion unterstützt S3, B2, MinIO, local" },
+  { label: "Uploads", value: <>tus-Protokoll via <code className="font-mono text-cyan-300">@tus/server</code></> },
+  { label: "Payments", value: <><code className="font-mono text-cyan-300">PaymentProvider</code>-Interface mit Stripe-live + Mollie-Stub dahinter</> },
+  { label: "E-Mail", value: "Console-Stub (v0.1) — react-email-Templates, die in die Logs rendern" },
+  { label: "Rate-Limit", value: "Redis-Token-Bucket mit In-Memory-Fallback" },
+  { label: "Logging", value: "pino-strukturiertes JSON + separate AuditLog-Tabelle" },
+  { label: "Tests", value: "Vitest Unit/Integration + Playwright e2e" },
+]} />
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
+## Security-Primitives
+
+**Keine öffentlichen URLs.** Jeder Video-Stream läuft über eine Signed URL,
+die der Server erst nach einer Zugriffsfreigabe-Prüfung ausstellt. Range-Header
+werden unterstützt, ohne dass die URL jemals außerhalb der Sitzung leakt.
+
+**MFA verpflichtend für Admins.** Das Koppeln einer TOTP-App ist eine
+Erstlogin-Voraussetzung; kein Zugang zu Admin-Dashboards ohne sie.
+
+**Argon2id** als Passwort-Hash mit memory-hard Parametern.
+
+**DSGVO by Design.** Klienten-Datenexport als ZIP, Account-Löschung über
+einen Scheduled Job mit Grace-Period, eine AuditLog-Tabelle für alle sensiblen
+Mutationen.
+
+**Payment-Provider-Abstraktion.** Stripe live, Mollie hinter demselben
+Interface — Umstieg auf iDEAL, ohne die Business-Logik anzufassen.
+
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
+## Roadmap
+
+| Version | Was |
+|---|---|
+| v0.1 (jetzt) | Alle kritischen Security-Primitives, produktiv deploybar |
+| v0.2 | UI-Polish, Multi-Bitrate-HLS-Transcoding, Push-Notifications, echter E-Mail-Provider |
+| v0.3+ | Custom Domain pro Therapeut, White-Label, Live-Session |
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Status
+
+v0.1 Release Candidate. Ein SMTP-Provider und echte E-Mail-Templates sind
+der nächste Schritt vor dem Launch. Kunde und konkreter Use-Case unter NDA.
+
+</div>

@@ -1,0 +1,147 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "TherapyVault — secure therapy video",
+  description:
+    "Secure video platform for therapists and clients. Granular access grants, MFA, GDPR export and payment abstraction. Next.js 15 + Prisma + Cloudflare R2.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/en/projects/therapyvault#app",
+  name: "TherapyVault",
+  description:
+    "A secure video platform where therapists safely share recorded sessions with their own clients. Signed URLs, granular per-client access grants, MFA, GDPR export and scheduled deletion. Built on Next.js 15, Prisma and Cloudflare R2.",
+  applicationCategory: "HealthApplication",
+  operatingSystem: "Web",
+  inLanguage: "en-US",
+  url: "https://nathanrenting.dev/en/projects/therapyvault",
+  image: "https://nathanrenting.dev/therapyvault-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "secure video platform",
+    "therapy",
+    "GDPR",
+    "access control",
+    "MFA",
+    "Next.js",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={223}>Project · v0.1 release candidate</SketchUnderline>
+</div>
+
+# TherapyVault — secure video platform for therapy
+
+<MarkerHighlight>A private video platform where therapists safely share recorded sessions with their own clients.</MarkerHighlight>{" "}
+No public URLs, no YouTube link with &quot;anyone with the link can view&quot;
+— everything sits behind signed URLs with granular per-client access grants,
+optionally time-limited, view-limited or download-limited.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/therapyvault-architecture.png"
+    alt="Hand-drawn architecture sketch: therapist uploads to VAULT (notebook with a lock), MFA shield for admin, three clients with access grants (forever / time-limited / view-limited), audit-log notebook at the bottom, annotations 'no public URLs', 'access-grant evaluator', 'GDPR'."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard sketch · the shape of the system
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
+## Problem
+
+WeTransfer is not GDPR-compliant for healthcare data. YouTube unlisted
+is not access control. SharePoint is enterprise overkill. Vimeo Pro
++ Memberstack is fragile and expensive.
+
+TherapyVault is the specific answer: one place where the therapist
+uploads and the client watches securely, with the legal and
+technical foundation a healthcare context demands.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## What's in v0.1
+
+| Area | Status |
+|---|---|
+| **Auth** | Email+password, password reset, **MFA (TOTP)**, session management, RBAC |
+| **Video upload** | Resumable multipart (tus protocol) up to 10 GB, to R2 / S3 / MinIO |
+| **Video streaming** | Signed-URL playback with range support, no public URLs |
+| **Access control** | Per grant: forever / time-limited / view-limited / download-limited |
+| **Coupons** | 5 types: free access, % off, fixed off, download credit, view credit |
+| **Payments** | Stripe (one-time + subscriptions) + Mollie stub behind a `PaymentProvider` interface |
+| **Dashboards** | Therapist, Client, Admin |
+| **GDPR** | Data-export ZIP + scheduled deletion with grace period |
+| **i18n** | EN + NL from day one (`next-intl`) |
+| **Audit log** | Every sensitive mutation is recorded |
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Stack
+
+<StackTable rows={[
+  { label: "Frontend + API", value: "Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui" },
+  { label: "Auth", value: <>Auth.js v5 — credentials + <strong>Argon2id</strong> hashing + TOTP MFA</> },
+  { label: "Database", value: "PostgreSQL 16 + Prisma 6" },
+  { label: "Storage", value: "Cloudflare R2 (S3-compatible) — provider abstraction supports S3, B2, MinIO, local" },
+  { label: "Uploads", value: <>tus protocol via <code className="font-mono text-cyan-300">@tus/server</code></> },
+  { label: "Payments", value: <><code className="font-mono text-cyan-300">PaymentProvider</code> interface with Stripe-live + Mollie stub behind it</> },
+  { label: "Email", value: "console stub (v0.1) — react-email templates that render to logs" },
+  { label: "Rate-limit", value: "Redis token-bucket with in-memory fallback" },
+  { label: "Logging", value: "pino structured JSON + separate AuditLog table" },
+  { label: "Tests", value: "Vitest unit/integration + Playwright e2e" },
+]} />
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
+## Security primitives
+
+**No public URLs.** Every video stream goes through a signed URL that
+the server only issues after an access-grant check. Range headers
+are supported without the URL ever leaking outside the session.
+
+**MFA mandatory for admins.** Pairing a TOTP app is a first-login
+requirement; no access to admin dashboards without it.
+
+**Argon2id** as the password hash with memory-hard parameters.
+
+**GDPR by design.** Client-data export as a ZIP, account deletion via
+a scheduled job with a grace period, an AuditLog table for all sensitive
+mutations.
+
+**Payment-provider abstraction.** Stripe live, Mollie behind the same
+interface — switch to iDEAL without touching the business logic.
+
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
+## Roadmap
+
+| Version | What |
+|---|---|
+| v0.1 (now) | All critical security primitives, production-deployable |
+| v0.2 | UI polish, multi-bitrate HLS transcoding, push notifications, real email provider |
+| v0.3+ | Custom domain per therapist, white-label, live sessions |
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Status
+
+v0.1 release candidate. An SMTP provider and real email templates are
+the next step toward launch. Client and specific use case under NDA.
+
+</div>

@@ -1,0 +1,102 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "FamilyKart — du kart racing pour mes enfants",
+  description:
+    "Side-project : un jeu de kart racing familial sous forme d'application desktop Electron sur Three.js, avec des circuits faits main, des adversaires IA et une caméra de poursuite.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/fr/projects/familykart#app",
+  name: "FamilyKart",
+  description:
+    "Un jeu de kart racing familial sous forme d'application desktop Electron, conçu pour les enfants de son créateur. Un mini-moteur maison par-dessus Three.js avec des adversaires IA, des powerups, une caméra de poursuite et des circuits faits main.",
+  applicationCategory: "GameApplication",
+  operatingSystem: "Windows, macOS, Linux",
+  inLanguage: "fr-FR",
+  url: "https://nathanrenting.dev/fr/projects/familykart",
+  image: "https://nathanrenting.dev/familykart-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "game",
+    "Electron",
+    "Three.js",
+    "kart racing",
+    "3D engine",
+    "side-project",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={211}>Side-project · en développement</SketchUnderline>
+</div>
+
+# FamilyKart — du kart racing pour mes enfants
+
+<MarkerHighlight>Un jeu de kart racing familial sous forme d'application desktop Electron.</MarkerHighlight>{" "}
+Un mini-moteur avec des adversaires IA, des powerups, une caméra de poursuite et
+des circuits faits main. Par-dessus Three.js, sans game framework, en vanilla JS
+pour la game loop.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/familykart-architecture.png"
+    alt="Croquis dessiné à la main : application Electron avec une chase cam au-dessus d'une boucle de circuit, trois karts (PLAYER + AI 1 + AI 2), powerups (BOOST, SHIELD, MISSILE), annotations « 60 FPS · Three.js · vanilla JS » et « AI rubberbanding »."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Croquis de whiteboard · la game loop
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Ce qu'il contient
+
+- **Rendu 3D** sur Three.js, scene graph maison et caméra de poursuite avec
+  lissage
+- **Physique des karts** avec adhérence, drift et saut
+- **Adversaires IA** avec un rubberbanding simple pour que les enfants ne
+  se retrouvent pas distancés en trois secondes
+- **Powerups** (boost, shield, missile) sur des pads de ramassage
+- **HUD** dans une surcouche canvas 2D par-dessus le canvas 3D
+- **Circuits maison** — non procéduraux, simplement faits main pour rester courts
+  et adaptés aux enfants
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Stack
+
+<StackTable rows={[
+  { label: "Runtime", value: "Electron (Windows portable .exe)" },
+  { label: "3D", value: "Three.js (r169)" },
+  { label: "Logique de jeu", value: "Vanilla JS, state machine maison" },
+  { label: "UI / HUD", value: "Surcouche canvas 2D" },
+  { label: "Audio", value: "Web Audio API" },
+  { label: "Build", value: "electron-builder, target portable" },
+]} />
+
+Aucun framework par-dessus Three. Pas de React pour le jeu lui-même. Vanilla
+JS, dependencies minimales, tout vendor&apos;d quand c'est possible. Les circuits et
+les karts sont du JSON brut — faciles à ajuster sans toucher au code.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Statut
+
+En développement. Jouable, pas shippable. Aucune sortie publique
+prévue.
+
+</div>
