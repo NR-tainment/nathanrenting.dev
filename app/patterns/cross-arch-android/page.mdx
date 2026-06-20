@@ -3,10 +3,46 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "Cross-architecture Android builds",
   description:
-    "Eén APK voor arm64 / armv7 / x86_64. Alignment-bugs, NDK-version-pinning, libc++_shared dupe-traps.",
+    "Eén APK voor arm64, armv7 én x86_64 met native code. Alignment-bugs, NDK-version-pinning en libc++_shared dupe-traps, en hoe je ze vermijdt.",
+  alternates: { canonical: "/patterns/cross-arch-android" },
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/patterns/cross-arch-android#article",
+  headline: "Cross-architecture Android builds",
+  description:
+    "Eén APK voor arm64, armv7 én x86_64 met native code. Alignment-bugs, NDK-version-pinning en libc++_shared dupe-traps, en hoe je ze vermijdt.",
+  inLanguage: "nl-NL",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage: "https://nathanrenting.dev/patterns/cross-arch-android",
+  image: "https://nathanrenting.dev/pattern-cross-arch.jpg",
+  keywords: [
+    "Android NDK",
+    "cross-architecture builds",
+    "arm64",
+    "native code",
+    "APK packaging",
+    "libc++_shared",
+  ],
+  about: [
+    "Android NDK",
+    "Android development",
+    "Native code",
+    "Build engineering",
+  ],
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
 
 <div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
   <SketchUnderline seed={137}>Pattern · Android builds</SketchUnderline>

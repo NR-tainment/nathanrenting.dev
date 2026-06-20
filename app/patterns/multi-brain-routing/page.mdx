@@ -3,10 +3,46 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "Multi-brain LLM routing",
   description:
-    "Goedkope heuristieken eerst, LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te slopen.",
+    "Goedkope heuristieken eerst, een LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te slopen.",
+  alternates: { canonical: "/patterns/multi-brain-routing" },
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/patterns/multi-brain-routing#article",
+  headline: "Multi-brain LLM routing",
+  description:
+    "Goedkope heuristieken eerst, een LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te slopen.",
+  inLanguage: "nl-NL",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage: "https://nathanrenting.dev/patterns/multi-brain-routing",
+  image: "https://nathanrenting.dev/pattern-router-flow.jpg",
+  keywords: [
+    "LLM routing",
+    "model-tier selectie",
+    "heuristieken",
+    "LLM-classifier",
+    "kosten-optimalisatie",
+    "AI-agent",
+  ],
+  about: [
+    "Large Language Models",
+    "LLM orchestration",
+    "AI Agents",
+    "Cost optimization",
+  ],
 };
 
 <div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
 
 <div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
   <SketchUnderline seed={111}>Pattern · LLM routing</SketchUnderline>

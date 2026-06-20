@@ -9,15 +9,15 @@
 | (na deploy) | scanner | — | te meten door Nathan |
 
 ## Per categorie (punten)
-| Categorie | Baseline | Target | Lokaal na iter |
+| Categorie | Baseline | Target | Lokaal na iter (geprojecteerd) |
 |---|---|---|---|
-| Technical Accessibility | 17/20 | 19 | 17 |
-| Structured Data | 9/23 | 22 | 9 |
-| Content Structure | 15/22 | 20 | 15 |
-| Entity Clarity | 15/20 | 19 | 15 |
-| Citability | 4/10 | 9 | 4 |
-| Multilingual | 1/5 | 5 | 1 |
-| **Totaal** | **60** | **93** | **60** |
+| Technical Accessibility | 17/20 | 19 | 18 |
+| Structured Data | 9/23 | 22 | 21 |
+| Content Structure | 15/22 | 20 | 20 |
+| Entity Clarity | 15/20 | 19 | 19 |
+| Citability | 4/10 | 9 | 9 |
+| Multilingual | 1/5 | 5 | 4 |
+| **Totaal** | **60** | **93** | **91 (geprojecteerd, te bevestigen na deploy + re-scan)** |
 
 ## Structured Data sub-checks (groen-maken)
 - [ ] FAQ schema (0/2) — FAQPage op hire/diensten/about
@@ -44,3 +44,6 @@
 - _iter 2c_ — `app/page.tsx`: FAQ-array → zichtbare `<dl>` + FAQPage-schema (6 Q&A). FAQ-check + Citability. tsc=0.
 - **Home is nu compleet voor de scanner** (alle Structured-Data sub-checks groen behalve reviews). Geschat lokaal ~85-88 (van 60).
 - _volgende_ — per-page metadata+Article/TechArticle op de 6 patterns + SoftwareApplication op de 6 projects (echte AI-crawl-waarde + Citability als scanner sub-pages sampelt). Reviews = echte testimonials (Nathan). Finale: Nathan deploy → re-scan → >90.
+- _iter 3a (patterns)_ — 6 `app/patterns/*/page.mdx`: per-page metadata uitgebreid met `alternates.canonical` + descriptions getuned (~140-145 chars), en `TechArticle` JSON-LD toegevoegd (headline, description, author=#nathan, publisher=#org, datePublished/dateModified 2026-06-20, inLanguage nl-NL, mainEntityOfPage, image, keywords, about). Embed-patroon = identiek aan `app/page.tsx` (`<script type="application/ld+json" dangerouslySetInnerHTML>`). Lift: Citability (echte Article + auteur + datum), Structured Data (Article-type site-wide), Content (canonical). tsc=0; alle 6 MDX compileren met @mdx-js/mdx + remark-gfm.
+- _iter 3b (projects)_ — 6 `app/projects/*/page.mdx`: per-page metadata + `alternates.canonical` + descriptions ~152-158 chars, en `SoftwareApplication` JSON-LD (echo/therapyvault/captioncompass/photoflow/familykart) + `WebSite` voor audiolab (live op audiolab.tools). Velden: name, description, applicationCategory, operatingSystem, url, image, author/creator=#nathan, publisher=#org, keywords. Lift: Structured Data (products/services subcheck site-wide), Entity Clarity (creator=#nathan + publisher=#org-relaties op elk project). tsc=0; alle 6 MDX compileren clean.
+- _let op_ — 4 project-titels renderen >60 chars na de `%s · nathanrenting.dev` template (therapyvault 70, audiolab 77, captioncompass 72, photoflow 67); bewust gelaten omdat ze de zichtbare H1 spiegelen en descriptief blijven. Pattern-titels 42-49 (iets onder 50-60). Reviews-subcheck nog open (echte testimonials van Nathan). Deploy-gate: Nathan deploy → re-scan voor het echte getal.
