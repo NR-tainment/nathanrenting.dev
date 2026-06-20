@@ -30,7 +30,7 @@
 - [x] canonical (iter 1 — home; sub-pages nog)
 - [x] hreflang language-versions linked (iter 1 — home nl↔en)
 - [x] rich data 3+ types (iter 1 — WebSite+Organization+Person @graph)
-- [ ] FAQ schema (0/2) — FAQPage + zichtbare FAQ op home (next)
+- [x] FAQ schema (iter 2c — FAQPage + zichtbare <dl> FAQ op home, 6 Q&A)
 - [x] page structure clear (iter 2b — WebPage + BreadcrumbList; heading-hiërarchie nog checken)
 - [x] products/services (iter 2b — Service + Offer op home)
 - [ ] reviews (0/2) — ⚠️ vereist ECHTE testimonials (niet verzinnen)
@@ -40,4 +40,7 @@
 - _iter 0_ — baseline gemeten (60), PDD+rubric vastgelegd, branch + worktree (C:\nr-sota) op.
 - _iter 1_ — `app/layout.tsx`: lang en→nl (Multilingual), title ~53 / desc ~147 chars, @graph WebSite+Organization+Person (rich data 3+). `app/page.tsx`: home canonical + nl/en hreflang. tsc=0.
 - _iter 2a_ — OG/Twitter image (portret-ref). tsc=0.
-- _volgende_ — home FAQPage+zichtbare FAQ (+2), Service-schema (+1), WebPage/BreadcrumbList (+2); per-page metadata+Article op patterns/projects (Citability/Content + echte crawl-waarde); reviews vereist echte testimonials. Daarna: Nathan deploy → re-scan → >90.
+- _iter 2b_ — `app/page.tsx`: home WebPage + Service + BreadcrumbList @graph (products/services + page-structure). tsc=0.
+- _iter 2c_ — `app/page.tsx`: FAQ-array → zichtbare `<dl>` + FAQPage-schema (6 Q&A). FAQ-check + Citability. tsc=0.
+- **Home is nu compleet voor de scanner** (alle Structured-Data sub-checks groen behalve reviews). Geschat lokaal ~85-88 (van 60).
+- _volgende_ — per-page metadata+Article/TechArticle op de 6 patterns + SoftwareApplication op de 6 projects (echte AI-crawl-waarde + Citability als scanner sub-pages sampelt). Reviews = echte testimonials (Nathan). Finale: Nathan deploy → re-scan → >90.

@@ -103,12 +103,57 @@ const homeGraph = {
   ],
 };
 
+// Echte FAQ — voedt zowel de zichtbare <dl> als het FAQPage-schema (schema =
+// zichtbare content). Hoog-citeerbaar voor AI answer-engines + boost Citability.
+const FAQ: ReadonlyArray<{ q: string; a: string }> = [
+  {
+    q: "Wat doet Nathan Renting?",
+    a: "Nathan is een solo developer uit Eindhoven die AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines bouwt — van prototype tot productie.",
+  },
+  {
+    q: "Is Nathan beschikbaar voor freelance / ZZP-inhuur?",
+    a: "Ja. Beschikbaar voor ZZP-inhuur, 2-3 dagen per week, EU remote. Vanuit Eindhoven, heel NL bereikbaar voor een kickoff of kritische review.",
+  },
+  {
+    q: "Welke technologieën gebruikt Nathan?",
+    a: "Voor AI-agents: Python, FastAPI, Claude API, MCP, LangGraph en RAG. Voor real-time audio: Rust, Kotlin, Android NDK en DSP. Voor product: Next.js, TypeScript en React Native.",
+  },
+  {
+    q: "Wat kost het om Nathan in te huren?",
+    a: "Indicatief €110-130 per uur. Projectprijzen zijn bespreekbaar, afhankelijk van scope en duur.",
+  },
+  {
+    q: "Werkt Nathan remote of on-site?",
+    a: "Remote-preferred binnen de EU. On-site in Nederland is mogelijk voor een kickoff of een kritische review.",
+  },
+  {
+    q: "Wat maakt Nathan's profiel uniek?",
+    a: "De combinatie van 10+ jaar audio- en DSP-achtergrond én het dagelijks bouwen van agent-systemen. Voor audio-AI-producten zit hij in beide werelden tegelijk.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://nathanrenting.dev/#faq",
+  inLanguage: "nl-NL",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function Home() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeGraph) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       {/* Hero */}
       <section className="mb-20 relative">
@@ -320,6 +365,27 @@ export default function Home() {
           Voor pure AI-engineering ben ik ingespeeld op de tooling.
           Geen opstart-tijd nodig. Geen team. Weinig drama.
         </p>
+      </SectionReveal>
+
+      {/* Divider between sections */}
+      <div className="flex justify-center my-12 opacity-40">
+        <ChalkDoodle type="divider" color="#52525b" />
+      </div>
+
+      {/* FAQ — citeerbare Q&A voor mens + AI (matcht FAQPage-schema) */}
+      <SectionReveal className="mb-16">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-3">
+          <ChalkDoodle type="asterisk" className="opacity-60" />
+          <SketchUnderline seed={17}>Veelgestelde vragen</SketchUnderline>
+        </h2>
+        <dl className="space-y-6">
+          {FAQ.map((item) => (
+            <div key={item.q}>
+              <dt className="text-zinc-100 font-medium mb-1">{item.q}</dt>
+              <dd className="text-zinc-400 leading-relaxed">{item.a}</dd>
+            </div>
+          ))}
+        </dl>
       </SectionReveal>
 
       {/* Quiet CTA */}
