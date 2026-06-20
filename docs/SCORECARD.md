@@ -30,9 +30,9 @@
 - [x] canonical (iter 1 — home; sub-pages nog)
 - [x] hreflang language-versions linked (iter 1 — home nl↔en)
 - [x] rich data 3+ types (iter 1 — WebSite+Organization+Person @graph)
-- [ ] FAQ schema (0/2) — FAQPage + zichtbare FAQ op home
-- [ ] page structure clear (0/2) — WebPage/Breadcrumb + heading-hiërarchie
-- [ ] products/services (0/1) — Service-schema op home
+- [ ] FAQ schema (0/2) — FAQPage + zichtbare FAQ op home (next)
+- [x] page structure clear (iter 2b — WebPage + BreadcrumbList; heading-hiërarchie nog checken)
+- [x] products/services (iter 2b — Service + Offer op home)
 - [ ] reviews (0/2) — ⚠️ vereist ECHTE testimonials (niet verzinnen)
 - [x] machine-readable data (3/3) · person/business (3/3) · OG title/desc (2) · Twitter (1)
 

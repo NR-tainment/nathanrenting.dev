@@ -47,9 +47,69 @@ export const metadata: Metadata = {
   },
 };
 
+// Home JSON-LD (@graph): WebPage + Service + BreadcrumbList — laat AI de
+// pagina-structuur + de daadwerkelijke dienst (ZZP AI-agent/audio, €110-130/u,
+// EU remote) herkennen. Reuse van de #website/#nathan @id's uit layout.
+const homeGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://nathanrenting.dev/#webpage",
+      url: "https://nathanrenting.dev",
+      name: "Nathan Renting — AI-agent & real-time audio developer",
+      isPartOf: { "@id": "https://nathanrenting.dev/#website" },
+      about: { "@id": "https://nathanrenting.dev/#nathan" },
+      inLanguage: "nl-NL",
+      primaryImageOfPage: "https://nathanrenting.dev/nathan-portret.png",
+    },
+    {
+      "@type": "Service",
+      "@id": "https://nathanrenting.dev/#service",
+      name: "Freelance AI-agent & real-time audio development",
+      serviceType: [
+        "AI agent development",
+        "LLM orchestration",
+        "Real-time audio engineering",
+      ],
+      provider: { "@id": "https://nathanrenting.dev/#nathan" },
+      areaServed: "EU (remote)",
+      description:
+        "Solo freelance ontwikkeling van AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines. ZZP-inhuur, 2–3 dagen per week, EU remote.",
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        priceSpecification: {
+          "@type": "PriceSpecification",
+          minPrice: 110,
+          maxPrice: 130,
+          priceCurrency: "EUR",
+          unitText: "HOUR",
+        },
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://nathanrenting.dev/#breadcrumb",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://nathanrenting.dev",
+        },
+      ],
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeGraph) }}
+      />
       {/* Hero */}
       <section className="mb-20 relative">
         <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-4">
