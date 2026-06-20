@@ -4,7 +4,14 @@ export const metadata = {
   title: "FamilyKart — kart-racing voor mijn kids",
   description:
     "Side-project: een familievriendelijke kart-racing game als Electron desktop-app op Three.js, met handgebouwde tracks, AI-tegenstanders en chase-camera.",
-  alternates: { canonical: "/projects/familykart" },
+  // Dutch-only page; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/projects/familykart",
+    languages: {
+      "nl-NL": "/projects/familykart",
+      "x-default": "/projects/familykart",
+    },
+  },
 };
 
 export const appSchema = {

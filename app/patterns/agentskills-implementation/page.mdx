@@ -4,7 +4,14 @@ export const metadata = {
   title: "agentskills.io implementation",
   description:
     "Waarom een skills-laag boven tools. Het SKILL.md-format, progressive disclosure, en wanneer je van rauwe tools opgroeit naar herbruikbare skills.",
-  alternates: { canonical: "/patterns/agentskills-implementation" },
+  // Dutch-only article; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/patterns/agentskills-implementation",
+    languages: {
+      "nl-NL": "/patterns/agentskills-implementation",
+      "x-default": "/patterns/agentskills-implementation",
+    },
+  },
 };
 
 export const articleSchema = {

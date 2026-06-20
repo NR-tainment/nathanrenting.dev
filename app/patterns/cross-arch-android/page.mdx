@@ -4,7 +4,14 @@ export const metadata = {
   title: "Cross-architecture Android builds",
   description:
     "Eén APK voor arm64, armv7 én x86_64 met native code. Alignment-bugs, NDK-version-pinning en libc++_shared dupe-traps, en hoe je ze vermijdt.",
-  alternates: { canonical: "/patterns/cross-arch-android" },
+  // Dutch-only article; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/patterns/cross-arch-android",
+    languages: {
+      "nl-NL": "/patterns/cross-arch-android",
+      "x-default": "/patterns/cross-arch-android",
+    },
+  },
 };
 
 export const articleSchema = {

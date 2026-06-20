@@ -4,7 +4,14 @@ export const metadata = {
   title: "Three-tier AI fallback voor LLMs",
   description:
     "AI-API → rule-based → hardcoded. Een degradation-patroon dat je product stil overeind houdt als de LLM-API rate-limit raakt of onderuit gaat.",
-  alternates: { canonical: "/patterns/three-tier-fallback" },
+  // Dutch-only article; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/patterns/three-tier-fallback",
+    languages: {
+      "nl-NL": "/patterns/three-tier-fallback",
+      "x-default": "/patterns/three-tier-fallback",
+    },
+  },
 };
 
 export const articleSchema = {

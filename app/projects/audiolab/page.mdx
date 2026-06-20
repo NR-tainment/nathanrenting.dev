@@ -4,7 +4,14 @@ export const metadata = {
   title: "AudioLab.tools — audio, AI & DSP",
   description:
     "Content- en tools-platform op het snijvlak van audio, AI, DSP, Android en toegankelijkheid. Real tools, deep docs, no slop. Astro + React + Tailwind v4.",
-  alternates: { canonical: "/projects/audiolab" },
+  // Dutch-only page; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/projects/audiolab",
+    languages: {
+      "nl-NL": "/projects/audiolab",
+      "x-default": "/projects/audiolab",
+    },
+  },
 };
 
 export const appSchema = {

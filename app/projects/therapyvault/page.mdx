@@ -4,7 +4,14 @@ export const metadata = {
   title: "TherapyVault — secure therapie-video",
   description:
     "Beveiligd video-platform voor therapeuten en cliënten. Granulaire access-grants, MFA, GDPR-export en payment-abstractie. Next.js 15 + Prisma + Cloudflare R2.",
-  alternates: { canonical: "/projects/therapyvault" },
+  // Dutch-only page; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/projects/therapyvault",
+    languages: {
+      "nl-NL": "/projects/therapyvault",
+      "x-default": "/projects/therapyvault",
+    },
+  },
 };
 
 export const appSchema = {

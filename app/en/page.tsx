@@ -9,15 +9,63 @@ import {
   DrawnArrow,
 } from "@/components/sketch";
 
+// This page is written in English (the rest of the site is Dutch). Declare its
+// real language: og:locale en_US + self/x-default hreflang, plus a Dutch
+// alternate that points at the real Dutch homepage ("/"). Overriding openGraph
+// here replaces the nl_NL openGraph inherited from app/layout.tsx (Next.js
+// merges metadata shallowly; a child openGraph replaces the parent's).
 export const metadata: Metadata = {
   title: "Nathan Renting · solo dev. English summary.",
   description:
     "Solo dev from Eindhoven (NL) with 12 years of entertainment and audio-production background. Builds agent systems, real-time audio, and supporting infrastructure. Available for contract engineering (ZZP).",
+  alternates: {
+    canonical: "/en",
+    languages: {
+      en: "/en",
+      "nl-NL": "/",
+      "x-default": "/",
+    },
+  },
+  openGraph: {
+    title: "Nathan Renting — Solo AI engineer + real-time audio. Eindhoven, NL.",
+    description:
+      "Solo dev from Eindhoven (NL): builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines. Available for contract engineering (ZZP).",
+    url: "https://nathanrenting.dev/en",
+    siteName: "nathanrenting.dev",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/nathan-portret.png",
+        alt: "Nathan Renting — solo AI-agent & real-time audio developer, Eindhoven",
+      },
+    ],
+  },
+};
+
+// WebPage JSON-LD for the English summary — inLanguage en-US so AI/answer
+// engines see this page's real language (the root layout's html lang="nl" and
+// the site's nl-NL WebSite node otherwise imply Dutch). Reuses the shared
+// #website / #nathan @id's from app/layout.tsx.
+const enPageGraph = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://nathanrenting.dev/en#webpage",
+  url: "https://nathanrenting.dev/en",
+  name: "Nathan Renting · solo dev. English summary.",
+  isPartOf: { "@id": "https://nathanrenting.dev/#website" },
+  about: { "@id": "https://nathanrenting.dev/#nathan" },
+  inLanguage: "en-US",
+  primaryImageOfPage: "https://nathanrenting.dev/nathan-portret.png",
 };
 
 export default function EnglishSummary() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(enPageGraph) }}
+      />
       {/* Hero */}
       <section className="mb-20 relative">
         <div className="font-mono text-xs uppercase tracking-widest text-cyan-400 mb-4">

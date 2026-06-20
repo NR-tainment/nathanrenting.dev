@@ -4,7 +4,14 @@ export const metadata = {
   title: "Multi-brain LLM routing & model-tiers",
   description:
     "Goedkope heuristieken eerst, een LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te slopen.",
-  alternates: { canonical: "/patterns/multi-brain-routing" },
+  // Dutch-only article; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/patterns/multi-brain-routing",
+    languages: {
+      "nl-NL": "/patterns/multi-brain-routing",
+      "x-default": "/patterns/multi-brain-routing",
+    },
+  },
 };
 
 export const articleSchema = {

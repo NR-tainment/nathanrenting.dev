@@ -4,7 +4,14 @@ export const metadata = {
   title: "PhotoFlow — van shoot naar online",
   description:
     "Een Lightroom-plugin, Tauri-desktop en cloud-publishing-stack voor professionele fotografen. Multi-agent architectuur: Vision, Copy, Publishing en Analytics.",
-  alternates: { canonical: "/projects/photoflow" },
+  // Dutch-only page; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/projects/photoflow",
+    languages: {
+      "nl-NL": "/projects/photoflow",
+      "x-default": "/projects/photoflow",
+    },
+  },
 };
 
 export const appSchema = {

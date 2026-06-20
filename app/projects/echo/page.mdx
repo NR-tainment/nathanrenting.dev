@@ -4,7 +4,14 @@ export const metadata = {
   title: "ECHO — agent-orchestrator",
   description:
     "Een persoonlijke agent-orchestrator, solo gebouwd door Nathan Renting. Multi-brain routing, tool-dispatch, vault-backed memory en lokale + cloud LLM-fallback.",
-  alternates: { canonical: "/projects/echo" },
+  // Dutch-only page; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/projects/echo",
+    languages: {
+      "nl-NL": "/projects/echo",
+      "x-default": "/projects/echo",
+    },
+  },
 };
 
 export const appSchema = {

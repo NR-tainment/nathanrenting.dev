@@ -4,7 +4,14 @@ export const metadata = {
   title: "Real-time audio in Rust",
   description:
     "Lock-free SPSC ring buffers, allocation-vrije audio paths en FFI-patronen. Waarom Rust de harde real-time audio-deadline van ~5 ms overleeft.",
-  alternates: { canonical: "/patterns/real-time-audio-rust" },
+  // Dutch-only article; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/patterns/real-time-audio-rust",
+    languages: {
+      "nl-NL": "/patterns/real-time-audio-rust",
+      "x-default": "/patterns/real-time-audio-rust",
+    },
+  },
 };
 
 export const articleSchema = {

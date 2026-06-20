@@ -4,7 +4,14 @@ export const metadata = {
   title: "CaptionCompass — captions voor doven",
   description:
     "Android accessibility-app: live captions altijd zichtbaar, richting-hint van de spreker alleen als betrouwbaar. Kotlin + Jetpack Compose + GCC-PHAT DoA.",
-  alternates: { canonical: "/projects/captioncompass" },
+  // Dutch-only page; no translated version exists, so self + x-default only.
+  alternates: {
+    canonical: "/projects/captioncompass",
+    languages: {
+      "nl-NL": "/projects/captioncompass",
+      "x-default": "/projects/captioncompass",
+    },
+  },
 };
 
 export const appSchema = {
