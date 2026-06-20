@@ -1,0 +1,170 @@
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+
+export const metadata = {
+  title: "Multi-brain LLM routing & model-tiers",
+  description:
+    "Goedkope heuristieken eerst, een LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te slopen.",
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/nl/patterns/multi-brain-routing#article",
+  headline: "Multi-brain LLM routing",
+  description:
+    "Goedkope heuristieken eerst, een LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te slopen.",
+  inLanguage: "nl-NL",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage: "https://nathanrenting.dev/nl/patterns/multi-brain-routing",
+  image: "https://nathanrenting.dev/pattern-router-flow.jpg",
+  keywords: [
+    "LLM routing",
+    "model-tier selectie",
+    "heuristieken",
+    "LLM-classifier",
+    "kosten-optimalisatie",
+    "AI-agent",
+  ],
+  about: [
+    "Large Language Models",
+    "LLM orchestration",
+    "AI Agents",
+    "Cost optimization",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={111}>Pattern · LLM routing</SketchUnderline>
+</div>
+
+# Multi-brain LLM routing
+
+Alles via Sonnet sturen is duurder dan nodig. Alles via Haiku breekt zodra
+het iets meer wordt dan een groet. Ergens daartussen wil je een router die
+per request kiest welk model gepast is. Mijn voorkeur:{" "}
+<MarkerHighlight>goedkope heuristieken eerst, een LLM-classifier als fallback — niet als default</MarkerHighlight>.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-router-flow.jpg"
+    alt="Hand-getekende schets van de router: REQUEST gaat naar HEURISTICS (greet / keyword / deep / shell), bij no match valt het door naar CLASSIFIER (small LLM), en eindigt in een tier-keuze FAST / MAIN / THINK."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-schets · de routing-flow
+  </figcaption>
+</figure>
+
+## De vorm
+
+```python
+async def decide(text: str, *, force: Brain | None = None) -> RouterDecision:
+    if force is not None:
+        return RouterDecision(force, "manual", "user-override")
+
+    # Laag 1: goedkope regex-heuristieken (microseconden, gratis)
+    h = _heuristic(text)
+    if h is not None:
+        return h
+
+    # Laag 2: LLM-classifier (Haiku, ~30 input-tokens, sub-second)
+    return await _llm_classify(text)
+```
+
+Laag 1 vangt de bulk gratis af. "Hoi" gaat naar de `fast` tier. Alles wat
+een keyword raakt voor tool-gebruik, diepe reasoning of een specifiek
+domein gaat meteen naar de juiste tier. Laag 2 vuurt alleen als de
+heuristieken oprecht geen idee hebben.
+
+De winst zit niet in een slimme heuristiek. Die zit in de *laag-structuur*:
+goedkoop eerst, duur alleen als het moet, allebei zichtbaar via hetzelfde
+`RouterDecision`-object zodat je achteraf precies kunt zien wat er gekozen
+is en waarom.
+
+## Wat heuristieken afvangen
+
+Vier categorieën pakken meestal 70-80% van de beslissingen:
+
+1. **Korte groetjes en tijd-vragen** — inputs onder de 20 tekens die een
+   kleine regex-set matchen. Naar de goedkoopste, snelste tier. Iemand
+   die "hoi" zegt heeft geen Sonnet nodig.
+
+2. **Domein-keywords** — termen die naar een specifiek product of context
+   wijzen. Naar de tier die de juiste system-prompt-context laadt. In een
+   multi-product orchestrator essentieel — anders gaat de agent reasoning
+   doen vanuit de verkeerde context.
+
+3. **Diepe-reasoning keywords** — "design", "architect", "refactor",
+   "review", "diepgaand". Omhoog naar Opus / Sonnet 4.6 / wat je top
+   tier ook is. Goedkoop om te detecteren, duur om te missen.
+
+4. **Tool-gebruik signalen** — file-paths, shell-werkwoorden ("scan",
+   "check", "lees"), code-fence-markers. Naar de tier waar shell-tools
+   beschikbaar zijn.
+
+Die laatste is een stille killer. Zonder die check schrijft een klein
+model de shell-command uit als Markdown in plaats van de tool aan te
+roepen. Fix zit op de routing-laag, niet in de prompt.
+
+## Wat de classifier afdekt
+
+Als de heuristieken `None` teruggeven hit je een kleine LLM (Haiku-klasse)
+met een vaste instructie:
+
+```
+You are a routing classifier. Given a user message, output exactly ONE word:
+- 'fast' for trivial greetings, time questions, simple confirmations
+- 'main' for normal conversation, document Q&A, summaries, smart-home
+- 'deep' for multi-step reasoning, code review, complex analysis
+Output ONLY the single word, nothing else.
+```
+
+Kosten per classificatie: paar tienden van een cent. Latency: onder de
+seconde. Robuustheid: hoog — Haiku is consistent genoeg op zo'n
+drieweg-keuze dat je geen groter model nodig hebt.
+
+Eén kleine maar echte win: vertel de classifier om bij twijfel naar `main`
+te leunen in plaats van naar `fast`. Een triviale request via `main` kost
+weinig extra. Een tool-vragende request die per ongeluk naar `fast` gaat
+(en dan de tool niet aanroept) kost véél meer.
+
+## Wanneer je geen router nodig hebt
+
+Als elke request die binnenkomt ongeveer dezelfde vorm heeft — een
+chatbot die één ding doet, bijvoorbeeld — is dit overkill. De router
+betaalt zichzelf terug zodra:
+
+- Je requests een range hebben van triviaal tot diep
+- Je meerdere tiers beschikbaar hebt
+- Kosten een echte factor zijn (solo-founder-budget, freemium, hoog volume)
+- Tools in het spel zijn (waar misrouting echte failures geeft, niet
+  alleen kostbare ineffi&shy;ciëntie)
+
+Twee van die vier kloppen? Dan verdient de router zichzelf binnen een
+week terug.
+
+## Observability is belangrijker dan de router
+
+Geef een gestructureerd `RouterDecision`-object terug met de gekozen tier,
+welke laag heeft besloten (heuristic / haiku / fallback), de reden, en de
+elapsed time. Dat maakt het hele ding inspecteerbaar. Na 200 requests
+scrol je door de log en zie je precies waar de heuristieken er naast
+zitten, waar de classifier twijfelt, en waar je `main` aan het betalen
+bent terwijl `fast` ook had gekund.
+
+Zonder die log wordt de router een black-box die je uiteindelijk weggooit
+omdat "het ligt vast aan de router". Mét die log is de router een knop
+die je tweakt.
+
+</div>

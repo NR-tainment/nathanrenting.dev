@@ -1,0 +1,154 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "PhotoFlow — van shoot naar online",
+  description:
+    "Een Lightroom-plugin, Tauri-desktop en cloud-publishing-stack voor professionele fotografen. Multi-agent architectuur: Vision, Copy, Publishing en Analytics.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/nl/projects/photoflow#app",
+  name: "PhotoFlow",
+  description:
+    "Van bewerkte foto naar online aanwezigheid binnen 30 seconden, voor professionele fotografen. Een Lightroom-plugin plus Tauri-desktop-client plus cloud-publishing-stack met een multi-agent architectuur (Vision, Copy, Publishing, Analytics).",
+  applicationCategory: "MultimediaApplication",
+  operatingSystem: "Windows, macOS",
+  inLanguage: "nl-NL",
+  url: "https://nathanrenting.dev/nl/projects/photoflow",
+  image: "https://nathanrenting.dev/photoflow-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "photography",
+    "Lightroom plugin",
+    "Tauri",
+    "multi-agent",
+    "publishing automation",
+    "desktop app",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={239}>Project · pre-development</SketchUnderline>
+</div>
+
+# PhotoFlow — van bewerkte foto naar online in 30 seconden
+
+<MarkerHighlight>Het werk tussen &quot;shoot bewerkt&quot; en &quot;shoot online&quot; wegnemen.</MarkerHighlight>{" "}
+Voor professionele fotografen die in Lightroom werken: één goedkeuring
+levert Instagram-teasers, ceremonie-carousels, blog-reportage,
+portfolio-update en LinkedIn-case-study tegelijk op — gepland, gepubliceerd
+en gemonitord.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/photoflow-architecture.png"
+    alt="Hand-getekende pipeline: SHOOT → LIGHTROOM EDIT → 'send to PhotoFlow' → DESKTOP CLIENT (Tauri) → vier agents (VISION/COPY/PUBLISHING/ANALYTICS) → IG, FB, LinkedIn, BLOG. Annotatie '30 SECONDS' bovenaan, 'one approval → all deliverables' onderaan."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-schets · van shoot naar deliverables in 30 seconden
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Wat de fotograaf nog doet
+
+Drie stappen:
+
+1. Foto maken
+2. Foto bewerken in Lightroom
+3. Goedkeuren
+
+Alles daartussen — captions, hashtags, scheduling, publiceren naar
+IG / FB / LinkedIn, blog, portfolio — doet AI.
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Kernconcepten
+
+**Project / Shoot is het hoofdobject.** Niet &quot;posts&quot;. Een
+project (&quot;Bruiloft Lisa &amp; Mark&quot;) wordt door AI vertaald naar
+meerdere afgeleiden. Eén goedkeuring → alle deliverables klaar.
+
+**Curation vs Technical QA.** AI doet alleen de objectieve technische
+beoordeling: scherpte, ogen-open, belichting, motion blur. De artistieke
+selectie blijft volledig bij de fotograaf via Lightroom-ratings.
+
+**Toggle-first UX.** Alle features 1× ingesteld tijdens onboarding
+(vier schermen), daarna alleen via Settings. Defaults agressief AAN.
+De workflow voegt nooit stappen toe aan wat de fotograaf al gewend is.
+
+**RAW-blind.** PhotoFlow leest geen RAW. Lightroom rendert; PhotoFlow
+opereert op previews en exports. Werkt voor Canon, Fuji en alle door
+Lightroom ondersteunde merken zonder special-casing.
+
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
+## Architectuur
+
+Hybride opzet:
+
+| Component | Tech | Verantwoordelijkheid |
+|---|---|---|
+| Desktop client | Tauri + React + SQLite | Lokaal: foto&apos;s, projecten, drafts, settings |
+| Lightroom plugin | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot; — praat met desktop via localhost |
+| Cloud component | Supabase of Cloudflare Workers + D1 + R2 | OAuth-proxy, token-refresh, scheduled-publish-queue, App-Review-endpoints |
+
+De lokaal-eerst keuze houdt foto-data uit cloud-opslag tenzij dat
+nodig is. Cloud doet alleen wat het móét doen: socialer netwerk-OAuth
+en publish-scheduling op een tijd dat het apparaat van de fotograaf
+mogelijk uit staat.
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
+## Multi-agent
+
+| Agent | Functie |
+|---|---|
+| Vision | Beeldanalyse, onderwerpdetectie, sfeer |
+| Copy | Captions, hashtags, SEO, blog |
+| Publishing | Planning, publicatie, statuscontrole |
+| Analytics | Resultaten, rapportages, verbeteradviezen |
+
+Vier rollen, één coordinator. Het patroon achter een groot deel van
+ECHO komt hier terug: een dunne router-laag verdeelt het werk en de
+output landt op één gestructureerde plek.
+
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
+## Doelgroep + API-realiteit
+
+Professionele fotografen met:
+
+- Adobe Lightroom Classic workflow
+- Instagram Business of Creator account (verplicht, technische
+  beperking Meta API)
+- Facebook Page
+- Optioneel: LinkedIn (persoonlijk of Company Page)
+
+PhotoFlow ondersteunt **geen** persoonlijke social-media accounts.
+Geen keuze maar een harde API-beperking van Meta en LinkedIn. Beter
+dat scherp zeggen dan het in onboarding ontdekken.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Status
+
+**Pre-development.** Visie, architectuurbeslissingen,
+doelgroepvalidatie en datamodel vastgelegd. Volgende stap: scaffold
++ Pipeline Core.
+
+</div>
