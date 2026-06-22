@@ -4,14 +4,14 @@ const fr: AiAgentsDict = {
   meta: {
     title: "Créer des agents IA — freelance, Pays-Bas et EU remote",
     description:
-      "Développeur d'agents IA pour les PME. Orchestration de LLM, tool-calling, RAG et API Claude. Des agents de production, du prompt jusqu'à un composant qui fonctionne dans votre produit. Mission freelance, Eindhoven et EU remote.",
+      "Développeur d'agents IA pour les PME. Orchestration de LLM, tool-calling, RAG et API Claude. Des agents de production, du prompt jusqu'à un composant qui fonctionne dans ton produit. Mission freelance, Eindhoven et EU remote.",
   },
   eyebrow: "Prestation · AI engineer freelance",
   h1Lead: "Créer des agents IA. ",
   h1Accent: "Production — pas une démo",
   h1Tail: ".",
   intro:
-    "Je construis des systèmes d'agents IA qui tournent vraiment — de bout en bout. Orchestration de LLM, tool-calling, RAG, et l'intégration dans votre stack existant. En solo, depuis Eindhoven, disponible 2-3 jours par semaine pour des clients aux Pays-Bas et dans l'UE.",
+    "Je construis des systèmes d'agents IA qui tournent vraiment — de bout en bout. Orchestration de LLM, tool-calling, RAG, et l'intégration dans ton stack existant. En solo, depuis Eindhoven, disponible 2-3 jours par semaine pour des clients aux Pays-Bas et dans l'UE.",
   ctaPrimary: "Réserver un appel →",
   ctaSecondary: "Voir ECHO comme référence",
   help: {
@@ -20,15 +20,15 @@ const fr: AiAgentsDict = {
     bullets: [
       {
         strong: "Mettre en place un agent de zéro.",
-        body: "Orchestration de LLM · tool-calling · couche mémoire · toute l'architecture. Pas un chatbot qui se contente de parler, mais un agent qui exécute des tâches et reprend là où vous vous étiez arrêté hier.",
+        body: "Orchestration de LLM · tool-calling · couche mémoire · toute l'architecture. Pas un chatbot qui se contente de parler, mais un agent qui exécute des tâches et reprend là où tu t'étais arrêté hier.",
       },
       {
         strong: "Améliorer une intégration LLM existante.",
         body: "Routage entre modèles, coûts en baisse, latence en baisse, fiabilité en hausse. Souvent avec un fallback multi-niveaux et des modèles locaux pour les requêtes peu coûteuses.",
       },
       {
-        strong: "Mettre en place du RAG sur vos propres documents.",
-        body: 'Embeddings, chunking, stratégie de retrieval, évaluation. Pas un « load and chat » générique — mais configuré pour votre corpus et vos questions.',
+        strong: "Mettre en place du RAG sur tes propres documents.",
+        body: 'Embeddings, chunking, stratégie de retrieval, évaluation. Pas un « load and chat » générique — mais configuré pour ton corpus et tes questions.',
       },
       {
         strong: "Intégration de l'API Claude.",
@@ -80,7 +80,7 @@ const fr: AiAgentsDict = {
     p2Highlight:
       "je sais où les agents cassent en production, et comment l'éviter",
     p2After:
-      ". Les choix d'architecture faits tôt (couche mémoire, routage, registre d'outils, stratégie de fallback) déterminent si, dans six mois, vous serez encore satisfait de la codebase — ou si vous repartez de zéro.",
+      ". Les choix d'architecture faits tôt (couche mémoire, routage, registre d'outils, stratégie de fallback) déterminent si, dans six mois, tu seras encore satisfait de la codebase — ou si tu repars de zéro.",
     link: "→ Lire à propos d'ECHO",
   },
   forWho: {
@@ -106,11 +106,11 @@ const fr: AiAgentsDict = {
     steps: [
       {
         strong: "Un court e-mail ou message.",
-        body: "Quel est le problème, la forme générale de ce que vous cherchez, l'horizon temporel. Un paragraphe suffit.",
+        body: "Quel est le problème, la forme générale de ce que tu cherches, l'horizon temporel. Un paragraphe suffit.",
       },
       {
         strong: "Un appel de 30 minutes.",
-        body: "Si le courant passe, on cadre le projet. Sinon, je vous le dis aussi. Je montre ECHO en direct si vous le souhaitez.",
+        body: "Si le courant passe, on cadre le projet. Sinon, je te le dis aussi. Je montre ECHO en direct si tu veux.",
       },
       {
         strong: "Une semaine payée d'abord.",

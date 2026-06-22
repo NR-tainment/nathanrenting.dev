@@ -2,11 +2,11 @@ import type { HireDict } from "./types";
 
 const de: HireDict = {
   meta: {
-    title: "Engagieren Sie mich",
+    title: "Engagiere mich",
     description:
       "Freelance-Einsatz über Einzelunternehmen, 2-3 Tage pro Woche, 110-130 €/Std. Agenten-Systeme, KI-Automatisierung, Audio/Mobile, EU-konforme Infrastruktur.",
   },
-  h1: "Engagieren Sie mich",
+  h1: "Engagiere mich",
   availability: "Verfügbar · 2-3 Tage pro Woche",
   what: {
     heading: "Was ich für Kunden mache",

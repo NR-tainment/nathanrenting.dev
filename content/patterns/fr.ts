@@ -9,7 +9,7 @@ const fr: PatternsDict = {
   },
   h1: "Patterns",
   intro:
-    "Des décisions d’ingénierie tirées de projets réels. Chaque article est court (3 à 5 min de lecture), centré sur un seul pattern, et ancré dans du code que j’ai réellement livré. Lisez ce qui vous intéresse. Aucun ordre de lecture imposé.",
+    "Des décisions d’ingénierie tirées de projets réels. Chaque article est court (3 à 5 min de lecture), centré sur un seul pattern, et ancré dans du code que j’ai réellement livré. Lis ce qui t’intéresse. Aucun ordre de lecture imposé.",
   marginNote: "(pas de devoirs, juste des notes prises sur le terrain)",
   items: [
     {

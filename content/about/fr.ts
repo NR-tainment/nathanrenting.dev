@@ -32,7 +32,7 @@ const fr: AboutDict = {
     p2Highlight: "Autodidacte, pas de joli parcours LinkedIn",
     p2After: ".",
     p3: "Depuis 2018, je travaille sur mon propre produit audio. Les premières années sont passées dans la construction du concept et les premières esquisses du site. Pas de code de production, mais le modèle mental qui soutient tout ce qu'il y a en dessous. Ensuite, trois pivots de concept et plusieurs itérations reconstruites, avec un niveau de production depuis 2024. Huit ans passés dans un même espace de problème produisent quelque chose qu'aucun tutoriel n'enseigne : un sens de quelles abstractions tiennent et lesquelles tu démoliras à nouveau six mois plus tard. Le produit reste sous NDA jusqu'au lancement.",
-    p4: "Ce que tout ça apporte : je comprends l'audio de fond en comble. Le DSP, et aussi comment un producteur bute sur quelque chose et ce qu'une UI doit faire pour ne pas être dans le chemin. J'essaie de garder ce même regard large dans le travail sur les agents. Le moteur, l'infra et l'expérience utilisateur en vue tous en même temps.",
+    p4: "Ce que tout ça apporte : je comprends l'audio de fond en comble. Le DSP, et aussi ce sur quoi un producteur bute et ce qu'une UI doit faire pour ne pas gêner. J'essaie de garder ce même regard large dans le travail sur les agents. Le moteur, l'infra et l'expérience utilisateur, tout en vue en même temps.",
   },
   now: {
     heading: "Ce qui tourne en ce moment",
@@ -76,7 +76,7 @@ const fr: AboutDict = {
     p1Highlight:
       "Je préfère mettre tôt une version moche en production qu'une belle roadmap qui ne sera jamais construite",
     p1After: ".",
-    p2: "L'étendue de la stack avant la spécialisation. Si je suis plongé dans du DSP audio, je dois quand même être capable de monter un flow Stripe, et inversement. Sinon le système cliquette quelque part au niveau des coutures.",
+    p2: "L'étendue de la stack avant la spécialisation. Si je suis plongé dans du DSP audio, je dois quand même être capable de monter un flow Stripe, et inversement. Sinon le système finit par lâcher quelque part aux jointures.",
     p3: "L'UE d'abord pour les données clients. Supabase à Frankfurt, Sentry en UE, un registre des traitements qui est réellement tenu à jour. Pas un argument marketing. Juste là où mes utilisateurs et moi vivons.",
   },
 };

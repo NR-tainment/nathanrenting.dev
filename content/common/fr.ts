@@ -1,27 +1,27 @@
-﻿import type { CommonDict } from "./types";
+import type { CommonDict } from "./types";
 
-// FR chrome â€” needed now so the nav/footer/switcher render in French on /fr.
+// FR chrome — needed now so the nav/footer/switcher render in French on /fr.
 const fr: CommonDict = {
   nav: {
     home: "Accueil",
-    work: "RÃ©alisations",
+    work: "Réalisations",
     services: "Services",
     patterns: "Patterns",
-    about: "Ã€ propos",
+    about: "À propos",
     hire: "Me recruter",
   },
   footer: {
     inhuur: "Me recruter",
-    builtWith: "ConÃ§u en solo. Next.js, MDX, cafÃ©. Source sur ",
+    builtWith: "Conçu en solo. Next.js, MDX, café. Source sur ",
     sourceLinkLabel: "github.com/NR-tainment",
     builtWithSuffix: ".",
   },
   switcher: {
     switchTo: {
-      nl: "Passer au nÃ©erlandais",
-      en: "Passer Ã  lâ€™anglais",
-      de: "Passer Ã  lâ€™allemand",
-      fr: "Passer au franÃ§ais",
+      nl: "Passer au néerlandais",
+      en: "Passer à l'anglais",
+      de: "Passer à l'allemand",
+      fr: "Passer au français",
     },
   },
 };

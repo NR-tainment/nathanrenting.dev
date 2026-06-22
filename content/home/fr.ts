@@ -21,7 +21,7 @@ const fr: HomeDict = {
     intro:
       "D'abord douze ans dans le divertissement et la production audio, puis de plus en plus sérieusement dans l'ingénierie en solo. Aujourd'hui je construis de l'orchestration d'agents, des moteurs audio et la technique qui les soutient. En solo, augmenté par l'IA, depuis Eindhoven.",
     ctaPrimary: "Voir le travail →",
-    ctaSecondary: "Engagez-moi",
+    ctaSecondary: "Travaillons ensemble",
     marginNote: "(portfolio whiteboard. patterns et projets plus bas)",
   },
   work: {
@@ -104,7 +104,7 @@ const fr: HomeDict = {
   },
   patterns: {
     heading: "Patterns",
-    marginNote: "(lisez ce qui vous intéresse, pas de devoirs)",
+    marginNote: "(lis ce qui t'intéresse, pas de devoirs)",
     intro:
       "Des décisions d'ingénierie rencontrées en chemin. Des writeups courts, ~3-5 min chacun.",
     links: [
@@ -121,7 +121,7 @@ const fr: HomeDict = {
     heading: "Ce que j'apporte",
     highlight: "Combo étrange",
     body:
-      " : plus de dix ans d'ADN audio et quelqu'un qui construit et utilise des systèmes d'agents au quotidien. Pour les produits audio, je suis dans les deux mondes à la fois. Pour l'ingénierie IA pure, je maîtrise parfaitement l'outillage. Aucun temps de montée en charge. Pas d'équipe. Peu de drame.",
+      " : plus de dix ans d'ADN audio et quelqu'un qui construit et utilise des systèmes d'agents au quotidien. Pour les produits audio, je suis dans les deux mondes à la fois. Pour l'ingénierie IA pure, je maîtrise parfaitement l'outillage. Opérationnel tout de suite. Pas d'équipe. Sans chichis.",
   },
   faqHeading: "Questions fréquentes",
   faq: [
