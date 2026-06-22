@@ -49,7 +49,7 @@ const de: HireDict = {
       },
       {
         label: "Standort",
-        body: "Remote bevorzugt aus Eindhoven. Ganz die Niederlande erreichbar für ein Kickoff oder ein kritisches Review.",
+        body: "Remote bevorzugt aus Eindhoven. In den ganzen Niederlanden erreichbar für einen Kickoff oder ein kritisches Review.",
       },
       {
         label: "Stack",

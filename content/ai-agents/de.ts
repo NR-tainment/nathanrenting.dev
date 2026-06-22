@@ -78,7 +78,7 @@ const de: AiAgentsDict = {
     p1: "Ich baue nicht nur für Kunden — ich baue für mich selbst. ECHO ist mein eigener Agenten-Orchestrator, der täglich auf meinem Schreibtisch läuft. Voice-first, geroutet zwischen lokalem Ollama und Claude, eigenes Gedächtnis in einem Obsidian-Vault, ein Live-HUD mit System-Stats. Zehn Jahre Audio-DNA darunter für die Voice-Ebene.",
     p2Before: "Was ECHO für die Kundenarbeit beweist: ",
     p2Highlight:
-      "Ich weiß, wo Agenten in der Produktion brechen, und wie man das verhindert",
+      "Ich weiß, wo Agenten in der Produktion kaputtgehen, und wie man das verhindert",
     p2After:
       ". Die Architektur-Entscheidungen, die du früh triffst (Memory-Layer, Routing, Tool-Registry, Fallback-Strategie), bestimmen, ob du in sechs Monaten noch mit der Codebase zufrieden bist — oder ob du von vorne anfängst.",
     link: "→ Über ECHO lesen",

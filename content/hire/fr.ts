@@ -49,7 +49,7 @@ const fr: HireDict = {
       },
       {
         label: "Localisation",
-        body: "Remote de préférence depuis Eindhoven. Toute la Hollande joignable pour un kickoff ou une revue critique.",
+        body: "Remote de préférence depuis Eindhoven. Joignable dans toute la NL pour un kickoff ou une revue critique.",
       },
       {
         label: "Stack",
