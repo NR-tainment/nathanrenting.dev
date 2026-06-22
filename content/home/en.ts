@@ -127,27 +127,27 @@ const en: HomeDict = {
   faq: [
     {
       q: "What does Nathan Renting do?",
-      a: "Nathan is a solo developer from Eindhoven who builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines — from prototype to production.",
+      a: "I'm a solo developer from Eindhoven who builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines — from prototype to production.",
     },
     {
       q: "Is Nathan available for freelance / contract work?",
-      a: "Yes. Available for contract engineering (ZZP), 2-3 days/week, EU remote. Based in Eindhoven, reachable throughout NL for a kickoff or critical review.",
+      a: "Yes. I'm available for contract engineering (ZZP), 2-3 days/week, EU remote. I'm based in Eindhoven and reachable throughout NL for a kickoff or critical review.",
     },
     {
       q: "Which technologies does Nathan use?",
-      a: "For AI agents: Python, FastAPI, Claude API, MCP, LangGraph and RAG. For real-time audio: Rust, Kotlin, Android NDK and DSP. For product: Next.js, TypeScript and React Native.",
+      a: "For AI agents I reach for Python, FastAPI, Claude API, MCP, LangGraph and RAG. For real-time audio: Rust, Kotlin, Android NDK and DSP. For product: Next.js, TypeScript and React Native.",
     },
     {
       q: "What does it cost to hire Nathan?",
-      a: "Indicative €110-130 per hour. Project pricing is negotiable depending on scope and duration.",
+      a: "Indicative €110-130 per hour. I keep project pricing negotiable depending on scope and duration.",
     },
     {
       q: "Does Nathan work remote or on-site?",
-      a: "Remote-preferred within the EU. On-site in the Netherlands is possible for a kickoff or a critical review.",
+      a: "I prefer remote within the EU. On-site in the Netherlands works for a kickoff or a critical review.",
     },
     {
       q: "What makes Nathan's profile unique?",
-      a: "The combination of 10+ years of audio and DSP background and building agent systems daily. For audio-AI products he's in both worlds at once.",
+      a: "I combine 10+ years of audio and DSP background with building agent systems daily. For audio-AI products I'm in both worlds at once.",
     },
   ],
   cta: {

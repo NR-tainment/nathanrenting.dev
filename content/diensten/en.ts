@@ -8,7 +8,7 @@ const en: DienstenDict = {
   },
   h1: "Services",
   introBefore:
-    "What I do freelance || in concrete terms. One page per service, so you can quickly see if it fits. For the arrangement and the rate: see ",
+    "What I do freelance — in concrete terms. One page per service, so you can quickly see if it fits. For the arrangement and the rate: see ",
   introLinkLabel: "/hire",
   introAfter: ".",
   marginNote: "(one list, no sales funnel)",
@@ -22,7 +22,7 @@ const en: DienstenDict = {
     },
   ],
   outro:
-    "More services are coming || LLM integration, RAG, Claude API. For now: one page done, one more each week. Going faster won't make it better.",
+    "More service pages as I write them — LLM integration, RAG, Claude API. I'd rather have one page that's right than a list of promises.",
 };
 
 export default en;

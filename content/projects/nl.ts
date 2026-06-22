@@ -24,7 +24,7 @@ const nl: ProjectsDict = {
       href: "/projects/therapyvault",
       title: "TherapyVault",
       oneLiner:
-        "Beveiligd video-platform voor therapeuten en hun cliënten. Therapist uploadt sessies, granulaire access-controls per cliënt, GDPR-export en scheduled-deletion, MFA voor admins. Next.js 15 + Prisma + Cloudflare R2.",
+        "Beveiligd video-platform voor therapeuten en hun cliënten. De therapeut uploadt sessies, granulaire access-controls per cliënt, GDPR-export en geplande verwijdering, MFA voor admins. Next.js 15 + Prisma + Cloudflare R2.",
       tags: ["Next.js 15", "TypeScript", "Auth + MFA", "GDPR", "Stripe / Mollie"],
       status: "v0.1 RC",
     },
@@ -32,7 +32,7 @@ const nl: ProjectsDict = {
       href: "/projects/audiolab",
       title: "AudioLab.tools",
       oneLiner:
-        "Authority-platform op het snijvlak van audio + AI + DSP + Android + toegankelijkheid. Real tools, deep docs, no slop. Astro + React + Tailwind v4, cluster-structuur (MixLab, HearLab, Engineering).",
+        "Authority-platform op het snijvlak van audio + AI + DSP + Android + toegankelijkheid. Echte tools, diepgaande docs, geen flauwekul. Astro + React + Tailwind v4, cluster-structuur (MixLab, HearLab, Engineering).",
       tags: ["Astro", "Content platform", "Audio + AI", "DSP"],
       status: "Live · in opbouw",
       externalUrl: "https://audiolab.tools",

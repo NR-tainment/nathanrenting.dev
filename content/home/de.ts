@@ -127,27 +127,27 @@ const de: HomeDict = {
   faq: [
     {
       q: "Was macht Nathan Renting?",
-      a: "Nathan ist ein Solo-Entwickler aus Eindhoven, der KI-Agenten-Systeme (LLM-Orchestrierung, Tool-Calling, RAG) und Echtzeit-Audio-Engines baut — vom Prototyp bis zur Produktion.",
+      a: "Ich bin ein Solo-Entwickler aus Eindhoven, der KI-Agenten-Systeme (LLM-Orchestrierung, Tool-Calling, RAG) und Echtzeit-Audio-Engines baut — vom Prototyp bis zur Produktion.",
     },
     {
       q: "Ist Nathan für freiberufliche Aufträge verfügbar?",
-      a: "Ja. Verfügbar für freiberufliches Engineering, 2-3 Tage pro Woche, EU-remote. Mit Sitz in Eindhoven, in den ganzen Niederlanden erreichbar für einen Kickoff oder ein kritisches Review.",
+      a: "Ja. Ich bin verfügbar für freiberufliches Engineering, 2-3 Tage pro Woche, EU-remote. Ich sitze in Eindhoven und bin in den ganzen Niederlanden erreichbar für einen Kickoff oder ein kritisches Review.",
     },
     {
       q: "Welche Technologien nutzt Nathan?",
-      a: "Für KI-Agenten: Python, FastAPI, Claude API, MCP, LangGraph und RAG. Für Echtzeit-Audio: Rust, Kotlin, Android NDK und DSP. Für Produkt: Next.js, TypeScript und React Native.",
+      a: "Für KI-Agenten greife ich zu Python, FastAPI, Claude API, MCP, LangGraph und RAG. Für Echtzeit-Audio: Rust, Kotlin, Android NDK und DSP. Für Produkt: Next.js, TypeScript und React Native.",
     },
     {
       q: "Was kostet es, Nathan zu engagieren?",
-      a: "Richtwert €110-130 pro Stunde. Projektpreise sind verhandelbar, abhängig von Umfang und Dauer.",
+      a: "Richtwert €110-130 pro Stunde. Projektpreise halte ich verhandelbar, abhängig von Umfang und Dauer.",
     },
     {
       q: "Arbeitet Nathan remote oder vor Ort?",
-      a: "Remote bevorzugt innerhalb der EU. Vor Ort in den Niederlanden ist für einen Kickoff oder ein kritisches Review möglich.",
+      a: "Ich arbeite am liebsten remote innerhalb der EU. Vor Ort in den Niederlanden geht für einen Kickoff oder ein kritisches Review.",
     },
     {
       q: "Was macht Nathans Profil einzigartig?",
-      a: "Die Kombination aus über 10 Jahren Audio- und DSP-Hintergrund und dem täglichen Bau von Agentensystemen. Bei Audio-KI-Produkten ist er in beiden Welten gleichzeitig zu Hause.",
+      a: "Ich kombiniere über 10 Jahre Audio- und DSP-Hintergrund mit dem täglichen Bau von Agentensystemen. Bei Audio-KI-Produkten bin ich in beiden Welten gleichzeitig zu Hause.",
     },
   ],
   cta: {

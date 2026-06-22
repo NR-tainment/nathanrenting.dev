@@ -123,27 +123,27 @@ const nl: HomeDict = {
   faq: [
     {
       q: "Wat doet Nathan Renting?",
-      a: "Nathan is een solo developer uit Eindhoven die AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines bouwt — van prototype tot productie.",
+      a: "Ik ben een solo developer uit Eindhoven die AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines bouwt — van prototype tot productie.",
     },
     {
       q: "Is Nathan beschikbaar voor freelance / ZZP-inhuur?",
-      a: "Ja. Beschikbaar voor ZZP-inhuur, 2-3 dagen per week, EU remote. Vanuit Eindhoven, heel NL bereikbaar voor een kickoff of kritische review.",
+      a: "Ja. Ik ben beschikbaar voor ZZP-inhuur, 2-3 dagen per week, EU remote. Ik zit in Eindhoven en ben heel NL bereikbaar voor een kickoff of kritische review.",
     },
     {
       q: "Welke technologieën gebruikt Nathan?",
-      a: "Voor AI-agents: Python, FastAPI, Claude API, MCP, LangGraph en RAG. Voor real-time audio: Rust, Kotlin, Android NDK en DSP. Voor product: Next.js, TypeScript en React Native.",
+      a: "Voor AI-agents pak ik Python, FastAPI, Claude API, MCP, LangGraph en RAG. Voor real-time audio: Rust, Kotlin, Android NDK en DSP. Voor product: Next.js, TypeScript en React Native.",
     },
     {
       q: "Wat kost het om Nathan in te huren?",
-      a: "Indicatief €110-130 per uur. Projectprijzen zijn bespreekbaar, afhankelijk van scope en duur.",
+      a: "Indicatief €110-130 per uur. Projectprijzen houd ik bespreekbaar, afhankelijk van scope en duur.",
     },
     {
       q: "Werkt Nathan remote of on-site?",
-      a: "Remote-preferred binnen de EU. On-site in Nederland is mogelijk voor een kickoff of een kritische review.",
+      a: "Ik werk het liefst remote binnen de EU. On-site in Nederland kan voor een kickoff of een kritische review.",
     },
     {
       q: "Wat maakt Nathan's profiel uniek?",
-      a: "De combinatie van 10+ jaar audio- en DSP-achtergrond én het dagelijks bouwen van agent-systemen. Voor audio-AI-producten zit hij in beide werelden tegelijk.",
+      a: "Ik combineer 10+ jaar audio- en DSP-achtergrond met het dagelijks bouwen van agent-systemen. Voor audio-AI-producten zit ik in beide werelden tegelijk.",
     },
   ],
   cta: {

@@ -8,7 +8,7 @@ const de: DienstenDict = {
   },
   h1: "Leistungen",
   introBefore:
-    "Was ich freiberuflich mache || konkret. Pro Leistung eine Seite, damit du schnell siehst, ob es passt. Für Ablauf und Tarif: siehe ",
+    "Was ich freiberuflich mache — konkret. Pro Leistung eine Seite, damit du schnell siehst, ob es passt. Für Ablauf und Tarif: siehe ",
   introLinkLabel: "/hire",
   introAfter: ".",
   marginNote: "(eine Liste, kein Sales-Funnel)",
@@ -22,7 +22,7 @@ const de: DienstenDict = {
     },
   ],
   outro:
-    "Weitere Leistungen kommen || LLM-Integration, RAG, Claude API. Für jetzt: eine Seite fertig, jede Woche eine dazu. Schneller macht es nicht besser.",
+    "Weitere Leistungsseiten kommen, sobald ich sie schreibe — LLM-Integration, RAG, Claude API. Lieber eine Seite, die stimmt, als eine Liste voller Versprechen.",
 };
 
 export default de;

@@ -6,7 +6,7 @@ export type AiAgentsDict = {
   meta: { title: string; description: string };
   eyebrow: string;
   h1Lead: string; // "AI agents bouwen. "
-  h1Accent: string; // "Productie || niet demo"
+  h1Accent: string; // "Productie — niet demo"
   h1Tail: string; // "."
   intro: string;
   ctaPrimary: string;

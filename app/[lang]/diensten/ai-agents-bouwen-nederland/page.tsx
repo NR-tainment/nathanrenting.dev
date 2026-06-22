@@ -53,7 +53,7 @@ export default async function AiAgentsBouwenPage({
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${localizedUrl(locale, PATH)}#service`,
-    name: "AI agents bouwen || freelance",
+    name: "AI agents bouwen — freelance",
     alternateName: [
       "AI agent development",
       "LLM agent ontwikkeling",

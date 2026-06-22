@@ -1,8 +1,5 @@
 import type { PatternsDict } from "./types";
 
-// NOTE: The source site's patterns index copy is authored in English (the
-// articles use English-inline-tech-term Dutch prose). Kept verbatim as the NL
-// source so the live output stays byte-stable; translators localise per locale.
 const nl: PatternsDict = {
   meta: {
     title: "Patterns",
@@ -11,49 +8,49 @@ const nl: PatternsDict = {
   },
   h1: "Patterns",
   intro:
-    "Engineering decisions extracted from real work. Each writeup is short (3-5 min read), focused on one pattern, and grounded in code I actually shipped. Read what interests you. No reading order.",
-  marginNote: "(no homework, just notes from the trenches)",
+    "Engineering-beslissingen die uit echt werk komen. Elke writeup is kort (3-5 min lezen), gaat over één patroon, en staat op code die ik daadwerkelijk heb uitgebracht. Lees wat je interesseert. Er is geen leesvolgorde.",
+  marginNote: "(geen huiswerk, gewoon aantekeningen uit de praktijk)",
   items: [
     {
       href: "/patterns/multi-brain-routing",
       title: "Multi-brain LLM routing",
       oneLiner:
-        "Cheap heuristics first, LLM classifier as fallback. How to pick the right model tier per request without burning cost or quality.",
+        "Eerst goedkope heuristieken, LLM-classifier als fallback. Hoe je per request de juiste model-tier kiest zonder kosten of kwaliteit te verbranden.",
       tags: ["LLM", "Routing", "Cost"],
     },
     {
       href: "/patterns/three-tier-fallback",
       title: "Three-tier AI fallback",
       oneLiner:
-        "Claude → rules → hardcoded. A degradation pattern that keeps the product working when the API doesn't.",
+        "Claude → regels → hardcoded. Een degradatie-patroon dat het product werkend houdt als de API dat niet doet.",
       tags: ["LLM", "Reliability"],
     },
     {
       href: "/patterns/real-time-audio-rust",
       title: "Real-time audio in Rust",
       oneLiner:
-        "Lock-free SPSC ring buffers, allocation-free audio paths, FFI patterns. Why Rust survives the real-time deadline.",
+        "Lock-free SPSC ring buffers, allocatie-vrije audiopaden, FFI-patronen. Waarom Rust de realtime-deadline overleeft.",
       tags: ["Rust", "Audio DSP", "FFI"],
     },
     {
       href: "/patterns/cross-arch-android",
       title: "Cross-architecture Android builds",
       oneLiner:
-        "Single APK across arm64/armv7/x86_64. Alignment bugs, NDK version pinning, libc++_shared dupe traps.",
+        "Eén APK over arm64/armv7/x86_64. Alignment-bugs, NDK-versies vastpinnen, libc++_shared dubbele-kopie-valkuilen.",
       tags: ["Android", "NDK", "Builds"],
     },
     {
       href: "/patterns/eu-first-infrastructure",
       title: "EU-first infrastructure",
       oneLiner:
-        "Why EU jurisdiction matters and how to stack Supabase EU + Sentry EU + GDPR-by-design without bolt-on overhead.",
+        "Waarom EU-jurisdictie ertoe doet en hoe je Supabase EU + Sentry EU + GDPR-by-design stapelt zonder bolt-on overhead.",
       tags: ["GDPR", "Architecture"],
     },
     {
       href: "/patterns/agentskills-implementation",
       title: "agentskills.io implementation",
       oneLiner:
-        "Why a skills layer above tools. SKILL.md format, progressive disclosure, when to graduate from raw tools.",
+        "Waarom een skills-laag boven tools. SKILL.md-formaat, progressive disclosure, wanneer je van rauwe tools af stapt.",
       tags: ["Agents", "Anthropic"],
     },
   ],

@@ -2,16 +2,16 @@ import type { AiAgentsDict } from "./types";
 
 const fr: AiAgentsDict = {
   meta: {
-    title: "Créer des agents IA || freelance, Pays-Bas et EU remote",
+    title: "Créer des agents IA — freelance, Pays-Bas et EU remote",
     description:
       "Développeur d'agents IA pour les PME. Orchestration de LLM, tool-calling, RAG et API Claude. Des agents de production, du prompt jusqu'à un composant qui fonctionne dans votre produit. Mission freelance, Eindhoven et EU remote.",
   },
   eyebrow: "Prestation · AI engineer freelance",
   h1Lead: "Créer des agents IA. ",
-  h1Accent: "Production || pas une démo",
+  h1Accent: "Production — pas une démo",
   h1Tail: ".",
   intro:
-    "Je construis des systèmes d'agents IA qui tournent vraiment || de bout en bout. Orchestration de LLM, tool-calling, RAG, et l'intégration dans votre stack existant. En solo, depuis Eindhoven, disponible 2-3 jours par semaine pour des clients aux Pays-Bas et dans l'UE.",
+    "Je construis des systèmes d'agents IA qui tournent vraiment — de bout en bout. Orchestration de LLM, tool-calling, RAG, et l'intégration dans votre stack existant. En solo, depuis Eindhoven, disponible 2-3 jours par semaine pour des clients aux Pays-Bas et dans l'UE.",
   ctaPrimary: "Réserver un appel →",
   ctaSecondary: "Voir ECHO comme référence",
   help: {
@@ -20,7 +20,7 @@ const fr: AiAgentsDict = {
     bullets: [
       {
         strong: "Mettre en place un agent de zéro.",
-        body: "Orchestration de LLM || tool-calling || couche mémoire || toute l'architecture. Pas un chatbot qui se contente de parler, mais un agent qui exécute des tâches et reprend là où vous vous étiez arrêté hier.",
+        body: "Orchestration de LLM · tool-calling · couche mémoire · toute l'architecture. Pas un chatbot qui se contente de parler, mais un agent qui exécute des tâches et reprend là où vous vous étiez arrêté hier.",
       },
       {
         strong: "Améliorer une intégration LLM existante.",
@@ -28,7 +28,7 @@ const fr: AiAgentsDict = {
       },
       {
         strong: "Mettre en place du RAG sur vos propres documents.",
-        body: 'Embeddings, chunking, stratégie de retrieval, évaluation. Pas un « load and chat » générique || mais configuré pour votre corpus et vos questions.',
+        body: 'Embeddings, chunking, stratégie de retrieval, évaluation. Pas un « load and chat » générique — mais configuré pour votre corpus et vos questions.',
       },
       {
         strong: "Intégration de l'API Claude.",
@@ -48,15 +48,15 @@ const fr: AiAgentsDict = {
     rows: [
       {
         label: "LLM",
-        body: "Anthropic Claude (Sonnet || Haiku || Opus). En local Ollama (Qwen 2.5, Llama 3.2) pour les routes peu coûteuses et le fallback hors ligne.",
+        body: "Anthropic Claude (Sonnet · Haiku · Opus). En local Ollama (Qwen 2.5, Llama 3.2) pour les routes peu coûteuses et le fallback hors ligne.",
       },
       {
         label: "Backend",
-        body: "Python et FastAPI. I/O asynchrone || registre d'outils || streaming. Rust là où la latence compte.",
+        body: "Python et FastAPI. I/O asynchrone · registre d'outils · streaming. Rust là où la latence compte.",
       },
       {
         label: "Tooling",
-        body: "Tool-calling || MCP || le pattern agentskills.io (compatible OpenClaw). Fallback multi-niveaux pour la fiabilité en production.",
+        body: "Tool-calling · MCP · le pattern agentskills.io (compatible OpenClaw). Fallback multi-niveaux pour la fiabilité en production.",
       },
       {
         label: "Memory",
@@ -64,7 +64,7 @@ const fr: AiAgentsDict = {
       },
       {
         label: "Infra",
-        body: "Supabase EU || Cloudflare R2 || Sentry EU || Stripe. Vercel ou un VPS auto-hébergé avec Coolify quand cela convient.",
+        body: "Supabase EU · Cloudflare R2 · Sentry EU · Stripe. Vercel ou un VPS auto-hébergé avec Coolify quand cela convient.",
       },
       {
         label: "Pas",
@@ -73,14 +73,14 @@ const fr: AiAgentsDict = {
     ],
   },
   proof: {
-    heading: "Preuve || ECHO",
-    marginNote: "(pas de pitch deck || en direct pendant un appel)",
-    p1: "Je ne construis pas seulement pour des clients || je construis pour moi-même. ECHO est mon propre orchestrateur d'agents qui tourne chaque jour sur mon bureau. Voice-first, routé entre Ollama en local et Claude, sa propre mémoire dans un vault Obsidian, un HUD en direct avec les stats système. Dix ans d'ADN audio en dessous pour la couche voix.",
+    heading: "Preuve — ECHO",
+    marginNote: "(pas de pitch deck — en direct pendant un appel)",
+    p1: "Je ne construis pas seulement pour des clients — je construis pour moi-même. ECHO est mon propre orchestrateur d'agents qui tourne chaque jour sur mon bureau. Voice-first, routé entre Ollama en local et Claude, sa propre mémoire dans un vault Obsidian, un HUD en direct avec les stats système. Dix ans d'ADN audio en dessous pour la couche voix.",
     p2Before: "Ce qu'ECHO prouve pour le travail client : ",
     p2Highlight:
       "je sais où les agents cassent en production, et comment l'éviter",
     p2After:
-      ". Les choix d'architecture faits tôt (couche mémoire, routage, registre d'outils, stratégie de fallback) déterminent si, dans six mois, vous serez encore satisfait de la codebase || ou si vous repartez de zéro.",
+      ". Les choix d'architecture faits tôt (couche mémoire, routage, registre d'outils, stratégie de fallback) déterminent si, dans six mois, vous serez encore satisfait de la codebase — ou si vous repartez de zéro.",
     link: "→ Lire à propos d'ECHO",
   },
   forWho: {

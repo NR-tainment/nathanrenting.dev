@@ -127,27 +127,27 @@ const fr: HomeDict = {
   faq: [
     {
       q: "Que fait Nathan Renting ?",
-      a: "Nathan est un développeur solo d'Eindhoven qui conçoit des systèmes d'agents IA (orchestration LLM, tool-calling, RAG) et des moteurs audio temps réel — du prototype à la production.",
+      a: "Je suis un développeur solo d'Eindhoven qui conçoit des systèmes d'agents IA (orchestration LLM, tool-calling, RAG) et des moteurs audio temps réel — du prototype à la production.",
     },
     {
       q: "Nathan est-il disponible pour des missions en freelance / indépendant ?",
-      a: "Oui. Disponible en freelance, 2-3 jours par semaine, en remote dans l'UE. Basé à Eindhoven, joignable dans toute la NL pour un kickoff ou une revue critique.",
+      a: "Oui. Je suis disponible en freelance, 2-3 jours par semaine, en remote dans l'UE. Je suis basé à Eindhoven et joignable dans toute la NL pour un kickoff ou une revue critique.",
     },
     {
       q: "Quelles technologies Nathan utilise-t-il ?",
-      a: "Pour les agents IA : Python, FastAPI, Claude API, MCP, LangGraph et RAG. Pour l'audio temps réel : Rust, Kotlin, Android NDK et DSP. Pour le produit : Next.js, TypeScript et React Native.",
+      a: "Pour les agents IA, je privilégie Python, FastAPI, Claude API, MCP, LangGraph et RAG. Pour l'audio temps réel : Rust, Kotlin, Android NDK et DSP. Pour le produit : Next.js, TypeScript et React Native.",
     },
     {
       q: "Combien coûte l'engagement de Nathan ?",
-      a: "À titre indicatif, €110-130 de l'heure. Les tarifs au projet sont négociables selon la portée et la durée.",
+      a: "À titre indicatif, €110-130 de l'heure. Je garde les tarifs au projet négociables selon la portée et la durée.",
     },
     {
       q: "Nathan travaille-t-il en remote ou sur site ?",
-      a: "Remote de préférence au sein de l'UE. Le sur-site aux Pays-Bas est possible pour un kickoff ou une revue critique.",
+      a: "Je préfère le remote au sein de l'UE. Le sur-site aux Pays-Bas est possible pour un kickoff ou une revue critique.",
     },
     {
       q: "Qu'est-ce qui rend le profil de Nathan unique ?",
-      a: "La combinaison de plus de 10 ans de background audio et DSP et de la construction quotidienne de systèmes d'agents. Pour les produits audio-IA, il est dans les deux mondes à la fois.",
+      a: "Je combine plus de 10 ans de background audio et DSP avec la construction quotidienne de systèmes d'agents. Pour les produits audio-IA, je suis dans les deux mondes à la fois.",
     },
   ],
   cta: {
