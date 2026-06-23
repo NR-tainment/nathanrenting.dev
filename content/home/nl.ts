@@ -113,6 +113,39 @@ const nl: HomeDict = {
     ],
     allLink: "→ Alle patterns",
   },
+  writing: {
+    heading: "Uit de praktijk",
+    marginNote: "(recente writeups, met datum)",
+    intro:
+      "Het meest recente werk dat ik openbaar heb opgeschreven — korte writeups uit echte projecten, niet uit een blogkalender.",
+    items: [
+      {
+        href: "/patterns/multi-brain-routing",
+        headline: "Multi-brain LLM routing",
+        summary:
+          "Goedkope heuristieken eerst, een LLM-classifier als fallback. Per request de juiste model-tier kiezen zonder kosten of kwaliteit te verbranden.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 juni 2026",
+      },
+      {
+        href: "/patterns/three-tier-fallback",
+        headline: "Three-tier AI fallback",
+        summary:
+          "Claude → regels → hardcoded. Een degradatie-patroon dat het product werkend houdt als de API dat niet doet.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 juni 2026",
+      },
+      {
+        href: "/patterns/real-time-audio-rust",
+        headline: "Real-time audio in Rust",
+        summary:
+          "Lock-free ring buffers, allocatie-vrije audiopaden, FFI-patronen. Waarom Rust de realtime-deadline overleeft.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 juni 2026",
+      },
+    ],
+    allLink: "→ Alle patterns",
+  },
   bring: {
     heading: "Wat ik meeneem",
     highlight: "Vreemde combo",

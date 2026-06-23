@@ -117,6 +117,39 @@ const en: HomeDict = {
     ],
     allLink: "→ All patterns",
   },
+  writing: {
+    heading: "Recent writing",
+    marginNote: "(latest writeups, dated)",
+    intro:
+      "The most recent work I've written up in public — short writeups from real projects, not from a content calendar.",
+    items: [
+      {
+        href: "/patterns/multi-brain-routing",
+        headline: "Multi-brain LLM routing",
+        summary:
+          "Cheap heuristics first, an LLM classifier as fallback. Picking the right model tier per request without burning cost or quality.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 June 2026",
+      },
+      {
+        href: "/patterns/three-tier-fallback",
+        headline: "Three-tier AI fallback",
+        summary:
+          "Claude → rules → hardcoded. A degradation pattern that keeps the product working when the API doesn't.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 June 2026",
+      },
+      {
+        href: "/patterns/real-time-audio-rust",
+        headline: "Real-time audio in Rust",
+        summary:
+          "Lock-free ring buffers, allocation-free audio paths, FFI patterns. Why Rust survives the real-time deadline.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 June 2026",
+      },
+    ],
+    allLink: "→ All patterns",
+  },
   bring: {
     heading: "What I bring",
     highlight: "Strange combo",

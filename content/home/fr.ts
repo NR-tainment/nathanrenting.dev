@@ -117,6 +117,39 @@ const fr: HomeDict = {
     ],
     allLink: "→ Tous les patterns",
   },
+  writing: {
+    heading: "Sur le terrain",
+    marginNote: "(derniers writeups, datés)",
+    intro:
+      "Les travaux les plus récents que j'ai documentés en public — de courts writeups tirés de projets réels, pas d'un calendrier éditorial.",
+    items: [
+      {
+        href: "/patterns/multi-brain-routing",
+        headline: "Routage LLM multi-cerveaux",
+        summary:
+          "D'abord des heuristiques peu coûteuses, un classifieur LLM en fallback. Choisir le bon palier de modèle par requête sans brûler ni le budget ni la qualité.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 juin 2026",
+      },
+      {
+        href: "/patterns/three-tier-fallback",
+        headline: "Fallback IA à trois niveaux",
+        summary:
+          "Claude → règles → codé en dur. Un pattern de dégradation qui maintient le produit en marche quand l'API ne répond plus.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 juin 2026",
+      },
+      {
+        href: "/patterns/real-time-audio-rust",
+        headline: "Audio temps réel en Rust",
+        summary:
+          "Buffers circulaires lock-free, chemins audio sans allocation, patterns FFI. Pourquoi Rust tient l'échéance du temps réel.",
+        datePublished: "2026-06-20",
+        dateLabel: "20 juin 2026",
+      },
+    ],
+    allLink: "→ Tous les patterns",
+  },
   bring: {
     heading: "Ce que j'apporte",
     highlight: "Combo étrange",

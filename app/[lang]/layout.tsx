@@ -51,8 +51,8 @@ export async function generateMetadata({
     ? "Nathan Renting — AI-agent & real-time audio developer"
     : "Nathan Renting — AI agent & real-time audio developer";
   const description = isNl
-    ? "Nathan Renting: solo developer uit Eindhoven (NL). Bouwt AI-agent systemen (LLM-orchestratie, RAG) en real-time audio engines. ZZP-inhuur, EU remote."
-    : "Nathan Renting: solo developer from Eindhoven (NL). Builds AI-agent systems (LLM orchestration, RAG) and real-time audio engines. Available for contract (ZZP), EU remote.";
+    ? "Nathan Renting: freelance AI engineer en AI-ontwikkelaar uit Eindhoven (NL). Bouwt AI-agent systemen (LLM-orchestratie, RAG) en real-time audio engines. Inhuren als ZZP'er, EU remote."
+    : "Nathan Renting: freelance AI engineer and real-time audio developer from Eindhoven (NL). Builds AI-agent systems (LLM orchestration, RAG) and real-time audio engines. Available to hire on contract (ZZP), EU remote.";
 
   return {
     metadataBase: new URL(SITE_URL),

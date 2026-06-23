@@ -78,6 +78,25 @@ export type HomeDict = {
     links: { href: string; label: string }[];
     allLink: string;
   };
+  /**
+   * "Recent writing" — 2–3 real patterns surfaced on the home page with their
+   * real publish dates. Drives both the visible section and the home ItemList
+   * JSON-LD (each item → TechArticle ref with headline + datePublished +
+   * author #nathan). href is locale-less; datePublished is ISO (YYYY-MM-DD).
+   */
+  writing: {
+    heading: string;
+    marginNote: string;
+    intro: string;
+    items: {
+      href: string;
+      headline: string;
+      summary: string;
+      datePublished: string;
+      dateLabel: string;
+    }[];
+    allLink: string;
+  };
   bring: {
     heading: string;
     highlight: string; // "Vreemde combo"

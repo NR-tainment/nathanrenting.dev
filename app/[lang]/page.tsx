@@ -127,6 +127,35 @@ export default async function Home({
     })),
   };
 
+  // ItemList of the most recent writeups → each a TechArticle ref with real
+  // headline + datePublished + author #nathan. Gives answer-engines a citable,
+  // dated list of first-party writing surfaced from the home page.
+  const writingSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${localizedUrl(locale, "")}#writing`,
+    name: t.writing.heading,
+    inLanguage: HREFLANG[locale],
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    itemListElement: t.writing.items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "TechArticle",
+        "@id": `${localizedUrl(locale, item.href)}#article`,
+        headline: item.headline,
+        abstract: item.summary,
+        url: localizedUrl(locale, item.href),
+        datePublished: item.datePublished,
+        dateModified: item.datePublished,
+        inLanguage: HREFLANG[locale],
+        author: { "@id": `${SITE_URL}/#nathan` },
+        publisher: { "@id": `${SITE_URL}/#org` },
+        isPartOf: { "@id": `${localizedUrl(locale, "")}#webpage` },
+      },
+    })),
+  };
+
   const cards = t.projects;
 
   return (
@@ -138,6 +167,10 @@ export default async function Home({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(writingSchema) }}
       />
       {/* Hero */}
       <section className="mb-20 relative">
@@ -309,6 +342,56 @@ export default async function Home({
           className="inline-block mt-6 font-mono text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
         >
           {t.patterns.allLink}
+        </Link>
+      </SectionReveal>
+
+      {/* Divider between sections */}
+      <div className="flex justify-center my-12 opacity-40">
+        <ChalkDoodle type="divider" color="#52525b" />
+      </div>
+
+      {/* Recent writing */}
+      <SectionReveal className="mb-20 relative">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-3">
+          <ChalkDoodle type="asterisk" className="opacity-60" />
+          <SketchUnderline seed={23}>{t.writing.heading}</SketchUnderline>
+        </h2>
+
+        <MarginNote position="right" rotate={-2}>
+          {t.writing.marginNote}
+        </MarginNote>
+
+        <p className="text-zinc-400 leading-relaxed mb-6">{t.writing.intro}</p>
+        <ul className="space-y-3">
+          {t.writing.items.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={p(item.href)}
+                className="group block border border-zinc-800 rounded px-4 py-3 hover:border-cyan-700 hover:bg-zinc-900/40 transition-all"
+              >
+                <div className="flex items-baseline justify-between gap-3">
+                  <span className="text-sm font-medium text-zinc-100 group-hover:text-cyan-400 transition-colors">
+                    {item.headline}
+                  </span>
+                  <time
+                    dateTime={item.datePublished}
+                    className="shrink-0 font-mono text-xs text-zinc-500"
+                  >
+                    {item.dateLabel}
+                  </time>
+                </div>
+                <p className="mt-1 text-sm text-zinc-400 leading-relaxed">
+                  {item.summary}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link
+          href={p("/patterns")}
+          className="inline-block mt-6 font-mono text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
+        >
+          {t.writing.allLink}
         </Link>
       </SectionReveal>
 

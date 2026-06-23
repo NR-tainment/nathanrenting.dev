@@ -106,7 +106,7 @@ const fr: AiAgentsDict = {
     steps: [
       {
         strong: "Un court e-mail ou message.",
-        body: "Quel est le problème, la forme générale de ce que tu cherches, l'horizon temporel. Un paragraphe suffit.",
+        body: "Le problème, en gros ce que tu cherches, à quelle échéance. Un paragraphe suffit.",
       },
       {
         strong: "Un appel de 30 minutes.",

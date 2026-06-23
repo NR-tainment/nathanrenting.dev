@@ -117,6 +117,39 @@ const de: HomeDict = {
     ],
     allLink: "→ Alle Patterns",
   },
+  writing: {
+    heading: "Aus der Praxis",
+    marginNote: "(neueste Writeups, mit Datum)",
+    intro:
+      "Die jüngsten Arbeiten, die ich öffentlich aufgeschrieben habe — kurze Writeups aus echten Projekten, nicht aus einem Redaktionskalender.",
+    items: [
+      {
+        href: "/patterns/multi-brain-routing",
+        headline: "Multi-Brain-LLM-Routing",
+        summary:
+          "Erst günstige Heuristiken, ein LLM-Classifier als Fallback. Pro Request die richtige Modellstufe wählen, ohne Kosten oder Qualität zu verheizen.",
+        datePublished: "2026-06-20",
+        dateLabel: "20. Juni 2026",
+      },
+      {
+        href: "/patterns/three-tier-fallback",
+        headline: "Dreistufiges KI-Fallback",
+        summary:
+          "Claude → Regeln → hartcodiert. Ein Degradationsmuster, das das Produkt am Laufen hält, wenn die API es nicht tut.",
+        datePublished: "2026-06-20",
+        dateLabel: "20. Juni 2026",
+      },
+      {
+        href: "/patterns/real-time-audio-rust",
+        headline: "Echtzeit-Audio in Rust",
+        summary:
+          "Lock-freie Ringpuffer, allokationsfreie Audio-Pfade, FFI-Patterns. Warum Rust die Echtzeit-Deadline übersteht.",
+        datePublished: "2026-06-20",
+        dateLabel: "20. Juni 2026",
+      },
+    ],
+    allLink: "→ Alle Patterns",
+  },
   bring: {
     heading: "Was ich mitbringe",
     highlight: "Seltsame Kombi",

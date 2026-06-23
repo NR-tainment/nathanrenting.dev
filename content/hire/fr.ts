@@ -66,7 +66,7 @@ const fr: HireDict = {
     steps: [
       {
         strong: "Écris-moi un mot.",
-        body: "Quel est le problème, la forme grossière de ce que tu cherches, ton horizon de temps. Un paragraphe suffit.",
+        body: "Le problème, en gros ce que tu cherches, à quelle échéance. Un paragraphe suffit.",
       },
       {
         strong: "Court échange (~30 min).",
@@ -80,7 +80,7 @@ const fr: HireDict = {
   },
   contact: {
     heading: "Écris-moi un mot",
-    body: "Un paragraphe suffit. Quel est le problème, la forme grossière de ce que tu cherches, ton horizon de temps. Je réponds généralement sous un jour ouvré.",
+    body: "Un paragraphe suffit. Le problème, en gros ce que tu cherches, à quelle échéance. Je réponds généralement sous un jour ouvré.",
     marginNote: "(tout ce qui précède, c'est ma façon de travailler. pas de baratin commercial)",
   },
 };
