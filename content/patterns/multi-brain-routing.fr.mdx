@@ -1,0 +1,176 @@
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+
+export const metadata = {
+  title: "Routage LLM multi-cerveaux & paliers de modèles",
+  description:
+    "Des heuristiques bon marché d'abord, un classifieur LLM en fallback. Comment choisir le bon palier de modèle par requête sans ruiner ni le coût ni la qualité.",
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/fr/patterns/multi-brain-routing#article",
+  headline: "Routage LLM multi-cerveaux",
+  description:
+    "Des heuristiques bon marché d'abord, un classifieur LLM en fallback. Comment choisir le bon palier de modèle par requête sans ruiner ni le coût ni la qualité.",
+  inLanguage: "fr-FR",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage: "https://nathanrenting.dev/fr/patterns/multi-brain-routing",
+  image: "https://nathanrenting.dev/pattern-router-flow.jpg",
+  keywords: [
+    "routage LLM",
+    "sélection de palier de modèle",
+    "heuristiques",
+    "classifieur LLM",
+    "optimisation des coûts",
+    "agent IA",
+  ],
+  about: [
+    "Large Language Models",
+    "LLM orchestration",
+    "AI Agents",
+    "Cost optimization",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={111}>Pattern · routage LLM</SketchUnderline>
+</div>
+
+# Routage LLM multi-cerveaux
+
+Tout faire passer par Sonnet coûte plus cher que nécessaire. Tout faire
+passer par Haiku casse dès que ça devient un peu plus qu'un bonjour. Quelque
+part entre les deux, tu veux un routeur qui choisit, par requête, le modèle
+adapté. Ma préférence :{" "}
+<MarkerHighlight>des heuristiques bon marché d'abord, un classifieur LLM en fallback — pas par défaut</MarkerHighlight>.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-router-flow.jpg"
+    alt="Croquis dessiné à la main du routeur : REQUEST va vers HEURISTICS (greet / keyword / deep / shell), en l'absence de correspondance il passe au CLASSIFIER (petit LLM), et aboutit à un choix de palier FAST / MAIN / THINK."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Croquis de tableau blanc · le flux de routage
+  </figcaption>
+</figure>
+
+## La forme
+
+```python
+async def decide(text: str, *, force: Brain | None = None) -> RouterDecision:
+    if force is not None:
+        return RouterDecision(force, "manual", "user-override")
+
+    # Couche 1 : heuristiques regex bon marché (microsecondes, gratuit)
+    h = _heuristic(text)
+    if h is not None:
+        return h
+
+    # Couche 2 : classifieur LLM (Haiku, ~30 tokens d'entrée, sub-second)
+    return await _llm_classify(text)
+```
+
+La couche 1 intercepte le gros du trafic gratuitement. « Salut » part vers
+le palier `fast`. Tout ce qui touche un mot-clé pour l'usage d'outils, le
+raisonnement profond ou un domaine spécifique part directement vers le bon
+palier. La couche 2 ne se déclenche que lorsque les heuristiques n'ont
+sincèrement aucune idée.
+
+Le gain n'est pas dans une heuristique astucieuse. Il est dans la
+*structure en couches* : bon marché d'abord, cher seulement quand il le
+faut, les deux visibles via le même objet `RouterDecision` pour que tu
+puisses voir après coup exactement ce qui a été choisi et pourquoi.
+
+## Ce que les heuristiques interceptent
+
+Quatre catégories couvrent en général 70 à 80 % des décisions :
+
+1. **Bonjours courts et questions sur l'heure** — des entrées de moins de
+   20 caractères qui matchent un petit jeu de regex. Vers le palier le
+   moins cher et le plus rapide. Quelqu'un qui dit « salut » n'a pas besoin
+   de Sonnet.
+
+2. **Mots-clés de domaine** — des termes qui pointent vers un produit ou un
+   contexte précis. Vers le palier qui charge le bon contexte de
+   system-prompt. Essentiel dans un orchestrateur multi-produits — sinon
+   l'agent se met à raisonner depuis le mauvais contexte.
+
+3. **Mots-clés de raisonnement profond** — « design », « architect »,
+   « refactor », « review », « approfondi ». Vers le haut, vers Opus /
+   Sonnet 4.6 / quel que soit ton palier le plus élevé. Bon marché à
+   détecter, cher à manquer.
+
+4. **Signaux d'usage d'outils** — chemins de fichiers, verbes shell
+   (« scan », « check », « lis »), marqueurs de code-fence. Vers le palier
+   où les outils shell sont disponibles.
+
+Cette dernière est un tueur silencieux. Sans cette vérification, un petit
+modèle écrit la commande shell en Markdown au lieu d'appeler l'outil. Le
+correctif se situe sur la couche de routage, pas dans le prompt.
+
+## Ce que couvre le classifieur
+
+Quand les heuristiques renvoient `None`, tu sollicites un petit LLM (classe
+Haiku) avec une instruction fixe :
+
+```
+You are a routing classifier. Given a user message, output exactly ONE word:
+- 'fast' for trivial greetings, time questions, simple confirmations
+- 'main' for normal conversation, document Q&A, summaries, smart-home
+- 'deep' for multi-step reasoning, code review, complex analysis
+Output ONLY the single word, nothing else.
+```
+
+Coût par classification : quelques dixièmes de centime. Latence : moins
+d'une seconde. Robustesse : élevée — Haiku est assez cohérent sur un choix
+à trois voies comme celui-ci pour que tu n'aies pas besoin d'un modèle plus
+grand.
+
+Un petit gain mais bien réel : dis au classifieur de pencher vers `main` en
+cas de doute plutôt que vers `fast`. Une requête triviale via `main` coûte
+peu de plus. Une requête réclamant un outil qui part par erreur vers `fast`
+(et n'appelle ensuite pas l'outil) coûte bien plus cher.
+
+## Quand tu n'as pas besoin d'un routeur
+
+Si chaque requête qui arrive a à peu près la même forme — un chatbot qui
+fait une seule chose, par exemple — c'est surdimensionné. Le routeur se
+rentabilise dès que :
+
+- Tes requêtes couvrent une plage allant du trivial au profond
+- Tu disposes de plusieurs paliers
+- Le coût est un vrai facteur (budget de solo-founder, freemium, fort
+  volume)
+- Des outils sont en jeu (où un mauvais routage provoque de vrais échecs,
+  pas seulement une coûteuse ineffi&shy;cacité)
+
+Deux de ces quatre sont vrais ? Alors le routeur se rentabilise en une
+semaine.
+
+## L'observabilité compte plus que le routeur
+
+Renvoie un objet `RouterDecision` structuré avec le palier choisi, la
+couche qui a décidé (heuristic / haiku / fallback), la raison et le temps
+écoulé. Ça rend l'ensemble inspectable. Après 200 requêtes, tu fais défiler
+le log et tu vois exactement où les heuristiques se trompent, où le
+classifieur hésite, et où tu paies pour `main` alors que `fast` aurait
+suffi.
+
+Sans ce log, le routeur devient une boîte noire que tu finis par jeter
+parce que « c'est la faute du routeur ». Avec ce log, le routeur est un
+bouton que tu ajustes.
+
+</div>

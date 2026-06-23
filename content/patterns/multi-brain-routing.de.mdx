@@ -1,0 +1,173 @@
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+
+export const metadata = {
+  title: "Multi-Brain-LLM-Routing & Modell-Tiers",
+  description:
+    "Erst günstige Heuristiken, ein LLM-Classifier als Fallback. Wie du pro Request die passende Modell-Tier wählst, ohne Kosten oder Qualität zu ruinieren.",
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/de/patterns/multi-brain-routing#article",
+  headline: "Multi-Brain-LLM-Routing",
+  description:
+    "Erst günstige Heuristiken, ein LLM-Classifier als Fallback. Wie du pro Request die passende Modell-Tier wählst, ohne Kosten oder Qualität zu ruinieren.",
+  inLanguage: "de-DE",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage: "https://nathanrenting.dev/de/patterns/multi-brain-routing",
+  image: "https://nathanrenting.dev/pattern-router-flow.jpg",
+  keywords: [
+    "LLM-Routing",
+    "Modell-Tier-Auswahl",
+    "Heuristiken",
+    "LLM-Classifier",
+    "Kostenoptimierung",
+    "KI-Agent",
+  ],
+  about: [
+    "Large Language Models",
+    "LLM orchestration",
+    "AI Agents",
+    "Cost optimization",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={111}>Pattern · LLM-Routing</SketchUnderline>
+</div>
+
+# Multi-Brain-LLM-Routing
+
+Alles über Sonnet zu schicken ist teurer als nötig. Alles über Haiku
+bricht, sobald es mehr als eine Begrüßung wird. Irgendwo dazwischen willst
+du einen Router, der pro Request entscheidet, welches Modell passt. Mein
+Favorit:{" "}
+<MarkerHighlight>erst günstige Heuristiken, ein LLM-Classifier als Fallback — nicht als Default</MarkerHighlight>.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-router-flow.jpg"
+    alt="Handgezeichnete Skizze des Routers: REQUEST geht an HEURISTICS (greet / keyword / deep / shell), bei keinem Match fällt es durch zum CLASSIFIER (kleines LLM) und endet in einer Tier-Wahl FAST / MAIN / THINK."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-Skizze · der Routing-Flow
+  </figcaption>
+</figure>
+
+## Die Form
+
+```python
+async def decide(text: str, *, force: Brain | None = None) -> RouterDecision:
+    if force is not None:
+        return RouterDecision(force, "manual", "user-override")
+
+    # Schicht 1: günstige Regex-Heuristiken (Mikrosekunden, kostenlos)
+    h = _heuristic(text)
+    if h is not None:
+        return h
+
+    # Schicht 2: LLM-Classifier (Haiku, ~30 Input-Tokens, sub-second)
+    return await _llm_classify(text)
+```
+
+Schicht 1 fängt den Großteil kostenlos ab. „Hi" geht an die `fast`-Tier.
+Alles, was ein Keyword für Tool-Nutzung, tiefes Reasoning oder eine
+bestimmte Domäne trifft, geht direkt an die richtige Tier. Schicht 2 feuert
+nur, wenn die Heuristiken wirklich keine Ahnung haben.
+
+Der Gewinn liegt nicht in einer cleveren Heuristik. Er liegt in der
+*Schichtstruktur*: erst günstig, teuer nur wenn es sein muss, beides
+sichtbar über dasselbe `RouterDecision`-Objekt, sodass du im Nachhinein
+genau sehen kannst, was gewählt wurde und warum.
+
+## Was Heuristiken abfangen
+
+Vier Kategorien decken meist 70-80 % der Entscheidungen ab:
+
+1. **Kurze Begrüßungen und Zeit-Fragen** — Inputs unter 20 Zeichen, die ein
+   kleines Regex-Set matchen. An die günstigste, schnellste Tier. Wer „hi"
+   sagt, braucht kein Sonnet.
+
+2. **Domänen-Keywords** — Begriffe, die auf ein bestimmtes Produkt oder
+   einen bestimmten Kontext verweisen. An die Tier, die den richtigen
+   System-Prompt-Kontext lädt. In einem Multi-Produkt-Orchestrator
+   essenziell — sonst beginnt der Agent, aus dem falschen Kontext heraus zu
+   reasonen.
+
+3. **Deep-Reasoning-Keywords** — „design", „architect", „refactor",
+   „review", „tiefgehend". Hoch zu Opus / Sonnet 4.6 / was auch immer deine
+   Top-Tier ist. Günstig zu erkennen, teuer zu verpassen.
+
+4. **Tool-Nutzungs-Signale** — File-Paths, Shell-Verben („scan", „check",
+   „lies"), Code-Fence-Marker. An die Tier, in der Shell-Tools verfügbar
+   sind.
+
+Die letzte ist ein stiller Killer. Ohne diese Prüfung schreibt ein kleines
+Modell den Shell-Befehl als Markdown aus, statt das Tool aufzurufen. Der Fix
+sitzt auf der Routing-Schicht, nicht im Prompt.
+
+## Was der Classifier abdeckt
+
+Wenn die Heuristiken `None` zurückgeben, triffst du ein kleines LLM
+(Haiku-Klasse) mit einer festen Instruktion:
+
+```
+You are a routing classifier. Given a user message, output exactly ONE word:
+- 'fast' for trivial greetings, time questions, simple confirmations
+- 'main' for normal conversation, document Q&A, summaries, smart-home
+- 'deep' for multi-step reasoning, code review, complex analysis
+Output ONLY the single word, nothing else.
+```
+
+Kosten pro Klassifikation: ein paar Zehntel-Cent. Latenz: unter einer
+Sekunde. Robustheit: hoch — Haiku ist bei so einer Dreiweg-Wahl konsistent
+genug, dass du kein größeres Modell brauchst.
+
+Ein kleiner, aber echter Gewinn: Sag dem Classifier, im Zweifel zu `main`
+zu tendieren statt zu `fast`. Ein trivialer Request über `main` kostet wenig
+extra. Ein Tool-anfordernder Request, der versehentlich zu `fast` geht (und
+dann das Tool nicht aufruft), kostet viel mehr.
+
+## Wann du keinen Router brauchst
+
+Wenn jeder eingehende Request ungefähr dieselbe Form hat — ein Chatbot, der
+eine Sache macht, zum Beispiel — ist das Overkill. Der Router rechnet sich,
+sobald:
+
+- Deine Requests eine Spannweite von trivial bis tief haben
+- Du mehrere Tiers verfügbar hast
+- Kosten ein echter Faktor sind (Solo-Founder-Budget, Freemium, hohes
+  Volumen)
+- Tools im Spiel sind (wo Fehl-Routing echte Failures verursacht, nicht nur
+  kostspielige Ineffi&shy;zienz)
+
+Zwei dieser vier treffen zu? Dann rechnet sich der Router innerhalb einer
+Woche.
+
+## Observability ist wichtiger als der Router
+
+Gib ein strukturiertes `RouterDecision`-Objekt zurück mit der gewählten
+Tier, welche Schicht entschieden hat (heuristic / haiku / fallback), dem
+Grund und der Elapsed Time. Das macht das Ganze inspizierbar. Nach 200
+Requests scrollst du durch das Log und siehst genau, wo die Heuristiken
+danebenliegen, wo der Classifier zögert und wo du für `main` zahlst, obwohl
+`fast` gereicht hätte.
+
+Ohne dieses Log wird der Router zur Black Box, die du am Ende wegwirfst,
+weil „es liegt am Router". Mit diesem Log ist der Router ein Regler, an dem
+du drehst.
+
+</div>

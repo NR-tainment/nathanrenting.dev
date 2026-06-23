@@ -1,0 +1,170 @@
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+
+export const metadata = {
+  title: "Multi-brain LLM routing & model tiers",
+  description:
+    "Cheap heuristics first, an LLM classifier as fallback. How to pick the right model tier per request without wrecking cost or quality.",
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/en/patterns/multi-brain-routing#article",
+  headline: "Multi-brain LLM routing",
+  description:
+    "Cheap heuristics first, an LLM classifier as fallback. How to pick the right model tier per request without wrecking cost or quality.",
+  inLanguage: "en-US",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage: "https://nathanrenting.dev/en/patterns/multi-brain-routing",
+  image: "https://nathanrenting.dev/pattern-router-flow.jpg",
+  keywords: [
+    "LLM routing",
+    "model-tier selection",
+    "heuristics",
+    "LLM classifier",
+    "cost optimization",
+    "AI agent",
+  ],
+  about: [
+    "Large Language Models",
+    "LLM orchestration",
+    "AI Agents",
+    "Cost optimization",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={111}>Pattern · LLM routing</SketchUnderline>
+</div>
+
+# Multi-brain LLM routing
+
+Sending everything through Sonnet costs more than it needs to. Sending
+everything through Haiku breaks the moment it gets to be more than a
+greeting. Somewhere in between you want a router that picks the right model
+per request. My preference:{" "}
+<MarkerHighlight>cheap heuristics first, an LLM classifier as fallback — not as the default</MarkerHighlight>.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-router-flow.jpg"
+    alt="Hand-drawn sketch of the router: REQUEST goes to HEURISTICS (greet / keyword / deep / shell), on no match it falls through to CLASSIFIER (small LLM), and ends in a tier choice FAST / MAIN / THINK."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard sketch · the routing flow
+  </figcaption>
+</figure>
+
+## The shape
+
+```python
+async def decide(text: str, *, force: Brain | None = None) -> RouterDecision:
+    if force is not None:
+        return RouterDecision(force, "manual", "user-override")
+
+    # Layer 1: cheap regex heuristics (microseconds, free)
+    h = _heuristic(text)
+    if h is not None:
+        return h
+
+    # Layer 2: LLM classifier (Haiku, ~30 input tokens, sub-second)
+    return await _llm_classify(text)
+```
+
+Layer 1 catches the bulk for free. "Hi" goes to the `fast` tier. Anything
+that hits a keyword for tool use, deep reasoning, or a specific domain goes
+straight to the right tier. Layer 2 only fires when the heuristics
+genuinely have no idea.
+
+The win isn't in a clever heuristic. It's in the *layered structure*: cheap
+first, expensive only when it has to be, both visible through the same
+`RouterDecision` object so afterwards you can see exactly what was chosen
+and why.
+
+## What heuristics catch
+
+Four categories usually handle 70-80% of the decisions:
+
+1. **Short greetings and time questions** — inputs under 20 characters that
+   match a small regex set. Routed to the cheapest, fastest tier. Someone
+   who says "hi" doesn't need Sonnet.
+
+2. **Domain keywords** — terms that point to a specific product or context.
+   Routed to the tier that loads the right system-prompt context. Essential
+   in a multi-product orchestrator — otherwise the agent ends up reasoning
+   from the wrong context.
+
+3. **Deep-reasoning keywords** — "design", "architect", "refactor",
+   "review", "in-depth". Bumped up to Opus / Sonnet 4.6 / whatever your top
+   tier is. Cheap to detect, expensive to miss.
+
+4. **Tool-use signals** — file paths, shell verbs ("scan", "check",
+   "read"), code-fence markers. Routed to the tier where shell tools are
+   available.
+
+That last one is a silent killer. Without that check, a small model writes
+the shell command out as Markdown instead of calling the tool. The fix
+lives at the routing layer, not in the prompt.
+
+## What the classifier covers
+
+When the heuristics return `None` you hit a small LLM (Haiku class) with a
+fixed instruction:
+
+```
+You are a routing classifier. Given a user message, output exactly ONE word:
+- 'fast' for trivial greetings, time questions, simple confirmations
+- 'main' for normal conversation, document Q&A, summaries, smart-home
+- 'deep' for multi-step reasoning, code review, complex analysis
+Output ONLY the single word, nothing else.
+```
+
+Cost per classification: a few tenths of a cent. Latency: sub-second.
+Robustness: high — Haiku is consistent enough on a three-way choice like
+this that you don't need a bigger model.
+
+One small but real win: tell the classifier to lean toward `main` when in
+doubt rather than `fast`. A trivial request via `main` costs little extra.
+A tool-requesting request that accidentally goes to `fast` (and then never
+calls the tool) costs a lot more.
+
+## When you don't need a router
+
+If every request that comes in has roughly the same shape — a chatbot that
+does one thing, say — this is overkill. The router pays for itself the
+moment:
+
+- Your requests span a range from trivial to deep
+- You have multiple tiers available
+- Cost is a real factor (solo-founder budget, freemium, high volume)
+- Tools are in play (where misrouting causes real failures, not just
+  costly ineffi&shy;ciency)
+
+Two of those four hold? Then the router pays for itself within a week.
+
+## Observability matters more than the router
+
+Return a structured `RouterDecision` object with the chosen tier, which
+layer decided (heuristic / haiku / fallback), the reason, and the elapsed
+time. That makes the whole thing inspectable. After 200 requests you scroll
+through the log and see exactly where the heuristics are off, where the
+classifier hesitates, and where you're paying for `main` when `fast` would
+have done.
+
+Without that log the router becomes a black box that you eventually throw
+out because "it's down to the router." With that log the router is a knob
+you tweak.
+
+</div>

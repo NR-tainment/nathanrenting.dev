@@ -1,0 +1,196 @@
+import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
+
+export const metadata = {
+  title: "Builds Android multi-architectures",
+  description:
+    "Un seul APK pour arm64, armv7 et x86_64 avec du code natif. Bugs d'alignement, épinglage de version du NDK et pièges de doublons libc++_shared, et comment les éviter.",
+};
+
+export const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": "https://nathanrenting.dev/fr/patterns/cross-arch-android#article",
+  headline: "Builds Android multi-architectures",
+  description:
+    "Un seul APK pour arm64, armv7 et x86_64 avec du code natif. Bugs d'alignement, épinglage de version du NDK et pièges de doublons libc++_shared, et comment les éviter.",
+  inLanguage: "fr-FR",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  datePublished: "2026-06-20",
+  dateModified: "2026-06-20",
+  mainEntityOfPage: "https://nathanrenting.dev/fr/patterns/cross-arch-android",
+  image: "https://nathanrenting.dev/pattern-cross-arch.jpg",
+  keywords: [
+    "Android NDK",
+    "cross-architecture builds",
+    "arm64",
+    "native code",
+    "APK packaging",
+    "libc++_shared",
+  ],
+  about: [
+    "Android NDK",
+    "Android development",
+    "Native code",
+    "Build engineering",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={137}>Pattern · Builds Android</SketchUnderline>
+</div>
+
+# Builds Android multi-architectures
+
+Une app Android avec du code natif (Rust, C++) doit être livrée pour
+plusieurs architectures : arm64-v8a (la plupart des téléphones), armv7-a
+(appareils plus anciens, encore utilisés) et x86_64 (émulateurs,
+Chromebooks). Un seul APK doit contenir le code pour les trois, et{" "}
+<MarkerHighlight>chaque architecture est son propre petit champ de mines</MarkerHighlight>.
+
+Les pièges ci-dessous sont tous des choses sur lesquelles je suis vraiment
+tombé. Visibles dans les logs d'échec de CI et les rejets du Play Store ;
+bien moins visibles avant.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/pattern-cross-arch.jpg"
+    alt="Croquis dessiné à la main : APK/AAB avec &quot;NDK 27.1.x pinned&quot; en haut, se divisant vers trois téléphones avec des icônes de puce cyan (arm64-v8a, armv7-a, x86_64). Annotations : alignment!, libc++_shared, cache bust."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Croquis de tableau blanc · trois architectures, un seul APK
+  </figcaption>
+</figure>
+
+## Piège 1 — Alignement de struct sur x86_64 vs arm
+
+Le plus douloureux. Le `#[repr(C)]` de Rust ne garantit pas le même
+agencement d'octets d'une architecture à l'autre, sauf si tu épingles
+aussi explicitement l'alignement. Une struct comme :
+
+```rust
+#[repr(C)]
+pub struct StepEvent {
+    pub note: u8,        // 1 byte
+    pub velocity: u8,    // 1 byte
+    pub time_ms: u64,    // 8 bytes — alignment verschilt
+}
+```
+
+Sur arm64, elle est naturellement complétée (padded) à 16 octets. Sur x86
+32 bits, le compilateur peut la compacter à 12 octets si tu ne spécifies
+pas `repr(C, align(8))`. Résultat : la même struct, des tailles
+différentes selon les architectures, des appels FFI qui lisent n'importe
+quoi.
+
+Correctif : toujours épingler l'alignement explicitement pour les structs
+qui franchissent la frontière FFI, ou agencer les structs pour qu'elles
+soient naturellement alignées (regrouper les champs de même taille).
+
+## Piège 2 — Dérive de version du NDK
+
+Le NDK Android prend en charge AAudio depuis une version précise, et cette
+API a évolué au fil des ans. Compile avec le NDK 25 et tu obtiens un
+comportement ; compile avec le NDK 27 et tu en obtiens un autre (souvent
+meilleur, mais différent).
+
+Épingle ta version du NDK explicitement dans `build.gradle` ou
+`eas.json` :
+
+```
+ndkVersion = "27.1.12297006"
+```
+
+Si tu ne le fais pas, EAS Build (ou quel que soit le système de build
+cloud) peut adopter une valeur par défaut « newer is better » qui casse
+subtilement ton chemin audio toutes les quelques semaines.
+
+## Piège 3 — Symboles dupliqués de libc++_shared.so
+
+Si tu as plus d'une bibliothèque native dans l'APK, chacune avec sa propre
+liaison vers `libc++_shared.so`, tu peux obtenir des erreurs d'éditeur de
+liens « duplicate symbol » à l'exécution. Symptôme : l'app plante au
+lancement sur une architecture, avec une stack-trace profondément dans
+l'initialisation de libc++.
+
+Correctif : assure-toi que toutes les bibliothèques natives de l'APK
+utilisent la *même* runtime partagée C++. Si tu maîtrises le build : force
+`-DANDROID_STL=c++_shared` partout. Si une dépendance embarque sa propre
+runtime C++ statique : recompile-la ou remplace cette dépendance.
+
+## Piège 4 — Surprises de cache d'EAS Build
+
+Les systèmes de build cloud comme EAS mettent en cache les artefacts de
+compilation native de façon agressive. Change un flag, push, et tu peux
+obtenir un build qui réussit mais contient des fichiers `.so` périmés pour
+une architecture. Le symptôme, c'est « ça marche sur mon appareil, pas sur
+celui-ci ».
+
+Le correctif est agaçant mais fiable : dès que tu changes quoi que ce soit
+dans le pipeline de build natif, incrémente une valeur de cache-bust (un
+numéro de version, un timestamp dans une variable d'environnement de build)
+pour que le cache s'invalide. Ne compte pas sur le cache pour être malin.
+
+## Piège 5 — APK unique vs APK fractionnés (split APKs)
+
+Le Play Store a longtemps recommandé les split APKs (un par architecture)
+pour réduire la taille de téléchargement. Avec les App Bundles (AAB), c'est
+géré automatiquement. Mais si tu livres encore des APK directement (pour
+les tests, la distribution interne, le sideloading), assure-toi de
+construire un APK universel qui contient les trois architectures.
+
+Config EAS Build :
+
+```json
+"android": {
+  "buildType": "apk",
+  "image": "latest"
+}
+```
+
+L'APK universel est ~3x plus gros, mais c'est le seul qui s'installe sur
+chaque appareil que tu veux tester. AAB pour le Play Store, APK universel
+pour tout le reste.
+
+## Vérification — ce que tu dois vraiment contrôler
+
+Après un build réussi, avant de livrer :
+
+1. **Installe sur un vrai appareil arm64** — le chemin principal, doit
+   fonctionner
+2. **Installe sur un émulateur x86** — attrape les bugs d'alignement
+   qu'arm64 masque
+3. **Installe sur un appareil ou émulateur armv7** — attrape les problèmes
+   qui n'apparaissent que sur 32 bits
+4. **Exécute le chemin audio sur les trois** — les bugs d'alignement se
+   manifestent souvent par des coupures audio, pas par des crashs
+5. **Vérifie `adb logcat | grep -i "alignment\|symbol\|libc++"`** — fait
+   remonter les échecs qui ne plantent pas de façon visible
+
+Si les trois architectures passent le smoke test du chemin audio : livre.
+arm64 fonctionne mais x86 échoue ? Un problème d'alignement quelque part.
+armv7 fonctionne mais pas arm64 ? Un problème de pointeur 64 bits quelque
+part. Diagnostic par élimination.
+
+## Quand ça compte
+
+Pour la plupart des apps React Native, c'est invisible — le framework gère
+la compilation native, tu ne vois jamais le NDK en dessous. Pour les apps
+avec leur *propre* code natif (moteur audio Rust, DSP C++, peu importe),
+tout ce qui précède t'appartient.
+
+L'investissement est payant, car une fois que ça marche, ça continue de
+marcher. La discipline réside dans la boucle de vérification : chaque
+modification de code natif passe par une passe de test multi-architectures
+avant que tu lui fasses confiance.
+
+</div>

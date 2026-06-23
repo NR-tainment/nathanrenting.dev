@@ -1,0 +1,102 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "FamilyKart — Kart-Racing für meine Kids",
+  description:
+    "Side-Project: ein familienfreundliches Kart-Racing-Spiel als Electron-Desktop-App auf Three.js, mit handgebauten Strecken, KI-Gegnern und Chase-Kamera.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/de/projects/familykart#app",
+  name: "FamilyKart",
+  description:
+    "Ein familienfreundliches Kart-Racing-Spiel als Electron-Desktop-App, gebaut für die Kinder des Entwicklers. Eine eigene Mini-Engine auf Basis von Three.js mit KI-Gegnern, Powerups, Chase-Kamera und handgebauten Strecken.",
+  applicationCategory: "GameApplication",
+  operatingSystem: "Windows, macOS, Linux",
+  inLanguage: "de-DE",
+  url: "https://nathanrenting.dev/de/projects/familykart",
+  image: "https://nathanrenting.dev/familykart-architecture.png",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "game",
+    "Electron",
+    "Three.js",
+    "kart racing",
+    "3D engine",
+    "side-project",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400">
+  <SketchUnderline seed={211}>Side-Project · in Entwicklung</SketchUnderline>
+</div>
+
+# FamilyKart — Kart-Racing für meine Kids
+
+<MarkerHighlight>Ein familienfreundliches Kart-Racing-Spiel als Electron-Desktop-App.</MarkerHighlight>{" "}
+Eine Mini-Engine mit KI-Gegnern, Powerups, Chase-Kamera und
+handgebauten Strecken. Auf Basis von Three.js, kein Game-Framework, Vanilla JS
+für die Game-Loop.
+
+<figure className="my-10 -mx-2 md:-mx-8">
+  <img
+    src="/familykart-architecture.png"
+    alt="Handgezeichnete Skizze: Electron-App mit Chase-Cam über einem Rennstrecken-Loop, drei Karts (PLAYER + AI 1 + AI 2), Powerups (BOOST, SHIELD, MISSILE), Anmerkungen '60 FPS · Three.js · vanilla JS' und 'AI rubberbanding'."
+    className="w-full rounded border border-zinc-800"
+    loading="lazy"
+  />
+  <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
+    Whiteboard-Skizze · die Game-Loop
+  </figcaption>
+</figure>
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Was drin steckt
+
+- **3D-Rendering** mit Three.js, eigener Scene-Graph und Chase-Kamera mit
+  Smoothing
+- **Kart-Physik** mit Grip, Drift und Sprung
+- **KI-Gegner** mit einfachem Rubberbanding, damit die Kids nicht
+  innerhalb von drei Sekunden zurückfallen
+- **Powerups** (Boost, Shield, Missile) auf Pickup-Pads
+- **HUD** in einem 2D-Canvas-Overlay über dem 3D-Canvas
+- **Eigene Strecken** — nicht prozedural, einfach handgebaut, damit sie kurz
+  und kinderfreundlich bleiben
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Stack
+
+<StackTable rows={[
+  { label: "Runtime", value: "Electron (Windows portable .exe)" },
+  { label: "3D", value: "Three.js (r169)" },
+  { label: "Game-Logik", value: "Vanilla JS, eigene State-Machine" },
+  { label: "UI / HUD", value: "2D-Canvas-Overlay" },
+  { label: "Audio", value: "Web Audio API" },
+  { label: "Build", value: "electron-builder, portable target" },
+]} />
+
+Keine Frameworks auf Three. Kein React für das Spiel selbst. Vanilla
+JS, minimale Dependencies, alles vendor&apos;d, wo es geht. Strecken und
+Karts sind reines JSON — leicht zu tweaken, ohne Code anzufassen.
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Status
+
+In Entwicklung. Spielbar, aber nicht shippable. Kein Public Release
+geplant.
+
+</div>
