@@ -20,9 +20,44 @@ const nl: DienstenDict = {
         "Productie-agents van prompt tot werkend onderdeel van je product. LLM-orchestratie, tool-calling, RAG. ECHO als live referentie.",
       tags: ["AI Agents", "LLM", "Python"],
     },
+    {
+      href: "/hire?topic=claude-api",
+      title: "Claude API integratie",
+      oneLiner:
+        "Claude in jouw stack krijgen zonder dat het een speeltje blijft. Streaming, tool use, kosten onder controle. Twee weken, niet twee kwartalen.",
+      tags: ["Claude API", "Anthropic", "TypeScript"],
+    },
+    {
+      href: "/hire?topic=rag",
+      title: "RAG op je eigen kennis",
+      oneLiner:
+        "Je documenten, tickets of FAQ doorzoekbaar voor een LLM. EU-hosted vector store als je AVG serieus neemt. Geen hype, wel antwoorden.",
+      tags: ["RAG", "Embeddings", "EU-infra"],
+    },
+    {
+      href: "/hire?topic=workflows",
+      title: "LLM-workflows automatiseren",
+      oneLiner:
+        "Intake, rapportage, classificatie — het werk dat niemand leuk vindt. Eén agent ervoor, jij doet de rest van je dag.",
+      tags: ["Automation", "Workflows", "Agents"],
+    },
+    {
+      href: "/hire?topic=eu-infra",
+      title: "EU-compliante AI-infra",
+      oneLiner:
+        "Hosting in Frankfurt of Amsterdam, geen data naar de VS. Voor wie AVG niet als checkbox ziet maar als ontwerpkeuze.",
+      tags: ["EU", "AVG", "Hosting"],
+    },
+    {
+      href: "/hire?topic=devflow",
+      title: "Claude Code in je dev-flow",
+      oneLiner:
+        "MCP servers, custom skills, agents die je team echt gebruikt. Geen demo-magie, wel minder repetitief werk per sprint.",
+      tags: ["Claude Code", "MCP", "DX"],
+    },
   ],
   outro:
-    "Meer dienstenpagina's komen er zodra ik ze schrijf — LLM-integratie, RAG, Claude API. Liever één pagina die klopt dan een lijst beloftes.",
+    "Eén dienst heeft een uitgewerkte pagina, de rest krijgt die per week. Past iets nu al? Mail of bel via /hire — sneller is altijd een gesprek.",
 };
 
 export default nl;
