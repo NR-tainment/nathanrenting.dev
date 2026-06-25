@@ -53,6 +53,14 @@ export function Footer({
             AudioLab
           </a>
           <a
+            href="https://audio-launch.com"
+            target="_blank"
+            rel="noopener noreferrer me"
+            className="hover:text-cyan-400 transition-colors uppercase tracking-widest"
+          >
+            AudioLaunch
+          </a>
+          <a
             href="mailto:info@nathanrenting.dev"
             className="hover:text-cyan-400 transition-colors uppercase tracking-widest"
           >
