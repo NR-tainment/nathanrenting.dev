@@ -20,9 +20,50 @@ const en: DienstenDict = {
         "Production agents from prompt to working part of your product. LLM orchestration, tool-calling, RAG. ECHO as a live reference.",
       tags: ["AI Agents", "LLM", "Python"],
     },
+    {
+      href: "/hire?topic=claude-api",
+      title: "Claude API integration",
+      oneLiner:
+        "Get Claude into your stack without it staying a toy. Streaming, tool use, costs under control. Two weeks, not two quarters.",
+      tags: ["Claude API", "Anthropic", "TypeScript"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=rag",
+      title: "RAG on your own knowledge",
+      oneLiner:
+        "Your docs, tickets or FAQ made searchable for an LLM. EU-hosted vector store if you take GDPR seriously. No hype, just answers.",
+      tags: ["RAG", "Embeddings", "EU-infra"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=workflows",
+      title: "Automating LLM workflows",
+      oneLiner:
+        "Intake, reporting, classification — the work nobody enjoys. One agent on it, you get the rest of your day back.",
+      tags: ["Automation", "Workflows", "Agents"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=eu-infra",
+      title: "EU-compliant AI infra",
+      oneLiner:
+        "Hosting in Frankfurt or Amsterdam, no data to the US. For teams that treat GDPR as a design choice, not a checkbox.",
+      tags: ["EU", "GDPR", "Hosting"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=devflow",
+      title: "Claude Code in your dev flow",
+      oneLiner:
+        "MCP servers, custom skills, agents your team actually uses. No demo magic, just less repetitive work per sprint.",
+      tags: ["Claude Code", "MCP", "DX"],
+      wip: true,
+    },
   ],
+  wipBadgeLabel: "ask →",
   outro:
-    "More service pages as I write them — LLM integration, RAG, Claude API. I'd rather have one page that's right than a list of promises.",
+    "One service has a full page, the rest get one per week. Something fits already? Email or call via /hire — a conversation is always faster.",
 };
 
 export default en;

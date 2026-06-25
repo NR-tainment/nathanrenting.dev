@@ -72,7 +72,7 @@ export default async function DienstenPage({
                 <p className="text-sm text-zinc-400 leading-relaxed mb-4">
                   {d.oneLiner}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {d.tags.map((tag) => (
                     <span
                       key={tag}
@@ -81,6 +81,11 @@ export default async function DienstenPage({
                       {tag}
                     </span>
                   ))}
+                  {d.wip && (
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-amber-500/80 px-2 py-1">
+                      {t.wipBadgeLabel}
+                    </span>
+                  )}
                 </div>
               </Link>
             </SectionReveal>

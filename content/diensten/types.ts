@@ -3,6 +3,7 @@ export type DienstItem = {
   title: string;
   oneLiner: string;
   tags: string[];
+  wip?: boolean; // renders "vraag aan" badge; href links to /hire?topic=...
 };
 
 export type DienstenDict = {
@@ -13,5 +14,6 @@ export type DienstenDict = {
   introAfter: string; // "."
   marginNote: string;
   items: DienstItem[];
+  wipBadgeLabel: string; // shown on cards where wip: true
   outro: string;
 };

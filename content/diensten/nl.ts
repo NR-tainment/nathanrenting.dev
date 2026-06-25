@@ -26,6 +26,7 @@ const nl: DienstenDict = {
       oneLiner:
         "Claude in jouw stack krijgen zonder dat het een speeltje blijft. Streaming, tool use, kosten onder controle. Twee weken, niet twee kwartalen.",
       tags: ["Claude API", "Anthropic", "TypeScript"],
+      wip: true,
     },
     {
       href: "/hire?topic=rag",
@@ -33,6 +34,7 @@ const nl: DienstenDict = {
       oneLiner:
         "Je documenten, tickets of FAQ doorzoekbaar voor een LLM. EU-hosted vector store als je AVG serieus neemt. Geen hype, wel antwoorden.",
       tags: ["RAG", "Embeddings", "EU-infra"],
+      wip: true,
     },
     {
       href: "/hire?topic=workflows",
@@ -40,6 +42,7 @@ const nl: DienstenDict = {
       oneLiner:
         "Intake, rapportage, classificatie — het werk dat niemand leuk vindt. Eén agent ervoor, jij doet de rest van je dag.",
       tags: ["Automation", "Workflows", "Agents"],
+      wip: true,
     },
     {
       href: "/hire?topic=eu-infra",
@@ -47,6 +50,7 @@ const nl: DienstenDict = {
       oneLiner:
         "Hosting in Frankfurt of Amsterdam, geen data naar de VS. Voor wie AVG niet als checkbox ziet maar als ontwerpkeuze.",
       tags: ["EU", "AVG", "Hosting"],
+      wip: true,
     },
     {
       href: "/hire?topic=devflow",
@@ -54,8 +58,10 @@ const nl: DienstenDict = {
       oneLiner:
         "MCP servers, custom skills, agents die je team echt gebruikt. Geen demo-magie, wel minder repetitief werk per sprint.",
       tags: ["Claude Code", "MCP", "DX"],
+      wip: true,
     },
   ],
+  wipBadgeLabel: "vraag aan →",
   outro:
     "Eén dienst heeft een uitgewerkte pagina, de rest krijgt die per week. Past iets nu al? Mail of bel via /hire — sneller is altijd een gesprek.",
 };

@@ -20,9 +20,50 @@ const fr: DienstenDict = {
         "Des agents de production, du prompt jusqu'à un composant qui marche dans ton produit. Orchestration de LLM, tool-calling, RAG. ECHO comme référence en direct.",
       tags: ["AI Agents", "LLM", "Python"],
     },
+    {
+      href: "/hire?topic=claude-api",
+      title: "Intégration de l'API Claude",
+      oneLiner:
+        "Mettre Claude dans ton stack sans qu'il reste un gadget. Streaming, tool use, coûts maîtrisés. Deux semaines, pas deux trimestres.",
+      tags: ["Claude API", "Anthropic", "TypeScript"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=rag",
+      title: "RAG sur tes propres connaissances",
+      oneLiner:
+        "Tes documents, tickets ou FAQ rendus consultables par un LLM. Vector store hébergé dans l'UE si tu prends le RGPD au sérieux. Pas de hype, des réponses.",
+      tags: ["RAG", "Embeddings", "EU-infra"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=workflows",
+      title: "Automatiser les workflows LLM",
+      oneLiner:
+        "Saisie, reporting, classification — le travail que personne n'aime. Un agent s'en charge, tu récupères ta journée.",
+      tags: ["Automation", "Workflows", "Agents"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=eu-infra",
+      title: "Infra IA conforme à l'UE",
+      oneLiner:
+        "Hébergement à Francfort ou Amsterdam, pas de données aux États-Unis. Pour les équipes qui voient le RGPD comme un choix de conception, pas une case à cocher.",
+      tags: ["UE", "RGPD", "Hosting"],
+      wip: true,
+    },
+    {
+      href: "/hire?topic=devflow",
+      title: "Claude Code dans ton dev-flow",
+      oneLiner:
+        "Serveurs MCP, skills sur mesure, agents que ton équipe utilise vraiment. Pas de magie de démo, juste moins de travail répétitif par sprint.",
+      tags: ["Claude Code", "MCP", "DX"],
+      wip: true,
+    },
   ],
+  wipBadgeLabel: "demander →",
   outro:
-    "D'autres pages de services arriveront au fur et à mesure que je les écris — intégration de LLM, RAG, Claude API. Je préfère une page qui tient la route à une liste de promesses.",
+    "Un service a une page complète, les autres suivent une par semaine. Quelque chose colle déjà ? Mail ou appel via /hire — une conversation va toujours plus vite.",
 };
 
 export default fr;
