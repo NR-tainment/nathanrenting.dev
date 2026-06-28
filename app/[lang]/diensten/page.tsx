@@ -51,7 +51,8 @@ export default async function DienstenPage({
         >
           {t.introLinkLabel}
         </Link>
-        {t.introAfter}
+        {t.introAfter}{" "}
+        <span className="text-zinc-500">{t.responseTime}</span>
       </p>
 
       <MarginNote position="right" rotate={-3}>
@@ -69,8 +70,11 @@ export default async function DienstenPage({
                 <h3 className="text-xl font-semibold tracking-tight text-zinc-100 group-hover:text-cyan-400 transition-colors mb-2">
                   {d.title}
                 </h3>
-                <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+                <p className="text-sm text-zinc-400 leading-relaxed mb-2">
                   {d.oneLiner}
+                </p>
+                <p className="text-xs font-mono text-cyan-500/80 mb-4">
+                  {d.deliverable}
                 </p>
                 <div className="flex flex-wrap items-center gap-2">
                   {d.tags.map((tag) => (

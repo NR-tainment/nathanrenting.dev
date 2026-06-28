@@ -11,6 +11,7 @@ const nl: DienstenDict = {
     "Wat ik freelance doe — in concrete vorm. Per dienst één pagina, zodat je snel ziet of het past. Voor de afspraak en het tarief: zie ",
   introLinkLabel: "/hire",
   introAfter: ".",
+  responseTime: "Antwoord binnen 2 werkdagen.",
   marginNote: "(één lijst, geen sales-funnel)",
   items: [
     {
@@ -18,6 +19,7 @@ const nl: DienstenDict = {
       title: "AI agents bouwen",
       oneLiner:
         "Productie-agents van prompt tot werkend onderdeel van je product. LLM-orchestratie, tool-calling, RAG. ECHO als live referentie.",
+      deliverable: "2–4 weken · prototype tot productie",
       tags: ["AI Agents", "LLM", "Python"],
     },
     {
@@ -25,6 +27,7 @@ const nl: DienstenDict = {
       title: "Claude API integratie",
       oneLiner:
         "Claude in jouw stack krijgen zonder dat het een speeltje blijft. Streaming, tool use, kosten onder controle. Twee weken, niet twee kwartalen.",
+      deliverable: "2 weken · vaste prijs",
       tags: ["Claude API", "Anthropic", "TypeScript"],
       wip: true,
     },
@@ -33,6 +36,7 @@ const nl: DienstenDict = {
       title: "RAG op je eigen kennis",
       oneLiner:
         "Je documenten, tickets of FAQ doorzoekbaar voor een LLM. EU-hosted vector store als je AVG serieus neemt. Geen hype, wel antwoorden.",
+      deliverable: "1–3 weken · jouw data, jouw infra",
       tags: ["RAG", "Embeddings", "EU-infra"],
       wip: true,
     },
@@ -41,6 +45,7 @@ const nl: DienstenDict = {
       title: "LLM-workflows automatiseren",
       oneLiner:
         "Intake, rapportage, classificatie — het werk dat niemand leuk vindt. Eén agent ervoor, jij doet de rest van je dag.",
+      deliverable: "1–2 weken per flow",
       tags: ["Automation", "Workflows", "Agents"],
       wip: true,
     },
@@ -49,6 +54,7 @@ const nl: DienstenDict = {
       title: "EU-compliante AI-infra",
       oneLiner:
         "Hosting in Frankfurt of Amsterdam, geen data naar de VS. Voor wie AVG niet als checkbox ziet maar als ontwerpkeuze.",
+      deliverable: "1 week setup · maandelijkse review",
       tags: ["EU", "AVG", "Hosting"],
       wip: true,
     },
@@ -57,6 +63,7 @@ const nl: DienstenDict = {
       title: "Claude Code in je dev-flow",
       oneLiner:
         "MCP servers, custom skills, agents die je team echt gebruikt. Geen demo-magie, wel minder repetitief werk per sprint.",
+      deliverable: "1 week pilot · jouw repo",
       tags: ["Claude Code", "MCP", "DX"],
       wip: true,
     },
