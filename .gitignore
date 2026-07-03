@@ -42,3 +42,5 @@ next-env.d.ts
 
 # private outreach / sales working docs — never publish
 /outreach/
+
+.vercel

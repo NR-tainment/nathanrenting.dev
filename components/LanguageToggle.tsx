@@ -47,9 +47,8 @@ export function LanguageToggle({
             title={common.switcher.switchTo[target]}
             className={
               "text-[10px] sm:text-xs md:text-sm uppercase tracking-widest px-1 sm:px-1.5 py-1 font-mono transition-colors " +
-              (isActive
-                ? "text-cyan-400"
-                : "text-zinc-500 hover:text-cyan-400")
+              (isActive ? "text-cyan-400" : "text-zinc-500 hover:text-cyan-400") +
+              (target === "de" || target === "fr" ? " hidden sm:inline" : "")
             }
           >
             {LOCALE_LABEL[target]}

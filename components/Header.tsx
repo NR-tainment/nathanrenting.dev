@@ -13,11 +13,11 @@ export function Header({
   const { nav } = common;
   // Sub-paths are shared across locales; only the leading /{locale} differs.
   const navItems = [
-    { href: `/${locale}/projects`, label: nav.work },
-    { href: `/${locale}/diensten`, label: nav.services },
-    { href: `/${locale}/patterns`, label: nav.patterns },
-    { href: `/${locale}/about`, label: nav.about },
-    { href: `/${locale}/hire`, label: nav.hire },
+    { href: `/${locale}/projects`, label: nav.work, mobile: true },
+    { href: `/${locale}/diensten`, label: nav.services, mobile: true },
+    { href: `/${locale}/patterns`, label: nav.patterns, mobile: false },
+    { href: `/${locale}/about`, label: nav.about, mobile: false },
+    { href: `/${locale}/hire`, label: nav.hire, mobile: true },
   ];
 
   return (
@@ -34,7 +34,7 @@ export function Header({
             <Link
               key={item.href}
               href={item.href}
-              className="text-[10px] sm:text-xs md:text-sm uppercase tracking-widest text-zinc-400 hover:text-cyan-400 transition-colors px-1 sm:px-2 py-1"
+              className={`text-[10px] sm:text-xs md:text-sm uppercase tracking-widest text-zinc-400 hover:text-cyan-400 transition-colors px-1 sm:px-2 py-1${item.mobile ? "" : " hidden sm:inline"}`}
             >
               {item.label}
             </Link>
