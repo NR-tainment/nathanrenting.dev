@@ -29,11 +29,11 @@ export function ProjectCard({
       </Link>
 
       <div className="pointer-events-none relative">
-        <div className="flex items-baseline justify-between mb-3 gap-2">
+        <div className="flex flex-wrap items-baseline mb-3 gap-x-3 gap-y-1">
           <h3 className="text-xl font-semibold tracking-tight text-zinc-100 group-hover:text-cyan-400 transition-colors">
             {title}
           </h3>
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-3 shrink-0 ml-auto">
             {externalUrl && (
               <a
                 href={externalUrl}
