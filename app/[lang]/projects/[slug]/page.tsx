@@ -18,6 +18,7 @@ type MdxModule = {
 
 const SLUGS = [
   "audiolab",
+  "audiolaunch",
   "captioncompass",
   "echo",
   "familykart",
@@ -34,6 +35,12 @@ const projects: Record<Slug, Partial<Record<Locale, () => Promise<MdxModule>>>> 
       en: () => import("@/content/projects/audiolab.en.mdx"),
       de: () => import("@/content/projects/audiolab.de.mdx"),
       fr: () => import("@/content/projects/audiolab.fr.mdx"),
+    },
+    audiolaunch: {
+      nl: () => import("@/content/projects/audiolaunch.nl.mdx"),
+      en: () => import("@/content/projects/audiolaunch.en.mdx"),
+      de: () => import("@/content/projects/audiolaunch.de.mdx"),
+      fr: () => import("@/content/projects/audiolaunch.fr.mdx"),
     },
     captioncompass: {
       nl: () => import("@/content/projects/captioncompass.nl.mdx"),

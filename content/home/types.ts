@@ -45,6 +45,7 @@ export type HomeDict = {
     echo: ProjectCardContent;
     therapyvault: ProjectCardContent;
     audiolab: ProjectCardContent;
+    audiolaunch: ProjectCardContent;
     captioncompass: ProjectCardContent;
     photoflow: ProjectCardContent;
     familykart: ProjectCardContent;
@@ -52,15 +53,6 @@ export type HomeDict = {
   stealth: {
     label: string;
     // each stealth card has plain-text fragments around <Redacted> markup
-    audio: {
-      category: string;
-      status: string;
-      part1: string; // before first redacted
-      redacted1: string;
-      part2: string; // between redactions
-      redacted2: string;
-      part3: string; // after last redacted
-    };
     method: {
       category: string;
       status: string;

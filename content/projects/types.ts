@@ -17,26 +17,14 @@ export type ProjectsDict = {
     echo: ProjectCardContent;
     therapyvault: ProjectCardContent;
     audiolab: ProjectCardContent;
+    audiolaunch: ProjectCardContent;
     captioncompass: ProjectCardContent;
     photoflow: ProjectCardContent;
     familykart: ProjectCardContent;
   };
   stealth: {
     label: string;
-    timelineAlt: string;
-    timelineCaption: string;
     marginNote: string;
-    audio: {
-      category: string;
-      status: string;
-      part1: string;
-      redacted1: string;
-      part2: string;
-      redacted2: string;
-      part3: string;
-      redacted3: string;
-      part4: string;
-    };
     method: {
       category: string;
       status: string;

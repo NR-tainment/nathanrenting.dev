@@ -1,0 +1,128 @@
+import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
+
+export const metadata = {
+  title: "AudioLaunch — studio de musique mobile + Resonara",
+  description:
+    "Studio de musique mobile avec un moteur audio Rust natif maison, et Resonara : un monde gamifié qui enseigne le sound design en jouant. Construit en solo depuis 2018, en ligne en open beta publique.",
+};
+
+export const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://nathanrenting.dev/fr/projects/audiolaunch#app",
+  name: "AudioLaunch",
+  description:
+    "Un studio de musique mobile (Studio) avec un moteur audio Rust natif maison, et Resonara : un monde narratif qui enseigne le sound design à travers des missions. Construit en solo depuis 2018.",
+  applicationCategory: "MultimediaApplication",
+  operatingSystem: "Android, Web",
+  inLanguage: "fr",
+  url: "https://nathanrenting.dev/fr/projects/audiolaunch",
+  sameAs: "https://audio-launch.com",
+  author: { "@id": "https://nathanrenting.dev/#nathan" },
+  creator: { "@id": "https://nathanrenting.dev/#nathan" },
+  publisher: { "@id": "https://nathanrenting.dev/#org" },
+  keywords: [
+    "DAW mobile",
+    "audio",
+    "Rust",
+    "React Native",
+    "Android",
+    "sound design",
+    "gamification",
+  ],
+};
+
+<div className="max-w-3xl mx-auto px-6 py-16 md:py-20 relative">
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+/>
+
+<div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400 flex items-center gap-4 flex-wrap">
+  <SketchUnderline seed={331}>Projet · en ligne · open beta</SketchUnderline>
+  <a
+    href="https://audio-launch.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-cyan-400 hover:text-cyan-300 transition-colors"
+  >
+    ↗ audio-launch.com
+  </a>
+</div>
+
+# AudioLaunch — studio de musique mobile + Resonara
+
+<MarkerHighlight>Un studio de musique mobile avec un moteur audio Rust natif maison, et Resonara : un monde gamifié qui enseigne le sound design en jouant.</MarkerHighlight>{" "}
+Construit en solo depuis huit ans — du premier concept en 2018 à
+l'open beta publique d'aujourd'hui. Jusqu'à récemment, ce projet
+figurait ici sous Stealth ; le nom n'est plus caché.
+
+<ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
+
+## Deux facettes
+
+**Studio** est le côté sérieux : enregistrement multipiste jusqu'à
+24-bit/96kHz, édition en direct, chaîne d'effets, MIDI, import
+d'échantillons, synthés, mixette, chaîne de mastering. Tourne sur un
+moteur audio Rust natif maison pour du DSP temps réel low-latency sur
+Android (NDK + JNI + React Native FFI).
+
+**Resonara** est l'autre facette : un monde narratif qui enseigne le
+sound design à travers des missions. Vibes, mondes, rythme de
+progression, missions et compétences comme mécaniques de progression
+— le jeu est le programme.
+
+<ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
+
+## Huit ans, un seul espace-problème
+
+| Année | Phase |
+|---|---|
+| 2018 | Concept + vision |
+| 2020 | Premières esquisses |
+| 2022 | Pivot mobile |
+| 2024 | Palier de production |
+| Maintenant | En ligne · open beta publique |
+
+Trois pivots de concept et plusieurs itérations reconstruites se sont
+glissés entre-temps. Pas une ligne droite, mais un fil conducteur : le
+même problème, tenu pendant huit ans.
+
+<ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
+
+## Stack
+
+<StackTable rows={[
+  { label: "Moteur audio", value: <>Rust, relié en FFI via JNI sur Android. Graphe DSP maison, scheduler temps réel, timing précis à l'échantillon près.</> },
+  { label: "App shell", value: "React Native (Expo), TypeScript, modules natifs Kotlin" },
+  { label: "Cloud", value: "Supabase EU (auth, stockage, postgres), Vercel (web)" },
+  { label: "Confidentialité", value: <>les enregistrements restent on-device par défaut ; le stockage cloud et la publication sont hébergés en UE et n'ont lieu qu'après une action explicite de l'utilisateur</> },
+]} />
+
+<ChalkDoodle type="checkmark" className="mt-12 mb-2 opacity-50" />
+
+## Tarifs
+
+| Palier | Contenu |
+|---|---|
+| **Free** | Outils de création Studio complets (enregistrement, multipiste, FX, MIDI, import d'échantillons) — jamais taxé en crédits |
+| **Founder** | 139 € en une fois, disponible pendant toute la fenêtre de beta (≥12 mois après le lancement Play Store). Badge Founder, accès fenêtre de beta, n'expire jamais |
+| **Pro** | Abonnement, après le lancement public |
+
+<ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
+
+## Statut
+
+En ligne en open beta publique sur [audio-launch.com](https://audio-launch.com)
+— jouable dans le navigateur ou via le build Android. Pas encore
+présent dans la fiche Play Store classique ; c'est la prochaine étape.
+Philosophie de build : SOTA-or-cut — les fonctionnalités qui ne
+peuvent pas atteindre un niveau SOTA sont coupées de la v1.0 plutôt
+que livrées à moitié finies.
+
+Projet frère : [audiolab.tools](https://audiolab.tools), une boîte à
+outils audio publique côté navigateur — un produit séparé, également
+signé par moi.
+
+</div>

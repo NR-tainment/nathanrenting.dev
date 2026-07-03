@@ -55,6 +55,15 @@ const de: HomeDict = {
       status: "Live · im Aufbau",
       externalUrl: "https://audiolab.tools",
     },
+    audiolaunch: {
+      href: "/projects/audiolaunch",
+      title: "AudioLaunch",
+      oneLiner:
+        "Mobile Musikstudio-App + Resonara (gamifiziertes Sound-Design). Eigene Rust-Audio-Engine für Low-Latency-DSP auf Android. Acht Jahre solo gebaut, jetzt in öffentlicher Open Beta.",
+      tags: ["React Native", "Rust-Audio-Engine", "Mobile DAW"],
+      status: "Live · Open Beta",
+      externalUrl: "https://audio-launch.com",
+    },
     captioncompass: {
       href: "/projects/captioncompass",
       title: "CaptionCompass",
@@ -82,22 +91,12 @@ const de: HomeDict = {
   },
   stealth: {
     label: "Stealth",
-    audio: {
-      category: "Stealth · Audio · 8 Jahre",
-      status: "Live · seit 2018 · NDA",
-      part1: "Ein ",
-      redacted1: "Produkt für Creator",
-      part2:
-        ", aufgebaut auf zehn Jahren Audio-Produktions-Erfahrung. Seit 2018 in Entwicklung, Produktions-Tier seit 2024. Cross-Platform-Mobile mit einer ",
-      redacted2: "eigenen Audio-Engine",
-      part3: ". Live mit Early Adopters.",
-    },
     method: {
       category: "Stealth · Methodik",
       status: "In Anwendung · NDA",
       part1: "Ein wiederverwendbarer ",
       redacted1: "Launch-Ansatz",
-      part2: ", herauskristallisiert beim Bau von Projekt eins.",
+      part2: ", herauskristallisiert beim Bau und Launch von AudioLaunch.",
       redacted2: " Tools, Sequencing und eine eigene Content-Pipeline.",
       part3: " Wird auf das nächste Projekt angewendet.",
     },

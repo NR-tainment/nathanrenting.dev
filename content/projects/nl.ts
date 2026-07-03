@@ -4,11 +4,11 @@ const nl: ProjectsDict = {
   meta: {
     title: "Werk",
     description:
-      "ECHO — mijn persoonlijke agent-orchestrator. Andere projecten momenteel onder NDA.",
+      "ECHO — mijn persoonlijke agent-orchestrator. AudioLaunch — mobiele muziekstudio, live in open beta.",
   },
   h1: "Werk",
   introBefore:
-    "ECHO, TherapyVault en FamilyKart kan ik publiek laten zien. Mijn grootste project staat onder Stealth: een audio-product waar ik sinds 2018 aan bouw, door meerdere concept-pivots en platform-iteraties heen, met een productie-tier sinds 2024. Daar praat ik graag over op een call. Voor de engineering-patronen die overal terugkomen, zie ",
+    "ECHO, TherapyVault, AudioLaunch en FamilyKart kan ik publiek laten zien. Wat nog onder NDA staat: een herbruikbare launch-methodiek, uitgekristalliseerd tijdens de AudioLaunch-launch. Daar praat ik graag over op een call. Voor de engineering-patronen die overal terugkomen, zie ",
   introLinkLabel: "/patterns",
   introAfter: ".",
   cards: {
@@ -37,6 +37,15 @@ const nl: ProjectsDict = {
       status: "Live · in opbouw",
       externalUrl: "https://audiolab.tools",
     },
+    audiolaunch: {
+      href: "/projects/audiolaunch",
+      title: "AudioLaunch",
+      oneLiner:
+        "Mobiele muziekstudio (Studio) plus Resonara, een gamified wereld waarin je sound design leert spelenderwijs. Eigen native Rust audio-engine voor low-latency DSP op Android (NDK + JNI + React Native FFI). Acht jaar solo gebouwd, sinds kort in publieke open beta.",
+      tags: ["React Native", "Rust · eigen audio-engine", "Android NDK", "Mobile DAW"],
+      status: "Live · open beta",
+      externalUrl: "https://audio-launch.com",
+    },
     captioncompass: {
       href: "/projects/captioncompass",
       title: "CaptionCompass",
@@ -64,36 +73,20 @@ const nl: ProjectsDict = {
   },
   stealth: {
     label: "Stealth",
-    timelineAlt:
-      "Hand-getekende tijdlijn op blackboard: 8 JAAR — ONE PROBLEM. Vijf fases tussen 2018 en nu: concept + visie (2018), eerste schetsen (2020), mobile pivot (2022), productie-tier (2024), live · stealth (nu).",
-    timelineCaption: "Whiteboard-schets · acht jaar in één probleemruimte",
     marginNote: "(onder NDA. op een call kan ik meer kwijt)",
-    audio: {
-      category: "Stealth · audio · 8 jaar",
-      status: "Live · sinds 2018 · NDA",
-      part1: "Een ",
-      redacted1: "product voor creators",
-      part2:
-        ", gebouwd vanuit ruim tien jaar audio-productie-ervaring. Sinds 2018: eerste jaren in concept-opbouw en platform-schetsen, daarna drie concept-pivots en meerdere herbouwde iteraties, met een productie-tier sinds 2024. Cross-platform mobile met een ",
-      redacted2: "eigen audio-engine",
-      part3: ", drie-tier AI-fallback, en een ",
-      redacted3: "eigen sample-pipeline",
-      part4:
-        ". Live met een kleine groep early adopters, public launch in voorbereiding. EU-first stack, GDPR-by-design.",
-    },
     method: {
       category: "Stealth · methodiek",
       status: "In toepassing · 2025-nu · NDA",
       part1: "Een herbruikbare ",
       redacted1: "launch-aanpak",
       part2:
-        " voor indie- en stealth-products richting publieke release. Uitgekristalliseerd tijdens het eerste stealth-project. ",
+        " voor indie- en stealth-products richting publieke release. Uitgekristalliseerd tijdens het bouwen en lanceren van AudioLaunch. ",
       redacted2:
         "Tools, sequencing, eigen content-pipeline, social-syndication.",
       part3:
         " In toepassing op het volgende project. Meer dan een lijstje tactieken, minder dan een publiek framework.",
     },
-    note: "Beide projecten kan ik op een call wel inhoudelijk doornemen. Klikt het, dan praten we verder onder MNDA.",
+    note: "Dit project kan ik op een call wel inhoudelijk doornemen. Klikt het, dan praten we verder onder MNDA.",
   },
 };
 

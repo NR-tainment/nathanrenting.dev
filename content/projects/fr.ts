@@ -4,11 +4,11 @@ const fr: ProjectsDict = {
   meta: {
     title: "Travaux",
     description:
-      "ECHO — mon orchestrateur d'agents personnel. Autres projets actuellement sous NDA.",
+      "ECHO — mon orchestrateur d'agents personnel. AudioLaunch — studio de musique mobile, en ligne en open beta.",
   },
   h1: "Travaux",
   introBefore:
-    "ECHO, TherapyVault et FamilyKart sont ceux que je peux montrer publiquement. Mon plus gros projet est en Stealth : un produit audio que je construis depuis 2018, à travers plusieurs pivots de concept et itérations de plateforme, avec un tier de production depuis 2024. J'en parle volontiers lors d'un call. Pour les patterns d'ingénierie que l'on retrouve partout, voir ",
+    "ECHO, TherapyVault, AudioLaunch et FamilyKart sont ceux que je peux montrer publiquement. Ce qui reste sous NDA : une méthodologie de lancement réutilisable, cristallisée en construisant et en lançant AudioLaunch. J'en parle volontiers lors d'un call. Pour les patterns d'ingénierie que l'on retrouve partout, voir ",
   introLinkLabel: "/patterns",
   introAfter: ".",
   cards: {
@@ -37,6 +37,15 @@ const fr: ProjectsDict = {
       status: "En ligne · en construction",
       externalUrl: "https://audiolab.tools",
     },
+    audiolaunch: {
+      href: "/projects/audiolaunch",
+      title: "AudioLaunch",
+      oneLiner:
+        "Studio de musique mobile (Studio) et Resonara, un monde gamifié où l'on apprend le sound design en jouant. Moteur audio Rust maison pour du DSP low-latency sur Android (NDK + JNI + React Native FFI). Construit en solo depuis huit ans, désormais en open beta publique.",
+      tags: ["React Native", "Rust · moteur audio maison", "Android NDK", "Mobile DAW"],
+      status: "En ligne · open beta",
+      externalUrl: "https://audio-launch.com",
+    },
     captioncompass: {
       href: "/projects/captioncompass",
       title: "CaptionCompass",
@@ -64,36 +73,20 @@ const fr: ProjectsDict = {
   },
   stealth: {
     label: "Stealth",
-    timelineAlt:
-      "Chronologie dessinée à la main sur un tableau noir : 8 ANS — ONE PROBLEM. Cinq phases entre 2018 et aujourd'hui : concept + vision (2018), premières esquisses (2020), pivot mobile (2022), tier de production (2024), en ligne · stealth (maintenant).",
-    timelineCaption: "Esquisse sur whiteboard · huit ans dans un seul espace-problème",
     marginNote: "(sous NDA. lors d'un call je peux en dire plus)",
-    audio: {
-      category: "Stealth · audio · 8 ans",
-      status: "En ligne · depuis 2018 · NDA",
-      part1: "Un ",
-      redacted1: "produit pour les créateurs",
-      part2:
-        ", construit sur plus de dix ans d'expérience en production audio. Depuis 2018 : les premières années en construction de concept et esquisses de plateforme, puis trois pivots de concept et plusieurs itérations reconstruites, avec un tier de production depuis 2024. Mobile cross-platform avec un ",
-      redacted2: "moteur audio maison",
-      part3: ", un fallback AI à trois niveaux, et un ",
-      redacted3: "pipeline de samples maison",
-      part4:
-        ". En ligne auprès d'un petit groupe d'early adopters, lancement public en préparation. Stack EU-first, RGPD by design.",
-    },
     method: {
       category: "Stealth · méthodologie",
       status: "En application · 2025-aujourd'hui · NDA",
       part1: "Une ",
       redacted1: "approche de lancement",
       part2:
-        " réutilisable pour les produits indé et stealth en route vers une release publique. Cristallisée pendant le premier projet stealth. ",
+        " réutilisable pour les produits indé et stealth en route vers une release publique. Cristallisée en construisant et en lançant AudioLaunch. ",
       redacted2:
         "Outils, séquençage, pipeline de contenu maison, syndication sociale.",
       part3:
         " Actuellement en application sur le projet suivant. Plus qu'une liste de tactiques, moins qu'un framework public.",
     },
-    note: "Je peux passer les deux projets en revue en détail lors d'un call. Si le courant passe, on poursuit sous MNDA.",
+    note: "Je peux passer ce projet en revue en détail lors d'un call. Si le courant passe, on poursuit sous MNDA.",
   },
 };
 

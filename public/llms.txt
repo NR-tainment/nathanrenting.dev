@@ -26,7 +26,8 @@
 
 ## Featured projects
 
-- [AudioLaunch & audiolab.tools](https://nathanrenting.dev/projects/audiolab): a mobile DAW built on a native Rust audio engine, plus a public browser-side toolkit at audiolab.tools (live)
+- [AudioLaunch](https://nathanrenting.dev/projects/audiolaunch): a mobile music-creation app (Studio DAW + Resonara) built on a native Rust audio engine — live in public open beta at audio-launch.com
+- [AudioLab.tools](https://nathanrenting.dev/projects/audiolab): a public browser-side audio toolkit at audiolab.tools (live)
 - [Echo](https://nathanrenting.dev/projects/echo): AI agent orchestration system with multi-step planning
 - [TherapyVault](https://nathanrenting.dev/projects/therapyvault): secure session vault and notes for therapists
 - [CaptionCompass](https://nathanrenting.dev/projects/captioncompass): AI captioning workflow for podcasters and creators

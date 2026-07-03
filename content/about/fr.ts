@@ -31,13 +31,13 @@ const fr: AboutDict = {
       "La programmation a grandi à côté. J'ai commencé avec du HTML simple et des tutoriels de moteurs de jeu, en évoluant lentement vers du vrai logiciel. Les huit dernières années de façon intensive : d'abord pour mon propre outillage audio, puis pour des produits et du travail client. ",
     p2Highlight: "Autodidacte, pas de joli parcours LinkedIn",
     p2After: ".",
-    p3: "Depuis 2018, je travaille sur mon propre produit audio. Les premières années sont passées dans la construction du concept et les premières esquisses du site. Pas de code de production, mais le modèle mental qui soutient tout ce qu'il y a en dessous. Ensuite, trois pivots de concept et plusieurs itérations reconstruites, avec un niveau de production depuis 2024. Huit ans passés dans un même espace de problème produisent quelque chose qu'aucun tutoriel n'enseigne : un sens de quelles abstractions tiennent et lesquelles tu démoliras à nouveau six mois plus tard. Le produit reste sous NDA jusqu'au lancement.",
+    p3: "Depuis 2018, je travaille sur AudioLaunch, mon propre produit audio. Les premières années sont passées dans la construction du concept et les premières esquisses du site. Pas de code de production, mais le modèle mental qui soutient tout ce qu'il y a en dessous. Ensuite, trois pivots de concept et plusieurs itérations reconstruites, avec un niveau de production depuis 2024. Huit ans passés dans un même espace de problème produisent quelque chose qu'aucun tutoriel n'enseigne : un sens de quelles abstractions tiennent et lesquelles tu démoliras à nouveau six mois plus tard. Désormais en ligne en open beta publique sur audio-launch.com.",
     p4: "Ce que tout ça apporte : je comprends l'audio de fond en comble. Le DSP, et aussi ce sur quoi un producteur bute et ce qu'une UI doit faire pour ne pas gêner. J'essaie de garder ce même regard large dans le travail sur les agents. Le moteur, l'infra et l'expérience utilisateur, tout en vue en même temps.",
   },
   now: {
     heading: "Ce qui tourne en ce moment",
     p1: "ECHO est mon propre orchestrateur. Local, voice-first, avec Obsidian comme mémoire. Il tourne sur mon poste principal (Ryzen 7 avec RX 6650 XT, Windows) à côté du HUD, de ComfyUI et du reste de ma stack de dev. Une machine AMD plus ancienne se trouve à côté, en banc de test Linux pour mes side-projects et mes expérimentations. Voir la page ECHO pour l'architecture et /patterns pour les décisions intéressantes.",
-    p2: "En plus de ça : un produit en stealth et une méthodologie de lancement réutilisable. Les deux ne sont pas encore publics. Sous NDA, j'en parle volontiers.",
+    p2: "En plus de ça : AudioLaunch, mon produit audio, est désormais public. Ce qui n'est pas encore public : la méthodologie de lancement réutilisable qui en est issue. Sous NDA, j'en parle volontiers.",
   },
   stack: {
     heading: "Stack",

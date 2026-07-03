@@ -237,6 +237,31 @@ export default async function Home({
           />
         </SketchBox>
 
+        {/* Revenue-facing audio products — SketchBox-featured pair so they
+            read as primary alongside ECHO. */}
+        <div className="mt-4 grid md:grid-cols-2 gap-3">
+          <SketchBox className="rounded-md" seed={19}>
+            <ProjectCard
+              href={p(cards.audiolaunch.href)}
+              title={cards.audiolaunch.title}
+              oneLiner={cards.audiolaunch.oneLiner}
+              tags={cards.audiolaunch.tags}
+              status={cards.audiolaunch.status}
+              externalUrl={cards.audiolaunch.externalUrl}
+            />
+          </SketchBox>
+          <SketchBox className="rounded-md" seed={29}>
+            <ProjectCard
+              href={p(cards.audiolab.href)}
+              title={cards.audiolab.title}
+              oneLiner={cards.audiolab.oneLiner}
+              tags={cards.audiolab.tags}
+              status={cards.audiolab.status}
+              externalUrl={cards.audiolab.externalUrl}
+            />
+          </SketchBox>
+        </div>
+
         <div className="mt-4 grid md:grid-cols-2 gap-3">
           <ProjectCard
             href={p(cards.therapyvault.href)}
@@ -244,14 +269,6 @@ export default async function Home({
             oneLiner={cards.therapyvault.oneLiner}
             tags={cards.therapyvault.tags}
             status={cards.therapyvault.status}
-          />
-          <ProjectCard
-            href={p(cards.audiolab.href)}
-            title={cards.audiolab.title}
-            oneLiner={cards.audiolab.oneLiner}
-            tags={cards.audiolab.tags}
-            status={cards.audiolab.status}
-            externalUrl={cards.audiolab.externalUrl}
           />
           <ProjectCard
             href={p(cards.captioncompass.href)}
@@ -281,34 +298,19 @@ export default async function Home({
           {t.stealth.label}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-3">
-          <StealthCard
-            category={t.stealth.audio.category}
-            description={
-              <>
-                {t.stealth.audio.part1}
-                <Redacted variant="wipe">{t.stealth.audio.redacted1}</Redacted>
-                {t.stealth.audio.part2}
-                <Redacted>{t.stealth.audio.redacted2}</Redacted>
-                {t.stealth.audio.part3}
-              </>
-            }
-            status={t.stealth.audio.status}
-          />
-          <StealthCard
-            category={t.stealth.method.category}
-            description={
-              <>
-                {t.stealth.method.part1}
-                <Redacted variant="wipe">{t.stealth.method.redacted1}</Redacted>
-                {t.stealth.method.part2}
-                <Redacted>{t.stealth.method.redacted2}</Redacted>
-                {t.stealth.method.part3}
-              </>
-            }
-            status={t.stealth.method.status}
-          />
-        </div>
+        <StealthCard
+          category={t.stealth.method.category}
+          description={
+            <>
+              {t.stealth.method.part1}
+              <Redacted variant="wipe">{t.stealth.method.redacted1}</Redacted>
+              {t.stealth.method.part2}
+              <Redacted>{t.stealth.method.redacted2}</Redacted>
+              {t.stealth.method.part3}
+            </>
+          }
+          status={t.stealth.method.status}
+        />
 
         <p className="mt-6 text-xs font-mono text-zinc-500">{t.work.ndaNote}</p>
       </SectionReveal>

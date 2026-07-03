@@ -31,13 +31,13 @@ const de: AboutDict = {
       "Das Programmieren wuchs nebenher. Begonnen mit einfachem HTML und Game-Engine-Tutorials, langsam zu echter Software hochgearbeitet. Die letzten acht Jahre intensiv: erst für eigenes Audio-Tooling, später für Produkte und Kundenarbeit. ",
     p2Highlight: "Autodidakt, kein hübscher LinkedIn-Werdegang",
     p2After: ".",
-    p3: "Seit 2018 arbeite ich an meinem eigenen Audio-Produkt. Die ersten Jahre gingen in den Aufbau des Konzepts und erste Website-Skizzen. Kein Produktionscode, aber das mentale Modell, das alles darunter trägt. Danach drei Konzept-Pivots und mehrere neu gebaute Iterationen, mit einer Produktions-Stufe seit 2024. Acht Jahre in einem Problemraum bringen etwas hervor, das man aus keinem Tutorial lernt: ein Gespür dafür, welche Abstraktionen halten und welche man sechs Monate später wieder einreißt. Das Produkt bleibt bis zum Launch unter NDA.",
+    p3: "Seit 2018 arbeite ich an AudioLaunch, meinem eigenen Audio-Produkt. Die ersten Jahre gingen in den Aufbau des Konzepts und erste Website-Skizzen. Kein Produktionscode, aber das mentale Modell, das alles darunter trägt. Danach drei Konzept-Pivots und mehrere neu gebaute Iterationen, mit einer Produktions-Stufe seit 2024. Acht Jahre in einem Problemraum bringen etwas hervor, das man aus keinem Tutorial lernt: ein Gespür dafür, welche Abstraktionen halten und welche man sechs Monate später wieder einreißt. Inzwischen live in öffentlicher Open Beta auf audio-launch.com.",
     p4: "Was das alles bringt: Ich verstehe Audio von innen und außen. Das DSP, und auch, wo ein Producer ansteht und was eine UI tun muss, um nicht im Weg zu sein. Denselben breiten Blick versuche ich in der Agenten-Arbeit zu behalten. Engine, Infra und die Nutzererfahrung gleichzeitig im Blick.",
   },
   now: {
     heading: "Was gerade läuft",
     p1: "ECHO ist mein eigener Orchestrator. Lokal, voice-first, mit Obsidian als Gedächtnis. Läuft auf meinem Haupt-Arbeitsplatz (Ryzen 7 mit RX 6650 XT, Windows) neben dem HUD, ComfyUI und dem Rest meines Dev-Stacks. Eine ältere AMD-Maschine steht daneben als Linux-Testbed für Side-Projects und Experimente. Siehe die ECHO-Seite für die Architektur und /patterns für die interessanten Entscheidungen.",
-    p2: "Daneben: ein Produkt im Stealth-Modus und eine wiederverwendbare Launch-Methodik. Beides noch nicht öffentlich. Unter NDA spreche ich gern darüber.",
+    p2: "Daneben: AudioLaunch, mein Audio-Produkt, ist inzwischen öffentlich. Was noch nicht öffentlich ist: die wiederverwendbare Launch-Methodik, die daraus entstanden ist. Unter NDA spreche ich gern darüber.",
   },
   stack: {
     heading: "Stack",

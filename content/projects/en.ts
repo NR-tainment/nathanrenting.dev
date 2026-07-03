@@ -4,11 +4,11 @@ const en: ProjectsDict = {
   meta: {
     title: "Work",
     description:
-      "ECHO — my personal agent orchestrator. Other projects currently under NDA.",
+      "ECHO — my personal agent orchestrator. AudioLaunch — mobile music studio, live in open beta.",
   },
   h1: "Work",
   introBefore:
-    "ECHO, TherapyVault and FamilyKart are the ones I can show publicly. My biggest project is in Stealth: an audio product I've been building since 2018, through several concept pivots and platform iterations, with a production tier since 2024. I'm happy to walk you through it on a call. For the engineering patterns that keep recurring across all of them, see ",
+    "ECHO, TherapyVault, AudioLaunch and FamilyKart are the ones I can show publicly. What's still under NDA: a reusable launch methodology, crystallised while building and launching AudioLaunch. I'm happy to walk you through it on a call. For the engineering patterns that keep recurring across all of them, see ",
   introLinkLabel: "/patterns",
   introAfter: ".",
   cards: {
@@ -37,6 +37,15 @@ const en: ProjectsDict = {
       status: "Live · in progress",
       externalUrl: "https://audiolab.tools",
     },
+    audiolaunch: {
+      href: "/projects/audiolaunch",
+      title: "AudioLaunch",
+      oneLiner:
+        "Mobile music studio (Studio) plus Resonara, a gamified world that teaches sound design as you play. Custom native Rust audio engine for low-latency DSP on Android (NDK + JNI + React Native FFI). Eight years solo-built, now in public open beta.",
+      tags: ["React Native", "Rust · custom audio engine", "Android NDK", "Mobile DAW"],
+      status: "Live · open beta",
+      externalUrl: "https://audio-launch.com",
+    },
     captioncompass: {
       href: "/projects/captioncompass",
       title: "CaptionCompass",
@@ -64,36 +73,20 @@ const en: ProjectsDict = {
   },
   stealth: {
     label: "Stealth",
-    timelineAlt:
-      "Hand-drawn timeline on a blackboard: 8 YEARS — ONE PROBLEM. Five phases between 2018 and now: concept + vision (2018), first sketches (2020), mobile pivot (2022), production tier (2024), live · stealth (now).",
-    timelineCaption: "Whiteboard sketch · eight years in a single problem space",
     marginNote: "(under NDA. I can say more on a call)",
-    audio: {
-      category: "Stealth · audio · 8 years",
-      status: "Live · since 2018 · NDA",
-      part1: "A ",
-      redacted1: "product for creators",
-      part2:
-        ", built on more than ten years of audio-production experience. Since 2018: the first years spent on concept work and platform sketches, then three concept pivots and several rebuilt iterations, with a production tier since 2024. Cross-platform mobile with a ",
-      redacted2: "custom audio engine",
-      part3: ", three-tier AI fallback, and a ",
-      redacted3: "custom sample pipeline",
-      part4:
-        ". Live with a small group of early adopters, public launch in preparation. EU-first stack, GDPR by design.",
-    },
     method: {
       category: "Stealth · methodology",
       status: "In use · 2025–now · NDA",
       part1: "A reusable ",
       redacted1: "launch approach",
       part2:
-        " for indie and stealth products heading toward public release. Crystallized during the first stealth project. ",
+        " for indie and stealth products heading toward public release. Crystallized while building and launching AudioLaunch. ",
       redacted2:
         "Tools, sequencing, a custom content pipeline, social syndication.",
       part3:
         " Now being applied to the next project. More than a list of tactics, less than a public framework.",
     },
-    note: "I'm happy to go through both projects in detail on a call. If it clicks, we take it further under MNDA.",
+    note: "I'm happy to go through this project in detail on a call. If it clicks, we take it further under MNDA.",
   },
 };
 

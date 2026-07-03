@@ -31,13 +31,13 @@ const nl: AboutDict = {
       "Het programmeren groeide daarnaast. Begonnen met simpele HTML en game-engine-tutorials, langzaam doorgegroeid naar echte software. De laatste acht jaar intensief: eerst voor eigen audio-tooling, later voor producten en klantwerk. ",
     p2Highlight: "Zelfgeleerd, geen mooi LinkedIn-pad",
     p2After: ".",
-    p3: "Sinds 2018 werk ik aan mijn eigen audio-product. De eerste jaren gingen in concept-opbouw en eerste website-schetsen. Geen productie-code, wel het mentale model dat alles eronder schraagt. Daarna drie concept-pivots en meerdere herbouwde iteraties, met een productie-tier sinds 2024. Acht jaar tijd in één probleemruimte levert iets op wat je niet uit een tutorial leert: een gevoel voor welke abstracties houden en welke je zes maanden later weer afbreekt. Het product blijft onder NDA tot launch.",
+    p3: "Sinds 2018 werk ik aan AudioLaunch, mijn eigen audio-product. De eerste jaren gingen in concept-opbouw en eerste website-schetsen. Geen productie-code, wel het mentale model dat alles eronder schraagt. Daarna drie concept-pivots en meerdere herbouwde iteraties, met een productie-tier sinds 2024. Acht jaar tijd in één probleemruimte levert iets op wat je niet uit een tutorial leert: een gevoel voor welke abstracties houden en welke je zes maanden later weer afbreekt. Inmiddels live in publieke open beta op audio-launch.com.",
     p4: "Wat dat alles oplevert: ik snap audio van binnen en buiten. De DSP, en ook hoe een producer ergens tegenaan loopt en wat een UI moet doen om niet in de weg te zitten. Diezelfde brede blik probeer ik in agent-werk te houden. Engine, infra en de gebruikerservaring tegelijk in beeld.",
   },
   now: {
     heading: "Wat er nu draait",
     p1: "ECHO is mijn eigen orchestrator. Lokaal, voice-first, met Obsidian als geheugen. Draait op mijn main werkplek (Ryzen 7 met RX 6650 XT, Windows) naast de HUD, ComfyUI en de rest van mijn dev-stack. Een oudere AMD-machine staat ernaast als Linux-testbed voor side-projects en experimenten. Zie de ECHO-page voor de architectuur en /patterns voor de interessante beslissingen.",
-    p2: "Daarnaast: een product in stealth en een herbruikbare launch-methodiek. Beide nog niet publiek. Onder NDA praat ik er graag over.",
+    p2: "Daarnaast: AudioLaunch, mijn audio-product, is inmiddels publiek. Wat nog niet publiek is: de herbruikbare launch-methodiek die daaruit is ontstaan. Onder NDA praat ik er graag over.",
   },
   stack: {
     heading: "Stack",

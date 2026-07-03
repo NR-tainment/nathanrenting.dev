@@ -70,6 +70,34 @@ export default async function ProjectsPage({
         </SketchBox>
       </SectionReveal>
 
+      {/* Revenue-facing audio products promoted next to ECHO with the
+          same SketchBox treatment. */}
+      <SectionReveal className="mt-4">
+        <SketchBox className="rounded-md" seed={19}>
+          <ProjectCard
+            href={p(c.audiolaunch.href)}
+            title={c.audiolaunch.title}
+            oneLiner={c.audiolaunch.oneLiner}
+            tags={c.audiolaunch.tags}
+            status={c.audiolaunch.status}
+            externalUrl={c.audiolaunch.externalUrl}
+          />
+        </SketchBox>
+      </SectionReveal>
+
+      <SectionReveal className="mt-4">
+        <SketchBox className="rounded-md" seed={29}>
+          <ProjectCard
+            href={p(c.audiolab.href)}
+            title={c.audiolab.title}
+            oneLiner={c.audiolab.oneLiner}
+            tags={c.audiolab.tags}
+            status={c.audiolab.status}
+            externalUrl={c.audiolab.externalUrl}
+          />
+        </SketchBox>
+      </SectionReveal>
+
       <SectionReveal className="mt-4">
         <ProjectCard
           href={p(c.therapyvault.href)}
@@ -77,17 +105,6 @@ export default async function ProjectsPage({
           oneLiner={c.therapyvault.oneLiner}
           tags={c.therapyvault.tags}
           status={c.therapyvault.status}
-        />
-      </SectionReveal>
-
-      <SectionReveal className="mt-4">
-        <ProjectCard
-          href={p(c.audiolab.href)}
-          title={c.audiolab.title}
-          oneLiner={c.audiolab.oneLiner}
-          tags={c.audiolab.tags}
-          status={c.audiolab.status}
-          externalUrl={c.audiolab.externalUrl}
         />
       </SectionReveal>
 
@@ -132,52 +149,23 @@ export default async function ProjectsPage({
           {t.stealth.label}
         </h2>
 
-        <figure className="my-8 -mx-2 md:-mx-8">
-          <img
-            src="/stealth-timeline.png"
-            alt={t.stealth.timelineAlt}
-            className="w-full rounded border border-zinc-800"
-            loading="lazy"
-          />
-          <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
-            {t.stealth.timelineCaption}
-          </figcaption>
-        </figure>
-
         <MarginNote position="right" rotate={-2}>
           {t.stealth.marginNote}
         </MarginNote>
 
-        <div className="grid md:grid-cols-2 gap-3">
-          <StealthCard
-            category={t.stealth.audio.category}
-            description={
-              <>
-                {t.stealth.audio.part1}
-                <Redacted variant="wipe">{t.stealth.audio.redacted1}</Redacted>
-                {t.stealth.audio.part2}
-                <Redacted>{t.stealth.audio.redacted2}</Redacted>
-                {t.stealth.audio.part3}
-                <Redacted variant="wipe">{t.stealth.audio.redacted3}</Redacted>
-                {t.stealth.audio.part4}
-              </>
-            }
-            status={t.stealth.audio.status}
-          />
-          <StealthCard
-            category={t.stealth.method.category}
-            description={
-              <>
-                {t.stealth.method.part1}
-                <Redacted variant="wipe">{t.stealth.method.redacted1}</Redacted>
-                {t.stealth.method.part2}
-                <Redacted>{t.stealth.method.redacted2}</Redacted>
-                {t.stealth.method.part3}
-              </>
-            }
-            status={t.stealth.method.status}
-          />
-        </div>
+        <StealthCard
+          category={t.stealth.method.category}
+          description={
+            <>
+              {t.stealth.method.part1}
+              <Redacted variant="wipe">{t.stealth.method.redacted1}</Redacted>
+              {t.stealth.method.part2}
+              <Redacted>{t.stealth.method.redacted2}</Redacted>
+              {t.stealth.method.part3}
+            </>
+          }
+          status={t.stealth.method.status}
+        />
 
         <p className="mt-6 text-xs font-mono text-zinc-500">{t.stealth.note}</p>
       </SectionReveal>

@@ -31,13 +31,13 @@ const en: AboutDict = {
       "Programming grew alongside it. Started with simple HTML and game-engine tutorials, slowly working up to real software. The last eight years intensively: first for my own audio tooling, later for products and client work. ",
     p2Highlight: "Self-taught, no tidy LinkedIn path",
     p2After: ".",
-    p3: "Since 2018 I've been working on my own audio product. The first years went into building the concept and early website sketches. No production code, but the mental model that underpins everything beneath it. After that came three concept pivots and several rebuilt iterations, with a production tier since 2024. Eight years spent in one problem space yields something you don't learn from a tutorial: a feel for which abstractions hold and which ones you'll tear down again six months later. The product stays under NDA until launch.",
+    p3: "Since 2018 I've been working on AudioLaunch, my own audio product. The first years went into building the concept and early website sketches. No production code, but the mental model that underpins everything beneath it. After that came three concept pivots and several rebuilt iterations, with a production tier since 2024. Eight years spent in one problem space yields something you don't learn from a tutorial: a feel for which abstractions hold and which ones you'll tear down again six months later. Now live in public open beta at audio-launch.com.",
     p4: "What all of that yields: I understand audio inside and out. The DSP, and also how a producer runs into something and what a UI has to do to stay out of the way. I try to keep that same broad view in agent work. Engine, infra, and the user experience all in frame at once.",
   },
   now: {
     heading: "What's running now",
     p1: "ECHO is my own orchestrator. Local, voice-first, with Obsidian as memory. Runs on my main workstation (Ryzen 7 with RX 6650 XT, Windows) alongside the HUD, ComfyUI, and the rest of my dev stack. An older AMD machine sits next to it as a Linux testbed for side projects and experiments. See the ECHO page for the architecture and /patterns for the interesting decisions.",
-    p2: "On top of that: a product in stealth and a reusable launch methodology. Both not public yet. Under NDA I'm happy to talk about them.",
+    p2: "On top of that: AudioLaunch, my audio product, is public now. What's not public yet: the reusable launch methodology that came out of it. Under NDA I'm happy to talk about it.",
   },
   stack: {
     heading: "Stack",
