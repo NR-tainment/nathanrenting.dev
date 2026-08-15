@@ -89,9 +89,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  if (message.length > 5000) {
+  // Ruim genoeg voor een volledig ingevuld intakeformulier (/intake), dat via
+  // dezelfde route binnenkomt; blijft een harde bovengrens tegen dumps.
+  if (message.length > 20_000) {
     return NextResponse.json(
-      { error: "Bericht is te lang (max 5000 tekens)" },
+      { error: "Bericht is te lang (max 20.000 tekens)" },
       { status: 400 },
     );
   }
