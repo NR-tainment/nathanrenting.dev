@@ -12,6 +12,8 @@ const de: CommonDict = {
   },
   footer: {
     inhuur: "Buchen",
+    kvkLabel: "KvK-Nr.",
+    vatLabel: "USt-IdNr.",
     builtWith: "Im Alleingang gebaut. Next.js, MDX, Kaffee. Source auf ",
     sourceLinkLabel: "github.com/NR-tainment",
     builtWithSuffix: ".",

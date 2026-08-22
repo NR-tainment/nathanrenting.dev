@@ -13,10 +13,15 @@ export function Footer({
   return (
     <footer className="border-t border-zinc-800 mt-24 py-10">
       <div className="max-w-3xl mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col gap-1">
           <span>
             © {new Date().getFullYear()} Nathan Renting (Jonathan David Renting)
             · Eindhoven, NL
+          </span>
+          {/* Art. 3:15d BW + Handelsregisterwet: KvK en btw-id op elke pagina.
+              Nooit het omzetbelastingnummer hier zetten, dat is BSN-afgeleid. */}
+          <span>
+            {footer.kvkLabel} 54871204 · {footer.vatLabel} NL005488038B34
           </span>
         </div>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">

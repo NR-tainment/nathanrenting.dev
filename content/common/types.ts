@@ -15,6 +15,8 @@ export type CommonDict = {
   };
   footer: {
     inhuur: string;
+    kvkLabel: string; // label voor het KvK-nummer (nummers zelf staan in Footer.tsx)
+    vatLabel: string; // label voor het btw-id
     builtWith: string; // text before the source link
     sourceLinkLabel: string; // the linked github text
     builtWithSuffix: string; // text after the source link (e.g. ".")

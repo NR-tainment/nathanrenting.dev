@@ -12,6 +12,8 @@ const fr: CommonDict = {
   },
   footer: {
     inhuur: "Me recruter",
+    kvkLabel: "KvK",
+    vatLabel: "N° TVA",
     builtWith: "Conçu en solo. Next.js, MDX, café. Source sur ",
     sourceLinkLabel: "github.com/NR-tainment",
     builtWithSuffix: ".",
