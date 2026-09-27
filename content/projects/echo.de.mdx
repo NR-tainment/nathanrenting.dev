@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "ECHO — Agent-Orchestrator",
+  title: "ECHO · Agent-Orchestrator",
   description:
     "Ein persönlicher Agent-Orchestrator, im Alleingang gebaut von Nathan Renting. Multi-Brain-Routing, Tool-Dispatch, Vault-gestütztes Gedächtnis und lokaler + Cloud-LLM-Fallback.",
 };
@@ -42,7 +42,7 @@ export const appSchema = {
   <SketchUnderline seed={181}>Projekt · im Produktivbetrieb</SketchUnderline>
 </div>
 
-# ECHO — Agent-Orchestrator
+# ECHO · Agent-Orchestrator
 
 <MarkerHighlight>Ein persönlicher, Jarvis-artiger Assistent, im Alleingang gebaut, lokal auf meiner eigenen Hardware laufend.</MarkerHighlight>{" "}
 Multi-Brain-LLM-Routing, Tool-Dispatch, Vault-gestütztes Gedächtnis,
@@ -104,14 +104,14 @@ redigiert).
 ┌─────────────────────────────────────────────────────────────┐
 │  Orchestrator (FastAPI · Python 3.13)                       │
 │  ─────────────────────────────────────────────────────────  │
-│  router.py       — Multi-brain selection (heuristics + LLM) │
-│  tools.py        — 14+ tool dispatch                        │
-│  skills.py       — agentskills.io-compatible workflow layer │
-│  vault_graph.py  — Markdown vault + Wikilink edges          │
-│  time_track.py   — Time entries, Stundenkriterium, exports  │
-│  runway.py       — Personal-finance runway dashboard        │
-│  social.py       — Social-media accounts registry           │
-│  cc_status.py    — Claude Code activity from JSONL          │
+│  router.py       – Multi-brain selection (heuristics + LLM) │
+│  tools.py        – 14+ tool dispatch                        │
+│  skills.py       – agentskills.io-compatible workflow layer │
+│  vault_graph.py  – Markdown vault + Wikilink edges          │
+│  time_track.py   – Time entries, Stundenkriterium, exports  │
+│  runway.py       – Personal-finance runway dashboard        │
+│  social.py       – Social-media accounts registry           │
+│  cc_status.py    – Claude Code activity from JSONL          │
 │  ... + nudges, agenda, hue, intents, voice, tts, und eine   │
 │      Handvoll produktspezifischer Integrationsmodule        │
 └──────┬──────────────────────────────┬───────────────────────┘
@@ -196,7 +196,7 @@ schreibt, eine Chronicle jedes Claude-Code-Commits über all meine
 Projekte hinweg und ein `CC-inbox.md`-Kanal, über den Dev-Claude ECHO
 zwischen Turns briefen kann.
 
-Die Watcher — Python-Jobs, von APScheduler gescheduled — überwachen
+Die Watcher (Python-Jobs, von APScheduler gescheduled) überwachen
 Commits, Sentry, Issues, Projekt-State, Agenda, Idle. Jeder emittiert
 einen strukturierten Trigger, wenn er etwas sieht, das ECHO&apos;s
 Aufmerksamkeit wert ist; der Drafter macht aus Triggern Proposed
@@ -208,10 +208,10 @@ Nudges; der Curator aggregiert periodisch.
 
 ECHO nimmt nie an, dass die API verfügbar ist. Drei Tiers:
 
-1. **Tier 1 — API** (primär, höchste Qualität)
-2. **Tier 2 — Rule-based Reasoning** (Fallback, wenn die API down oder
+1. **Tier 1: API** (primär, höchste Qualität)
+2. **Tier 2: Rule-based Reasoning** (Fallback, wenn die API down oder
    rate-limited ist; weniger flüssig, aber immer noch sinnvoll)
-3. **Tier 3 — Hardcoded** (Offline-Minimum-Viable-Response)
+3. **Tier 3: Hardcoded** (Offline-Minimum-Viable-Response)
 
 Dieses Muster taucht über mehrere Schichten hinweg auf. Das Ergebnis:
 ECHO funktioniert weiter, auch wenn externe Dienste das nicht tun.
@@ -254,16 +254,16 @@ Token. Filter auf der *Write*-Seite; die Read-Seite bleibt simpel.
 
 ECHO ist in Schichten aufgebaut, jede progressiv autonomer:
 
-1. **Gedächtnis-Schicht** — Obsidian-Vault mit WikiLink-Edges, gespeist
+1. **Gedächtnis-Schicht**: Obsidian-Vault mit WikiLink-Edges, gespeist
    von jedem Gespräch, jeder Entscheidung und jedem Commit. Markdown,
    kein Lock-in, unabhängig von ECHO lesbar.
-2. **Watcher** — Python-Jobs auf APScheduler, die Filesystem-Events,
+2. **Watcher**: Python-Jobs auf APScheduler, die Filesystem-Events,
    Git-Commits, Calendar-Pings und Sentry-Issues überwachen und
    strukturierte Trigger emittieren.
-3. **Drafter** — Cron-Jobs für Weekly Recap, Daily Summary,
+3. **Drafter**: Cron-Jobs für Weekly Recap, Daily Summary,
    Time-Tracking-Aggregat und Vault-Consolidation. Der Output landet als
    Proposed Nudges in einer Inbox zur Durchsicht.
-4. **Sleep-Time-Compute** (in Entwicklung) — günstiges Modell, das
+4. **Sleep-Time-Compute** (in Entwicklung): günstiges Modell, das
    nachts neue Vault-Entries liest und Verbindungen vorschlägt.
 
 <MarkerHighlight>Der Trend pro Schicht: weniger Tippen, mehr Vorschlagen.</MarkerHighlight>

@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "TherapyVault — secure therapy video",
+  title: "TherapyVault · secure therapy video",
   description:
     "Secure video platform for therapists and clients. Granular access grants, MFA, GDPR export and payment abstraction. Next.js 15 + Prisma + Cloudflare R2.",
 };
@@ -42,11 +42,11 @@ export const appSchema = {
   <SketchUnderline seed={223}>Project · v0.1 release candidate</SketchUnderline>
 </div>
 
-# TherapyVault — secure video platform for therapy
+# TherapyVault · secure video platform for therapy
 
 <MarkerHighlight>A private video platform where therapists safely share recorded sessions with their own clients.</MarkerHighlight>{" "}
-No public URLs, no YouTube link with &quot;anyone with the link can view&quot;
-— everything sits behind signed URLs with granular per-client access grants,
+No public URLs, no YouTube link with &quot;anyone with the link can view&quot;.
+Everything sits behind signed URLs with granular per-client access grants,
 optionally time-limited, view-limited or download-limited.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -96,12 +96,12 @@ technical foundation a healthcare context demands.
 
 <StackTable rows={[
   { label: "Frontend + API", value: "Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui" },
-  { label: "Auth", value: <>Auth.js v5 — credentials + <strong>Argon2id</strong> hashing + TOTP MFA</> },
+  { label: "Auth", value: <>Auth.js v5, credentials + <strong>Argon2id</strong> hashing + TOTP MFA</> },
   { label: "Database", value: "PostgreSQL 16 + Prisma 6" },
-  { label: "Storage", value: "Cloudflare R2 (S3-compatible) — provider abstraction supports S3, B2, MinIO, local" },
+  { label: "Storage", value: "Cloudflare R2 (S3-compatible); provider abstraction supports S3, B2, MinIO, local" },
   { label: "Uploads", value: <>tus protocol via <code className="font-mono text-cyan-300">@tus/server</code></> },
   { label: "Payments", value: <><code className="font-mono text-cyan-300">PaymentProvider</code> interface with Stripe-live + Mollie stub behind it</> },
-  { label: "Email", value: "console stub (v0.1) — react-email templates that render to logs" },
+  { label: "Email", value: "console stub (v0.1): react-email templates that render to logs" },
   { label: "Rate-limit", value: "Redis token-bucket with in-memory fallback" },
   { label: "Logging", value: "pino structured JSON + separate AuditLog table" },
   { label: "Tests", value: "Vitest unit/integration + Playwright e2e" },
@@ -125,7 +125,7 @@ a scheduled job with a grace period, an AuditLog table for all sensitive
 mutations.
 
 **Payment-provider abstraction.** Stripe live, Mollie behind the same
-interface — switch to iDEAL without touching the business logic.
+interface: switch to iDEAL without touching the business logic.
 
 <ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
 

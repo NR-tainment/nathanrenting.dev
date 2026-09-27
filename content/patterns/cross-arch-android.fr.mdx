@@ -71,7 +71,7 @@ bien moins visibles avant.
   </figcaption>
 </figure>
 
-## Piège 1 — Alignement de struct sur x86_64 vs arm
+## Piège 1 : Alignement de struct sur x86_64 vs arm
 
 Le plus douloureux. Le `#[repr(C)]` de Rust ne garantit pas le même
 agencement d'octets d'une architecture à l'autre, sauf si tu épingles
@@ -82,7 +82,7 @@ aussi explicitement l'alignement. Une struct comme :
 pub struct StepEvent {
     pub note: u8,        // 1 byte
     pub velocity: u8,    // 1 byte
-    pub time_ms: u64,    // 8 bytes — alignment verschilt
+    pub time_ms: u64,    // 8 bytes, alignment verschilt
 }
 ```
 
@@ -96,7 +96,7 @@ Correctif : toujours épingler l'alignement explicitement pour les structs
 qui franchissent la frontière FFI, ou agencer les structs pour qu'elles
 soient naturellement alignées (regrouper les champs de même taille).
 
-## Piège 2 — Dérive de version du NDK
+## Piège 2 : Dérive de version du NDK
 
 Le NDK Android prend en charge AAudio depuis une version précise, et cette
 API a évolué au fil des ans. Compile avec le NDK 25 et tu obtiens un
@@ -114,7 +114,7 @@ Si tu ne le fais pas, EAS Build (ou quel que soit le système de build
 cloud) peut adopter une valeur par défaut « newer is better » qui casse
 subtilement ton chemin audio toutes les quelques semaines.
 
-## Piège 3 — Symboles dupliqués de libc++_shared.so
+## Piège 3 : Symboles dupliqués de libc++_shared.so
 
 Si tu as plus d'une bibliothèque native dans l'APK, chacune avec sa propre
 liaison vers `libc++_shared.so`, tu peux obtenir des erreurs d'éditeur de
@@ -127,7 +127,7 @@ utilisent la *même* runtime partagée C++. Si tu maîtrises le build : force
 `-DANDROID_STL=c++_shared` partout. Si une dépendance embarque sa propre
 runtime C++ statique : recompile-la ou remplace cette dépendance.
 
-## Piège 4 — Surprises de cache d'EAS Build
+## Piège 4 : Surprises de cache d'EAS Build
 
 Les systèmes de build cloud comme EAS mettent en cache les artefacts de
 compilation native de façon agressive. Change un flag, push, et tu peux
@@ -140,7 +140,7 @@ dans le pipeline de build natif, incrémente une valeur de cache-bust (un
 numéro de version, un timestamp dans une variable d'environnement de build)
 pour que le cache s'invalide. Ne compte pas sur le cache pour être malin.
 
-## Piège 5 — APK unique vs APK fractionnés (split APKs)
+## Piège 5 : APK unique vs APK fractionnés (split APKs)
 
 Le Play Store a longtemps recommandé les split APKs (un par architecture)
 pour réduire la taille de téléchargement. Avec les App Bundles (AAB), c'est
@@ -161,19 +161,19 @@ L'APK universel est ~3x plus gros, mais c'est le seul qui s'installe sur
 chaque appareil que tu veux tester. AAB pour le Play Store, APK universel
 pour tout le reste.
 
-## Vérification — ce que tu dois vraiment contrôler
+## Vérification : ce que tu dois vraiment contrôler
 
 Après un build réussi, avant de livrer :
 
-1. **Installe sur un vrai appareil arm64** — le chemin principal, doit
+1. **Installe sur un vrai appareil arm64** : le chemin principal, doit
    fonctionner
-2. **Installe sur un émulateur x86** — attrape les bugs d'alignement
+2. **Installe sur un émulateur x86** : attrape les bugs d'alignement
    qu'arm64 masque
-3. **Installe sur un appareil ou émulateur armv7** — attrape les problèmes
+3. **Installe sur un appareil ou émulateur armv7** : attrape les problèmes
    qui n'apparaissent que sur 32 bits
-4. **Exécute le chemin audio sur les trois** — les bugs d'alignement se
+4. **Exécute le chemin audio sur les trois** : les bugs d'alignement se
    manifestent souvent par des coupures audio, pas par des crashs
-5. **Vérifie `adb logcat | grep -i "alignment\|symbol\|libc++"`** — fait
+5. **Vérifie `adb logcat | grep -i "alignment\|symbol\|libc++"`** : fait
    remonter les échecs qui ne plantent pas de façon visible
 
 Si les trois architectures passent le smoke test du chemin audio : livre.
@@ -183,7 +183,7 @@ part. Diagnostic par élimination.
 
 ## Quand ça compte
 
-Pour la plupart des apps React Native, c'est invisible — le framework gère
+Pour la plupart des apps React Native, c'est invisible. Le framework gère
 la compilation native, tu ne vois jamais le NDK en dessous. Pour les apps
 avec leur *propre* code natif (moteur audio Rust, DSP C++, peu importe),
 tout ce qui précède t'appartient.

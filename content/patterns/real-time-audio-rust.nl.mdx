@@ -67,7 +67,7 @@ gebeurt.
   </figcaption>
 </figure>
 
-Rust past goed bij dit werk — zodra je het grootste deel van de standard
+Rust past goed bij dit werk, zodra je het grootste deel van de standard
 library laat liggen. De borrow checker voorkomt data-races op compile-time,
 maar één `Box::new` op het audio-pad sloopt je latency alsnog. De patronen
 hieronder zijn wat het in de praktijk laat werken.
@@ -76,10 +76,10 @@ hieronder zijn wat het in de praktijk laat werken.
 
 Een typische mobile audio-app heeft drie threads die ertoe doen:
 
-1. **JS / UI thread** — vangt user-input op, stuurt control-messages
-2. **Native dispatch thread** — vertaalt die messages, runt business-logic,
+1. **JS / UI thread**: vangt user-input op, stuurt control-messages
+2. **Native dispatch thread**: vertaalt die messages, runt business-logic,
    houdt state bij
-3. **Audio callback thread** — draait in het OS-audio-subsystem (AAudio
+3. **Audio callback thread**: draait in het OS-audio-subsystem (AAudio
    op Android, CoreAudio op iOS), wordt aangeroepen met strikte timing
 
 De audio-callback-thread mag nooit blokkeren, nooit alloceren, nooit
@@ -103,11 +103,11 @@ use rtrb::{Consumer, Producer, RingBuffer};
 let (mut producer, mut consumer): (Producer<ControlMsg>, Consumer<ControlMsg>) =
     RingBuffer::new(256).split();
 
-// JS / dispatch thread — non-blocking push
+// JS / dispatch thread: non-blocking push
 producer.push(ControlMsg::SetVolume { track: 0, value: 0.8 })
     .expect("ring buffer full");
 
-// Audio callback — non-blocking pop, leeg alles wat in de queue staat
+// Audio callback: non-blocking pop, leeg alles wat in de queue staat
 while let Ok(msg) = consumer.pop() {
     apply_message(&mut state, msg);
 }
@@ -138,7 +138,7 @@ de audio-thread. Een `Vec<f32>` van `samples_per_block` capaciteit, één
 keer geallocate vóór de audio-engine start, die elke callback in-place
 overschreven wordt.
 
-Rust&apos;s ownership-model helpt hier — zodra je het patroon van
+Rust&apos;s ownership-model helpt hier, zodra je het patroon van
 "code-zonder-`Box`/`Vec`/`String`-allocaties" eenmaal te pakken hebt,
 houdt de compiler je eerlijk. Het patroon draagt over van project naar
 project.
@@ -149,8 +149,8 @@ De audio-engine compileert naar een static library. De app (in mijn
 geval React Native) calls naar de engine via een FFI-laag. Twee design-
 keuzes die ertoe doen:
 
-**1. Hou het FFI-oppervlak klein.** Elke FFI-functie is een onderhoudslast
-— beide talen moeten het eens zijn over memory-layout, lifetime,
+**1. Hou het FFI-oppervlak klein.** Elke FFI-functie is een onderhoudslast.
+Beide talen moeten het eens zijn over memory-layout, lifetime,
 error-handling. Ik mik op ~10-15 FFI-functies die de publieke API van
 de engine wrappen; alles wat verder gaat blijft intern aan de Rust-kant.
 

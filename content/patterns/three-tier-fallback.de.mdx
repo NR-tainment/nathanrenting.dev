@@ -99,27 +99,27 @@ cleveren Circuit Breaker.
 
 ## Was jeder Tier macht
 
-**Tier 1 — LLM-API** ist die Default-Option. Beste Output-Qualität. Aber
+**Tier 1: LLM-API** ist die Default-Option. Beste Output-Qualität. Aber
 auch der Tier, der ausfällt, wenn das Netzwerk wegbricht, wenn du an
 Rate-Limits stößt, wenn der Provider einen Incident hat, wenn dein Key
 ohne Vorwarnung rotiert wird oder wenn ein Modell, auf das du dich
 verlässt, deprecated wird. Plane für all diese Fälle.
 
-**Tier 2 — regelbasiertes Reasoning** führt dieselbe Logik aus, lokal, in
+**Tier 2: regelbasiertes Reasoning** führt dieselbe Logik aus, lokal, in
 ganz normalem Python. Für einen AI-Coach, der Input-Verbesserungen
 vorschlägt: eine handgeschriebene Rules-Engine mit grob 60
 if/else-Zweigen deckt die häufigsten Feedback-Muster ab. Weniger elegant,
 aber in 80 % der Fälle richtig und sofort verfügbar.
 
-**Tier 3 — hartkodiert** ist das absolute Minimum. Ein kleines Dictionary
+**Tier 3: hartkodiert** ist das absolute Minimum. Ein kleines Dictionary
 mit kontextgebundenen Standardantworten. Langweilig, repetitiv, aber
 zuverlässig. Wenn Tier 1 *und* Tier 2 scheitern, bekommt der Nutzer
-wenigstens *irgendetwas* — und irgendetwas ist immer besser als ein
+wenigstens *irgendetwas*, und irgendetwas ist immer besser als ein
 Error-Toast.
 
 ## Wann Tier 2 sinnvoll ist und wann nicht
 
-Tier 2 ist paradoxerweise der teuerste Tier zum *Bauen* — es ist Code,
+Tier 2 ist paradoxerweise der teuerste Tier zum *Bauen*. Es ist Code,
 und Code zu schreiben kostet mehr Zeit als ein API-Aufruf. Du baust ihn,
 wenn:
 
@@ -144,7 +144,7 @@ last-action)` oder etwas Vergleichbares. Eine Hit-Rate von 40–60 % ist
 realistisch für einen Chat-Agenten mit wiederkehrenden Mustern.
 
 Cache-TTLs sind allerdings ein Tuning-Problem. Zu lang, und der Agent
-„wiederholt sich" — Nutzer sehen dieselbe Antwort zweimal in einer Session
+„wiederholt sich": Nutzer sehen dieselbe Antwort zweimal in einer Session
 und die Illusion zerbricht. Zu kurz, und du zahlst API-Kosten, die du
 nicht hättest zahlen müssen. Fang bei 30 Minuten an und passe anhand von
 Beschwerden über Wiederholungen an.
@@ -154,7 +154,7 @@ Beschwerden über Wiederholungen an.
 Logge, welcher Tier jede Anfrage bearbeitet hat. Nach einer Woche siehst
 du die echte Verteilung. Wenn Tier 1 99 % bedient und Tier 2 + 3 zusammen
 1 %, kannst du Tier 2 wahrscheinlich streichen. Wenn Tier 2 auf 15 %
-kommt: der trägt sein Gewicht — und deine API ist weniger zuverlässig, als
+kommt: der trägt sein Gewicht, und deine API ist weniger zuverlässig, als
 du dachtest.
 
 Die Zahlen überraschen dich meistens in mindestens eine Richtung.
@@ -167,7 +167,7 @@ unavailable"-Banner), läuft dein Produkt einfach weiter. Etwas weniger
 smart, etwas langweiliger, aber immer noch funktional.
 
 Ein Nutzer, der schon ein paar Mal von einem ausgefallenen AI-Produkt
-enttäuscht wurde, wird deinem vertrauen — selbst wenn auch dieses zehnmal
+enttäuscht wurde, wird deinem vertrauen, selbst wenn auch dieses zehnmal
 down war und er einfach Tier-3-Responses bekam, ohne es zu merken.
 
 </div>

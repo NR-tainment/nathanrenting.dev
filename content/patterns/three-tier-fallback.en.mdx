@@ -98,24 +98,24 @@ coordination, no retry logic at this level, no clever circuit breakers.
 
 ## What each tier does
 
-**Tier 1 — LLM API** is the default. Best output quality. But also the
+**Tier 1: LLM API** is the default. Best output quality. But also the
 tier that fails when the network goes down, when you hit rate limits, when
 the provider has an incident, when your key rotates without warning, or
 when a model you rely on gets deprecated. Plan for all of those cases.
 
-**Tier 2 — rule-based reasoning** runs the same logic, locally, in plain
+**Tier 2: rule-based reasoning** runs the same logic, locally, in plain
 Python. For an AI coach that suggests input improvements: a handwritten
 rules engine with roughly 60 if/else branches covers the most common
 feedback patterns. Less elegant, but right 80% of the time and instant.
 
-**Tier 3 — hardcoded** is the absolute minimum. A small dictionary of
+**Tier 3: hardcoded** is the absolute minimum. A small dictionary of
 context-linked default answers. Boring, repetitive, but reliable. If both
 tier 1 and tier 2 fail, the user at least gets *something*, and something
 is always better than an error toast.
 
-## When to build tier 2 — and when not to
+## When to build tier 2, and when not to
 
-Tier 2 is, paradoxically, the most expensive tier to *build* — it's code,
+Tier 2 is, paradoxically, the most expensive tier to *build*. It's code,
 and writing code costs more time than an API call. You build it when:
 
 - The feature sits in a critical user flow (every session hits it)
@@ -139,7 +139,7 @@ something similar. A 40–60% hit rate is realistic for a chat agent with
 recurring patterns.
 
 Cache TTLs are a tuning problem, though. Too long and the agent "repeats
-itself" — users see the same answer twice in a session and the illusion
+itself": users see the same answer twice in a session and the illusion
 breaks. Too short and you pay API costs you didn't have to. Start at 30
 minutes and adjust based on complaints about repetition.
 
@@ -148,7 +148,7 @@ minutes and adjust based on complaints about repetition.
 Log which tier handled each request. After a week you'll see the real
 distribution. If tier 1 serves 99% and tier 2 + 3 together serve 1%, you
 can probably drop tier 2. If tier 2 comes in at 15%, it's pulling its
-weight — and your API is less reliable than you thought.
+weight, and your API is less reliable than you thought.
 
 The numbers usually surprise you in at least one direction.
 
@@ -160,7 +160,7 @@ unavailable" banners), your product just keeps running. A little less
 smart, a little more boring, but still functional.
 
 A user who has already been burned a few times by an AI product going down
-will come to trust yours — even if it, too, has been down ten times and
+will come to trust yours, even if it, too, has been down ten times and
 they simply got tier-3 responses without noticing.
 
 </div>

@@ -67,7 +67,7 @@ façonne tout ce qui se passe en dessous.
   </figcaption>
 </figure>
 
-Rust convient bien à ce travail — dès que tu laisses de côté la majeure
+Rust convient bien à ce travail, dès que tu laisses de côté la majeure
 partie de la standard library. Le borrow checker empêche les data races à
 la compilation, mais un seul `Box::new` sur le chemin audio ruine quand
 même ta latence. Les patterns ci-dessous sont ce qui le fait fonctionner
@@ -77,11 +77,11 @@ en pratique.
 
 Une app audio mobile typique a trois threads qui comptent :
 
-1. **Thread JS / UI** — capte l'input utilisateur, envoie les messages de
+1. **Thread JS / UI** : capte l'input utilisateur, envoie les messages de
    contrôle
-2. **Thread de dispatch natif** — traduit ces messages, exécute la logique
+2. **Thread de dispatch natif** : traduit ces messages, exécute la logique
    métier, conserve l'état
-3. **Thread du callback audio** — tourne dans le sous-système audio de l'OS
+3. **Thread du callback audio** : tourne dans le sous-système audio de l'OS
    (AAudio sur Android, CoreAudio sur iOS), appelé avec un timing strict
 
 Le thread du callback audio ne doit jamais bloquer, jamais allouer, jamais
@@ -105,11 +105,11 @@ use rtrb::{Consumer, Producer, RingBuffer};
 let (mut producer, mut consumer): (Producer<ControlMsg>, Consumer<ControlMsg>) =
     RingBuffer::new(256).split();
 
-// Thread JS / dispatch — push non bloquant
+// Thread JS / dispatch: push non bloquant
 producer.push(ControlMsg::SetVolume { track: 0, value: 0.8 })
     .expect("ring buffer full");
 
-// Callback audio — pop non bloquant, vide tout ce qui est dans la queue
+// Callback audio: pop non bloquant, vide tout ce qui est dans la queue
 while let Ok(msg) = consumer.pop() {
     apply_message(&mut state, msg);
 }
@@ -141,7 +141,7 @@ thread audio. Un `Vec<f32>` de capacité `samples_per_block`, alloué une
 seule fois avant le démarrage du moteur audio, réécrit in-place à chaque
 callback.
 
-Le modèle d'ownership de Rust aide ici — une fois que tu as intériorisé le
+Le modèle d'ownership de Rust aide ici, une fois que tu as intériorisé le
 pattern du « code sans allocations `Box`/`Vec`/`String` », le compilateur
 te maintient honnête. Le pattern se transpose de projet en projet.
 
@@ -152,7 +152,7 @@ React Native) appelle le moteur via une couche FFI. Deux choix de design
 qui comptent :
 
 **1. Garde la surface FFI petite.** Chaque fonction FFI est une charge de
-maintenance — les deux langages doivent s'accorder sur le memory layout, la
+maintenance. Les deux langages doivent s'accorder sur le memory layout, la
 lifetime, la gestion d'erreurs. Je vise ~10-15 fonctions FFI qui wrappent
 l'API publique du moteur ; tout ce qui va au-delà reste interne côté Rust.
 

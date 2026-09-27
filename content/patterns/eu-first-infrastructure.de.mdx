@@ -3,7 +3,7 @@ import { SketchUnderline, MarkerHighlight } from "@/components/sketch";
 export const metadata = {
   title: "EU-first-Infrastruktur",
   description:
-    "Warum die EU-Jurisdiktion zählt und wie du Supabase EU, Sentry EU und GDPR-by-Design stapelst — ohne Bolt-on-Overhead für deine europäischen Nutzer.",
+    "Warum die EU-Jurisdiktion zählt und wie du Supabase EU, Sentry EU und GDPR-by-Design stapelst, ohne Bolt-on-Overhead für deine europäischen Nutzer.",
 };
 
 export const articleSchema = {
@@ -12,7 +12,7 @@ export const articleSchema = {
   "@id": "https://nathanrenting.dev/de/patterns/eu-first-infrastructure#article",
   headline: "EU-first-Infrastruktur",
   description:
-    "Warum die EU-Jurisdiktion zählt und wie du Supabase EU, Sentry EU und GDPR-by-Design stapelst — ohne Bolt-on-Overhead für deine europäischen Nutzer.",
+    "Warum die EU-Jurisdiktion zählt und wie du Supabase EU, Sentry EU und GDPR-by-Design stapelst, ohne Bolt-on-Overhead für deine europäischen Nutzer.",
   inLanguage: "de-DE",
   author: { "@id": "https://nathanrenting.dev/#nathan" },
   publisher: { "@id": "https://nathanrenting.dev/#org" },
@@ -55,7 +55,7 @@ GDPR-Audits, DPA-Fragen, die du nicht beantworten kannst, CLOUD-Act-Risiko,
 das du nicht mitigieren kannst, EU-Käufer, die fragen „Wo ist das gehostet"
 und abspringen, wenn die Antwort us-east-1 lautet.
 
-<MarkerHighlight>EU-first ist kein Marketing — es ist eine Architekturentscheidung, die du im Setup-Moment triffst.</MarkerHighlight>{" "}
+<MarkerHighlight>EU-first ist kein Marketing; es ist eine Architekturentscheidung, die du im Setup-Moment triffst.</MarkerHighlight>{" "}
 Es nachträglich draufzubauen kostet 10x mehr, als es gleich richtig zu machen.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -96,7 +96,7 @@ Aufsichtsbehörden sehen wollen.
 
 **DPA-Klarheit.** Jeder Processor (die Dienste oben) liefert ein DPA, das
 du unterschreiben kannst. Bewahr sie in einem Processor-Dienst-DPA-Register
-auf — eine Tabelle reicht, Hauptsache, du hast es. Wenn ein Kunde fragt
+auf. Eine Tabelle reicht, Hauptsache, du hast es. Wenn ein Kunde fragt
 „Hast du ein DPA mit Supabase", sagst du Ja und lieferst es innerhalb
 eines Tages.
 
@@ -116,7 +116,7 @@ nicht unter Druck designen müssen.
 Auch wenn dein Storage in der EU steht: Wenn der *Betreiber* ein
 US-Unternehmen ist, darf der CLOUD Act formell US-Behörden erlauben, deine
 Daten anzufordern. Für manche Branchen (Legal, Health, Defense) ist das
-real. Für die meisten Consumer-Produkte ist es akademisch — aber die
+real. Für die meisten Consumer-Produkte ist es akademisch, aber die
 *Positionierung* zählt Richtung EU-Käufer.
 
 Die Mitigationen:
@@ -125,7 +125,7 @@ Die Mitigationen:
    Hetzner statt AWS, OVHcloud statt Azure)
 2. Unterschreib DPAs mit SCC-Klauseln, die Government-Access-Szenarien
    abdecken
-3. Dokumentiere deine Sub-Processor-Liste öffentlich — Transparenz ist ein
+3. Dokumentiere deine Sub-Processor-Liste öffentlich; Transparenz ist ein
    Trust-Signal Richtung Käufer
 
 Du musst nicht zu 100% rein-EU sein (die Anthropic Claude API ist zum

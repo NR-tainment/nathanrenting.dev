@@ -76,7 +76,7 @@ Nach 50 Turns mit einem tool-nutzenden LLM bemerkst du ein Muster: Dieselben
 Multi-Tool-Workflows werden jedes Mal aufs Neue erfunden, mit kleinen
 Variationen. „Morning status“ ruft dieselben fünf Tools in ungefähr
 derselben Reihenfolge auf, aber die Formatierung driftet. „Weekly recap“ hat eine
-ähnliche Form, nur schlimmer — mehr Tools, mehr Stellen zum Abweichen.
+ähnliche Form, nur schlimmer: mehr Tools, mehr Stellen zum Abweichen.
 
 Die Lösung: eine Skills-Schicht. Jeder wiederkehrende Workflow wird ein
 benanntes Rezept; das LLM schlägt das Rezept nach, statt jedes Mal
@@ -123,7 +123,7 @@ the bottom.
 ```
 
 Zwei verpflichtende Frontmatter-Felder: `name` (entspricht dem
-Verzeichnisnamen) und `description` (max. 1024 Zeichen — das ist, was das LLM
+Verzeichnisnamen) und `description` (max. 1024 Zeichen; das ist, was das LLM
 beim Auswählen eines Skills sieht).
 
 ## Progressive disclosure
@@ -143,7 +143,7 @@ def run_skill(name: str) -> dict:
     return read_skill(name)
 ```
 
-`list_skills` kostet ~100 Tokens pro Skill — günstig genug, um es in jedem Turn
+`list_skills` kostet ~100 Tokens pro Skill, günstig genug, um es in jedem Turn
 aufzurufen oder in den System-Prompt zu legen. `run_skill` ist die teure
 Operation, die nur aufgerufen wird, wenn das LLM einen bestimmten Skill gewählt hat.
 
@@ -196,7 +196,7 @@ success_rate: 0.957
 last_used: "2026-06-02T08:30:22Z"
 ```
 
-Langsame Telemetrie — dateibasiert, keine separate Datenbank. Aber genug, um zu
+Langsame Telemetrie: dateibasiert, keine separate Datenbank. Aber genug, um zu
 sehen, welche Skills ihr Gewicht tragen und welche nie genutzt werden.
 Ungenutzte: wegwerfen. Beliebte: vertiefen.
 

@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "CaptionCompass — des sous-titres pour les sourds",
+  title: "CaptionCompass · des sous-titres pour les sourds",
   description:
     "Application Android d'accessibilité : sous-titres en direct toujours visibles, indication de direction du locuteur uniquement lorsqu'elle est fiable. Kotlin + Jetpack Compose + GCC-PHAT DoA.",
 };
@@ -42,7 +42,7 @@ export const appSchema = {
   <SketchUnderline seed={263}>Projet · scaffold MVP</SketchUnderline>
 </div>
 
-# CaptionCompass — vois les mots, sens d'où ils viennent
+# CaptionCompass · vois les mots, sens d'où ils viennent
 
 <MarkerHighlight>Une application d'accessibilité caption-first pour les utilisateurs Android sourds et malentendants.</MarkerHighlight>{" "}
 Les sous-titres en direct sont toujours visibles. Une indication
@@ -52,7 +52,7 @@ grossière de la direction du locuteur n'apparaît
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
     src="/captioncompass-architecture.png"
-    alt="Pipeline audio dessinée à la main : micros stéréo sur le téléphone → AAudio UNPROCESSED → VAD → deux chemins parallèles (GCC-PHAT DoA → Zone Smoother à 5 zones, et ASR via SpeechRecognizer / Vosk) → écran du téléphone avec arc DIRECTION + CAPTIONS. Légende : 'show less, not more — direction only when reliable'."
+    alt="Pipeline audio dessinée à la main : micros stéréo sur le téléphone → AAudio UNPROCESSED → VAD → deux chemins parallèles (GCC-PHAT DoA → Zone Smoother à 5 zones, et ASR via SpeechRecognizer / Vosk) → écran du téléphone avec arc DIRECTION + CAPTIONS. Légende : 'show less, not more; direction only when reliable'."
     className="w-full rounded border border-zinc-800"
     loading="lazy"
   />
@@ -76,7 +76,7 @@ que si :
 
 Si l'une de ces conditions disparaît, les sous-titres continuent de
 fonctionner sans changement et l'arc de direction s'estompe.
-**&quot;Show less, not more&quot;** — il ne s'agit pas de désactiver une
+**&quot;Show less, not more&quot;** : il ne s'agit pas de désactiver une
 fonction, mais de la retirer respectueusement lorsqu'elle ne peut pas
 être justifiée assez solidement.
 
@@ -128,7 +128,7 @@ arrière-droite** (cinq zones). C'est suffisant pour le cas d'usage, sans
 modèles ML qui coûtent en latence et en batterie.
 
 Pour l'évaluation de la confiance, on utilise la netteté du pic de
-cross-correlation — un pic élevé signifie une source claire ; un pic
+cross-correlation : un pic élevé signifie une source claire ; un pic
 plat signifie plusieurs locuteurs ou du bruit, et l'arc est alors
 estompé au lieu d'afficher une direction trompeuse.
 
@@ -144,7 +144,7 @@ fonctionnels via `SpeechRecognizer`. Mode mock pour le développement sur
 **Phase 2 :** ASR Vosk hors ligne + Silero-VAD ONNX (meilleure VAD,
 indépendante de l'appareil).
 
-**Phase 4 :** entrée stéréo BLE — brancher des micros stéréo externes
+**Phase 4 :** entrée stéréo BLE. Brancher des micros stéréo externes
 via Bluetooth pour une meilleure précision DoA que les micros intégrés
 du téléphone.
 

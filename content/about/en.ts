@@ -4,7 +4,7 @@ const en: AboutDict = {
   meta: {
     title: "About me",
     description:
-      "Nathan Renting — solo dev in Eindhoven. 12 years of entertainment and audio-production background, now building agent systems and audio engines.",
+      "Nathan Renting: solo dev in Eindhoven. 12 years of entertainment and audio-production background, now building agent systems and audio engines.",
   },
   portraitAlt:
     "Hand-drawn chalk portrait of Nathan: bald bust with cyan headphones, friendly smile, small waveform doodle above his head.",

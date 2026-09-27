@@ -2,7 +2,7 @@ import type { HomeDict } from "./types";
 
 const nl: HomeDict = {
   meta: {
-    title: "Nathan Renting — AI-agent & real-time audio developer",
+    title: "Nathan Renting · AI-agent & real-time audio developer",
   },
   hero: {
     availability: "Beschikbaar · 2-3 dagen per week ZZP",
@@ -116,7 +116,7 @@ const nl: HomeDict = {
     heading: "Uit de praktijk",
     marginNote: "(recente writeups, met datum)",
     intro:
-      "Het meest recente werk dat ik openbaar heb opgeschreven — korte writeups uit echte projecten, niet uit een blogkalender.",
+      "Het meest recente werk dat ik openbaar heb opgeschreven: korte writeups uit echte projecten, niet uit een blogkalender.",
     items: [
       {
         href: "/patterns/multi-brain-routing",
@@ -155,7 +155,7 @@ const nl: HomeDict = {
   faq: [
     {
       q: "Wat doet Nathan Renting?",
-      a: "Ik ben een solo developer uit Eindhoven die AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines bouwt — van prototype tot productie.",
+      a: "Ik ben een solo developer uit Eindhoven die AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines bouwt, van prototype tot productie.",
     },
     {
       q: "Is Nathan beschikbaar voor freelance / ZZP-inhuur?",

@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "PhotoFlow — du shooting à la mise en ligne",
+  title: "PhotoFlow · du shooting à la mise en ligne",
   description:
     "Un plugin Lightroom, un client desktop Tauri et une stack de publication cloud pour les photographes professionnels. Architecture multi-agent : Vision, Copy, Publishing et Analytics.",
 };
@@ -42,12 +42,12 @@ export const appSchema = {
   <SketchUnderline seed={239}>Projet · pré-développement</SketchUnderline>
 </div>
 
-# PhotoFlow — de la photo retouchée à la mise en ligne en 30 secondes
+# PhotoFlow · de la photo retouchée à la mise en ligne en 30 secondes
 
 <MarkerHighlight>Supprimer le travail entre &quot;shooting retouché&quot; et &quot;shooting en ligne&quot;.</MarkerHighlight>{" "}
 Pour les photographes professionnels qui travaillent dans Lightroom : une seule
 validation produit teasers Instagram, carrousels de cérémonie, reportage blog,
-mise à jour du portfolio et étude de cas LinkedIn en même temps — planifiés, publiés
+mise à jour du portfolio et étude de cas LinkedIn en même temps, planifiés, publiés
 et suivis.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -72,8 +72,8 @@ Trois étapes :
 2. Retoucher la photo dans Lightroom
 3. Valider
 
-Tout ce qu'il y a entre les deux — légendes, hashtags, planification, publication vers
-IG / FB / LinkedIn, blog, portfolio — c'est l'IA qui s'en charge.
+Tout ce qu'il y a entre les deux (légendes, hashtags, planification, publication vers
+IG / FB / LinkedIn, blog, portfolio), c'est l'IA qui s'en charge.
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
@@ -104,7 +104,7 @@ Configuration hybride :
 | Composant | Tech | Responsabilité |
 |---|---|---|
 | Client desktop | Tauri + React + SQLite | En local : photos, projets, brouillons, paramètres |
-| Plugin Lightroom | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot; — communique avec le client desktop via localhost |
+| Plugin Lightroom | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot;, communique avec le client desktop via localhost |
 | Composant cloud | Supabase ou Cloudflare Workers + D1 + R2 | Proxy OAuth, rafraîchissement de tokens, file d'attente de publication planifiée, endpoints App Review |
 
 Le choix du local-first garde les données photo hors du stockage cloud tant que

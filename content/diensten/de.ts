@@ -8,7 +8,7 @@ const de: DienstenDict = {
   },
   h1: "Leistungen",
   introBefore:
-    "Was ich freiberuflich mache — konkret. Pro Leistung eine Seite, damit du schnell siehst, ob es passt. Für Ablauf und Tarif: siehe ",
+    "Was ich freiberuflich mache, konkret. Pro Leistung eine Seite, damit du schnell siehst, ob es passt. Für Ablauf und Tarif: siehe ",
   introLinkLabel: "/hire",
   introAfter: ".",
   responseTime: "Antwort innerhalb von 2 Werktagen.",
@@ -44,7 +44,7 @@ const de: DienstenDict = {
       href: "/hire?topic=workflows",
       title: "LLM-Workflows automatisieren",
       oneLiner:
-        "Aufnahme, Reporting, Klassifizierung — die Arbeit, die niemand mag. Ein Agent übernimmt, du machst den Rest deines Tages.",
+        "Aufnahme, Reporting, Klassifizierung: die Arbeit, die niemand mag. Ein Agent übernimmt, du machst den Rest deines Tages.",
       deliverable: "1–2 Wochen pro Flow",
       tags: ["Automation", "Workflows", "Agents"],
       wip: true,
@@ -70,7 +70,7 @@ const de: DienstenDict = {
   ],
   wipBadgeLabel: "Anfragen →",
   outro:
-    "Eine Leistung hat eine ausgearbeitete Seite, die anderen folgen wöchentlich. Passt jetzt schon etwas? Mail oder Anruf über /hire — ein Gespräch ist immer schneller.",
+    "Eine Leistung hat eine ausgearbeitete Seite, die anderen folgen wöchentlich. Passt jetzt schon etwas? Mail oder Anruf über /hire. Ein Gespräch ist immer schneller.",
 };
 
 export default de;

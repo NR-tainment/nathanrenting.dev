@@ -53,7 +53,7 @@ Sending everything through Sonnet costs more than it needs to. Sending
 everything through Haiku breaks the moment it gets to be more than a
 greeting. Somewhere in between you want a router that picks the right model
 per request. My preference:{" "}
-<MarkerHighlight>cheap heuristics first, an LLM classifier as fallback — not as the default</MarkerHighlight>.
+<MarkerHighlight>cheap heuristics first, an LLM classifier as fallback, not as the default</MarkerHighlight>.
 
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
@@ -97,20 +97,20 @@ and why.
 
 Four categories usually handle 70-80% of the decisions:
 
-1. **Short greetings and time questions** — inputs under 20 characters that
+1. **Short greetings and time questions**: inputs under 20 characters that
    match a small regex set. Routed to the cheapest, fastest tier. Someone
    who says "hi" doesn't need Sonnet.
 
-2. **Domain keywords** — terms that point to a specific product or context.
+2. **Domain keywords**: terms that point to a specific product or context.
    Routed to the tier that loads the right system-prompt context. Essential
-   in a multi-product orchestrator — otherwise the agent ends up reasoning
+   in a multi-product orchestrator; otherwise the agent ends up reasoning
    from the wrong context.
 
-3. **Deep-reasoning keywords** — "design", "architect", "refactor",
+3. **Deep-reasoning keywords**: "design", "architect", "refactor",
    "review", "in-depth". Bumped up to Opus / Sonnet 4.6 / whatever your top
    tier is. Cheap to detect, expensive to miss.
 
-4. **Tool-use signals** — file paths, shell verbs ("scan", "check",
+4. **Tool-use signals**: file paths, shell verbs ("scan", "check",
    "read"), code-fence markers. Routed to the tier where shell tools are
    available.
 
@@ -132,7 +132,7 @@ Output ONLY the single word, nothing else.
 ```
 
 Cost per classification: a few tenths of a cent. Latency: sub-second.
-Robustness: high — Haiku is consistent enough on a three-way choice like
+Robustness: high. Haiku is consistent enough on a three-way choice like
 this that you don't need a bigger model.
 
 One small but real win: tell the classifier to lean toward `main` when in
@@ -142,8 +142,8 @@ calls the tool) costs a lot more.
 
 ## When you don't need a router
 
-If every request that comes in has roughly the same shape — a chatbot that
-does one thing, say — this is overkill. The router pays for itself the
+If every request that comes in has roughly the same shape (a chatbot that
+does one thing, say), this is overkill. The router pays for itself the
 moment:
 
 - Your requests span a range from trivial to deep

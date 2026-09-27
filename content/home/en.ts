@@ -5,7 +5,7 @@ import type { HomeDict } from "./types";
 // equivalent. DE/FR are produced in the fan-out against this same contract.
 const en: HomeDict = {
   meta: {
-    title: "Nathan Renting — AI agent & real-time audio developer",
+    title: "Nathan Renting · AI agent & real-time audio developer",
     description:
       "Solo dev from Eindhoven (NL): builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines. Available for contract engineering (ZZP).",
   },
@@ -120,7 +120,7 @@ const en: HomeDict = {
     heading: "Recent writing",
     marginNote: "(latest writeups, dated)",
     intro:
-      "The most recent work I've written up in public — short writeups from real projects, not from a content calendar.",
+      "The most recent work I've written up in public: short writeups from real projects, not from a content calendar.",
     items: [
       {
         href: "/patterns/multi-brain-routing",
@@ -159,7 +159,7 @@ const en: HomeDict = {
   faq: [
     {
       q: "What does Nathan Renting do?",
-      a: "I'm a solo developer from Eindhoven who builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines — from prototype to production.",
+      a: "I'm a solo developer from Eindhoven who builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines, from prototype to production.",
     },
     {
       q: "Is Nathan available for freelance / contract work?",

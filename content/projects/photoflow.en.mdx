@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "PhotoFlow — from shoot to online",
+  title: "PhotoFlow · from shoot to online",
   description:
     "A Lightroom plugin, Tauri desktop client and cloud publishing stack for professional photographers. Multi-agent architecture: Vision, Copy, Publishing and Analytics.",
 };
@@ -42,12 +42,12 @@ export const appSchema = {
   <SketchUnderline seed={239}>Project · pre-development</SketchUnderline>
 </div>
 
-# PhotoFlow — from edited photo to online in 30 seconds
+# PhotoFlow · from edited photo to online in 30 seconds
 
 <MarkerHighlight>Taking out the work between &quot;shoot edited&quot; and &quot;shoot online&quot;.</MarkerHighlight>{" "}
 For professional photographers working in Lightroom: a single approval
 delivers Instagram teasers, ceremony carousels, blog coverage,
-portfolio update and LinkedIn case study all at once — scheduled, published
+portfolio update and LinkedIn case study all at once, scheduled, published
 and monitored.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -72,8 +72,8 @@ Three steps:
 2. Edit the photo in Lightroom
 3. Approve
 
-Everything in between — captions, hashtags, scheduling, publishing to
-IG / FB / LinkedIn, blog, portfolio — is done by AI.
+Everything in between (captions, hashtags, scheduling, publishing to
+IG / FB / LinkedIn, blog, portfolio) is done by AI.
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
@@ -104,7 +104,7 @@ A hybrid setup:
 | Component | Tech | Responsibility |
 |---|---|---|
 | Desktop client | Tauri + React + SQLite | Local: photos, projects, drafts, settings |
-| Lightroom plugin | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot; — talks to the desktop client via localhost |
+| Lightroom plugin | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot;, talks to the desktop client via localhost |
 | Cloud component | Supabase or Cloudflare Workers + D1 + R2 | OAuth proxy, token refresh, scheduled-publish queue, App Review endpoints |
 
 The local-first choice keeps photo data out of cloud storage unless that

@@ -48,8 +48,8 @@ export async function generateMetadata({
   // get an English-ish fallback until their dicts land (content-only; the
   // structural SEO — lang/canonical/hreflang/og:locale — is correct now).
   const title = isNl
-    ? "Nathan Renting — AI-agent & real-time audio developer"
-    : "Nathan Renting — AI agent & real-time audio developer";
+    ? "Nathan Renting · AI-agent & real-time audio developer"
+    : "Nathan Renting · AI agent & real-time audio developer";
   const description = isNl
     ? "Nathan Renting: freelance AI engineer en AI-ontwikkelaar uit Eindhoven (NL). Bouwt AI-agent systemen (LLM-orchestratie, RAG) en real-time audio engines. Inhuren als ZZP'er, EU remote."
     : "Nathan Renting: freelance AI engineer and real-time audio developer from Eindhoven (NL). Builds AI-agent systems (LLM orchestration, RAG) and real-time audio engines. Available to hire on contract (ZZP), EU remote.";
@@ -64,7 +64,7 @@ export async function generateMetadata({
     alternates: buildAlternates("", locale),
     openGraph: {
       title:
-        "Nathan Renting — Solo AI engineer + real-time audio. Eindhoven, NL.",
+        "Nathan Renting · Solo AI engineer + real-time audio. Eindhoven, NL.",
       description,
       url: `${SITE_URL}/${locale}`,
       siteName: "nathanrenting.dev",
@@ -73,14 +73,14 @@ export async function generateMetadata({
       images: [
         {
           url: "/nathan-portret.png",
-          alt: "Nathan Renting — solo AI-agent & real-time audio developer, Eindhoven",
+          alt: "Nathan Renting, solo AI-agent & real-time audio developer, Eindhoven",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title:
-        "Nathan Renting — Solo AI engineer + real-time audio. Eindhoven, NL.",
+        "Nathan Renting · Solo AI engineer + real-time audio. Eindhoven, NL.",
       description,
       images: ["/nathan-portret.png"],
     },

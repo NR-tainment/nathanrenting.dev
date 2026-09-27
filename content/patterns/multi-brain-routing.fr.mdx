@@ -53,7 +53,7 @@ Tout faire passer par Sonnet coûte plus cher que nécessaire. Tout faire
 passer par Haiku casse dès que ça devient un peu plus qu'un bonjour. Quelque
 part entre les deux, tu veux un routeur qui choisit, par requête, le modèle
 adapté. Ma préférence :{" "}
-<MarkerHighlight>des heuristiques peu coûteuses d'abord, un classifieur LLM en fallback — pas par défaut</MarkerHighlight>.
+<MarkerHighlight>des heuristiques peu coûteuses d'abord, un classifieur LLM en fallback, pas par défaut</MarkerHighlight>.
 
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
@@ -98,22 +98,22 @@ puisses voir après coup exactement ce qui a été choisi et pourquoi.
 
 Quatre catégories couvrent en général 70 à 80 % des décisions :
 
-1. **Bonjours courts et questions sur l'heure** — des entrées de moins de
+1. **Bonjours courts et questions sur l'heure** : des entrées de moins de
    20 caractères qui matchent un petit jeu de regex. Vers le palier le
    moins cher et le plus rapide. Quelqu'un qui dit « salut » n'a pas besoin
    de Sonnet.
 
-2. **Mots-clés de domaine** — des termes qui pointent vers un produit ou un
+2. **Mots-clés de domaine** : des termes qui pointent vers un produit ou un
    contexte précis. Vers le palier qui charge le bon contexte de
-   system-prompt. Essentiel dans un orchestrateur multi-produits — sinon
+   system-prompt. Essentiel dans un orchestrateur multi-produits, sinon
    l'agent se met à raisonner depuis le mauvais contexte.
 
-3. **Mots-clés de raisonnement profond** — « design », « architect »,
+3. **Mots-clés de raisonnement profond** : « design », « architect »,
    « refactor », « review », « approfondi ». Vers le haut, vers Opus /
    Sonnet 4.6 / quel que soit ton palier le plus élevé. Bon marché à
    détecter, cher à manquer.
 
-4. **Signaux d'usage d'outils** — chemins de fichiers, verbes shell
+4. **Signaux d'usage d'outils** : chemins de fichiers, verbes shell
    (« scan », « check », « lis »), marqueurs de code-fence. Vers le palier
    où les outils shell sont disponibles.
 
@@ -135,7 +135,7 @@ Output ONLY the single word, nothing else.
 ```
 
 Coût par classification : quelques dixièmes de centime. Latence : moins
-d'une seconde. Robustesse : élevée — Haiku est assez cohérent sur un choix
+d'une seconde. Robustesse : élevée. Haiku est assez cohérent sur un choix
 à trois voies comme celui-ci pour que tu n'aies pas besoin d'un modèle plus
 grand.
 
@@ -146,8 +146,8 @@ peu de plus. Une requête réclamant un outil qui part par erreur vers `fast`
 
 ## Quand tu n'as pas besoin d'un routeur
 
-Si chaque requête qui arrive a à peu près la même forme — un chatbot qui
-fait une seule chose, par exemple — c'est surdimensionné. Le routeur se
+Si chaque requête qui arrive a à peu près la même forme (un chatbot qui
+fait une seule chose, par exemple), c'est surdimensionné. Le routeur se
 rentabilise dès que :
 
 - Tes requêtes couvrent une plage allant du trivial au profond

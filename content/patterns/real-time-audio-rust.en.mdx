@@ -66,7 +66,7 @@ or a dropout. That constraint shapes everything that happens underneath.
   </figcaption>
 </figure>
 
-Rust is a good fit for this work — once you set aside most of the standard
+Rust is a good fit for this work, once you set aside most of the standard
 library. The borrow checker prevents data races at compile time, but a
 single `Box::new` on the audio path will still wreck your latency. The
 patterns below are what make it work in practice.
@@ -75,10 +75,10 @@ patterns below are what make it work in practice.
 
 A typical mobile audio app has three threads that matter:
 
-1. **JS / UI thread** — captures user input, sends control messages
-2. **Native dispatch thread** — translates those messages, runs business
+1. **JS / UI thread**: captures user input, sends control messages
+2. **Native dispatch thread**: translates those messages, runs business
    logic, keeps state
-3. **Audio callback thread** — runs inside the OS audio subsystem (AAudio
+3. **Audio callback thread**: runs inside the OS audio subsystem (AAudio
    on Android, CoreAudio on iOS), invoked with strict timing
 
 The audio callback thread must never block, never allocate, never wait on
@@ -102,11 +102,11 @@ use rtrb::{Consumer, Producer, RingBuffer};
 let (mut producer, mut consumer): (Producer<ControlMsg>, Consumer<ControlMsg>) =
     RingBuffer::new(256).split();
 
-// JS / dispatch thread — non-blocking push
+// JS / dispatch thread: non-blocking push
 producer.push(ControlMsg::SetVolume { track: 0, value: 0.8 })
     .expect("ring buffer full");
 
-// Audio callback — non-blocking pop, drain everything in the queue
+// Audio callback: non-blocking pop, drain everything in the queue
 while let Ok(msg) = consumer.pop() {
     apply_message(&mut state, msg);
 }
@@ -137,7 +137,7 @@ audio thread. A `Vec<f32>` with `samples_per_block` capacity, allocated
 once before the audio engine starts, overwritten in place on every
 callback.
 
-Rust&apos;s ownership model helps here — once you've internalized the
+Rust&apos;s ownership model helps here, once you've internalized the
 pattern of "code without `Box`/`Vec`/`String` allocations," the compiler
 keeps you honest. The pattern carries over from project to project.
 
@@ -148,7 +148,7 @@ Native) calls into the engine through an FFI layer. Two design choices that
 matter:
 
 **1. Keep the FFI surface small.** Every FFI function is a maintenance
-burden — both languages have to agree on memory layout, lifetime, error
+burden. Both languages have to agree on memory layout, lifetime, error
 handling. I aim for ~10-15 FFI functions that wrap the engine's public API;
 anything beyond that stays internal on the Rust side.
 

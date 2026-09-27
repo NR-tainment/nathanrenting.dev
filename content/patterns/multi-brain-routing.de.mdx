@@ -53,7 +53,7 @@ Alles über Sonnet zu schicken ist teurer als nötig. Alles über Haiku
 bricht, sobald es mehr als eine Begrüßung wird. Irgendwo dazwischen willst
 du einen Router, der pro Request entscheidet, welches Modell passt. Mein
 Favorit:{" "}
-<MarkerHighlight>erst günstige Heuristiken, ein LLM-Classifier als Fallback — nicht als Default</MarkerHighlight>.
+<MarkerHighlight>erst günstige Heuristiken, ein LLM-Classifier als Fallback, nicht als Default</MarkerHighlight>.
 
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
@@ -97,21 +97,21 @@ genau sehen kannst, was gewählt wurde und warum.
 
 Vier Kategorien decken meist 70-80 % der Entscheidungen ab:
 
-1. **Kurze Begrüßungen und Zeit-Fragen** — Inputs unter 20 Zeichen, die ein
+1. **Kurze Begrüßungen und Zeit-Fragen**: Inputs unter 20 Zeichen, die ein
    kleines Regex-Set matchen. An die günstigste, schnellste Tier. Wer „hi"
    sagt, braucht kein Sonnet.
 
-2. **Domänen-Keywords** — Begriffe, die auf ein bestimmtes Produkt oder
+2. **Domänen-Keywords**: Begriffe, die auf ein bestimmtes Produkt oder
    einen bestimmten Kontext verweisen. An die Tier, die den richtigen
    System-Prompt-Kontext lädt. In einem Multi-Produkt-Orchestrator
-   essenziell — sonst beginnt der Agent, aus dem falschen Kontext heraus zu
+   essenziell, sonst beginnt der Agent, aus dem falschen Kontext heraus zu
    reasonen.
 
-3. **Deep-Reasoning-Keywords** — „design", „architect", „refactor",
+3. **Deep-Reasoning-Keywords**: „design", „architect", „refactor",
    „review", „tiefgehend". Hoch zu Opus / Sonnet 4.6 / was auch immer deine
    Top-Tier ist. Günstig zu erkennen, teuer zu verpassen.
 
-4. **Tool-Nutzungs-Signale** — File-Paths, Shell-Verben („scan", „check",
+4. **Tool-Nutzungs-Signale**: File-Paths, Shell-Verben („scan", „check",
    „lies"), Code-Fence-Marker. An die Tier, in der Shell-Tools verfügbar
    sind.
 
@@ -133,7 +133,7 @@ Output ONLY the single word, nothing else.
 ```
 
 Kosten pro Klassifikation: ein paar Zehntel-Cent. Latenz: unter einer
-Sekunde. Robustheit: hoch — Haiku ist bei so einer Dreiweg-Wahl konsistent
+Sekunde. Robustheit: hoch. Haiku ist bei so einer Dreiweg-Wahl konsistent
 genug, dass du kein größeres Modell brauchst.
 
 Ein kleiner, aber echter Gewinn: Sag dem Classifier, im Zweifel zu `main`
@@ -143,8 +143,8 @@ dann das Tool nicht aufruft), kostet viel mehr.
 
 ## Wann du keinen Router brauchst
 
-Wenn jeder eingehende Request ungefähr dieselbe Form hat — ein Chatbot, der
-eine Sache macht, zum Beispiel — ist das Overkill. Der Router rechnet sich,
+Wenn jeder eingehende Request ungefähr dieselbe Form hat (ein Chatbot, der
+eine Sache macht, zum Beispiel), ist das Overkill. Der Router rechnet sich,
 sobald:
 
 - Deine Requests eine Spannweite von trivial bis tief haben

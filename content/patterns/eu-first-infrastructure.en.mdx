@@ -55,7 +55,7 @@ questions you can't answer, CLOUD Act risk you can't mitigate, EU buyers
 who ask "where is this hosted" and walk away when the answer is
 us-east-1.
 
-<MarkerHighlight>EU-first isn't marketing — it's an architecture choice you make at setup time.</MarkerHighlight>{" "}
+<MarkerHighlight>EU-first isn't marketing; it's an architecture choice you make at setup time.</MarkerHighlight>{" "}
 Building it in afterwards costs 10x more than doing it right from the start.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -94,7 +94,7 @@ content) stays in the EU. Transfers to US-controlled parties happen only
 under explicit DPAs or SCC fallbacks. That's what regulators want to see.
 
 **DPA clarity.** Every processor (the services above) provides a DPA you
-can sign. Keep them in a processor-service-DPA register — a spreadsheet
+can sign. Keep them in a processor-service-DPA register. A spreadsheet
 is fine, the main point is that you have one. When a customer asks "do
 you have a DPA with Supabase", you say yes and deliver it within a day.
 
@@ -114,14 +114,14 @@ under pressure.
 Even if your storage sits in the EU: if the *operator* is a US company,
 the CLOUD Act formally allows US enforcement to demand your data. For
 some sectors (legal, health, defense) that's real. For most consumer
-products it's academic — but the *positioning* matters towards EU buyers.
+products it's academic, but the *positioning* matters towards EU buyers.
 
 The mitigations:
 
 1. Pick EU-headquartered services where possible (Mollie over Stripe,
    Hetzner over AWS, OVHcloud over Azure)
 2. Sign DPAs with SCC clauses that cover government-access scenarios
-3. Document your sub-processor list publicly — transparency is a trust
+3. Document your sub-processor list publicly; transparency is a trust
    signal towards buyers
 
 You don't have to be 100% pure-EU (the Anthropic Claude API, for

@@ -55,7 +55,7 @@ GDPR-audits, DPA-vragen die je niet kunt beantwoorden, CLOUD Act-risk
 die je niet kunt mitigaten, EU-kopers die vragen "waar staat dit gehost"
 en weglopen als het antwoord us-east-1 is.
 
-<MarkerHighlight>EU-first is geen marketing — het is een architectuur-keuze die je op setup-moment maakt.</MarkerHighlight>{" "}
+<MarkerHighlight>EU-first is geen marketing; het is een architectuur-keuze die je op setup-moment maakt.</MarkerHighlight>{" "}
 Achteraf erop bouwen kost 10x meer dan het meteen zo te doen.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -95,8 +95,8 @@ gebeuren alleen onder expliciete DPAs of SCC-fallbacks. Dat is wat
 toezichthouders willen zien.
 
 **DPA-duidelijkheid.** Elke processor (de diensten hierboven) levert een
-DPA die je kunt tekenen. Bewaar ze in een Verwerkers-Dienst-DPA-register
-— spreadsheet is prima, hoofdzaak is dát je hem hebt. Als een klant
+DPA die je kunt tekenen. Bewaar ze in een Verwerkers-Dienst-DPA-register.
+Spreadsheet is prima, hoofdzaak is dát je hem hebt. Als een klant
 vraagt "heb je een DPA met Supabase", zeg je ja en lever je 'm binnen
 een dag.
 
@@ -116,7 +116,7 @@ druk staan te ontwerpen.
 Ook als je storage in de EU staat: als de *operator* een US-bedrijf is,
 mag de CLOUD Act formeel US-handhaving je data laten opvragen. Voor
 sommige sectoren (legal, health, defense) is dat reëel. Voor de meeste
-consumer-producten is het academisch — maar de *positionering* doet
+consumer-producten is het academisch, maar de *positionering* doet
 ertoe richting EU-kopers.
 
 De mitigaties:
@@ -124,7 +124,7 @@ De mitigaties:
 1. Pak waar mogelijk EU-headquartered diensten (Mollie boven Stripe,
    Hetzner boven AWS, OVHcloud boven Azure)
 2. Teken DPAs met SCC-clausules die government-access scenarios dekken
-3. Documenteer je sub-processor-lijst publiek — transparantie is een
+3. Documenteer je sub-processor-lijst publiek; transparantie is een
    trust-signaal richting kopers
 
 Je hoeft niet 100% puur-EU te zijn (Anthropic Claude API is bijvoorbeeld

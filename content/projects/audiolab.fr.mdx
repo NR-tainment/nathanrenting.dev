@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "AudioLab.tools — audio, IA & DSP",
+  title: "AudioLab.tools · audio, IA & DSP",
   description:
     "Plateforme de contenu et d'outils à la croisée de l'audio, de l'IA, du DSP, d'Android et de l'accessibilité. De vrais outils, des docs poussées, no slop. Astro + React + Tailwind v4.",
 };
@@ -48,7 +48,7 @@ export const appSchema = {
   </a>
 </div>
 
-# AudioLab.tools — plateforme de référence pour l'audio + l'IA
+# AudioLab.tools · plateforme de référence pour l'audio + l'IA
 
 <MarkerHighlight>Une plateforme de contenu et d'outils à la croisée de l'audio, de l'IA, du développement, d'Android, du DSP, de l'accessibilité et des workflows live.</MarkerHighlight>{" "}
 Pas de tunnel marketing avec des boutons &quot;join the waitlist&quot; derrière
@@ -83,14 +83,14 @@ ainsi que des docs poussées.
 
 <ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
 
-## Six labs — honnête sur ce qui marche
+## Six labs, honnête sur ce qui marche
 
 Le site s'articule autour de six labs côté navigateur. Chaque lab est étiqueté honnêtement selon
-ce qu'il fait réellement — fonctionnel, en construction, ou concept simulé :
+ce qu'il fait réellement (fonctionnel, en construction, ou concept simulé) :
 
 | Lab | Statut | Ce qu'il fait |
 |---|---|---|
-| **[MixLab](https://audiolab.tools/labs/mixlab)** | Beta | Loudness/dynamique/stéréo — **vérifié à ±0,08 LU par rapport à la référence EBU R128** |
+| **[MixLab](https://audiolab.tools/labs/mixlab)** | Beta | Loudness/dynamique/stéréo, **vérifié à ±0,08 LU par rapport à la référence EBU R128** |
 | **[VoiceLab](https://audiolab.tools/labs/voicelab)** | Beta | QA voix : clarté, rythme, densité de tics de langage, clipping |
 | **[SignalLab](https://audiolab.tools/labs/signallab)** | Beta | Indexeur audio : détection de silence/clipping, tags de région |
 | **[Ψ Lab](https://audiolab.tools/labs/psilab)** | Building | Phase vocoder · time-stretch, freeze, reverse, smear (AudioWorklet entièrement côté client) |
@@ -99,7 +99,7 @@ ce qu'il fait réellement — fonctionnel, en construction, ou concept simulé :
 | **[CueLab](https://audiolab.tools/labs/cuelab)** | Simulated | Concept de routing live avec données simulées |
 
 Tout côté client : l'audio ne quitte pas le navigateur. À côté de ça, docs,
-méthodologie, glossaire, roadmap — du contenu indexable, pas de routes JS-only.
+méthodologie, glossaire, roadmap : du contenu indexable, pas de routes JS-only.
 
 <ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
 
@@ -109,7 +109,7 @@ méthodologie, glossaire, roadmap — du contenu indexable, pas de routes JS-onl
   { label: "Framework", value: <>Astro 6 (content-first, statique avec des îlots React là où c'est nécessaire)</> },
   { label: "UI", value: <>React 19, Tailwind v4 (config CSS-first)</> },
   { label: "Contenu", value: <>MDX (<code className="font-mono text-cyan-300">@astrojs/mdx</code>), content collections par cluster</> },
-  { label: "Cartes OG", value: <>Satori + Resvg.js — générées dynamiquement au build</> },
+  { label: "Cartes OG", value: <>Satori + Resvg.js, générées dynamiquement au build</> },
   { label: "Polices", value: <>Geist + JetBrains Mono (variable)</> },
   { label: "Performance", value: <>Sharp pour le pipeline d'images, pré-rendu au build</> },
   { label: "RSS", value: <>Feed.js par cluster, par tag</> },
@@ -139,7 +139,7 @@ outils de démo interactifs uniquement là où c'est vraiment nécessaire. Pas d
 
 **En ligne sur [audiolab.tools](https://audiolab.tools).** Six labs tournent ;
 quatre font de la vraie analyse (Beta), un est en cours d'extension, un est un
-concept simulé — et c'est écrit tel quel. La loudness de MixLab est
+concept simulé, et c'est écrit tel quel. La loudness de MixLab est
 vérifiée par rapport à la référence EBU R128 (±0,08 LU vs ffmpeg). La
 couche d'interprétation IA est l'étape suivante, pas une promesse actuelle.
 

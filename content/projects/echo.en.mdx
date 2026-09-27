@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "ECHO — agent orchestrator",
+  title: "ECHO · agent orchestrator",
   description:
     "A personal agent orchestrator, built solo by Nathan Renting. Multi-brain routing, tool dispatch, vault-backed memory, and local + cloud LLM fallback.",
 };
@@ -42,7 +42,7 @@ export const appSchema = {
   <SketchUnderline seed={181}>Project · in production</SketchUnderline>
 </div>
 
-# ECHO — agent orchestrator
+# ECHO · agent orchestrator
 
 <MarkerHighlight>A personal, Jarvis-like assistant, built solo, running locally on my own hardware.</MarkerHighlight>{" "}
 Multi-brain LLM routing, tool dispatch, vault-backed memory,
@@ -102,14 +102,14 @@ a vault graph, a CC status indicator, and project-specific panels
 ┌─────────────────────────────────────────────────────────────┐
 │  Orchestrator (FastAPI · Python 3.13)                       │
 │  ─────────────────────────────────────────────────────────  │
-│  router.py       — Multi-brain selection (heuristics + LLM) │
-│  tools.py        — 14+ tool dispatch                        │
-│  skills.py       — agentskills.io-compatible workflow layer │
-│  vault_graph.py  — Markdown vault + Wikilink edges          │
-│  time_track.py   — Time entries, hours criterion, exports   │
-│  runway.py       — Personal-finance runway dashboard        │
-│  social.py       — Social-media accounts registry           │
-│  cc_status.py    — Claude Code activity from JSONL          │
+│  router.py       – Multi-brain selection (heuristics + LLM) │
+│  tools.py        – 14+ tool dispatch                        │
+│  skills.py       – agentskills.io-compatible workflow layer │
+│  vault_graph.py  – Markdown vault + Wikilink edges          │
+│  time_track.py   – Time entries, hours criterion, exports   │
+│  runway.py       – Personal-finance runway dashboard        │
+│  social.py       – Social-media accounts registry           │
+│  cc_status.py    – Claude Code activity from JSONL          │
 │  ... + nudges, agenda, hue, intents, voice, tts, and a      │
 │      handful of product-specific integration modules        │
 └──────┬──────────────────────────────┬───────────────────────┘
@@ -193,7 +193,7 @@ proposed nudges, daily notes that the consolidator writes, a
 chronicle of every Claude Code commit across all my projects, and
 a `CC-inbox.md` channel where dev-Claude can brief ECHO between turns.
 
-The watchers — Python jobs scheduled by APScheduler — monitor
+The watchers (Python jobs scheduled by APScheduler) monitor
 commits, sentry, issues, project state, agenda, idle. Each emits a
 structured trigger when it sees something worthy of ECHO&apos;s attention;
 the drafter turns triggers into proposed nudges; the curator aggregates
@@ -205,10 +205,10 @@ periodically.
 
 ECHO never assumes the API is up. Three tiers:
 
-1. **Tier 1 — API** (primary, highest quality)
-2. **Tier 2 — Rule-based reasoning** (fallback if the API is down or
+1. **Tier 1: API** (primary, highest quality)
+2. **Tier 2: Rule-based reasoning** (fallback if the API is down or
    rate-limited; less fluent, but still sensible)
-3. **Tier 3 — Hardcoded** (offline minimum-viable response)
+3. **Tier 3: Hardcoded** (offline minimum-viable response)
 
 This pattern recurs across multiple layers. The result: ECHO keeps
 working even when external services don't.
@@ -249,16 +249,16 @@ Filter on the *write* side; the read side stays simple.
 
 ECHO is built in layers, each progressively more autonomous:
 
-1. **Memory layer** — an Obsidian vault with WikiLink edges, fed by
+1. **Memory layer**: an Obsidian vault with WikiLink edges, fed by
    every conversation, decision and commit. Markdown, no lock-in, readable
    independently of ECHO.
-2. **Watchers** — Python jobs on APScheduler that monitor filesystem
+2. **Watchers**: Python jobs on APScheduler that monitor filesystem
    events, git commits, calendar pings and sentry issues and emit
    structured triggers.
-3. **Drafters** — cron jobs for weekly recap, daily summary,
+3. **Drafters**: cron jobs for weekly recap, daily summary,
    time-tracking aggregate and vault consolidation. Output lands as
    proposed nudges in an inbox for review.
-4. **Sleep-time compute** (in development) — a cheap model that
+4. **Sleep-time compute** (in development): a cheap model that
    reads new vault entries at night and proposes connections.
 
 <MarkerHighlight>The trend per layer: less typing, more proposing.</MarkerHighlight>

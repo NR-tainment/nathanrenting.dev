@@ -76,7 +76,7 @@ Après 50 tours avec un LLM qui utilise des tools, on remarque un motif : les m�
 workflows multi-tools sont réinventés à chaque fois, avec de petites
 variations. « Morning status » appelle les cinq mêmes tools dans à peu près
 le même ordre, mais le formatage dérive. « Weekly recap » a une
-forme similaire, mais en pire — plus de tools, plus d'endroits où dévier.
+forme similaire, mais en pire : plus de tools, plus d'endroits où dévier.
 
 La solution : une couche de skills. Chaque workflow récurrent devient une
 recette nommée ; le LLM consulte la recette au lieu de tout replanifier
@@ -123,7 +123,7 @@ the bottom.
 ```
 
 Deux champs de frontmatter obligatoires : `name` (qui correspond au
-nom du répertoire) et `description` (max. 1024 caractères — c'est ce que le LLM
+nom du répertoire) et `description` (max. 1024 caractères ; c'est ce que le LLM
 voit au moment de choisir un skill).
 
 ## Progressive disclosure
@@ -143,7 +143,7 @@ def run_skill(name: str) -> dict:
     return read_skill(name)
 ```
 
-`list_skills` coûte ~100 tokens par skill — assez bon marché pour l'appeler à chaque tour
+`list_skills` coûte ~100 tokens par skill, assez bon marché pour l'appeler à chaque tour
 ou le placer dans le system prompt. `run_skill` est l'opération
 coûteuse, appelée uniquement une fois que le LLM a choisi un skill précis.
 
@@ -196,7 +196,7 @@ success_rate: 0.957
 last_used: "2026-06-02T08:30:22Z"
 ```
 
-Télémétrie lente — basée sur des fichiers, sans base de données séparée. Mais suffisante pour
+Télémétrie lente : basée sur des fichiers, sans base de données séparée. Mais suffisante pour
 voir quels skills tirent leur poids et lesquels ne sont jamais utilisés.
 Les inutilisés : à jeter. Les populaires : à approfondir.
 

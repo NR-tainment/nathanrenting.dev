@@ -8,7 +8,7 @@ const en: DienstenDict = {
   },
   h1: "Services",
   introBefore:
-    "What I do freelance — in concrete terms. One page per service, so you can quickly see if it fits. For the arrangement and the rate: see ",
+    "What I do freelance, in concrete terms. One page per service, so you can quickly see if it fits. For the arrangement and the rate: see ",
   introLinkLabel: "/hire",
   introAfter: ".",
   responseTime: "Reply within 2 business days.",
@@ -44,7 +44,7 @@ const en: DienstenDict = {
       href: "/hire?topic=workflows",
       title: "Automating LLM workflows",
       oneLiner:
-        "Intake, reporting, classification — the work nobody enjoys. One agent on it, you get the rest of your day back.",
+        "Intake, reporting, classification: the work nobody enjoys. One agent on it, you get the rest of your day back.",
       deliverable: "1–2 weeks per flow",
       tags: ["Automation", "Workflows", "Agents"],
       wip: true,
@@ -70,7 +70,7 @@ const en: DienstenDict = {
   ],
   wipBadgeLabel: "ask →",
   outro:
-    "One service has a full page, the rest get one per week. Something fits already? Email or call via /hire — a conversation is always faster.",
+    "One service has a full page, the rest get one per week. Something fits already? Email or call via /hire. A conversation is always faster.",
 };
 
 export default en;

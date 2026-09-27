@@ -13,7 +13,7 @@
 export function Redacted({
   children,
   variant = "blur",
-  title = "Onder NDA — vraag ernaar",
+  title = "Onder NDA, vraag ernaar",
 }: {
   children: React.ReactNode;
   variant?: "blur" | "block" | "wipe";
@@ -29,7 +29,7 @@ export function Redacted({
     <span
       className={className}
       title={title}
-      aria-label={`onder NDA — ${title}`}
+      aria-label={`onder NDA: ${title}`}
     >
       {children}
     </span>

@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "PhotoFlow — vom Shooting ins Netz",
+  title: "PhotoFlow · vom Shooting ins Netz",
   description:
     "Ein Lightroom-Plugin, ein Tauri-Desktop-Client und ein Cloud-Publishing-Stack für professionelle Fotografen. Multi-Agent-Architektur: Vision, Copy, Publishing und Analytics.",
 };
@@ -42,12 +42,12 @@ export const appSchema = {
   <SketchUnderline seed={239}>Projekt · Pre-Development</SketchUnderline>
 </div>
 
-# PhotoFlow — vom bearbeiteten Foto in 30 Sekunden online
+# PhotoFlow · vom bearbeiteten Foto in 30 Sekunden online
 
 <MarkerHighlight>Die Arbeit zwischen &quot;Shooting bearbeitet&quot; und &quot;Shooting online&quot; abnehmen.</MarkerHighlight>{" "}
 Für professionelle Fotografen, die in Lightroom arbeiten: eine einzige
 Freigabe liefert Instagram-Teaser, Zeremonie-Carousels, Blog-Reportage,
-Portfolio-Update und LinkedIn-Case-Study gleichzeitig — geplant, veröffentlicht
+Portfolio-Update und LinkedIn-Case-Study gleichzeitig, geplant, veröffentlicht
 und überwacht.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -72,8 +72,8 @@ Drei Schritte:
 2. Foto in Lightroom bearbeiten
 3. Freigeben
 
-Alles dazwischen — Captions, Hashtags, Scheduling, Veröffentlichung nach
-IG / FB / LinkedIn, Blog, Portfolio — übernimmt die KI.
+Alles dazwischen (Captions, Hashtags, Scheduling, Veröffentlichung nach
+IG / FB / LinkedIn, Blog, Portfolio) übernimmt die KI.
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
@@ -104,7 +104,7 @@ Hybrider Aufbau:
 | Komponente | Tech | Verantwortung |
 |---|---|---|
 | Desktop-Client | Tauri + React + SQLite | Lokal: Fotos, Projekte, Drafts, Settings |
-| Lightroom-Plugin | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot; — spricht über localhost mit dem Desktop-Client |
+| Lightroom-Plugin | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot;, spricht über localhost mit dem Desktop-Client |
 | Cloud-Komponente | Supabase oder Cloudflare Workers + D1 + R2 | OAuth-Proxy, Token-Refresh, Scheduled-Publish-Queue, App-Review-Endpoints |
 
 Die Local-First-Entscheidung hält Foto-Daten aus dem Cloud-Speicher heraus, solange

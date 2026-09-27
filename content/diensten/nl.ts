@@ -8,7 +8,7 @@ const nl: DienstenDict = {
   },
   h1: "Diensten",
   introBefore:
-    "Wat ik freelance doe — in concrete vorm. Per dienst één pagina, zodat je snel ziet of het past. Voor de afspraak en het tarief: zie ",
+    "Wat ik freelance doe, in concrete vorm. Per dienst één pagina, zodat je snel ziet of het past. Voor de afspraak en het tarief: zie ",
   introLinkLabel: "/hire",
   introAfter: ".",
   responseTime: "Antwoord binnen 2 werkdagen.",
@@ -44,7 +44,7 @@ const nl: DienstenDict = {
       href: "/hire?topic=workflows",
       title: "LLM-workflows automatiseren",
       oneLiner:
-        "Intake, rapportage, classificatie — het werk dat niemand leuk vindt. Eén agent ervoor, jij doet de rest van je dag.",
+        "Intake, rapportage, classificatie: het werk dat niemand leuk vindt. Eén agent ervoor, jij doet de rest van je dag.",
       deliverable: "1–2 weken per flow",
       tags: ["Automation", "Workflows", "Agents"],
       wip: true,
@@ -70,7 +70,7 @@ const nl: DienstenDict = {
   ],
   wipBadgeLabel: "vraag aan →",
   outro:
-    "Eén dienst heeft een uitgewerkte pagina, de rest krijgt die per week. Past iets nu al? Mail of bel via /hire — sneller is altijd een gesprek.",
+    "Eén dienst heeft een uitgewerkte pagina, de rest krijgt die per week. Past iets nu al? Mail of bel via /hire. Sneller is altijd een gesprek.",
 };
 
 export default nl;

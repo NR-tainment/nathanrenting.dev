@@ -67,7 +67,7 @@ prägt alles, was darunter passiert.
   </figcaption>
 </figure>
 
-Rust passt gut zu dieser Arbeit — sobald du den Großteil der Standard
+Rust passt gut zu dieser Arbeit, sobald du den Großteil der Standard
 Library liegen lässt. Der Borrow Checker verhindert Data Races zur
 Compile-Zeit, aber ein einziges `Box::new` auf dem Audio-Pfad ruiniert dir
 trotzdem die Latenz. Die folgenden Patterns sind das, was es in der Praxis
@@ -77,10 +77,10 @@ zum Laufen bringt.
 
 Eine typische mobile Audio-App hat drei Threads, die zählen:
 
-1. **JS- / UI-Thread** — fängt User-Input ab, schickt Control-Messages
-2. **Native Dispatch-Thread** — übersetzt diese Messages, führt die
+1. **JS- / UI-Thread**: fängt User-Input ab, schickt Control-Messages
+2. **Native Dispatch-Thread**: übersetzt diese Messages, führt die
    Business-Logik aus, hält den State
-3. **Audio-Callback-Thread** — läuft im OS-Audio-Subsystem (AAudio auf
+3. **Audio-Callback-Thread**: läuft im OS-Audio-Subsystem (AAudio auf
    Android, CoreAudio auf iOS), wird mit striktem Timing aufgerufen
 
 Der Audio-Callback-Thread darf niemals blockieren, niemals allokieren,
@@ -104,11 +104,11 @@ use rtrb::{Consumer, Producer, RingBuffer};
 let (mut producer, mut consumer): (Producer<ControlMsg>, Consumer<ControlMsg>) =
     RingBuffer::new(256).split();
 
-// JS- / Dispatch-Thread — non-blocking push
+// JS- / Dispatch-Thread: non-blocking push
 producer.push(ControlMsg::SetVolume { track: 0, value: 0.8 })
     .expect("ring buffer full");
 
-// Audio-Callback — non-blocking pop, leere alles, was in der Queue steht
+// Audio-Callback: non-blocking pop, leere alles, was in der Queue steht
 while let Ok(msg) = consumer.pop() {
     apply_message(&mut state, msg);
 }
@@ -139,7 +139,7 @@ Audio-Thread wiederverwenden. Ein `Vec<f32>` mit der Kapazität
 `samples_per_block`, einmal vor dem Start der Audio-Engine allokiert, der
 bei jedem Callback in-place überschrieben wird.
 
-Rust&apos;s Ownership-Modell hilft hier — sobald du das Pattern von
+Rust&apos;s Ownership-Modell hilft hier, sobald du das Pattern von
 „Code ohne `Box`-/`Vec`-/`String`-Allokationen" einmal verinnerlicht hast,
 hält dich der Compiler ehrlich. Das Pattern überträgt sich von Projekt zu
 Projekt.
@@ -151,7 +151,7 @@ meinem Fall React Native) ruft die Engine über eine FFI-Schicht auf. Zwei
 Design-Entscheidungen, die zählen:
 
 **1. Halte die FFI-Oberfläche klein.** Jede FFI-Funktion ist eine
-Wartungslast — beide Sprachen müssen sich über Memory-Layout, Lifetime und
+Wartungslast. Beide Sprachen müssen sich über Memory-Layout, Lifetime und
 Error-Handling einig sein. Ich ziele auf ~10-15 FFI-Funktionen ab, die die
 öffentliche API der Engine wrappen; alles darüber hinaus bleibt intern auf
 der Rust-Seite.

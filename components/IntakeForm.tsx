@@ -59,7 +59,7 @@ const SECTIONS: { heading: string; fields: Field[] }[] = [
       {
         q: "Wat bestaat er al",
         type: "textarea",
-        hint: "code, hardware, ontwerpen, documentatie — wat er ligt en wat nog niet",
+        hint: "code, hardware, ontwerpen, documentatie (wat er ligt en wat nog niet)",
       },
       {
         q: "Deadline of mijlpaal",
@@ -152,7 +152,7 @@ const SECTIONS: { heading: string; fields: Field[] }[] = [
       {
         q: "Budgetindicatie",
         type: "text",
-        hint: "een orde van grootte is genoeg — het scheelt ons allebei tijd",
+        hint: "een orde van grootte is genoeg; het scheelt ons allebei tijd",
       },
     ],
   },
@@ -297,7 +297,7 @@ export function IntakeForm() {
                         className={`${INPUT} font-mono text-sm`}
                       >
                         <option value="" className="bg-zinc-950">
-                          — kies —
+                          kies…
                         </option>
                         {f.options?.map((o) => (
                           <option key={o} value={o} className="bg-zinc-950">

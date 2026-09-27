@@ -5,7 +5,7 @@ import type { HomeDict } from "./types";
 // human-readable strings differ.
 const fr: HomeDict = {
   meta: {
-    title: "Nathan Renting — développeur agents IA & audio temps réel",
+    title: "Nathan Renting · développeur agents IA & audio temps réel",
     description:
       "Solo dev d'Eindhoven (NL) : conçoit des systèmes d'agents IA (orchestration LLM, tool-calling, RAG) et des moteurs audio temps réel. Disponible en freelance / indépendant.",
   },
@@ -120,7 +120,7 @@ const fr: HomeDict = {
     heading: "Sur le terrain",
     marginNote: "(derniers writeups, datés)",
     intro:
-      "Les travaux les plus récents que j'ai documentés en public — de courts writeups tirés de projets réels, pas d'un calendrier éditorial.",
+      "Les travaux les plus récents que j'ai documentés en public : de courts writeups tirés de projets réels, pas d'un calendrier éditorial.",
     items: [
       {
         href: "/patterns/multi-brain-routing",
@@ -159,7 +159,7 @@ const fr: HomeDict = {
   faq: [
     {
       q: "Que fait Nathan Renting ?",
-      a: "Je suis un développeur solo d'Eindhoven qui conçoit des systèmes d'agents IA (orchestration LLM, tool-calling, RAG) et des moteurs audio temps réel — du prototype à la production.",
+      a: "Je suis un développeur solo d'Eindhoven qui conçoit des systèmes d'agents IA (orchestration LLM, tool-calling, RAG) et des moteurs audio temps réel, du prototype à la production.",
     },
     {
       q: "Nathan est-il disponible pour des missions en freelance / indépendant ?",

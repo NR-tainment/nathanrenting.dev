@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "TherapyVault — vidéo de thérapie sécurisée",
+  title: "TherapyVault · vidéo de thérapie sécurisée",
   description:
     "Plateforme vidéo sécurisée pour thérapeutes et patients. Autorisations d'accès granulaires, MFA, export RGPD et abstraction des paiements. Next.js 15 + Prisma + Cloudflare R2.",
 };
@@ -42,11 +42,11 @@ export const appSchema = {
   <SketchUnderline seed={223}>Projet · v0.1 release candidate</SketchUnderline>
 </div>
 
-# TherapyVault — plateforme vidéo sécurisée pour la thérapie
+# TherapyVault · plateforme vidéo sécurisée pour la thérapie
 
 <MarkerHighlight>Une plateforme vidéo privée où les thérapeutes partagent en toute sécurité des séances enregistrées avec leurs propres patients.</MarkerHighlight>{" "}
-Pas d'URL publiques, pas de lien YouTube du type &quot;accessible à toute personne disposant du lien&quot;
-— tout est protégé par des signed URLs avec des autorisations d'accès granulaires par patient,
+Pas d'URL publiques, pas de lien YouTube du type &quot;accessible à toute personne disposant du lien&quot;.
+Tout est protégé par des signed URLs avec des autorisations d'accès granulaires par patient,
 au choix limitées dans le temps, en nombre de visionnages ou en nombre de téléchargements.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -96,12 +96,12 @@ juridiques et techniques qu'exige un contexte de santé.
 
 <StackTable rows={[
   { label: "Frontend + API", value: "Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui" },
-  { label: "Auth", value: <>Auth.js v5 — credentials + hachage <strong>Argon2id</strong> + MFA TOTP</> },
+  { label: "Auth", value: <>Auth.js v5, credentials + hachage <strong>Argon2id</strong> + MFA TOTP</> },
   { label: "Base de données", value: "PostgreSQL 16 + Prisma 6" },
-  { label: "Stockage", value: "Cloudflare R2 (compatible S3) — l'abstraction de provider prend en charge S3, B2, MinIO, local" },
+  { label: "Stockage", value: "Cloudflare R2 (compatible S3) ; l'abstraction de provider prend en charge S3, B2, MinIO, local" },
   { label: "Uploads", value: <>protocole tus via <code className="font-mono text-cyan-300">@tus/server</code></> },
   { label: "Paiements", value: <>interface <code className="font-mono text-cyan-300">PaymentProvider</code> avec Stripe-live + stub Mollie derrière</> },
-  { label: "E-mail", value: "stub console (v0.1) — templates react-email qui s'affichent dans les logs" },
+  { label: "E-mail", value: "stub console (v0.1) : templates react-email qui s'affichent dans les logs" },
   { label: "Rate-limit", value: "token-bucket Redis avec fallback en mémoire" },
   { label: "Logging", value: "JSON structuré pino + table AuditLog dédiée" },
   { label: "Tests", value: "Vitest unit/integration + Playwright e2e" },
@@ -125,7 +125,7 @@ un job planifié avec période de grâce, une table AuditLog pour toutes les mut
 sensibles.
 
 **Abstraction du provider de paiement.** Stripe en live, Mollie derrière la même
-interface — passage à iDEAL sans toucher à la logique métier.
+interface : passage à iDEAL sans toucher à la logique métier.
 
 <ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
 

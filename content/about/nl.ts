@@ -4,7 +4,7 @@ const nl: AboutDict = {
   meta: {
     title: "Over mij",
     description:
-      "Nathan Renting — solo dev in Eindhoven. 12 jaar entertainment- en audio-productie-achtergrond, nu bouwer van agent-systemen en audio-engines.",
+      "Nathan Renting: solo dev in Eindhoven. 12 jaar entertainment- en audio-productie-achtergrond, nu bouwer van agent-systemen en audio-engines.",
   },
   portraitAlt:
     "Hand-getekend chalk-portret van Nathan: kale buste met cyan headphones, vriendelijke smile, kleine waveform-doodle boven het hoofd.",

@@ -2,16 +2,16 @@ import type { AiAgentsDict } from "./types";
 
 const en: AiAgentsDict = {
   meta: {
-    title: "Building AI agents — freelance, Netherlands and EU remote",
+    title: "Building AI agents · freelance, Netherlands and EU remote",
     description:
       "AI agent developer for SMEs. LLM orchestration, tool-calling, RAG and the Claude API. Production agents from prompt to a working part of your product. Freelance hire, Eindhoven and EU remote.",
   },
   eyebrow: "Service · freelance AI engineer",
   h1Lead: "Building AI agents. ",
-  h1Accent: "Production — not demo",
+  h1Accent: "Production, not demo",
   h1Tail: ".",
   intro:
-    "I build AI agent systems that actually run — end-to-end. LLM orchestration, tool-calling, RAG, and the integration into your existing stack. Solo, from Eindhoven, available 2-3 days a week for clients in the Netherlands and the EU.",
+    "I build AI agent systems that actually run, end-to-end. LLM orchestration, tool-calling, RAG, and the integration into your existing stack. Solo, from Eindhoven, available 2-3 days a week for clients in the Netherlands and the EU.",
   ctaPrimary: "Book a call →",
   ctaSecondary: "See ECHO as a reference",
   help: {
@@ -28,7 +28,7 @@ const en: AiAgentsDict = {
       },
       {
         strong: "Setting up RAG on your own documents.",
-        body: 'Embeddings, chunking, retrieval strategy, evaluation. No generic "load and chat" — configured for your corpus and your questions.',
+        body: 'Embeddings, chunking, retrieval strategy, evaluation. No generic "load and chat". Configured for your corpus and your questions.',
       },
       {
         strong: "Claude API integration.",
@@ -73,14 +73,14 @@ const en: AiAgentsDict = {
     ],
   },
   proof: {
-    heading: "Proof — ECHO",
-    marginNote: "(no pitch deck — live in a call)",
-    p1: "I don't only build for clients — I build for myself. ECHO is my own agent orchestrator that runs on my desk every day. Voice-first, routed between local Ollama and Claude, its own memory in an Obsidian vault, a live HUD with system stats. Ten years of audio DNA underneath for the voice layer.",
+    heading: "Proof: ECHO",
+    marginNote: "(no pitch deck, live in a call)",
+    p1: "I don't only build for clients. I build for myself. ECHO is my own agent orchestrator that runs on my desk every day. Voice-first, routed between local Ollama and Claude, its own memory in an Obsidian vault, a live HUD with system stats. Ten years of audio DNA underneath for the voice layer.",
     p2Before: "What ECHO proves for client work: ",
     p2Highlight:
       "I know where agents break in production, and how to prevent it",
     p2After:
-      ". The architecture choices you make early (memory layer, routing, tool registry, fallback strategy) decide whether you're still happy with the codebase six months from now — or whether you start over.",
+      ". The architecture choices you make early (memory layer, routing, tool registry, fallback strategy) decide whether you're still happy with the codebase six months from now, or whether you start over.",
     link: "→ Read about ECHO",
   },
   forWho: {

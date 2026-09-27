@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "TherapyVault — secure therapie-video",
+  title: "TherapyVault · secure therapie-video",
   description:
     "Beveiligd video-platform voor therapeuten en cliënten. Granulaire access-grants, MFA, GDPR-export en payment-abstractie. Next.js 15 + Prisma + Cloudflare R2.",
 };
@@ -42,11 +42,11 @@ export const appSchema = {
   <SketchUnderline seed={223}>Project · v0.1 release candidate</SketchUnderline>
 </div>
 
-# TherapyVault — secure video-platform voor therapie
+# TherapyVault · secure video-platform voor therapie
 
 <MarkerHighlight>Een privé video-platform waar therapeuten opgenomen sessies veilig met hun eigen cliënten delen.</MarkerHighlight>{" "}
-Geen public URLs, geen YouTube-link met &quot;alleen wie de link heeft&quot;
-— alles achter signed URLs met granulaire access-grants per cliënt,
+Geen public URLs, geen YouTube-link met &quot;alleen wie de link heeft&quot;.
+Alles achter signed URLs met granulaire access-grants per cliënt,
 optioneel time-limited, view-limited of download-limited.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -96,12 +96,12 @@ technische fundering die zorgcontext vereist.
 
 <StackTable rows={[
   { label: "Frontend + API", value: "Next.js 15 (App Router) + TypeScript + Tailwind + shadcn/ui" },
-  { label: "Auth", value: <>Auth.js v5 — credentials + <strong>Argon2id</strong> hashing + TOTP MFA</> },
+  { label: "Auth", value: <>Auth.js v5, credentials + <strong>Argon2id</strong> hashing + TOTP MFA</> },
   { label: "Database", value: "PostgreSQL 16 + Prisma 6" },
-  { label: "Storage", value: "Cloudflare R2 (S3-compatibel) — provider-abstractie ondersteunt S3, B2, MinIO, local" },
+  { label: "Storage", value: "Cloudflare R2 (S3-compatibel); provider-abstractie ondersteunt S3, B2, MinIO, local" },
   { label: "Uploads", value: <>tus protocol via <code className="font-mono text-cyan-300">@tus/server</code></> },
   { label: "Payments", value: <><code className="font-mono text-cyan-300">PaymentProvider</code>-interface met Stripe-live + Mollie-stub erachter</> },
-  { label: "Email", value: "console-stub (v0.1) — react-email templates die naar logs renderen" },
+  { label: "Email", value: "console-stub (v0.1): react-email templates die naar logs renderen" },
   { label: "Rate-limit", value: "Redis token-bucket met in-memory fallback" },
   { label: "Logging", value: "pino structured JSON + aparte AuditLog-tabel" },
   { label: "Tests", value: "Vitest unit/integration + Playwright e2e" },
@@ -125,7 +125,7 @@ scheduled-job met grace-period, AuditLog-tabel voor alle gevoelige
 mutaties.
 
 **Payment-provider-abstractie.** Stripe live, Mollie achter dezelfde
-interface — switchen voor iDEAL zonder de business-logica te raken.
+interface: switchen voor iDEAL zonder de business-logica te raken.
 
 <ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
 

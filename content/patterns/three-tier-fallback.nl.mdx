@@ -98,26 +98,26 @@ retry-logica op dit niveau, geen slimme circuit breakers.
 
 ## Wat elke tier doet
 
-**Tier 1 — LLM API** is de default. Beste output-kwaliteit. Maar ook de
+**Tier 1: LLM API** is de default. Beste output-kwaliteit. Maar ook de
 tier die faalt als het netwerk eruit ligt, als je rate-limits raakt, als
 de provider een incident heeft, als je key zonder waarschuwing roteert,
 of als een model waar je op leunt deprecated wordt. Plan voor al die
 gevallen.
 
-**Tier 2 — rule-based reasoning** draait dezelfde logica, lokaal, in
+**Tier 2: rule-based reasoning** draait dezelfde logica, lokaal, in
 gewone Python. Voor een AI-coach die input-verbeteringen voorstelt:
 een handgeschreven rules-engine met grofweg 60 if/else-takken dekt de
 meest voorkomende feedback-patronen. Minder elegant, maar 80% van de
 tijd goed en direct.
 
-**Tier 3 — hardcoded** is het absolute minimum. Een klein dictionary met
+**Tier 3: hardcoded** is het absolute minimum. Een klein dictionary met
 context-gekoppelde standaard-antwoorden. Saai, repetitief, maar
 betrouwbaar. Als tier 1 én 2 falen krijgt de gebruiker tenminste *iets*,
 en iets is altijd beter dan een error-toast.
 
 ## Wanneer wel of geen tier 2
 
-Tier 2 is paradoxaal genoeg de duurste tier om te *bouwen* — het is
+Tier 2 is paradoxaal genoeg de duurste tier om te *bouwen*. Het is
 code, en code schrijven kost meer tijd dan een API-call. Je bouwt 'm als:
 
 - De feature in een kritieke user-flow zit (elke sessie raakt 'm)
@@ -141,7 +141,7 @@ iets vergelijkbaars. Hit-rate van 40-60% is realistisch voor een chat-agent
 met herhalende patronen.
 
 Cache-TTLs zijn wel een tuning-probleem. Te lang en de agent "herhaalt
-zichzelf" — gebruikers zien hetzelfde antwoord twee keer in een sessie
+zichzelf": gebruikers zien hetzelfde antwoord twee keer in een sessie
 en de illusie breekt. Te kort en je betaalt API-kosten die je niet hoeft
 te maken. Begin op 30 minuten en pas aan op basis van klachten over
 herhaling.
@@ -163,7 +163,7 @@ unavailable" banners), draait jouw product gewoon door. Iets minder
 slim, iets saaier, maar nog steeds functioneel.
 
 Een gebruiker die al een paar keer is afgeknapt op een AI-product-down
-gaat jouw AI-product vertrouwen — ook als die ook tien keer down is
+gaat jouw AI-product vertrouwen, ook als die ook tien keer down is
 geweest en ze gewoon tier-3 responses kregen zonder het te merken.
 
 </div>

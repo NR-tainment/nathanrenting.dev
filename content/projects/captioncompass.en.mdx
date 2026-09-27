@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "CaptionCompass — captions for the deaf",
+  title: "CaptionCompass · captions for the deaf",
   description:
     "Android accessibility app: live captions always visible, a directional hint of the speaker only when reliable. Kotlin + Jetpack Compose + GCC-PHAT DoA.",
 };
@@ -42,7 +42,7 @@ export const appSchema = {
   <SketchUnderline seed={263}>Project · MVP scaffold</SketchUnderline>
 </div>
 
-# CaptionCompass — see the words, sense where they come from
+# CaptionCompass · see the words, sense where they come from
 
 <MarkerHighlight>A caption-first accessibility app for deaf and hard-of-hearing Android users.</MarkerHighlight>{" "}
 Live captions are always visible. A rough directional hint of the
@@ -51,7 +51,7 @@ speaker appears **only when it is reliable**.
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
     src="/captioncompass-architecture.png"
-    alt="Hand-drawn audio pipeline: stereo mics on phone → AAudio UNPROCESSED → VAD → two parallel paths (GCC-PHAT DoA → Zone Smoother with 5 zones, and ASR via SpeechRecognizer / Vosk) → phone screen with DIRECTION arc + CAPTIONS. Caption: 'show less, not more — direction only when reliable'."
+    alt="Hand-drawn audio pipeline: stereo mics on phone → AAudio UNPROCESSED → VAD → two parallel paths (GCC-PHAT DoA → Zone Smoother with 5 zones, and ASR via SpeechRecognizer / Vosk) → phone screen with DIRECTION arc + CAPTIONS. Caption: 'show less, not more; direction only when reliable'."
     className="w-full rounded border border-zinc-800"
     loading="lazy"
   />
@@ -73,8 +73,8 @@ The directional hint is opt-in and gated. It appears only when:
 4. Confidence is high or medium.
 
 If any one of those conditions falls away, the captions keep working
-unchanged and the direction arc fades out. **&quot;Show less, not more&quot;**
-— not turning a feature off, but respectfully withdrawing the feature
+unchanged and the direction arc fades out. **&quot;Show less, not more&quot;**:
+not turning a feature off, but respectfully withdrawing the feature
 when it cannot be backed up firmly enough.
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
@@ -125,7 +125,7 @@ is enough for the use case without ML models that cost latency and
 battery.
 
 For confidence evaluation, the cross-correlation peak sharpness is
-used — a high peak means one clear source; a flat peak means multiple
+used: a high peak means one clear source; a flat peak means multiple
 speakers or noise, and then the arc is faded out instead of showing a
 misleading direction.
 
@@ -140,7 +140,7 @@ runs, stereo capture works, captions work via
 **Phase 2:** Vosk offline ASR + Silero-VAD ONNX (better VAD,
 device-independent).
 
-**Phase 4:** Stereo BLE input — connect external stereo mics over
+**Phase 4:** Stereo BLE input. Connect external stereo mics over
 Bluetooth for better DoA precision than the built-in phone mics.
 
 </div>

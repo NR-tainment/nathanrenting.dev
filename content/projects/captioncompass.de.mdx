@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "CaptionCompass — Untertitel für Gehörlose",
+  title: "CaptionCompass · Untertitel für Gehörlose",
   description:
     "Android-Accessibility-App: Live-Untertitel immer sichtbar, ein Richtungshinweis zum Sprecher nur dann, wenn er zuverlässig ist. Kotlin + Jetpack Compose + GCC-PHAT DoA.",
 };
@@ -42,7 +42,7 @@ export const appSchema = {
   <SketchUnderline seed={263}>Projekt · MVP-Scaffold</SketchUnderline>
 </div>
 
-# CaptionCompass — die Wörter sehen, spüren, woher sie kommen
+# CaptionCompass · die Wörter sehen, spüren, woher sie kommen
 
 <MarkerHighlight>Eine caption-first Accessibility-App für gehörlose und schwerhörige Android-Nutzer.</MarkerHighlight>{" "}
 Live-Untertitel sind immer sichtbar. Ein grober Richtungshinweis zum
@@ -51,7 +51,7 @@ Sprecher erscheint **nur dann, wenn er zuverlässig ist**.
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
     src="/captioncompass-architecture.png"
-    alt="Handgezeichnete Audio-Pipeline: Stereo-Mikrofone am Telefon → AAudio UNPROCESSED → VAD → zwei parallele Pfade (GCC-PHAT DoA → Zone Smoother mit 5 Zonen, und ASR über SpeechRecognizer / Vosk) → Telefon-Screen mit DIRECTION-Arc + CAPTIONS. Bildunterschrift: 'show less, not more — direction only when reliable'."
+    alt="Handgezeichnete Audio-Pipeline: Stereo-Mikrofone am Telefon → AAudio UNPROCESSED → VAD → zwei parallele Pfade (GCC-PHAT DoA → Zone Smoother mit 5 Zonen, und ASR über SpeechRecognizer / Vosk) → Telefon-Screen mit DIRECTION-Arc + CAPTIONS. Bildunterschrift: 'show less, not more; direction only when reliable'."
     className="w-full rounded border border-zinc-800"
     loading="lazy"
   />
@@ -73,8 +73,8 @@ Der Richtungshinweis ist opt-in und gated. Er erscheint nur, wenn:
 4. Die Confidence hoch oder mittel ist.
 
 Fällt eine dieser Bedingungen weg, funktionieren die Untertitel
-unverändert weiter und der Richtungs-Arc blendet aus. **&quot;Show less, not more&quot;**
-— kein Feature abschalten, sondern das Feature respektvoll zurücknehmen,
+unverändert weiter und der Richtungs-Arc blendet aus. **&quot;Show less, not more&quot;**:
+kein Feature abschalten, sondern das Feature respektvoll zurücknehmen,
 wenn es sich nicht hart genug belegen lässt.
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
@@ -125,7 +125,7 @@ Hinten-rechts-Indikation** (fünf Zonen). Das reicht für den
 Anwendungsfall aus, ohne ML-Modelle, die Latenz und Akku kosten.
 
 Für die Confidence-Bewertung wird die Schärfe des
-Cross-Correlation-Peaks herangezogen — ein hoher Peak bedeutet eine
+Cross-Correlation-Peaks herangezogen. Ein hoher Peak bedeutet eine
 klare Quelle; ein flacher Peak bedeutet mehrere Sprecher oder Rauschen,
 und dann wird der Arc ausgeblendet, statt eine irreführende Richtung
 anzuzeigen.
@@ -141,7 +141,7 @@ läuft, Stereo-Capture funktioniert, Untertitel funktionieren über
 **Phase 2:** Vosk Offline-ASR + Silero-VAD ONNX (bessere VAD,
 geräteunabhängig).
 
-**Phase 4:** Stereo-BLE-Input — externe Stereo-Mikrofone über Bluetooth
+**Phase 4:** Stereo-BLE-Input. Externe Stereo-Mikrofone über Bluetooth
 anschließen für bessere DoA-Präzision als die eingebauten
 Telefon-Mikrofone.
 

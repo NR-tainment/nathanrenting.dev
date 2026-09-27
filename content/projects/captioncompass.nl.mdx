@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "CaptionCompass — captions voor doven",
+  title: "CaptionCompass · captions voor doven",
   description:
     "Android accessibility-app: live captions altijd zichtbaar, richting-hint van de spreker alleen als betrouwbaar. Kotlin + Jetpack Compose + GCC-PHAT DoA.",
 };
@@ -42,7 +42,7 @@ export const appSchema = {
   <SketchUnderline seed={263}>Project · MVP scaffold</SketchUnderline>
 </div>
 
-# CaptionCompass — see the words, sense where they come from
+# CaptionCompass · see the words, sense where they come from
 
 <MarkerHighlight>Een caption-first accessibility-app voor doven en slechthorende Android-gebruikers.</MarkerHighlight>{" "}
 Live captions zijn altijd zichtbaar. Een grove richting-hint van de
@@ -51,7 +51,7 @@ spreker verschijnt **alleen als hij betrouwbaar is**.
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
     src="/captioncompass-architecture.png"
-    alt="Hand-getekende audio-pipeline: stereo-mics op telefoon → AAudio UNPROCESSED → VAD → twee parallelle paden (GCC-PHAT DoA → Zone Smoother met 5 zones, en ASR via SpeechRecognizer / Vosk) → telefoon-screen met DIRECTION arc + CAPTIONS. Onderschrift: 'show less, not more — direction only when reliable'."
+    alt="Hand-getekende audio-pipeline: stereo-mics op telefoon → AAudio UNPROCESSED → VAD → twee parallelle paden (GCC-PHAT DoA → Zone Smoother met 5 zones, en ASR via SpeechRecognizer / Vosk) → telefoon-screen met DIRECTION arc + CAPTIONS. Onderschrift: 'show less, not more; direction only when reliable'."
     className="w-full rounded border border-zinc-800"
     loading="lazy"
   />
@@ -73,8 +73,8 @@ De richting-hint is opt-in en gated. Hij verschijnt alleen als:
 4. Confidence hoog of medium is.
 
 Als één van die voorwaarden wegvalt blijven de captions onveranderd
-werken en faded de richting-arc weg. **&quot;Show less, not more&quot;**
-— niet een feature uitzetten, maar de feature respectvol terugtrekken
+werken en faded de richting-arc weg. **&quot;Show less, not more&quot;**:
+niet een feature uitzetten, maar de feature respectvol terugtrekken
 als hij niet hard genoeg te onderbouwen is.
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
@@ -125,7 +125,7 @@ is genoeg voor de use-case zonder ML-modellen die latency en
 batterij kosten.
 
 Voor confidence-evaluatie wordt de cross-correlation-peak-sharpness
-gebruikt — een hoge piek betekent één duidelijke bron; een platte
+gebruikt: een hoge piek betekent één duidelijke bron; een platte
 piek betekent meerdere sprekers of ruis, en dan wordt de arc faded
 in plaats van een misleidende richting tonen.
 
@@ -140,7 +140,7 @@ draait, stereo capture werkt, captions werken via
 **Phase 2:** Vosk offline ASR + Silero-VAD ONNX (betere VAD,
 device-onafhankelijk).
 
-**Phase 4:** Stereo BLE input — externe stereo-mics aansluiten via
+**Phase 4:** Stereo BLE input. Externe stereo-mics aansluiten via
 Bluetooth voor betere DoA-precisie dan de built-in telefoon-mics.
 
 </div>

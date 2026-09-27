@@ -4,7 +4,7 @@ const de: ProjectsDict = {
   meta: {
     title: "Arbeit",
     description:
-      "ECHO — mein persönlicher Agent-Orchestrator. AudioLaunch — mobile Musikstudio-App, live in Open Beta.",
+      "ECHO: mein persönlicher Agent-Orchestrator. AudioLaunch: mobile Musikstudio-App, live in Open Beta.",
   },
   h1: "Arbeit",
   introBefore:

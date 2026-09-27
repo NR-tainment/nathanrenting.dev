@@ -1,7 +1,7 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "PhotoFlow — van shoot naar online",
+  title: "PhotoFlow · van shoot naar online",
   description:
     "Een Lightroom-plugin, Tauri-desktop en cloud-publishing-stack voor professionele fotografen. Multi-agent architectuur: Vision, Copy, Publishing en Analytics.",
 };
@@ -42,12 +42,12 @@ export const appSchema = {
   <SketchUnderline seed={239}>Project · pre-development</SketchUnderline>
 </div>
 
-# PhotoFlow — van bewerkte foto naar online in 30 seconden
+# PhotoFlow · van bewerkte foto naar online in 30 seconden
 
 <MarkerHighlight>Het werk tussen &quot;shoot bewerkt&quot; en &quot;shoot online&quot; wegnemen.</MarkerHighlight>{" "}
 Voor professionele fotografen die in Lightroom werken: één goedkeuring
 levert Instagram-teasers, ceremonie-carousels, blog-reportage,
-portfolio-update en LinkedIn-case-study tegelijk op — gepland, gepubliceerd
+portfolio-update en LinkedIn-case-study tegelijk op, gepland, gepubliceerd
 en gemonitord.
 
 <figure className="my-10 -mx-2 md:-mx-8">
@@ -72,8 +72,8 @@ Drie stappen:
 2. Foto bewerken in Lightroom
 3. Goedkeuren
 
-Alles daartussen — captions, hashtags, scheduling, publiceren naar
-IG / FB / LinkedIn, blog, portfolio — doet AI.
+Alles daartussen (captions, hashtags, scheduling, publiceren naar
+IG / FB / LinkedIn, blog, portfolio) doet AI.
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
@@ -104,7 +104,7 @@ Hybride opzet:
 | Component | Tech | Verantwoordelijkheid |
 |---|---|---|
 | Desktop client | Tauri + React + SQLite | Lokaal: foto&apos;s, projecten, drafts, settings |
-| Lightroom plugin | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot; — praat met desktop via localhost |
+| Lightroom plugin | Lua (`.lrplugin`) | &quot;Send to PhotoFlow&quot;, praat met desktop via localhost |
 | Cloud component | Supabase of Cloudflare Workers + D1 + R2 | OAuth-proxy, token-refresh, scheduled-publish-queue, App-Review-endpoints |
 
 De lokaal-eerst keuze houdt foto-data uit cloud-opslag tenzij dat

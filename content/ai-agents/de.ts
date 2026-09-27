@@ -2,16 +2,16 @@ import type { AiAgentsDict } from "./types";
 
 const de: AiAgentsDict = {
   meta: {
-    title: "KI-Agenten bauen — freiberuflich, Niederlande und EU-remote",
+    title: "KI-Agenten bauen · freiberuflich, Niederlande und EU-remote",
     description:
       "KI-Agenten-Entwickler für den Mittelstand. LLM-Orchestrierung, Tool-Calling, RAG und Claude API. Produktionsreife Agenten vom Prompt bis zum funktionierenden Teil deines Produkts. Freelance-Einsatz, Eindhoven und EU-remote.",
   },
   eyebrow: "Leistung · freiberuflicher AI Engineer",
   h1Lead: "KI-Agenten bauen. ",
-  h1Accent: "Produktion — keine Demo",
+  h1Accent: "Produktion, keine Demo",
   h1Tail: ".",
   intro:
-    "Ich baue KI-Agenten-Systeme, die wirklich laufen — end-to-end. LLM-Orchestrierung, Tool-Calling, RAG und die Integration in deinen bestehenden Stack. Solo, aus Eindhoven, verfügbar 2-3 Tage pro Woche für Kunden in den Niederlanden und der EU.",
+    "Ich baue KI-Agenten-Systeme, die wirklich laufen, end-to-end. LLM-Orchestrierung, Tool-Calling, RAG und die Integration in deinen bestehenden Stack. Solo, aus Eindhoven, verfügbar 2-3 Tage pro Woche für Kunden in den Niederlanden und der EU.",
   ctaPrimary: "Call vereinbaren →",
   ctaSecondary: "ECHO als Referenz ansehen",
   help: {
@@ -28,7 +28,7 @@ const de: AiAgentsDict = {
       },
       {
         strong: "RAG auf deinen eigenen Dokumenten aufsetzen.",
-        body: 'Embeddings, Chunking, Retrieval-Strategie, Evaluierung. Kein generisches "Load and Chat" — sondern abgestimmt auf deinen Korpus und deine Fragen.',
+        body: 'Embeddings, Chunking, Retrieval-Strategie, Evaluierung. Kein generisches "Load and Chat", sondern abgestimmt auf deinen Korpus und deine Fragen.',
       },
       {
         strong: "Claude API-Integration.",
@@ -73,14 +73,14 @@ const de: AiAgentsDict = {
     ],
   },
   proof: {
-    heading: "Beweis — ECHO",
-    marginNote: "(kein Pitch-Deck — live im Call)",
-    p1: "Ich baue nicht nur für Kunden — ich baue für mich selbst. ECHO ist mein eigener Agenten-Orchestrator, der täglich auf meinem Schreibtisch läuft. Voice-first, geroutet zwischen lokalem Ollama und Claude, eigenes Gedächtnis in einem Obsidian-Vault, ein Live-HUD mit System-Stats. Zehn Jahre Audio-DNA darunter für die Voice-Ebene.",
+    heading: "Beweis: ECHO",
+    marginNote: "(kein Pitch-Deck, live im Call)",
+    p1: "Ich baue nicht nur für Kunden. Ich baue für mich selbst. ECHO ist mein eigener Agenten-Orchestrator, der täglich auf meinem Schreibtisch läuft. Voice-first, geroutet zwischen lokalem Ollama und Claude, eigenes Gedächtnis in einem Obsidian-Vault, ein Live-HUD mit System-Stats. Zehn Jahre Audio-DNA darunter für die Voice-Ebene.",
     p2Before: "Was ECHO für die Kundenarbeit beweist: ",
     p2Highlight:
       "Ich weiß, wo Agenten in der Produktion kaputtgehen, und wie man das verhindert",
     p2After:
-      ". Die Architektur-Entscheidungen, die du früh triffst (Memory-Layer, Routing, Tool-Registry, Fallback-Strategie), bestimmen, ob du in sechs Monaten noch mit der Codebase zufrieden bist — oder ob du von vorne anfängst.",
+      ". Die Architektur-Entscheidungen, die du früh triffst (Memory-Layer, Routing, Tool-Registry, Fallback-Strategie), bestimmen, ob du in sechs Monaten noch mit der Codebase zufrieden bist oder ob du von vorne anfängst.",
     link: "→ Über ECHO lesen",
   },
   forWho: {

@@ -52,7 +52,7 @@ export const articleSchema = {
 Alles via Sonnet sturen is duurder dan nodig. Alles via Haiku breekt zodra
 het iets meer wordt dan een groet. Ergens daartussen wil je een router die
 per request kiest welk model gepast is. Mijn voorkeur:{" "}
-<MarkerHighlight>goedkope heuristieken eerst, een LLM-classifier als fallback — niet als default</MarkerHighlight>.
+<MarkerHighlight>goedkope heuristieken eerst, een LLM-classifier als fallback, niet als default</MarkerHighlight>.
 
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
@@ -96,20 +96,20 @@ is en waarom.
 
 Vier categorieën pakken meestal 70-80% van de beslissingen:
 
-1. **Korte groetjes en tijd-vragen** — inputs onder de 20 tekens die een
+1. **Korte groetjes en tijd-vragen**: inputs onder de 20 tekens die een
    kleine regex-set matchen. Naar de goedkoopste, snelste tier. Iemand
    die "hoi" zegt heeft geen Sonnet nodig.
 
-2. **Domein-keywords** — termen die naar een specifiek product of context
+2. **Domein-keywords**: termen die naar een specifiek product of context
    wijzen. Naar de tier die de juiste system-prompt-context laadt. In een
-   multi-product orchestrator essentieel — anders gaat de agent reasoning
+   multi-product orchestrator essentieel, anders gaat de agent reasoning
    doen vanuit de verkeerde context.
 
-3. **Diepe-reasoning keywords** — "design", "architect", "refactor",
+3. **Diepe-reasoning keywords**: "design", "architect", "refactor",
    "review", "diepgaand". Omhoog naar Opus / Sonnet 4.6 / wat je top
    tier ook is. Goedkoop om te detecteren, duur om te missen.
 
-4. **Tool-gebruik signalen** — file-paths, shell-werkwoorden ("scan",
+4. **Tool-gebruik signalen**: file-paths, shell-werkwoorden ("scan",
    "check", "lees"), code-fence-markers. Naar de tier waar shell-tools
    beschikbaar zijn.
 
@@ -131,7 +131,7 @@ Output ONLY the single word, nothing else.
 ```
 
 Kosten per classificatie: paar tienden van een cent. Latency: onder de
-seconde. Robuustheid: hoog — Haiku is consistent genoeg op zo'n
+seconde. Robuustheid: hoog. Haiku is consistent genoeg op zo'n
 drieweg-keuze dat je geen groter model nodig hebt.
 
 Eén kleine maar echte win: vertel de classifier om bij twijfel naar `main`
@@ -141,8 +141,8 @@ weinig extra. Een tool-vragende request die per ongeluk naar `fast` gaat
 
 ## Wanneer je geen router nodig hebt
 
-Als elke request die binnenkomt ongeveer dezelfde vorm heeft — een
-chatbot die één ding doet, bijvoorbeeld — is dit overkill. De router
+Als elke request die binnenkomt ongeveer dezelfde vorm heeft (een
+chatbot die één ding doet, bijvoorbeeld), is dit overkill. De router
 betaalt zichzelf terug zodra:
 
 - Je requests een range hebben van triviaal tot diep

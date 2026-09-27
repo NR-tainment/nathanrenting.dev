@@ -71,7 +71,7 @@ deutlich weniger sichtbar davor.
   </figcaption>
 </figure>
 
-## Falle 1 — Struct-Alignment auf x86_64 vs. arm
+## Falle 1: Struct-Alignment auf x86_64 vs. arm
 
 Die schmerzhafteste. Rusts `#[repr(C)]` garantiert nicht dasselbe
 Byte-Layout über Architekturen hinweg, es sei denn, du pinnst auch das
@@ -82,7 +82,7 @@ Alignment explizit. Ein Struct wie:
 pub struct StepEvent {
     pub note: u8,        // 1 byte
     pub velocity: u8,    // 1 byte
-    pub time_ms: u64,    // 8 bytes — alignment verschilt
+    pub time_ms: u64,    // 8 bytes, alignment verschilt
 }
 ```
 
@@ -95,7 +95,7 @@ Fix: das Alignment für Structs, die die FFI-Grenze überqueren, immer
 explizit pinnen – oder die Structs so aufbauen, dass sie von Natur aus
 aligned sind (Felder gleicher Größe gruppieren).
 
-## Falle 2 — NDK-Versions-Drift
+## Falle 2: NDK-Versions-Drift
 
 Das Android NDK unterstützt AAudio ab einer bestimmten Version, und diese
 API hat sich über die Jahre weiterentwickelt. Baust du mit NDK 25, bekommst
@@ -112,7 +112,7 @@ Tust du das nicht, kann EAS Build (oder welches Cloud-Build-System auch
 immer) einen „newer is better"-Default aufgreifen, der deinen Audio-Pfad
 alle paar Wochen subtil kaputtmacht.
 
-## Falle 3 — libc++_shared.so – doppelte Symbole
+## Falle 3: libc++_shared.so – doppelte Symbole
 
 Wenn du mehr als eine native Library im APK hast, jede mit eigener Linkage
 zu `libc++_shared.so`, kannst du zur Laufzeit „duplicate symbol"-Linker-
@@ -124,7 +124,7 @@ Shared-Runtime nutzen. Hast du Kontrolle über den Build: erzwinge überall
 `-DANDROID_STL=c++_shared`. Wenn eine Dependency ihre eigene statische
 C++-Runtime mitliefert: rebuild oder ersetze diese Dependency.
 
-## Falle 4 — EAS-Build-Cache-Überraschungen
+## Falle 4: EAS-Build-Cache-Überraschungen
 
 Cloud-Build-Systeme wie EAS cachen native Kompilierungs-Artefakte
 aggressiv. Ändere ein Flag, push, und du kannst einen Build bekommen, der
@@ -136,7 +136,7 @@ Pipeline änderst, bumpst du einen Cache-Bust-Wert (eine Versionsnummer,
 ein Timestamp in einer Build-Env), damit der Cache invalidiert wird.
 Vertraue nicht darauf, dass der Cache schlau ist.
 
-## Falle 5 — Einzelnes APK vs. Split-APKs
+## Falle 5: Einzelnes APK vs. Split-APKs
 
 Lange Zeit empfahl der Play Store Split-APKs (eines pro Architektur), um
 die Download-Größe klein zu halten. Mit App Bundles (AAB) wird das
@@ -157,19 +157,19 @@ Das universelle APK ist ~3x größer, aber es ist das Einzige, das sich auf
 jedem Gerät installiert, das du testen willst. AAB für den Play Store,
 universelles APK für alles andere.
 
-## Verifikation — was du wirklich prüfen musst
+## Verifikation: was du wirklich prüfen musst
 
 Nach einem erfolgreichen Build, bevor du auslieferst:
 
-1. **Auf einem echten arm64-Gerät installieren** — der primäre Pfad, muss
+1. **Auf einem echten arm64-Gerät installieren**: der primäre Pfad, muss
    funktionieren
-2. **Auf einem x86-Emulator installieren** — fängt Alignment-Bugs ab, die
+2. **Auf einem x86-Emulator installieren**: fängt Alignment-Bugs ab, die
    arm64 verbirgt
-3. **Auf einem armv7-Gerät oder -Emulator installieren** — fängt Issues
+3. **Auf einem armv7-Gerät oder -Emulator installieren**: fängt Issues
    ab, die nur auf 32-Bit auftauchen
-4. **Den Audio-Pfad auf allen dreien laufen lassen** — Alignment-Bugs
+4. **Den Audio-Pfad auf allen dreien laufen lassen**: Alignment-Bugs
    äußern sich oft als Audio-Dropouts, nicht als Crashes
-5. **`adb logcat | grep -i "alignment\|symbol\|libc++"` prüfen** —
+5. **`adb logcat | grep -i "alignment\|symbol\|libc++"` prüfen**:
    bringt Failures an die Oberfläche, die nicht sichtbar crashen
 
 Wenn alle drei Architekturen den Audio-Pfad-Smoke-Test bestehen: ship.
@@ -178,7 +178,7 @@ arm64 nicht? Irgendwo ein 64-Bit-Pointer-Issue. Diagnose per Ausschluss.
 
 ## Wann das eine Rolle spielt
 
-Für die meisten React-Native-Apps ist das unsichtbar — das Framework
+Für die meisten React-Native-Apps ist das unsichtbar. Das Framework
 übernimmt die native Kompilierung, das NDK darunter siehst du nie. Für
 Apps mit *eigenem* nativem Code (Rust-Audio-Engine, C++-DSP, was auch
 immer) gehört alles oben Genannte dir.

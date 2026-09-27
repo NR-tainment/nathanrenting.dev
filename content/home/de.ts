@@ -5,7 +5,7 @@ import type { HomeDict } from "./types";
 // human-readable strings differ.
 const de: HomeDict = {
   meta: {
-    title: "Nathan Renting — Entwickler für KI-Agenten & Echtzeit-Audio",
+    title: "Nathan Renting · Entwickler für KI-Agenten & Echtzeit-Audio",
     description:
       "Solo-Dev aus Eindhoven (NL): baut KI-Agenten-Systeme (LLM-Orchestrierung, Tool-Calling, RAG) und Echtzeit-Audio-Engines. Verfügbar für freiberufliche Engineering-Projekte (Freelancer).",
   },
@@ -120,7 +120,7 @@ const de: HomeDict = {
     heading: "Aus der Praxis",
     marginNote: "(neueste Writeups, mit Datum)",
     intro:
-      "Die jüngsten Arbeiten, die ich öffentlich aufgeschrieben habe — kurze Writeups aus echten Projekten, nicht aus einem Redaktionskalender.",
+      "Die jüngsten Arbeiten, die ich öffentlich aufgeschrieben habe: kurze Writeups aus echten Projekten, nicht aus einem Redaktionskalender.",
     items: [
       {
         href: "/patterns/multi-brain-routing",
@@ -159,7 +159,7 @@ const de: HomeDict = {
   faq: [
     {
       q: "Was macht Nathan Renting?",
-      a: "Ich bin ein Solo-Entwickler aus Eindhoven, der KI-Agenten-Systeme (LLM-Orchestrierung, Tool-Calling, RAG) und Echtzeit-Audio-Engines baut — vom Prototyp bis zur Produktion.",
+      a: "Ich bin ein Solo-Entwickler aus Eindhoven, der KI-Agenten-Systeme (LLM-Orchestrierung, Tool-Calling, RAG) und Echtzeit-Audio-Engines baut, vom Prototyp bis zur Produktion.",
     },
     {
       q: "Ist Nathan für freiberufliche Aufträge verfügbar?",

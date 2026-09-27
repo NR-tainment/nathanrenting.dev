@@ -1,6 +1,6 @@
 # Open voor alle reguliere search engines + AI assistants.
 # Verschillende AI-crawlers respecteren expliciete User-agent regels het
-# duidelijkst — daarom 'm per bot herhalen (Google's eigen advies).
+# duidelijkst. Daarom 'm per bot herhalen (Google's eigen advies).
 
 User-agent: *
 Allow: /

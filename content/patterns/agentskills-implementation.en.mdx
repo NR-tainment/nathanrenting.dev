@@ -76,7 +76,7 @@ After 50 turns with a tool-using LLM you start to notice a pattern: the same
 multi-tool workflows get reinvented every time, with small
 variations. "Morning status" calls the same five tools in roughly
 the same order, but the formatting drifts. "Weekly recap" is a
-similar shape but worse — more tools, more places to deviate.
+similar shape but worse: more tools, more places to deviate.
 
 The fix: a skills layer. Every recurring workflow becomes a
 named recipe; the LLM looks the recipe up instead of replanning
@@ -123,7 +123,7 @@ the bottom.
 ```
 
 Two mandatory frontmatter fields: `name` (matching the
-directory name) and `description` (max 1024 characters — this is what the LLM
+directory name) and `description` (max 1024 characters; this is what the LLM
 sees when choosing a skill).
 
 ## Progressive disclosure
@@ -143,7 +143,7 @@ def run_skill(name: str) -> dict:
     return read_skill(name)
 ```
 
-`list_skills` costs ~100 tokens per skill — cheap enough to call every turn
+`list_skills` costs ~100 tokens per skill, cheap enough to call every turn
 or to put in the system prompt. `run_skill` is the expensive
 operation, only called once the LLM has chosen a specific skill.
 
@@ -196,7 +196,7 @@ success_rate: 0.957
 last_used: "2026-06-02T08:30:22Z"
 ```
 
-Slow telemetry — file-based, no separate database. But enough to
+Slow telemetry: file-based, no separate database. But enough to
 see which skills pull their weight and which never get used.
 Unused ones: throw away. Popular ones: deepen.
 

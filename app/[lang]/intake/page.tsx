@@ -36,8 +36,8 @@ export default async function IntakePage({
 
         <p className="text-zinc-300 leading-relaxed mb-4">
           Zodat ons eerste gesprek over de inhoud gaat in plaats van over de
-          basis. Sla gerust vragen over waar je het antwoord nog niet op weet —
-          juist die lege plekken vertellen me waar het werk zit.
+          basis. Sla gerust vragen over waar je het antwoord nog niet op weet.
+          Juist die lege plekken vertellen me waar het werk zit.
         </p>
         <p className="text-zinc-400 leading-relaxed text-sm">
           Je antwoorden komen als één mail bij mij binnen. Ze worden nergens

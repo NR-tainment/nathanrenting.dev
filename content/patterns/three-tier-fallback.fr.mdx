@@ -99,27 +99,27 @@ aucun circuit breaker malin.
 
 ## Ce que fait chaque niveau
 
-**Niveau 1 — API LLM** est l'option par défaut. La meilleure qualité de
+**Niveau 1 : API LLM** est l'option par défaut. La meilleure qualité de
 sortie. Mais aussi le niveau qui tombe quand le réseau lâche, quand tu
 atteins les limites de débit, quand le fournisseur a un incident, quand ta
 clé est tournée sans prévenir, ou quand un modèle sur lequel tu t'appuies
 devient deprecated. Prévois tous ces cas.
 
-**Niveau 2 — raisonnement par règles** exécute la même logique, en local,
+**Niveau 2 : raisonnement par règles** exécute la même logique, en local,
 en Python tout simple. Pour un coach AI qui propose des améliorations
 d'input : un moteur de règles écrit à la main avec environ 60 branches
 if/else couvre les schémas de feedback les plus courants. Moins élégant,
 mais juste 80 % du temps et instantané.
 
-**Niveau 3 — codé en dur** est le strict minimum. Un petit dictionnaire de
+**Niveau 3 : codé en dur** est le strict minimum. Un petit dictionnaire de
 réponses par défaut liées au contexte. Ennuyeux, répétitif, mais fiable.
 Si le niveau 1 *et* le niveau 2 échouent, l'utilisateur reçoit au moins
 *quelque chose*, et quelque chose vaut toujours mieux qu'un toast d'erreur.
 
 ## Quand mettre en place le niveau 2, et quand s'en passer
 
-Le niveau 2 est, paradoxalement, le niveau le plus coûteux à *construire*
-— c'est du code, et écrire du code prend plus de temps qu'un appel d'API.
+Le niveau 2 est, paradoxalement, le niveau le plus coûteux à *construire*.
+C'est du code, et écrire du code prend plus de temps qu'un appel d'API.
 Tu le construis quand :
 
 - La fonctionnalité se trouve dans un user flow critique (chaque session la touche)
@@ -145,7 +145,7 @@ de hit de 40 à 60 % est réaliste pour un agent de chat aux schémas
 récurrents.
 
 Les TTL de cache restent toutefois un problème de tuning. Trop long et
-l'agent « se répète » — les utilisateurs voient deux fois la même réponse
+l'agent « se répète » : les utilisateurs voient deux fois la même réponse
 dans une session et l'illusion se brise. Trop court et tu paies des coûts
 d'API que tu n'avais pas à payer. Commence à 30 minutes et ajuste en
 fonction des plaintes sur la répétition.
@@ -155,7 +155,7 @@ fonction des plaintes sur la répétition.
 Logue quel niveau a traité chaque requête. Au bout d'une semaine, tu verras
 la vraie distribution. Si le niveau 1 sert 99 % et que les niveaux 2 + 3
 réunis servent 1 %, tu peux probablement supprimer le niveau 2. Si le
-niveau 2 atteint 15 %, il fait son travail — et ton API est moins fiable
+niveau 2 atteint 15 %, il fait son travail, et ton API est moins fiable
 que tu ne le pensais.
 
 Les chiffres te surprennent en général dans au moins une direction.
@@ -169,7 +169,7 @@ simplement de tourner. Un peu moins malin, un peu plus ennuyeux, mais
 toujours fonctionnel.
 
 Un utilisateur qui s'est déjà fait avoir plusieurs fois par un produit AI
-en panne finira par faire confiance au tien — même si lui aussi est tombé
+en panne finira par faire confiance au tien, même si lui aussi est tombé
 dix fois et qu'il a simplement reçu des réponses de niveau 3 sans s'en
 rendre compte.
 
