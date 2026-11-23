@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { SketchBox } from "@/components/sketch";
+import type { ContactFormDict } from "@/content/hire/types";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
-export function BlackboardContactForm() {
+export function BlackboardContactForm({ t }: { t: ContactFormDict }) {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
 
@@ -29,13 +30,23 @@ export function BlackboardContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.success) {
-        throw new Error(data.error || "Er ging iets mis");
+        // The API answers in Dutch; show the visitor's language instead,
+        // picked by status (429 rate limit, 400 validation, rest = failure).
+        setError(
+          res.status === 429
+            ? t.errors.rateLimited
+            : res.status === 400
+              ? t.errors.invalid
+              : t.errors.failed,
+        );
+        setState("error");
+        return;
       }
       setState("success");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Er ging iets mis");
+    } catch {
+      setError(t.errors.failed);
       setState("error");
     }
   }
@@ -45,13 +56,11 @@ export function BlackboardContactForm() {
       <SketchBox className="rounded-md" seed={211}>
         <div className="px-6 py-12 text-center">
           <div className="font-handwriting text-4xl text-cyan-400 mb-3">
-            ✓ ontvangen
+            {t.successTitle}
           </div>
-          <p className="text-zinc-300 mb-1">
-            Reactie meestal binnen één werkdag.
-          </p>
+          <p className="text-zinc-300 mb-1">{t.successBody}</p>
           <p className="text-zinc-500 text-sm">
-            Bij urgentie:{" "}
+            {t.urgent}{" "}
             <a
               href="mailto:jdrenting@gmail.com"
               className="text-cyan-400 hover:text-cyan-300 transition-colors"
@@ -70,7 +79,7 @@ export function BlackboardContactForm() {
         {/* Honeypot — hidden from real users, bots fill it */}
         <div className="absolute -left-[9999px]" aria-hidden="true">
           <label>
-            Website (laat leeg)
+            {t.honeypot}
             <input
               type="text"
               name="website"
@@ -85,7 +94,7 @@ export function BlackboardContactForm() {
             htmlFor="contact-name"
             className="block font-handwriting text-cyan-400 mb-1.5 text-base"
           >
-            naam
+            {t.nameLabel}
           </label>
           <input
             id="contact-name"
@@ -94,7 +103,7 @@ export function BlackboardContactForm() {
             required
             disabled={state === "submitting"}
             className="w-full bg-transparent border-b border-zinc-700 focus:border-cyan-400 outline-none py-1.5 text-zinc-100 placeholder-zinc-600 placeholder:font-handwriting transition-colors"
-            placeholder="hoe heet je?"
+            placeholder={t.namePlaceholder}
           />
         </div>
 
@@ -103,7 +112,7 @@ export function BlackboardContactForm() {
             htmlFor="contact-email"
             className="block font-handwriting text-cyan-400 mb-1.5 text-base"
           >
-            email
+            {t.emailLabel}
           </label>
           <input
             id="contact-email"
@@ -112,7 +121,7 @@ export function BlackboardContactForm() {
             required
             disabled={state === "submitting"}
             className="w-full bg-transparent border-b border-zinc-700 focus:border-cyan-400 outline-none py-1.5 text-zinc-100 placeholder-zinc-600 placeholder:font-handwriting transition-colors"
-            placeholder="zodat ik kan reageren"
+            placeholder={t.emailPlaceholder}
           />
         </div>
 
@@ -121,7 +130,7 @@ export function BlackboardContactForm() {
             htmlFor="contact-message"
             className="block font-handwriting text-cyan-400 mb-1.5 text-base"
           >
-            wat je nodig hebt
+            {t.messageLabel}
           </label>
           <textarea
             id="contact-message"
@@ -130,7 +139,7 @@ export function BlackboardContactForm() {
             rows={5}
             disabled={state === "submitting"}
             className="w-full bg-transparent border border-zinc-700 focus:border-cyan-400 outline-none p-3 text-zinc-100 placeholder-zinc-600 placeholder:font-handwriting rounded resize-y transition-colors"
-            placeholder="kort: wat is het probleem, ruwe vorm van wat je zoekt, tijdshorizon..."
+            placeholder={t.messagePlaceholder}
           />
         </div>
 
@@ -138,7 +147,7 @@ export function BlackboardContactForm() {
           <div className="text-sm font-mono text-red-400 leading-relaxed">
             {error}
             <br />
-            Of mail direct:{" "}
+            {t.errorMail}{" "}
             <a
               href="mailto:jdrenting@gmail.com"
               className="underline hover:text-red-300"
@@ -154,15 +163,15 @@ export function BlackboardContactForm() {
             disabled={state === "submitting"}
             className="font-mono text-sm bg-cyan-400 text-zinc-950 px-5 py-2 rounded hover:bg-cyan-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {state === "submitting" ? "versturen..." : "versturen →"}
+            {state === "submitting" ? t.submitting : t.submit}
           </button>
           <p className="text-xs text-zinc-500 font-mono">
-            of mail{" "}
+            {t.altMail}{" "}
             <a
               href="mailto:jdrenting@gmail.com"
               className="text-cyan-400 hover:text-cyan-300 transition-colors"
             >
-              direct
+              {t.altMailLink}
             </a>
           </p>
         </div>

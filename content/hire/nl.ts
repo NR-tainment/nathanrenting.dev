@@ -83,6 +83,28 @@ const nl: HireDict = {
     body: "Eén alinea is genoeg. Wat het probleem is, ruwe vorm van wat je zoekt, tijdshorizon. Ik reageer meestal binnen één werkdag.",
     marginNote: "(alles hierboven is hoe ik werk. geen verkooppraat)",
   },
+  form: {
+    nameLabel: "naam",
+    namePlaceholder: "hoe heet je?",
+    emailLabel: "email",
+    emailPlaceholder: "zodat ik kan reageren",
+    messageLabel: "wat je nodig hebt",
+    messagePlaceholder: "kort: wat is het probleem, ruwe vorm van wat je zoekt, tijdshorizon...",
+    honeypot: "Website (laat leeg)",
+    submit: "versturen →",
+    submitting: "versturen...",
+    altMail: "of mail",
+    altMailLink: "direct",
+    successTitle: "✓ ontvangen",
+    successBody: "Reactie meestal binnen één werkdag.",
+    urgent: "Bij urgentie:",
+    errorMail: "Of mail direct:",
+    errors: {
+      rateLimited: "Te veel pogingen. Wacht even en probeer opnieuw.",
+      invalid: "Controleer je naam, e-mailadres en bericht (minimaal 10 tekens).",
+      failed: "Het versturen is niet gelukt.",
+    },
+  },
 };
 
 export default nl;

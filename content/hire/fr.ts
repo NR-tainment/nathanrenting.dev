@@ -83,6 +83,28 @@ const fr: HireDict = {
     body: "Un paragraphe suffit. Le problème, en gros ce que tu cherches, à quelle échéance. Je réponds généralement sous un jour ouvré.",
     marginNote: "(tout ce qui précède, c'est ma façon de travailler. pas de baratin commercial)",
   },
+  form: {
+    nameLabel: "nom",
+    namePlaceholder: "comment tu t'appelles ?",
+    emailLabel: "e-mail",
+    emailPlaceholder: "pour que je puisse répondre",
+    messageLabel: "ce dont tu as besoin",
+    messagePlaceholder: "en bref : quel est le problème, en gros ce que tu cherches, à quelle échéance...",
+    honeypot: "Site web (laisser vide)",
+    submit: "envoyer →",
+    submitting: "envoi...",
+    altMail: "ou par mail",
+    altMailLink: "directement",
+    successTitle: "✓ reçu",
+    successBody: "Je réponds généralement sous un jour ouvré.",
+    urgent: "En cas d'urgence :",
+    errorMail: "Ou écris directement :",
+    errors: {
+      rateLimited: "Trop de tentatives. Attends un instant et réessaie.",
+      invalid: "Vérifie ton nom, ton e-mail et ton message (10 caractères minimum).",
+      failed: "L'envoi n'a pas abouti.",
+    },
+  },
 };
 
 export default fr;

@@ -31,4 +31,26 @@ export type HireDict = {
     body: string;
     marginNote: string;
   };
+  form: ContactFormDict;
+};
+
+// Strings for components/BlackboardContactForm (the form on /hire).
+export type ContactFormDict = {
+  nameLabel: string;
+  namePlaceholder: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  honeypot: string;
+  submit: string;
+  submitting: string;
+  altMail: string;
+  altMailLink: string;
+  successTitle: string;
+  successBody: string;
+  urgent: string;
+  errorMail: string;
+  // Chosen by HTTP status in the component: 429, 400, anything else.
+  errors: { rateLimited: string; invalid: string; failed: string };
 };

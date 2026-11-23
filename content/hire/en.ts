@@ -83,6 +83,28 @@ const en: HireDict = {
     body: "One paragraph is enough. What the problem is, the rough shape of what you're after, your timeline. I usually reply within one working day.",
     marginNote: "(everything above is how I work. no sales pitch)",
   },
+  form: {
+    nameLabel: "name",
+    namePlaceholder: "what's your name?",
+    emailLabel: "email",
+    emailPlaceholder: "so I can reply",
+    messageLabel: "what you need",
+    messagePlaceholder: "short: what the problem is, rough shape of what you're after, timeline...",
+    honeypot: "Website (leave empty)",
+    submit: "send →",
+    submitting: "sending...",
+    altMail: "or email",
+    altMailLink: "directly",
+    successTitle: "✓ received",
+    successBody: "I usually reply within one working day.",
+    urgent: "If it's urgent:",
+    errorMail: "Or email directly:",
+    errors: {
+      rateLimited: "Too many attempts. Wait a moment and try again.",
+      invalid: "Please check your name, email and message (at least 10 characters).",
+      failed: "Sending failed.",
+    },
+  },
 };
 
 export default en;

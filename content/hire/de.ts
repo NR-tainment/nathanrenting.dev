@@ -83,6 +83,28 @@ const de: HireDict = {
     body: "Ein Absatz reicht. Was das Problem ist, die grobe Form dessen, was du suchst, dein Zeithorizont. Ich antworte meist innerhalb eines Werktags.",
     marginNote: "(alles oben ist, wie ich arbeite. kein Verkaufsgerede)",
   },
+  form: {
+    nameLabel: "name",
+    namePlaceholder: "wie heißt du?",
+    emailLabel: "e-mail",
+    emailPlaceholder: "damit ich antworten kann",
+    messageLabel: "was du brauchst",
+    messagePlaceholder: "kurz: was ist das Problem, grobe Form dessen, was du suchst, Zeithorizont...",
+    honeypot: "Website (leer lassen)",
+    submit: "senden →",
+    submitting: "wird gesendet...",
+    altMail: "oder per Mail",
+    altMailLink: "direkt",
+    successTitle: "✓ erhalten",
+    successBody: "Ich antworte meist innerhalb eines Werktags.",
+    urgent: "Bei Dringlichkeit:",
+    errorMail: "Oder schreib direkt per Mail:",
+    errors: {
+      rateLimited: "Zu viele Versuche. Warte kurz und versuche es erneut.",
+      invalid: "Bitte prüfe Name, E-Mail und Nachricht (mindestens 10 Zeichen).",
+      failed: "Das Senden hat nicht geklappt.",
+    },
+  },
 };
 
 export default de;

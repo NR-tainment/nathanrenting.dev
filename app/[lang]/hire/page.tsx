@@ -117,7 +117,7 @@ export default async function HirePage({
             {t.contact.marginNote}
           </MarginNote>
 
-          <BlackboardContactForm />
+          <BlackboardContactForm t={t.form} />
         </section>
       </SectionReveal>
     </div>
