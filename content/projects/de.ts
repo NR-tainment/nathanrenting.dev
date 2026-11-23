@@ -32,9 +32,9 @@ const de: ProjectsDict = {
       href: "/projects/audiolab",
       title: "AudioLab.tools",
       oneLiner:
-        "Authority-Plattform an der Schnittstelle von Audio + AI + DSP + Android + Barrierefreiheit. Echte Tools, fundierte Doku, kein Geschwafel. Astro + React + Tailwind v4, Cluster-Struktur (MixLab, HearLab, Engineering).",
-      tags: ["Astro", "Content-Plattform", "Audio + AI", "DSP"],
-      status: "Live · im Aufbau",
+        "Unabhängiges Messlabor für Audio. 160 Lenses, jede mit Status und mit Marge, wo eine gemessen wurde. Sieben kostenlose Labs im Browser, eine gehostete API und ein MCP-Server für deine Pipeline oder deinen KI-Agenten, in vier Sprachen. Astro + React + Tailwind v4.",
+      tags: ["Astro", "Messlabor", "API + MCP", "DSP"],
+      status: "Live",
       externalUrl: "https://audiolab.tools",
     },
     audiolaunch: {

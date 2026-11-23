@@ -27,7 +27,7 @@
 ## Featured projects
 
 - [AudioLaunch](https://nathanrenting.dev/projects/audiolaunch): a mobile music-creation app (Studio DAW + Resonara) built on a native Rust audio engine, live in public open beta at audio-launch.com
-- [AudioLab.tools](https://nathanrenting.dev/projects/audiolab): a public browser-side audio toolkit at audiolab.tools (live)
+- [AudioLab.tools](https://nathanrenting.dev/projects/audiolab): an independent measurement lab for audio at audiolab.tools: 160 lenses with a status, seven free labs in the browser, a hosted API and an MCP server (live)
 - [Echo](https://nathanrenting.dev/projects/echo): AI agent orchestration system with multi-step planning
 - [TherapyVault](https://nathanrenting.dev/projects/therapyvault): secure session vault and notes for therapists
 - [CaptionCompass](https://nathanrenting.dev/projects/captioncompass): AI captioning workflow for podcasters and creators
@@ -46,6 +46,6 @@
 ## Elsewhere
 
 - [LinkedIn](https://www.linkedin.com/in/nathanrenting/)
-- [GitHub](https://github.com/NR-tainment)
+- [GitHub](https://github.com/Audio-Launch)
 - [Malt](https://www.malt.nl/profile/jdrenting)
-- [audiolab.tools](https://audiolab.tools): live browser-side audio toolkit
+- [audiolab.tools](https://audiolab.tools): independent measurement lab for audio

@@ -45,9 +45,9 @@ const nl: HomeDict = {
       href: "/projects/audiolab",
       title: "AudioLab.tools",
       oneLiner:
-        "Authority-platform op het snijvlak audio + AI + DSP + Android + toegankelijkheid. Real tools, deep docs. Astro + React + Tailwind v4.",
-      tags: ["Astro", "Content platform", "Audio + AI"],
-      status: "Live · in opbouw",
+        "Onafhankelijk meetlab voor audio: 160 lenzen met status, zeven gratis labs in je browser, een gehoste API en een MCP-server, in vier talen.",
+      tags: ["Astro", "Meetlab", "API + MCP"],
+      status: "Live",
       externalUrl: "https://audiolab.tools",
     },
     audiolaunch: {

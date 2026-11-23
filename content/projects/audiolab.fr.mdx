@@ -1,9 +1,9 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "AudioLab.tools · audio, IA & DSP",
+  title: "AudioLab.tools · laboratoire de mesure indépendant pour l'audio",
   description:
-    "Plateforme de contenu et d'outils à la croisée de l'audio, de l'IA, du DSP, d'Android et de l'accessibilité. De vrais outils, des docs poussées, no slop. Astro + React + Tailwind v4.",
+    "Laboratoire de mesure indépendant pour l'audio : 160 lentilles avec statut, sept labs gratuits dans le navigateur, une API hébergée et un serveur MCP, en quatre langues. Astro + React + Tailwind v4.",
 };
 
 export const appSchema = {
@@ -12,7 +12,7 @@ export const appSchema = {
   "@id": "https://nathanrenting.dev/fr/projects/audiolab#app",
   name: "AudioLab.tools",
   description:
-    "Une plateforme de contenu et d'outils à la croisée de l'audio, de l'IA, du développement, d'Android, du DSP, de l'accessibilité et des workflows live. De vrais outils, des docs poussées, no slop. Construite avec Astro, React et Tailwind v4.",
+    "Laboratoire de mesure indépendant pour l'audio. 160 lentilles, chacune avec son statut et une marge là où elle a été mesurée, sept labs gratuits dans le navigateur, une API hébergée et un serveur MCP, en quatre langues. Construit avec Astro, React et Tailwind v4.",
   inLanguage: "fr-FR",
   url: "https://audiolab.tools",
   image: "https://nathanrenting.dev/audiolab-architecture.png",
@@ -21,11 +21,11 @@ export const appSchema = {
   publisher: { "@id": "https://nathanrenting.dev/#org" },
   keywords: [
     "audio",
-    "AI",
+    "audio measurement",
+    "loudness",
     "DSP",
-    "Android",
-    "accessibility",
-    "content platform",
+    "API",
+    "MCP",
   ],
 };
 
@@ -37,7 +37,7 @@ export const appSchema = {
 />
 
 <div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400 flex items-center gap-4 flex-wrap">
-  <SketchUnderline seed={257}>Projet · en ligne · en construction</SketchUnderline>
+  <SketchUnderline seed={257}>Projet · en ligne</SketchUnderline>
   <a
     href="https://audiolab.tools"
     target="_blank"
@@ -48,12 +48,12 @@ export const appSchema = {
   </a>
 </div>
 
-# AudioLab.tools · plateforme de référence pour l'audio + l'IA
+# AudioLab.tools · laboratoire de mesure indépendant pour l'audio
 
-<MarkerHighlight>Une plateforme de contenu et d'outils à la croisée de l'audio, de l'IA, du développement, d'Android, du DSP, de l'accessibilité et des workflows live.</MarkerHighlight>{" "}
-Pas de tunnel marketing avec des boutons &quot;join the waitlist&quot; derrière
-chaque page. Chaque cluster livre une démo fonctionnelle côté navigateur
-ainsi que des docs poussées.
+<MarkerHighlight>Un laboratoire de mesure indépendant pour l'audio : chaque enregistrement en entrée, un rapport avec des chiffres que vous pouvez rejouer, chacun avec son statut.</MarkerHighlight>{" "}
+AudioLab ne vend ni moteur de reconnaissance, ni réduction de bruit, ni
+synthèse vocale, et n'a donc aucun intérêt dans ce que dit la mesure.
+Autofinancé, sans investisseurs.
 
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
@@ -63,43 +63,42 @@ ainsi que des docs poussées.
     loading="lazy"
   />
   <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
-    Croquis de whiteboard initial · devenu depuis six labs
+    Croquis de whiteboard initial · devenu depuis sept labs
   </figcaption>
 </figure>
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
-## Trois principes (issus du site lui-même)
+## Ce que c'est
 
-1. **Des outils que tu peux vraiment utiliser.** Chaque cluster livre
-   une démo fonctionnelle, côté navigateur. Rien de caché derrière une
-   liste d'attente.
-2. **People-first writing.** Pas de slop d'IA bourré de mots-clés. Chaque page
-   est écrite par quelqu'un qui a expédié de l'audio en production et
-   accepte de se tromper en public.
-3. **Built where it matters.** Android, DSP temps réel, accessibilité,
-   ergonomie développeur. Les endroits où l'audio-IA doit vraiment fonctionner,
-   pas juste des démos marketing.
+1. **160 lentilles, chacune avec son statut.** Chaque lentille dit ce qu'elle
+   mesure, comment lire le résultat et jusqu'où lui faire confiance, avec une
+   marge là où elle a été mesurée.
+2. **Indépendant.** Pas de moteur de reconnaissance ni de réduction de bruit à
+   vendre, donc aucun intérêt dans le résultat.
+3. **Contrôlé.** Loudness à moins de 0,06 LU sur des signaux de test construits
+   en interne selon EBU Tech 3341/3342 et BS.1770-4, dans les 0,1 LU que la
+   norme autorise.
 
 <ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
 
-## Six labs, honnête sur ce qui marche
+## Sept labs, gratuits dans le navigateur
 
-Le site s'articule autour de six labs côté navigateur. Chaque lab est étiqueté honnêtement selon
-ce qu'il fait réellement (fonctionnel, en construction, ou concept simulé) :
+Chaque lab répond à une question sur votre audio, sauf CueLab, un bac à sable
+de routage qui ne mesure rien. Votre audio n'est pas envoyé. Une exception :
+les sous-titres en direct de HearLab utilisent la reconnaissance vocale de
+votre navigateur, qui peut envoyer l'audio à un service en ligne (Chrome le
+fait). Le même moteur de mesure répond aussi dans l'API et le serveur MCP.
 
 | Lab | Statut | Ce qu'il fait |
 |---|---|---|
-| **[MixLab](https://audiolab.tools/labs/mixlab)** | Beta | Loudness/dynamique/stéréo, **vérifié à ±0,08 LU par rapport à la référence EBU R128** |
-| **[VoiceLab](https://audiolab.tools/labs/voicelab)** | Beta | QA voix : clarté, rythme, densité de tics de langage, clipping |
-| **[SignalLab](https://audiolab.tools/labs/signallab)** | Beta | Indexeur audio : détection de silence/clipping, tags de région |
-| **[Ψ Lab](https://audiolab.tools/labs/psilab)** | Building | Phase vocoder · time-stretch, freeze, reverse, smear (AudioWorklet entièrement côté client) |
-| **[SkillLab](https://audiolab.tools/labs/skilllab)** | Building | Challenges d'entraînement avec feedback (fonctionne, en cours d'extension) |
-| **[HearLab](https://audiolab.tools/labs/hearlab)** | Building | Compagnon d'écoute non médical (dashboard à part en tant que concept) |
-| **[CueLab](https://audiolab.tools/labs/cuelab)** | Simulated | Concept de routing live avec données simulées |
-
-Tout côté client : l'audio ne quitte pas le navigateur. À côté de ça, docs,
-méthodologie, glossaire, roadmap : du contenu indexable, pas de routes JS-only.
+| **[MixLab](https://audiolab.tools/labs/mixlab)** | Beta | Quelle est la puissance de votre mix, et quelle marge de manœuvre (headroom) laisse-t-il ? |
+| **[VoiceLab](https://audiolab.tools/labs/voicelab)** | Beta | Cette prise de voix est-elle utilisable, et cette note est-elle juste ? |
+| **[SignalLab](https://audiolab.tools/labs/signallab)** | Live | Que contient cet enregistrement : parole, musique, bruit ou silence, et où ? |
+| **[HearLab](https://audiolab.tools/labs/hearlab)** | Beta | Consignez un moment d'écoute difficile avec une mesure du son. Un compagnon non médical pour votre suivi auditif. |
+| **[CueLab](https://audiolab.tools/labs/cuelab)** | Beta | Cartographiez votre installation de stream (sources, routes, cues) et vérifiez-la avant de passer en direct. Une démo pour l'instant. |
+| **[SkillLab](https://audiolab.tools/labs/skilllab)** | Beta | Entraînez-vous au sound design, à la prise de parole, à l'enregistrement et au chant, avec un retour. |
+| **[Ψ Lab](https://audiolab.tools/labs/psilab)** | Beta | Remodelez le temps d'un son : étirez-le, figez-le, jouez-le à l'envers. |
 
 <ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
 
@@ -108,11 +107,11 @@ méthodologie, glossaire, roadmap : du contenu indexable, pas de routes JS-only.
 <StackTable rows={[
   { label: "Framework", value: <>Astro 6 (content-first, statique avec des îlots React là où c'est nécessaire)</> },
   { label: "UI", value: <>React 19, Tailwind v4 (config CSS-first)</> },
-  { label: "Contenu", value: <>MDX (<code className="font-mono text-cyan-300">@astrojs/mdx</code>), content collections par cluster</> },
+  { label: "Contenu", value: <>MDX (<code className="font-mono text-cyan-300">@astrojs/mdx</code>), content collections pour les docs, les insights et les showcases</> },
   { label: "Cartes OG", value: <>Satori + Resvg.js, générées dynamiquement au build</> },
-  { label: "Polices", value: <>Geist + JetBrains Mono (variable)</> },
+  { label: "Polices", value: <>IBM Plex Sans (variable) + IBM Plex Mono</> },
   { label: "Performance", value: <>Sharp pour le pipeline d'images, pré-rendu au build</> },
-  { label: "RSS", value: <>Feed.js par cluster, par tag</> },
+  { label: "RSS", value: <>Un flux RSS pour les insights</> },
   { label: "Sitemap", value: <><code className="font-mono text-cyan-300">@astrojs/sitemap</code></> },
 ]} />
 
@@ -125,22 +124,21 @@ outils de démo interactifs uniquement là où c'est vraiment nécessaire. Pas d
 
 ## Ce qu'il contient
 
-- Hero avec fallback d'animation (vidéo full-bleed + image statique de repli
-  pour reduced-motion)
-- Pages d'accueil par cluster avec leur propre flux d'outils, de docs et d'insights
-- Glossaire, méthodologie, roadmap, changelog comme artefacts publics
-- Showcases (études de cas) et Labs (espace d'expérimentation)
-- Page API (outils internes que d'autres peuvent intégrer)
-- Tarifs + contact + confidentialité
+- 160 lentilles, chacune avec son statut et sa marge (/lenses)
+- Sept labs dans le navigateur, plus une API hébergée (hébergement UE) et un
+  serveur MCP : les mêmes mesures pour votre pipeline, votre CI ou votre agent
+  IA. Offre gratuite : 300 minutes d'audio par mois
+- Docs, méthodologie, glossaire, roadmap et changelog comme artefacts publics
+- Evidence, domaine par domaine, plus des rapports d'exemple (PDF)
+- Quatre langues : anglais, néerlandais, allemand et français
+- Tarifs, contact et confidentialité
 
 <ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
 
 ## Statut
 
-**En ligne sur [audiolab.tools](https://audiolab.tools).** Six labs tournent ;
-quatre font de la vraie analyse (Beta), un est en cours d'extension, un est un
-concept simulé, et c'est écrit tel quel. La loudness de MixLab est
-vérifiée par rapport à la référence EBU R128 (±0,08 LU vs ffmpeg). La
-couche d'interprétation IA est l'étape suivante, pas une promesse actuelle.
+**En ligne sur [audiolab.tools](https://audiolab.tools).** Sept labs, 160
+lentilles avec statut, une API hébergée et un serveur MCP, en quatre langues.
+Chaque mesure porte son propre statut et, là où elle a été mesurée, une marge.
 
 </div>

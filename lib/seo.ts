@@ -67,6 +67,7 @@ export function buildAlternates(
 const SAME_AS = [
   "https://www.linkedin.com/in/nathanrenting/",
   "https://github.com/NR-tainment",
+  "https://github.com/Audio-Launch",
   "https://www.malt.nl/profile/jdrenting",
   "https://audiolab.tools",
 ] as const;

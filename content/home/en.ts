@@ -50,9 +50,9 @@ const en: HomeDict = {
       href: "/projects/audiolab",
       title: "AudioLab.tools",
       oneLiner:
-        "Authority platform at the intersection of audio + AI + DSP + Android + accessibility. Real tools, deep docs. Astro + React + Tailwind v4.",
-      tags: ["Astro", "Content platform", "Audio + AI"],
-      status: "Live · in progress",
+        "Independent measurement lab for audio: 160 lenses with a status, seven free labs in your browser, a hosted API and an MCP server, in four languages.",
+      tags: ["Astro", "Measurement lab", "API + MCP"],
+      status: "Live",
       externalUrl: "https://audiolab.tools",
     },
     audiolaunch: {

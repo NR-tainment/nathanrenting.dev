@@ -1,9 +1,9 @@
 import { SketchUnderline, MarkerHighlight, ChalkDoodle, StackTable } from "@/components/sketch";
 
 export const metadata = {
-  title: "AudioLab.tools · audio, AI & DSP",
+  title: "AudioLab.tools · onafhankelijk meetlab voor audio",
   description:
-    "Content- en tools-platform op het snijvlak van audio, AI, DSP, Android en toegankelijkheid. Real tools, deep docs, no slop. Astro + React + Tailwind v4.",
+    "Onafhankelijk meetlab voor audio: 160 lenzen met status, zeven gratis labs in je browser, een gehoste API en een MCP-server, in vier talen. Astro + React + Tailwind v4.",
 };
 
 export const appSchema = {
@@ -12,7 +12,7 @@ export const appSchema = {
   "@id": "https://nathanrenting.dev/nl/projects/audiolab#app",
   name: "AudioLab.tools",
   description:
-    "Een content- en tools-platform op het snijvlak van audio, AI, development, Android, DSP, toegankelijkheid en live workflows. Real tools, deep docs, no slop. Gebouwd op Astro, React en Tailwind v4.",
+    "Onafhankelijk meetlab voor audio. 160 lenzen, elk met status en met een marge waar die gemeten is, zeven gratis labs in de browser, een gehoste API en een MCP-server, in vier talen. Gebouwd op Astro, React en Tailwind v4.",
   inLanguage: "nl-NL",
   url: "https://audiolab.tools",
   image: "https://nathanrenting.dev/audiolab-architecture.png",
@@ -21,11 +21,11 @@ export const appSchema = {
   publisher: { "@id": "https://nathanrenting.dev/#org" },
   keywords: [
     "audio",
-    "AI",
+    "audio measurement",
+    "loudness",
     "DSP",
-    "Android",
-    "accessibility",
-    "content platform",
+    "API",
+    "MCP",
   ],
 };
 
@@ -37,7 +37,7 @@ export const appSchema = {
 />
 
 <div className="mb-2 font-mono text-xs uppercase tracking-widest text-cyan-400 flex items-center gap-4 flex-wrap">
-  <SketchUnderline seed={257}>Project · live · in opbouw</SketchUnderline>
+  <SketchUnderline seed={257}>Project · live</SketchUnderline>
   <a
     href="https://audiolab.tools"
     target="_blank"
@@ -48,12 +48,11 @@ export const appSchema = {
   </a>
 </div>
 
-# AudioLab.tools · authority platform voor audio + AI
+# AudioLab.tools · onafhankelijk meetlab voor audio
 
-<MarkerHighlight>Een content + tools platform op het snijvlak van audio, AI, development, Android, DSP, toegankelijkheid en live workflows.</MarkerHighlight>{" "}
-Geen marketing-funnel met &quot;join the waitlist&quot;-knoppen achter
-elke pagina. Iedere cluster levert een werkende browser-side demo plus
-diepe docs.
+<MarkerHighlight>Een onafhankelijk meetlab voor audio: elke opname erin, een rapport met getallen die je opnieuw kunt draaien, elk met zijn status.</MarkerHighlight>{" "}
+AudioLab verkoopt geen spraakherkenner, ruisonderdrukking of text-to-speech en
+heeft dus geen belang bij wat de meting zegt. Zelf gefinancierd, geen investeerders.
 
 <figure className="my-10 -mx-2 md:-mx-8">
   <img
@@ -63,43 +62,42 @@ diepe docs.
     loading="lazy"
   />
   <figcaption className="mt-3 text-center text-xs font-mono text-zinc-500 uppercase tracking-widest">
-    Vroege whiteboard-schets · inmiddels gegroeid naar zes labs
+    Vroege whiteboard-schets · inmiddels gegroeid naar zeven labs
   </figcaption>
 </figure>
 
 <ChalkDoodle type="asterisk" className="mt-12 mb-2 opacity-50" />
 
-## Drie principes (uit de site zelf)
+## Wat het is
 
-1. **Tools die je echt kunt gebruiken.** Iedere cluster ship&apos;t
-   een werkende, browser-side demo. Niets verstopt achter een
-   wachtlijst.
-2. **People-first writing.** Geen keyword-stuffed AI-slop. Elke pagina
-   is geschreven door iemand die audio in productie heeft gestuurd en
-   bereid is om in het openbaar fout te zitten.
-3. **Built where it matters.** Android, realtime DSP, accessibility,
-   developer-ergonomics. De plekken waar audio-AI echt moet werken,
-   niet alleen marketing-demo&apos;s.
+1. **160 lenzen, elk met status.** Elke lens zegt wat hij meet, hoe je het
+   leest en hoe ver je de uitkomst kunt vertrouwen, met een marge waar die
+   gemeten is.
+2. **Onafhankelijk.** Geen herkenner of ruisonderdrukker te verkopen, dus
+   geen belang bij de uitkomst.
+3. **Gecontroleerd.** Loudness binnen 0,06 LU op zelfgebouwde testsignalen
+   volgens EBU Tech 3341/3342 en BS.1770-4, binnen de 0,1 LU die de norm
+   toestaat.
 
 <ChalkDoodle type="arrow-curve" className="mt-12 mb-2 opacity-50" />
 
-## Zes labs, eerlijk over wat werkt
+## Zeven labs, gratis in je browser
 
-De site draait om zes browser-side labs. Elk lab is eerlijk gelabeld naar
-wat het écht doet (werkend, in aanbouw, of een gesimuleerd concept):
+Elk lab beantwoordt één vraag over je audio, behalve CueLab: dat is een
+routing-sandbox die niets meet. Je audio wordt niet geüpload. Eén
+uitzondering: de live ondertiteling van HearLab gebruikt de spraakherkenning
+van je browser, en die kan audio naar een online dienst sturen (Chrome doet
+dat). Dezelfde meetengine antwoordt ook in de API en de MCP-server.
 
 | Lab | Status | Wat het doet |
 |---|---|---|
-| **[MixLab](https://audiolab.tools/labs/mixlab)** | Beta | Loudness/dynamiek/stereo, **geverifieerd ±0,08 LU tegen de EBU R128-referentie** |
-| **[VoiceLab](https://audiolab.tools/labs/voicelab)** | Beta | Voice-QA: clarity, pacing, filler-density, clipping |
-| **[SignalLab](https://audiolab.tools/labs/signallab)** | Beta | Audio-indexer: stilte/clipping-detectie, regio-tags |
-| **[Ψ Lab](https://audiolab.tools/labs/psilab)** | Building | Phase vocoder · time-stretch, freeze, reverse, smear (volledig client-side AudioWorklet) |
-| **[SkillLab](https://audiolab.tools/labs/skilllab)** | Building | Oefen-challenges met feedback (werkt, wordt uitgebouwd) |
-| **[HearLab](https://audiolab.tools/labs/hearlab)** | Building | Non-medical hearing-companion (dashboard apart als concept) |
-| **[CueLab](https://audiolab.tools/labs/cuelab)** | Simulated | Live-routing-concept met gesimuleerde data |
-
-Alles client-side: audio verlaat de browser niet. Daarnaast docs,
-methodology, glossary, roadmap: indexable content, geen JS-only routes.
+| **[MixLab](https://audiolab.tools/labs/mixlab)** | Beta | Hoe luid is je mix en hoeveel headroom laat hij over? |
+| **[VoiceLab](https://audiolab.tools/labs/voicelab)** | Beta | Is deze voice-take bruikbaar, en zit die noot in toon? |
+| **[SignalLab](https://audiolab.tools/labs/signallab)** | Live | Wat zit er in deze opname: spraak, muziek, ruis of stilte, en waar? |
+| **[HearLab](https://audiolab.tools/labs/hearlab)** | Beta | Leg een moeilijk luistermoment vast met een meting van het geluid. Een niet-medische metgezel bij je gehoorzorg. |
+| **[CueLab](https://audiolab.tools/labs/cuelab)** | Beta | Breng je streamopstelling in kaart (bronnen, routes, cues) en check die voor je live gaat. Voorlopig een demo. |
+| **[SkillLab](https://audiolab.tools/labs/skilllab)** | Beta | Oefen sounddesign, spreken, opnemen en zingen, met feedback. |
+| **[Ψ Lab](https://audiolab.tools/labs/psilab)** | Beta | Vorm de tijd van een geluid om: rek het, bevries het, draai het om. |
 
 <ChalkDoodle type="star" className="mt-12 mb-2 opacity-50" />
 
@@ -108,11 +106,11 @@ methodology, glossary, roadmap: indexable content, geen JS-only routes.
 <StackTable rows={[
   { label: "Framework", value: <>Astro 6 (content-eerst, statisch met React-eilanden waar nodig)</> },
   { label: "UI", value: <>React 19, Tailwind v4 (CSS-first config)</> },
-  { label: "Inhoud", value: <>MDX (<code className="font-mono text-cyan-300">@astrojs/mdx</code>), per-cluster content-collections</> },
+  { label: "Inhoud", value: <>MDX (<code className="font-mono text-cyan-300">@astrojs/mdx</code>), content collections voor docs, insights en showcases</> },
   { label: "OG-cards", value: <>Satori + Resvg.js, dynamisch gegenereerd op build-tijd</> },
-  { label: "Fonts", value: <>Geist + JetBrains Mono (variable)</> },
+  { label: "Fonts", value: <>IBM Plex Sans (variable) + IBM Plex Mono</> },
   { label: "Performance", value: <>Sharp voor image-pipeline, build-time pre-rendering</> },
-  { label: "RSS", value: <>Feed.js per cluster, per-tag</> },
+  { label: "RSS", value: <>Eén RSS-feed voor de insights</> },
   { label: "Sitemap", value: <><code className="font-mono text-cyan-300">@astrojs/sitemap</code></> },
 ]} />
 
@@ -125,22 +123,21 @@ rendering voor een glossary.
 
 ## Wat erin zit
 
-- Hero met motion-fallback (full-bleed video + static image fallback
-  voor reduced-motion)
-- Per-cluster landing pages met eigen tools-, docs-, insights-stroom
-- Glossary, methodology, roadmap, changelog als publieke artefacten
-- Showcases (case-studies) en Labs (experimenteer-ruimte)
-- API page (interne tools die anderen kunnen integreren)
-- Pricing + contact + privacy
+- 160 lenzen, elk met status en marge (/lenses)
+- Zeven labs in de browser, plus een gehoste API (EU-hosting) en een
+  MCP-server: dezelfde metingen voor je pipeline, je CI of je AI-agent.
+  Gratis laag: 300 minuten audio per maand
+- Docs, methodologie, glossary, roadmap en changelog als publieke artefacten
+- Evidence per gebied, plus voorbeeldrapporten (PDF)
+- Vier talen: Engels, Nederlands, Duits en Frans
+- Prijzen, contact en privacy
 
 <ChalkDoodle type="x-mark" className="mt-12 mb-2 opacity-50" />
 
 ## Status
 
-**Live op [audiolab.tools](https://audiolab.tools).** Zes labs draaien;
-vier doen echte analyse (Beta), één wordt uitgebouwd, één is een
-gesimuleerd concept, en dat staat er ook zo bij. MixLab&apos;s loudness is
-geverifieerd tegen de EBU R128-referentie (±0,08 LU vs ffmpeg). De
-AI-interpretatielaag is de volgende stap, niet een huidige claim.
+**Live op [audiolab.tools](https://audiolab.tools).** Zeven labs, 160 lenzen
+met status, een gehoste API en een MCP-server, in vier talen. Elke maat draagt
+zijn eigen status en, waar die gemeten is, een marge.
 
 </div>

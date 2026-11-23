@@ -50,9 +50,9 @@ const fr: HomeDict = {
       href: "/projects/audiolab",
       title: "AudioLab.tools",
       oneLiner:
-        "Plateforme de référence à l'intersection audio + AI + DSP + Android + accessibilité. De vrais outils, une documentation approfondie. Astro + React + Tailwind v4.",
-      tags: ["Astro", "Plateforme de contenu", "Audio + AI"],
-      status: "En ligne · en construction",
+        "Laboratoire de mesure indépendant pour l'audio : 160 lentilles avec statut, sept labs gratuits dans le navigateur, une API hébergée et un serveur MCP, en quatre langues.",
+      tags: ["Astro", "Labo de mesure", "API + MCP"],
+      status: "En ligne",
       externalUrl: "https://audiolab.tools",
     },
     audiolaunch: {

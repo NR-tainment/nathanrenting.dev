@@ -42,7 +42,7 @@ export function Footer({
             Malt
           </a>
           <a
-            href="https://github.com/NR-tainment"
+            href="https://github.com/Audio-Launch"
             target="_blank"
             rel="noopener noreferrer me"
             className="hover:text-cyan-400 transition-colors uppercase tracking-widest"

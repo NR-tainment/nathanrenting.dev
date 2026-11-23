@@ -32,9 +32,9 @@ const nl: ProjectsDict = {
       href: "/projects/audiolab",
       title: "AudioLab.tools",
       oneLiner:
-        "Authority-platform op het snijvlak van audio + AI + DSP + Android + toegankelijkheid. Echte tools, diepgaande docs, geen flauwekul. Astro + React + Tailwind v4, cluster-structuur (MixLab, HearLab, Engineering).",
-      tags: ["Astro", "Content platform", "Audio + AI", "DSP"],
-      status: "Live · in opbouw",
+        "Onafhankelijk meetlab voor audio. 160 lenzen, elk met status en een marge waar die gemeten is. Zeven gratis labs in je browser, een gehoste API en een MCP-server voor je pipeline of AI-agent, in vier talen. Astro + React + Tailwind v4.",
+      tags: ["Astro", "Meetlab", "API + MCP", "DSP"],
+      status: "Live",
       externalUrl: "https://audiolab.tools",
     },
     audiolaunch: {
