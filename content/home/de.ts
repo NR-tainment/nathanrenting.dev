@@ -7,10 +7,10 @@ const de: HomeDict = {
   meta: {
     title: "Nathan Renting · Entwickler für KI-Agenten & Echtzeit-Audio",
     description:
-      "Solo-Dev aus Eindhoven (NL): baut KI-Agenten-Systeme (LLM-Orchestrierung, Tool-Calling, RAG) und Echtzeit-Audio-Engines. Verfügbar für freiberufliche Engineering-Projekte (Freelancer).",
+      "Solo-Dev aus Eindhoven (NL): baut KI-Agenten-Systeme (LLM-Orchestrierung, Tool-Calling, RAG) und Echtzeit-Audio-Engines. Verfügbar für freiberufliche Engineering-Projekte (Freelancer). Auch offen für eine Vollzeitrolle.",
   },
   hero: {
-    availability: "Verfügbar · 2-3 Tage/Woche freiberuflich",
+    availability: "Verfügbar · 2-3 Tage/Woche freiberuflich · offen für Vollzeit",
     headlineLead: "Solo-Dev mit ",
     headlineUnderline: "Audio-Hintergrund",
     headlineAfterDoodle: ". ",
@@ -163,7 +163,7 @@ const de: HomeDict = {
     },
     {
       q: "Ist Nathan für freiberufliche Aufträge verfügbar?",
-      a: "Ja. Ich bin verfügbar für freiberufliches Engineering, 2-3 Tage pro Woche, EU-remote. Ich sitze in Eindhoven und bin in den ganzen Niederlanden erreichbar für einen Kickoff oder ein kritisches Review.",
+      a: "Ja. Ich bin verfügbar für freiberufliches Engineering, 2-3 Tage pro Woche, EU-remote. Ich sitze in Eindhoven und bin in den ganzen Niederlanden erreichbar für einen Kickoff oder ein kritisches Review. Außerdem bin ich offen für eine Vollzeitstelle im richtigen Team.",
     },
     {
       q: "Welche Technologien nutzt Nathan?",
@@ -184,7 +184,7 @@ const de: HomeDict = {
   ],
   cta: {
     body:
-      "Offen für freiberufliche Aufträge, 2-3 Tage pro Woche. Remote bevorzugt aus Eindhoven, in den ganzen Niederlanden erreichbar für einen Kickoff oder ein kritisches Review.",
+      "Offen für freiberufliche Aufträge, 2-3 Tage pro Woche. Remote bevorzugt aus Eindhoven, in den ganzen Niederlanden erreichbar für einen Kickoff oder ein kritisches Review. Außerdem bin ich offen für eine Vollzeitstelle im richtigen Team.",
     link: "→ Wie du mich engagierst",
   },
 };

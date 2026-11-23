@@ -1,6 +1,6 @@
 # Nathan Renting · nathanrenting.dev
 
-> Solo developer from Eindhoven, Netherlands. Builds AI agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines. Available for freelance contract work, 2–3 days per week, EU remote.
+> Solo developer from Eindhoven, Netherlands. Builds AI agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines. Available for freelance contract work, 2–3 days per week, EU remote. Also open to a full-time role at the right team.
 
 ## Identity
 

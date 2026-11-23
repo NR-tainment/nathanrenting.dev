@@ -4,10 +4,10 @@ const de: HireDict = {
   meta: {
     title: "Engagiere mich",
     description:
-      "Freelance-Einsatz über Einzelunternehmen, 2-3 Tage pro Woche, 110-130 €/Std. Agenten-Systeme, KI-Automatisierung, Audio/Mobile, EU-konforme Infrastruktur.",
+      "Freelance-Einsatz über Einzelunternehmen, 2-3 Tage pro Woche, 110-130 €/Std. Agenten-Systeme, KI-Automatisierung, Audio/Mobile, EU-konforme Infrastruktur. Auch offen für eine Vollzeitrolle.",
   },
   h1: "Engagiere mich",
-  availability: "Verfügbar · 2-3 Tage pro Woche",
+  availability: "Verfügbar · 2-3 Tage pro Woche · offen für Vollzeit",
   what: {
     heading: "Was ich für Kunden mache",
     lead: "Technische Aufgaben, bei denen das Team klein ist – oder bei denen das Team eigentlich nur aus dir besteht. Die Form, in der ich am besten arbeite:",
@@ -45,7 +45,7 @@ const de: HireDict = {
       },
       {
         label: "Einsatzform",
-        body: "Freelance-Einsatz über mein Einzelunternehmen. NL-Rechnungen mit Mehrwertsteuer.",
+        body: "Freelance-Einsatz über mein Einzelunternehmen. NL-Rechnungen mit Mehrwertsteuer. Außerdem bin ich offen für eine Vollzeitstelle im richtigen Team.",
       },
       {
         label: "Standort",
@@ -57,7 +57,7 @@ const de: HireDict = {
       },
       {
         label: "Was ich nicht mache",
-        body: "Reine Beratung ohne Bauen. Generischer CMS-Bau. Vollzeit-Personalvermittlung.",
+        body: "Reine Beratung ohne Bauen. Generischer CMS-Bau.",
       },
     ],
   },

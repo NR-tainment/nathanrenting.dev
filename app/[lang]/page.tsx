@@ -87,7 +87,7 @@ export default async function Home({
         provider: { "@id": `${SITE_URL}/#nathan` },
         areaServed: "EU (remote)",
         description:
-          "Solo freelance ontwikkeling van AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines. ZZP-inhuur, 2–3 dagen per week, EU remote.",
+          "Solo freelance ontwikkeling van AI-agent systemen (LLM-orchestratie, tool-calling, RAG) en real-time audio engines. ZZP-inhuur, 2–3 dagen per week, EU remote. Ook open voor een voltijdrol.",
         offers: {
           "@type": "Offer",
           availability: "https://schema.org/InStock",

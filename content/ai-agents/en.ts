@@ -120,7 +120,7 @@ const en: AiAgentsDict = {
   },
   cta: {
     heading: "Ready to start?",
-    body: "Rate, availability and the form are on the hire page. Available for clients in the Netherlands and EU remote, 2-3 days a week, from Eindhoven.",
+    body: "Rate, availability and the form are on the hire page. Available for clients in the Netherlands and EU remote, 2-3 days a week, from Eindhoven. I'm also open to a full-time role at the right team.",
     link: "→ To /hire (rate + contact)",
   },
 };

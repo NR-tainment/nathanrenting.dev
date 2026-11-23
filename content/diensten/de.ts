@@ -10,7 +10,7 @@ const de: DienstenDict = {
   introBefore:
     "Was ich freiberuflich mache, konkret. Pro Leistung eine Seite, damit du schnell siehst, ob es passt. Für Ablauf und Tarif: siehe ",
   introLinkLabel: "/hire",
-  introAfter: ".",
+  introAfter: ". Außerdem bin ich offen für eine Vollzeitstelle im richtigen Team.",
   responseTime: "Antwort innerhalb von 2 Werktagen.",
   marginNote: "(eine Liste, kein Sales-Funnel)",
   items: [

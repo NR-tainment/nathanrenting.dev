@@ -4,10 +4,10 @@ const nl: HireDict = {
   meta: {
     title: "Huur me in",
     description:
-      "ZZP-inhuur via eenmanszaak, 2-3 dagen per week, €110-130/u. Agent-systemen, AI-automatisering, audio/mobile, EU-compliante infra.",
+      "ZZP-inhuur via eenmanszaak, 2-3 dagen per week, €110-130/u. Agent-systemen, AI-automatisering, audio/mobile, EU-compliante infra. Ook open voor een voltijdrol.",
   },
   h1: "Huur me in",
-  availability: "Beschikbaar · 2-3 dagen per week",
+  availability: "Beschikbaar · 2-3 dagen per week · open voor voltijd",
   what: {
     heading: "Wat ik voor klanten doe",
     lead: "Technische klussen waar het team klein is, of waar het team eigenlijk gewoon jij bent. De vorm waarin ik het beste werk:",
@@ -45,7 +45,7 @@ const nl: HireDict = {
       },
       {
         label: "Inhuurvorm",
-        body: "ZZP-inhuur via mijn eenmanszaak. NL-facturen met BTW.",
+        body: "ZZP-inhuur via mijn eenmanszaak. NL-facturen met BTW. Daarnaast sta ik open voor een voltijdrol bij het juiste team.",
       },
       {
         label: "Locatie",
@@ -57,7 +57,7 @@ const nl: HireDict = {
       },
       {
         label: "Wat ik niet doe",
-        body: "Pure consulting zonder bouwen. Generieke CMS-bouw. Fulltime detachering.",
+        body: "Pure consulting zonder bouwen. Generieke CMS-bouw.",
       },
     ],
   },

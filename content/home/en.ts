@@ -7,10 +7,10 @@ const en: HomeDict = {
   meta: {
     title: "Nathan Renting · AI agent & real-time audio developer",
     description:
-      "Solo dev from Eindhoven (NL): builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines. Available for contract engineering (ZZP).",
+      "Solo dev from Eindhoven (NL): builds AI-agent systems (LLM orchestration, tool-calling, RAG) and real-time audio engines. Available for contract engineering (ZZP). Also open to a full-time role.",
   },
   hero: {
-    availability: "Available · 2-3 days/week contract (ZZP, NL)",
+    availability: "Available · 2-3 days/week contract (ZZP, NL) · open to full-time",
     headlineLead: "Solo dev with an ",
     headlineUnderline: "audio background",
     headlineAfterDoodle: ". ",
@@ -163,7 +163,7 @@ const en: HomeDict = {
     },
     {
       q: "Is Nathan available for freelance / contract work?",
-      a: "Yes. I'm available for contract engineering (ZZP), 2-3 days/week, EU remote. I'm based in Eindhoven and reachable throughout NL for a kickoff or critical review.",
+      a: "Yes. I'm available for contract engineering (ZZP), 2-3 days/week, EU remote. I'm based in Eindhoven and reachable throughout NL for a kickoff or critical review. I'm also open to a full-time role at the right team.",
     },
     {
       q: "Which technologies does Nathan use?",
@@ -184,7 +184,7 @@ const en: HomeDict = {
   ],
   cta: {
     body:
-      "Open for freelance / contract work (ZZP), 2-3 days/week. Remote-preferred from Eindhoven, reachable throughout NL for a kickoff or a critical review.",
+      "Open for freelance / contract work (ZZP), 2-3 days/week. Remote-preferred from Eindhoven, reachable throughout NL for a kickoff or a critical review. I'm also open to a full-time role at the right team.",
     link: "→ How to hire me",
   },
 };

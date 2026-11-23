@@ -120,7 +120,7 @@ const fr: AiAgentsDict = {
   },
   cta: {
     heading: "Prêt à démarrer ?",
-    body: "Le tarif, la disponibilité et le formulaire se trouvent sur la page hire. Disponible pour des clients aux Pays-Bas et en EU remote, 2-3 jours par semaine, depuis Eindhoven.",
+    body: "Le tarif, la disponibilité et le formulaire se trouvent sur la page hire. Disponible pour des clients aux Pays-Bas et en EU remote, 2-3 jours par semaine, depuis Eindhoven. Je suis aussi disponible pour un poste à temps plein dans la bonne équipe.",
     link: "→ Vers /hire (tarif + contact)",
   },
 };

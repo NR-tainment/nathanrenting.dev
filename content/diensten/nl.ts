@@ -10,7 +10,7 @@ const nl: DienstenDict = {
   introBefore:
     "Wat ik freelance doe, in concrete vorm. Per dienst één pagina, zodat je snel ziet of het past. Voor de afspraak en het tarief: zie ",
   introLinkLabel: "/hire",
-  introAfter: ".",
+  introAfter: ". Daarnaast sta ik open voor een voltijdrol bij het juiste team.",
   responseTime: "Antwoord binnen 2 werkdagen.",
   marginNote: "(één lijst, geen sales-funnel)",
   items: [

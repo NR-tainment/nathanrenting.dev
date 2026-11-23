@@ -7,10 +7,10 @@ const fr: HomeDict = {
   meta: {
     title: "Nathan Renting · développeur agents IA & audio temps réel",
     description:
-      "Solo dev d'Eindhoven (NL) : conçoit des systèmes d'agents IA (orchestration LLM, tool-calling, RAG) et des moteurs audio temps réel. Disponible en freelance / indépendant.",
+      "Solo dev d'Eindhoven (NL) : conçoit des systèmes d'agents IA (orchestration LLM, tool-calling, RAG) et des moteurs audio temps réel. Disponible en freelance / indépendant. Aussi disponible pour un poste à temps plein.",
   },
   hero: {
-    availability: "Disponible · 2-3 jours/semaine en freelance",
+    availability: "Disponible · 2-3 jours/semaine en freelance · ou à temps plein",
     headlineLead: "Solo dev avec un ",
     headlineUnderline: "background audio",
     headlineAfterDoodle: ". ",
@@ -163,7 +163,7 @@ const fr: HomeDict = {
     },
     {
       q: "Nathan est-il disponible pour des missions en freelance / indépendant ?",
-      a: "Oui. Je suis disponible en freelance, 2-3 jours par semaine, en remote dans l'UE. Je suis basé à Eindhoven et joignable dans toute la NL pour un kickoff ou une revue critique.",
+      a: "Oui. Je suis disponible en freelance, 2-3 jours par semaine, en remote dans l'UE. Je suis basé à Eindhoven et joignable dans toute la NL pour un kickoff ou une revue critique. Je suis aussi disponible pour un poste à temps plein dans la bonne équipe.",
     },
     {
       q: "Quelles technologies Nathan utilise-t-il ?",
@@ -184,7 +184,7 @@ const fr: HomeDict = {
   ],
   cta: {
     body:
-      "Ouvert aux missions en freelance / indépendant, 2-3 jours par semaine. Remote de préférence depuis Eindhoven, joignable dans toute la NL pour un kickoff ou une revue critique.",
+      "Ouvert aux missions en freelance / indépendant, 2-3 jours par semaine. Remote de préférence depuis Eindhoven, joignable dans toute la NL pour un kickoff ou une revue critique. Je suis aussi disponible pour un poste à temps plein dans la bonne équipe.",
     link: "→ Comment m'engager",
   },
 };

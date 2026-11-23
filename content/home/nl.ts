@@ -5,7 +5,7 @@ const nl: HomeDict = {
     title: "Nathan Renting · AI-agent & real-time audio developer",
   },
   hero: {
-    availability: "Beschikbaar · 2-3 dagen per week ZZP",
+    availability: "Beschikbaar · 2-3 dagen per week ZZP · open voor voltijd",
     headlineLead: "Solo dev met ",
     headlineUnderline: "audio-achtergrond",
     headlineAfterDoodle: ". ",
@@ -159,7 +159,7 @@ const nl: HomeDict = {
     },
     {
       q: "Is Nathan beschikbaar voor freelance / ZZP-inhuur?",
-      a: "Ja. Ik ben beschikbaar voor ZZP-inhuur, 2-3 dagen per week, EU remote. Ik zit in Eindhoven en ben heel NL bereikbaar voor een kickoff of kritische review.",
+      a: "Ja. Ik ben beschikbaar voor ZZP-inhuur, 2-3 dagen per week, EU remote. Ik zit in Eindhoven en ben heel NL bereikbaar voor een kickoff of kritische review. Daarnaast sta ik open voor een voltijdrol bij het juiste team.",
     },
     {
       q: "Welke technologieën gebruikt Nathan?",
@@ -180,7 +180,7 @@ const nl: HomeDict = {
   ],
   cta: {
     body:
-      "Open voor freelance / ZZP-inhuur, 2-3 dagen per week. Remote-preferred vanuit Eindhoven, heel NL bereikbaar voor kickoff of een kritische review.",
+      "Open voor freelance / ZZP-inhuur, 2-3 dagen per week. Remote-preferred vanuit Eindhoven, heel NL bereikbaar voor kickoff of een kritische review. Daarnaast sta ik open voor een voltijdrol bij het juiste team.",
     link: "→ Hoe je me inhuurt",
   },
 };

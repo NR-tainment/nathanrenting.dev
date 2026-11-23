@@ -10,7 +10,7 @@ const fr: DienstenDict = {
   introBefore:
     "Ce que je fais en freelance, concrètement. Une page par service, pour que tu voies vite si ça colle. Pour les modalités et le tarif : voir ",
   introLinkLabel: "/hire",
-  introAfter: ".",
+  introAfter: ". Je suis aussi disponible pour un poste à temps plein dans la bonne équipe.",
   responseTime: "Réponse sous 2 jours ouvrés.",
   marginNote: "(une seule liste, pas de tunnel de vente)",
   items: [

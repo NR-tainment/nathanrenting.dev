@@ -4,10 +4,10 @@ const en: HireDict = {
   meta: {
     title: "Hire me",
     description:
-      "Freelance hire via sole proprietorship, 2-3 days/week, €110-130/hr. Agent systems, AI automation, audio/mobile, EU-compliant infra.",
+      "Freelance hire via sole proprietorship, 2-3 days/week, €110-130/hr. Agent systems, AI automation, audio/mobile, EU-compliant infra. Also open to a full-time role.",
   },
   h1: "Hire me",
-  availability: "Available · 2-3 days per week",
+  availability: "Available · 2-3 days per week · open to full-time",
   what: {
     heading: "What I do for clients",
     lead: "Technical work where the team is small, or where the team is basically just you. The shape I work best in:",
@@ -45,7 +45,7 @@ const en: HireDict = {
       },
       {
         label: "Engagement model",
-        body: "Freelance hire via my sole proprietorship. NL invoices with VAT.",
+        body: "Freelance hire via my sole proprietorship. NL invoices with VAT. I'm also open to a full-time role at the right team.",
       },
       {
         label: "Location",
@@ -57,7 +57,7 @@ const en: HireDict = {
       },
       {
         label: "What I don't do",
-        body: "Pure consulting without building. Generic CMS builds. Full-time staffing placement.",
+        body: "Pure consulting without building. Generic CMS builds.",
       },
     ],
   },

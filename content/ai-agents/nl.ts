@@ -120,7 +120,7 @@ const nl: AiAgentsDict = {
   },
   cta: {
     heading: "Klaar om te starten?",
-    body: "Tarief, beschikbaarheid en het formulier staan op de hire-pagina. Beschikbaar voor klanten in Nederland en EU remote, 2-3 dagen per week, vanuit Eindhoven.",
+    body: "Tarief, beschikbaarheid en het formulier staan op de hire-pagina. Beschikbaar voor klanten in Nederland en EU remote, 2-3 dagen per week, vanuit Eindhoven. Daarnaast sta ik open voor een voltijdrol bij het juiste team.",
     link: "→ Naar /hire (tarief + contact)",
   },
 };

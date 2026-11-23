@@ -4,10 +4,10 @@ const fr: HireDict = {
   meta: {
     title: "Travaillons ensemble",
     description:
-      "Mission en freelance via entreprise individuelle, 2-3 jours par semaine, 110-130 €/h. Systèmes d'agents, automatisation IA, audio/mobile, infra conforme UE.",
+      "Mission en freelance via entreprise individuelle, 2-3 jours par semaine, 110-130 €/h. Systèmes d'agents, automatisation IA, audio/mobile, infra conforme UE. Aussi disponible pour un poste à temps plein.",
   },
   h1: "Travaillons ensemble",
-  availability: "Disponible · 2-3 jours par semaine",
+  availability: "Disponible · 2-3 jours par semaine · ou à temps plein",
   what: {
     heading: "Ce que je fais pour mes clients",
     lead: "Des missions techniques où l'équipe est réduite, ou où l'équipe, c'est en fait juste toi. La forme dans laquelle je travaille le mieux :",
@@ -45,7 +45,7 @@ const fr: HireDict = {
       },
       {
         label: "Forme de la mission",
-        body: "Mission en freelance via mon entreprise individuelle. Factures NL avec TVA.",
+        body: "Mission en freelance via mon entreprise individuelle. Factures NL avec TVA. Je suis aussi disponible pour un poste à temps plein dans la bonne équipe.",
       },
       {
         label: "Localisation",
@@ -57,7 +57,7 @@ const fr: HireDict = {
       },
       {
         label: "Ce que je ne fais pas",
-        body: "Du conseil pur sans construire. La création de CMS génériques. Le placement en régie à temps plein.",
+        body: "Du conseil pur sans construire. La création de CMS génériques.",
       },
     ],
   },

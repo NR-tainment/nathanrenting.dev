@@ -120,7 +120,7 @@ const de: AiAgentsDict = {
   },
   cta: {
     heading: "Bereit loszulegen?",
-    body: "Tarif, Verfügbarkeit und das Formular stehen auf der Hire-Seite. Verfügbar für Kunden in den Niederlanden und EU-remote, 2-3 Tage pro Woche, aus Eindhoven.",
+    body: "Tarif, Verfügbarkeit und das Formular stehen auf der Hire-Seite. Verfügbar für Kunden in den Niederlanden und EU-remote, 2-3 Tage pro Woche, aus Eindhoven. Außerdem bin ich offen für eine Vollzeitstelle im richtigen Team.",
     link: "→ Zu /hire (Tarif + Kontakt)",
   },
 };
